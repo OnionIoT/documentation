@@ -28,6 +28,18 @@ const sidebars = {
         'networking/wifi'
       ],
     },
+    {
+      type: 'category',
+      label: 'Hardware Interfaces',
+      items: [
+        'hardware-interfaces/external-storage',
+        'hardware-interfaces/i2c',
+        'hardware-interfaces/spi',
+        'hardware-interfaces/gpio',
+        'hardware-interfaces/pin-multiplexing',
+        'hardware-interfaces/pwm',
+      ],
+    },
   ],
   /*
   tutorialSidebar: [

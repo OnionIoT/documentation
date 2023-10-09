@@ -42,7 +42,14 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 # TO DO
 
+genera:
+
 * [ ] remove blog files
 * [ ] update theme
-* [ ] add real intro
+
 * [ ] add pop-up notice stating these are new docs for beta firmware
+
+content:
+* [ ] add all content from OnionIoT/OpenWRT-Packages repo openwrt-22.03 technical doc page
+* [ ] add real intro
+* [ ] populate pin multiplexing docs article
