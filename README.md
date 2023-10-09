@@ -46,7 +46,7 @@ general:
 
 * [x] remove blog files
 * [x] setup CD
-* [ ] add a contributing info file
+* [x] add a contributing info file
 * [ ] update theme
 * [ ] add pop-up notice stating these are new docs for beta firmware
 
