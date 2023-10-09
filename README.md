@@ -44,9 +44,9 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 genera:
 
-* [ ] remove blog files
+* [x] remove blog files
+* [ ] setup CD
 * [ ] update theme
-
 * [ ] add pop-up notice stating these are new docs for beta firmware
 
 content:
