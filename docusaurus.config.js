@@ -91,7 +91,7 @@ const config = {
             items: [
               {
                 label: 'Beta Firmware Intro',
-                to: '/docs/intro',
+                to: '/',
               },
             ],
           },
