@@ -47,6 +47,7 @@ const sidebars = {
         'software/node',
       ],
     },
+    'feedback',
   ],
   /*
   tutorialSidebar: [
