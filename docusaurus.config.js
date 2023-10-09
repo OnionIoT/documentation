@@ -40,12 +40,10 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
+          // Please change this to your repo: done!
           // Remove this to remove the "edit this page" links.
           editUrl:
-            // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
             'https://github.com/OnionIoT/documentation/tree/main/'
-          // TODO: make sure above link works
         },
         blog: false,
         theme: {
@@ -109,7 +107,6 @@ const config = {
               {
                 label: 'Where to buy Onion products',
                 href: 'https://onion.io/buy',
-                // TODO: confirm above link is correct
               },
             ],
           },
