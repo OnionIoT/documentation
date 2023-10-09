@@ -6,20 +6,20 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Omega2 Beta Firmware Documentation',
+  tagline: 'Everything you need to know',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://documentation.onioniot.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'OnionIoT', // Usually your GitHub org/user name.
+  projectName: 'documentation', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -43,7 +43,9 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/OnionIoT/documentation/tree/main/'
+          // TODO: make sure above link works
         },
         blog: false,
         theme: {
@@ -57,12 +59,14 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/onion-badge.png',
       navbar: {
-        title: 'My Site',
+        title: 'Omega2 Beta Firmware Documentation',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Onion Badge',
+          src: 'img/onion-badge.png',
+          // alt: 'Onion Logo',
+          // src: 'img/Onion-Logo-Full.svg',
         },
         // items: [
         //   {
@@ -86,25 +90,26 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Beta Firmware Intro',
                 to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Resources',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Onion Main Site',
+                href: 'https://onion.io',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Onion Community Forum',
+                href: 'https://community.onion.io',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Where to buy Onion products',
+                href: 'https://onion.io/buy',
+                // TODO: confirm above link is correct
               },
             ],
           },
@@ -112,17 +117,17 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Onion Blog',
+                href: 'https://onion.io/blog',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/OnionIoT/documentation',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Onion Corporation<br>Built with Docusaurus`,
       },
       prism: {
         theme: lightCodeTheme,
