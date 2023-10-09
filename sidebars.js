@@ -25,7 +25,7 @@ const sidebars = {
       label: 'Networking',
       items: [
         'networking/ethernet',
-        'networking/wifi'
+        'networking/wifi',
       ],
     },
     {
@@ -38,6 +38,13 @@ const sidebars = {
         'hardware-interfaces/gpio',
         'hardware-interfaces/pin-multiplexing',
         'hardware-interfaces/pwm',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Software',
+      items: [
+        'software/node',
       ],
     },
   ],
