@@ -48,6 +48,13 @@ const sidebars = {
         'software/node',
       ],
     },
+    {
+      type: 'category',
+      label: 'Firmware',
+      items: [
+        'firmware/how-to-build-firmware',
+      ],
+    },
     'feedback',
   ],
   /*

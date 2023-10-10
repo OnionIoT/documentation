@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 
 # LED Chains
 
-The `p44-ledchain` kernel module created by [plan44](https://github.com/plan44) can be used to drive individually addressable WS281x-type RGB and RGBW LED chains. 
+The `p44-ledchain` kernel module created by [plan44](https://github.com/plan44) can be used to drive external, individually addressable WS281x-type RGB and RGBW LED chains.
 
-The LED chains must be connected to 1 of the 4 [hardware PWM channels](hardware-interfaces/pwm) on the Omega2/Omega2S. 
+The LED chains must be connected to 1 of the 4 [hardware PWM channels](/hardware-interfaces/pwm) on the Omega2/Omega2S. 
 
-For full details about the `p44-ledchain` kernel module, see the [README on GitHub](https://github.com/plan44/plan44-feed/tree/master/p44-ledchain#p44-ledchain-for-mt7688). **Below are quick notes on how to get an led chain up and running.**
+For full details about the `p44-ledchain` kernel module and its usage, see the [README on GitHub](https://github.com/plan44/plan44-feed/tree/master/p44-ledchain#p44-ledchain-for-mt7688). **Below are quick notes on how to get an led chain up and running.**
 
 ## First Time Setup
 
@@ -34,7 +34,7 @@ These commands do not persist after shutdown and will need to be run after every
 
 ### GPIO Mux
 
-First, adjust the GPIO muxing to enable the PWM channel. The GPIO mux ommand depends on the **PWM Channel** that's used to connect to the LED Chain. *See the [hardware PWM](hardware-interfaces/pwm) and [GPIO Muxing](hardware-interfaces/pin-multiplexing) docs articles for more information.*
+First, adjust the GPIO muxing to enable the PWM channel. The GPIO mux ommand depends on the **PWM Channel** that's used to connect to the LED Chain. *See the [hardware PWM](/hardware-interfaces/pwm) and [GPIO Muxing](/hardware-interfaces/pin-multiplexing) docs articles for more information.*
 
 <Tabs>
   <TabItem value="pwm0" label="PWM Channel 0" default>
