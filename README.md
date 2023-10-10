@@ -55,7 +55,7 @@ content:
 * [x] add real intro
 * [x] improve feedback page - formatting + link to feedback on docs
 * [x] add ledchain article
-* [ ] add how firmware works article
+* [x] add how firmware works article
 * [ ] add device tree overlay category with intro describing what it is and why it's important
 * [ ] add software spi device tree overlay article
 * [ ] populate pin multiplexing docs article
