@@ -38,6 +38,7 @@ const sidebars = {
         'hardware-interfaces/gpio',
         'hardware-interfaces/pin-multiplexing',
         'hardware-interfaces/pwm',
+        'hardware-interfaces/ledchain',
       ],
     },
     {
