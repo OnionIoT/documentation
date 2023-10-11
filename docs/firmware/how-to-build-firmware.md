@@ -33,13 +33,19 @@ The OpenWRT Build System is used to build:
 
 **Key point:** The OpenWRT SDK and Image Builder are used in Steps 2 & 3 to create firmware and the Onion package repo. 
 
-OpenWRT, the organization, also provides an SDK and Image Builder. However, this only provides control of the general configuration and what packages to include in the firmware. Deeper changes could not be makde.
+#### Why customize this?
 
-Using a customized build system, there is much more flexibility to change the kernel and system configuration. For example, this includes making the changes required to:
+OpenWRT, the organization, also provides an SDK and Image Builder. However, these SDKs and Image Builders are based on the vanilla OpenWRT Build System. It is possible to build packages and create firmware using them, but they only provide control of the general configuration and what packages to include in the firmware. Deeper changes cannot be made.
 
-1. Support building and using NodeJS (modern versions are not supported on any other MIPS platform)
-1. Enable the `/dev/mem` device used for [pin multiplexing](/hardware-interfaces/pin-multiplexing)
-1. Build kernel modules not part of the Linux kernel
+Using a customized build system to create a customized SDK and Image Builder provides more flexibility when building packages and firmware - including making changes to the kernel and system configuration. 
+
+Some examples includes making the changes required to:
+
+1. Support FPU emulation in the kernel in order to build and use modern NodeJS (modern versions are not supported on any other MIPS platform)
+1. Making settings changes in the kernel configuration - like enabling the `/dev/mem` device used for [pin multiplexing](/hardware-interfaces/pin-multiplexing)
+1. Building kernel modules not part of the Linux kernel
+1. The freedom to add patches in order to try out changes (created by yourself and others) quickly and efficiently
+
 
 ### Where is the source code?
 

@@ -47,8 +47,8 @@ general:
 * [x] remove blog files
 * [x] setup CD
 * [x] add a contributing info file
-* [ ] update theme
 * [ ] add pop-up notice stating these are new docs for beta firmware
+* [ ] update theme
 
 content:
 * [x] add all content from OnionIoT/OpenWRT-Packages repo openwrt-22.03 technical doc page
@@ -56,6 +56,6 @@ content:
 * [x] improve feedback page - formatting + link to feedback on docs
 * [x] add ledchain article
 * [x] add how firmware works article
-* [ ] add device tree overlay category with intro describing what it is and why it's important
-* [ ] add software spi device tree overlay article
+* [x] add device tree overlay category with intro describing what it is and why it's important
+* [x] add software spi device tree overlay article
 * [ ] populate pin multiplexing docs article

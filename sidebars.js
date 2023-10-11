@@ -41,17 +41,17 @@ const sidebars = {
         'hardware-interfaces/ledchain',
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Device Tree Overlay',
-    //   link: {
-    //     type: 'doc',
-    //     id: 'device-tree-overlay/intro'
-    //   },
-    //   items: [
-    //     'device-tree-overlay/software-spi',
-    //   ],
-    // },
+    {
+      type: 'category',
+      label: 'Device Tree Overlay',
+      link: {
+        type: 'doc',
+        id: 'device-tree-overlay/intro'
+      },
+      items: [
+        'device-tree-overlay/software-spi',
+      ],
+    },
     {
       type: 'category',
       label: 'Software',
