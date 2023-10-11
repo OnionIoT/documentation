@@ -58,4 +58,5 @@ content:
 * [x] add how firmware works article
 * [x] add device tree overlay category with intro describing what it is and why it's important
 * [x] add software spi device tree overlay article
-* [ ] populate pin multiplexing docs article
+* [x] populate pin multiplexing docs article
+* [ ] complete the TODOs in the content

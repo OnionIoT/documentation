@@ -33,6 +33,8 @@ Reboot the device
 
 Once the `onion-dt-overlay-sw-spi` package is installed, there will be a software bus available at `/dev/spidev1.0`.
 
+<!-- TODO: confirm the above device path! -->
+
 The following table describes which pins are used for which SPI signal:
 
 | SPI Signal | GPIO |

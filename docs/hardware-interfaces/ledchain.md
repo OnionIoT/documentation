@@ -44,14 +44,14 @@ omega2-ctrl gpiomux set pwm0 pwm
 ```
 
   </TabItem>
-  <TabItem value="pwm1" label="PWM Channel 1" default>
+  <TabItem value="pwm1" label="PWM Channel 1">
 
 ```
 omega2-ctrl gpiomux set pwm1 pwm
 ```
 
   </TabItem>
-  <TabItem value="pwm23" label="PWM Channels 2 or 3" default>
+  <TabItem value="pwm23" label="PWM Channels 2 or 3">
 
 ```
 omega2-ctrl gpiomux set uart2 pwm23
