@@ -81,6 +81,10 @@ const config = {
         //   },
         // ],
       },
+      announcementBar: {
+        id: 'announcementBar-0', // Increment on change
+        content: `Documentation for <strong>beta openwrt-22.03 firmware only!</strong> Visit <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">https://docs.onion.io</a> for stable v0.3.4 (and v0.3.3) firmware documentation`
+      },
       footer: {
         style: 'dark',
         links: [
