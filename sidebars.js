@@ -38,7 +38,15 @@ const sidebars = {
         'hardware-interfaces/gpio',
         'hardware-interfaces/pin-multiplexing',
         'hardware-interfaces/pwm',
-        'hardware-interfaces/ledchain',
+        {
+          type: 'category',
+          label: 'Additional Hardware',
+          collapsed: false,
+          items: [
+            'hardware-interfaces/ledchain',
+            'hardware-interfaces/omega2-lte',
+          ]
+        },
       ],
     },
     {

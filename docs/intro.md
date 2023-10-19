@@ -9,7 +9,7 @@ Documentation for the **new beta firmware based on OpenWRT 22.03** for the Onion
 
 :::danger
 
-If you're unsure about using beta firmware, do not proceed and stick with the stable firwmare
+If you're unsure about using beta firmware, do not proceed and stick with the stable firmware
 
 :::
 

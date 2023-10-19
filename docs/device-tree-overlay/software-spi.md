@@ -4,11 +4,12 @@ title: Software SPI
 
 # Software SPI
 
+Use the `onion-dt-overlay-sw-spi` Device Tree Overlay package to enable a software-based SPI bus to your device.
+
 The hardware SPI on the Omega2 can only drive 2 devices, as there is only CS0 (already used by internal flash) and CS1.
 
 If a use case requires an additional SPI device, software based SPI through GPIOs can be used. This is also known as bit-bang SPI.
 
-Use the `onion-dt-overlay-sw-spi` Device Tree Overlay package to enable a software-based SPI bus to your device.
 
 :::caution
 
