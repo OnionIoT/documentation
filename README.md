@@ -1,5 +1,7 @@
 # Website
 
+<!-- TODO: Consider updating this readme in the style of this: https://github.com/tidbyt/tidbyt.dev#readme -->
+
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
 ### Installation
