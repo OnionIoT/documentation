@@ -1,6 +1,6 @@
 ---
 name: Documentation Task
-about: Suggest an idea for this project
+about: Create a Task ticket for a new scope of work.
 title: ''
 labels: ''
 assignees: ''
