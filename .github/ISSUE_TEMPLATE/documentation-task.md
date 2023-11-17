@@ -11,7 +11,7 @@ Date Required By: ''
 # **Task Owner:**
 Who owns this task and will approve the final deliverables? 
 
-# **Objectives & Goals:"**
+# **Objectives & Goals:**
   ## 1. How does this task relate to the value track(s)?
     - All of the effort we put into improving our product lines should provide value to our customers.
     - We need to be able to clearly articulate the value each improvement will provide in the following three value tracks:
