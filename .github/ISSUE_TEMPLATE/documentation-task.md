@@ -6,6 +6,7 @@ labels: ''
 assignees: ''
 
 ---
+
 # **Task Owner:**
 Who owns this task and will approve the final deliverables? 
 
@@ -35,4 +36,3 @@ Who owns this task and will approve the final deliverables?
 # **Date Required By:**
   ### 1. When is the scope required to be completed?
   ### 2. Is this a hard date?  Specify if the task is a dependency of another task or if it will impact a customer requirement.
-
