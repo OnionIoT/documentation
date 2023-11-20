@@ -8,10 +8,10 @@ assignees: ''
 ---
 
 # What article does this bug/error affect?
-Provide either the URL or the path to the affected file
+*Provide either the URL or the path to the affected file*
 
 # **Describe the bug**
-A clear and concise description of what the bug/error or is.
+*A clear and concise description of what the bug/error or is.*
 
 # **To Reproduce**
 Steps to reproduce the behavior:
@@ -21,10 +21,10 @@ Steps to reproduce the behavior:
 4. See error
 
 # **Expected behavior**
-A clear and concise description of what you expected to happen.
+*A clear and concise description of what you expected to happen.*
 
 # **Screenshots**
-If applicable, add screenshots to help explain your problem.
+*If applicable, add screenshots to help explain your problem.*
 
 # **Version Info (please complete the following information):**
  - OS: [e.g. iOS]
@@ -37,4 +37,4 @@ If applicable, add screenshots to help explain your problem.
     - Package Version [e.g. 22-1]
 
 # **Additional context**
-Add any other context about the problem here.
+*Add any other context about the problem here.*
