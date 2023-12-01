@@ -2,7 +2,7 @@
 title: One-Wire Devices
 ---
 
-One-wire devices including but not limited to temperature loggers, battery monitors, humidity sensors, voltage and current sensors can be used with a wide range of controllers and processors in the Omega2 family of modules and more through One-wire communication protocol. 
+One-wire devices including but not limited to temperature loggers, battery monitors, humidity sensors, voltage and current sensors can be used with a wide range of controllers and processors in the Omega2 family of modules through One-wire communication protocol. 
 
 Let’s get started 🚀
 
