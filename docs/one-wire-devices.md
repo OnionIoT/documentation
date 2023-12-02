@@ -2,7 +2,7 @@
 title: One-Wire Devices
 ---
 
-One-wire devices including but not limited to temperature loggers, battery monitors, humidity sensors, voltage and current sensors can be used with a wide range of controllers and processors in the Omega2 family of modules through One-wire communication protocol. 
+One-wire devices including but not limited to temperature loggers, battery monitors, humidity sensors, voltage and current sensors can be used with the Omega2 family of modules through One-wire communication protocol.
 
 Let’s get started 🚀
 
@@ -68,12 +68,12 @@ Once the physical connections are made, install dts overlay package to register 
 
 **Step 1:**  Install the `onion-dt-overlay-w1-gpio` package using opkg
 
-```js
+```
 opkg install onion-dt-overlay-w1-gpio
 ```
 **Step 2:** After the package is successfully installed, GPIO19 will act as a One-Wire Master. 
 
-```js
+```
 /sys/devices/w1_bus_master1
 ```
 <h2 id="find">Find Connected One-Wire Devices</h2>
@@ -81,14 +81,14 @@ opkg install onion-dt-overlay-w1-gpio
 **Step 1:** Navigate to the relevant directory where One-Wire devices are listed. This is under `/sys/devices/w1_bus_master1`
 
 
-```js
+```
 cd /sys/devices/w1_bus_master1
 ls
 ```
 
 **Step 2:** Perform a check to find if slave devices are connected or not. 
 
-```js
+```
 cat /sys/devices/w1_bus_master1/w1_master_slave_count
 ```
 
@@ -107,11 +107,17 @@ The One-Wire bus master kernel module scans the data pin every 10 seconds for ne
 
 **Step 4:** If a slave device is connected, run the following command: 
 
-```js
+```
 cat/sys/devices/w1_bus_master1/w1_master_slaves
 ```
 
-This will return a (newline delimited) list of your slave device ID(s). The Device ID is the serial number of your One-Wire device. Example of a device ID: 28-000123456789. 
+This will return a (newline delimited) list of your slave device ID(s). 
+
+:::note
+
+The `Device ID` is the serial number of your One-Wire device. Example of a device ID: 28-000123456789. 
+
+:::
 
 :::note
 
@@ -119,19 +125,25 @@ Each device will have a different serial number, making it complex to use One-Wi
 
 :::
 
+:::tip
+
+Please keep a record of the `Device ID` as the same will be used when reading the data from the connected one-wire device (as discussed in the section).
+
+:::
+
 ## Read Data from a Connected One-Wire Device
 
 **Step 1:** Navigate to the specific slave device directory and access the data from the __w1_slave file__ by running the following command: 
 
-```js
+```
 cat /sys/devices/w1_bus_master1/DeviceID/w1_slave
 ```
 
-The `<DeviceID>` in the command above is the serial number of your One-Wire device. Please refer to **Step 4** of the command section "Find Connected One-Wire Devices" to learn more about finding the "DeviceID". 
+The `DeviceID` in the command above is the serial number of your One-Wire device we noted in the previous section. Please refer to **Step 4** of the command section "Find Connected One-Wire Devices" to learn more about finding the "DeviceID". 
 
 Assuming the slave device is a temperature sensor "DS18B20", having a serial number- 28-000123456789, the command will be: 
 
-```js
+```
 cat /sys/devices/w1_bus_master1/28-000123456789/w1_slave
 ```
 
@@ -139,7 +151,7 @@ cat /sys/devices/w1_bus_master1/28-000123456789/w1_slave
 
 Example of the raw data from the connected temperature sensor like the DS18B20: 
 
-```js
+```
 b1 01 4b 46 7f ff 0c 10 d8 : crc=d8 YES
 b1 01 4b 46 7f ff 0c 10 d8 t=27062
 ```
