@@ -76,7 +76,7 @@ opkg install onion-dt-overlay-w1-gpio
 ```
 /sys/devices/w1_bus_master1
 ```
-<h2 id="find">Find Connected One-Wire Devices</h2>
+## Find Connected One-Wire Devices
 
 **Step 1:** Navigate to the relevant directory where One-Wire devices are listed. This is under `/sys/devices/w1_bus_master1`
 
@@ -94,10 +94,11 @@ cat /sys/devices/w1_bus_master1/w1_master_slave_count
 
 **Step 3:** The command in step 2 will return the count of the number of slave devices connected. 
 
-| Result            | Interpretation                            |
-|-------------------|-------------------------------------------|
-| 1                 | A slave device is connected               |
-| 0                 | A slave device is connected               |
+| Result                   | Interpretation                                    |
+|--------------------------|---------------------------------------------------|
+| 0                        | No slave devices are connected                    |
+| 1                        | A single slave device is connected                  |
+| Any digit greater than 1 | Multiple slave devices are connected. Example: If the result is 3, it means that 3 slave devices are connected. |
 
 :::note
 
