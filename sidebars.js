@@ -58,7 +58,7 @@ const sidebars = {
       },
       items: [
         'device-tree-overlay/software-spi',
-        'one-wire-devices'
+        'device-tree-overlay/one-wire-devices'
       ],
     },
     {
