@@ -70,6 +70,17 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Packages',
+      link: {
+        type: 'doc',
+        id: 'packages/intro'
+      },
+      items: [
+        'device-tree-overlay/software-spi', // added this as a place holder - cannot have an empty category
+      ],
+    },
+    {
+      type: 'category',
       label: 'Firmware',
       items: [
         'firmware/how-to-build-firmware',
