@@ -20,13 +20,13 @@ Who owns this task and will approve the final deliverables?
 ###  2. Create a short statement explaining the objectives and goals for this Chapter.
 
 # **To-Do:**
-- [ ] List 1: Subtask 1: Subject expert creates a document of ideas for the new chapter.
-- [ ] List 2: Subtask 2: Technical Writer creates a list of articles that will go into the new chapter.
+- [ ] Subtask 1: Subject expert creates a document of ideas for the new chapter.
+- [ ] Subtask 2: Technical Writer creates a list of articles that will go into the new chapter.
 
 Subtask 3: Create List of tickets for the articles to be created in this chapter
-- [ ] List 1: Task 1 for Article 1: title goes here  
-- [ ] List 2: Task 2 for Article 2: title goes here
-- [ ] List x: Task x for Article x: title goes here 
+- [ ] Task 1 for Article 1: title goes here  
+- [ ] Task 2 for Article 2: title goes here
+- [ ] Task x for Article x: title goes here 
 
 _(add more +/- tasks as needed.  One for each article.)_
 
