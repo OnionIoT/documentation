@@ -21,7 +21,7 @@ Who owns this task and will approve the final deliverables?
 
 # **To-Do:**
 - [ ] List 1: Subtask 1: Subject expert creates a document of ideas for the new chapter.
-- [ ] List 2: Subtask 2: Technical Writer creates a list of articles that will go into the new chatper.
+- [ ] List 2: Subtask 2: Technical Writer creates a list of articles that will go into the new chapter.
 
 Subtask 3: Create List of tickets for the articles to be created in this chapter
 - [ ] List 1: Task 1 for Article 1: title goes here  
