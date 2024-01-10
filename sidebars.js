@@ -76,8 +76,7 @@ const sidebars = {
         id: 'packages/intro'
       },
       items: [
-        'device-tree-overlay/software-spi', // added this as a place holder - cannot have an empty category
-        'packages/opkg-package-manager', // added - 'opkg package manager'
+        'packages/opkg-package-manager',
       ],
       
     },

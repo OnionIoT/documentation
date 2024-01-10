@@ -157,7 +157,7 @@ Removing package curl from root...
 ```
 ## Add Package Repo
 
-:::note
+:::info
 This topic can be considered advanced, and outside of the everyday use of OPKG.
 :::
 
@@ -184,7 +184,7 @@ Only use package repos that are compatible with the `mipsel_24kc` architecture u
 
 ## Install a Package that's Not in a Package Repo
 
-:::note
+:::info
 This topic can be considered advanced, and outside of the everyday use of OPKG.
 :::
 
@@ -206,7 +206,7 @@ opkg install /tmp/<package-file.ipk>
 ```
 Replace `<package-file.ipk>` with the actual filename.
 
-:::note
+:::info
 This method is suitable for installing packages that are not available in standard repositories and useful for testing packages during development.
 :::
 
