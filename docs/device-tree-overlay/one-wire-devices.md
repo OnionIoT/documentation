@@ -32,7 +32,7 @@ One-Wire devices have three available connectors/wires as illustrated in the tab
 | GND             | Connect this wire to the ground pin on the Omega2 board.        |  
 | DQ              | Connect this wire to the GPIO19 pin on the Omega2 board.        | 
 
-![one wire device circuit diagram](../static/img/one-wire-device-circuit-diagram-1.png)
+![one wire device circuit diagram](/img/one-wire-device-circuit-diagram-1.png)
 
 :::note
 

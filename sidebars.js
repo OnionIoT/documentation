@@ -58,7 +58,7 @@ const sidebars = {
       },
       items: [
         'device-tree-overlay/software-spi',
-        'one-wire-devices'
+        'device-tree-overlay/one-wire-devices'
       ],
     },
     {
@@ -67,6 +67,18 @@ const sidebars = {
       items: [
         'software/node',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Packages',
+      link: {
+        type: 'doc',
+        id: 'packages/intro'
+      },
+      items: [
+        'packages/opkg-package-manager',
+      ],
+      
     },
     {
       type: 'category',
