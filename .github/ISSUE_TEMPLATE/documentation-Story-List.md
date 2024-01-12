@@ -36,7 +36,7 @@ Who owns this task and will approve the final deliverables?
 # **The Workflow:**
 - [ ] Subtask 1 (Workflow reference 10): Subject expert created a document of ideas for the new chapter.
 - [ ] Subtask 2(Workflow reference 11): Technical Writer has created a list of articles that will go into the new chapter.
-
+- [ ] SME approved the chapter outline.
 Subtask 3: PM will create List of tickets for the articles to be created in this chapter:
 (Workflow reference 12)
 - [ ] Task 1 for Article 1: title goes here  
