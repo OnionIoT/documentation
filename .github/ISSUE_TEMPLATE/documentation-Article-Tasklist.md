@@ -39,7 +39,7 @@ Who owns this task and will approve the final deliverables?
 - [ ] Subtask 1 (Workflow Reference 1): Idea dump from subject matter expert is completed.
 - Create document of ideas for an outline of the new article. 
 - Deliverable: google doc 
-- [ ] Subtask 2 (Workflow Reference 2): Technical Writer has createe the outline of article and high level ideas for for review.
+- [ ] Subtask 2 (Workflow Reference 2): Technical Writer has created the outline of article and high level ideas for review.
 - Revise and expand on the provided google doc
 - Deliverable: google doc outline  
 - [ ] Subtask 3 (Workflow Reference 3): SME has reviewed and approved the ticket "Ready for Development" 
@@ -60,7 +60,7 @@ Who owns this task and will approve the final deliverables?
 
 ## **Approved for Production Column: List of Subtasks**
 - [ ] Subtask 1(Workflow Reference 8): Technical writer has sent Pull Request.
-- [ ] Subtask 2(Workflow Reference 9): SME has comitted the document to the repo.
+- [ ] Subtask 2(Workflow Reference 9): SME has committed the document to the repo.
 - SME moves the ticket to "Completed" column. 
 
 
