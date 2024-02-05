@@ -134,3 +134,16 @@ Follow the same points written in Level 1: Heading
 **bold text**
 
 Follow the same points written in Level 1: Heading
+
+### Article Comments
+
+To include a comment box on an article (powered Giscus and Github Discussions), add the following to the bottom of the article markdown:
+
+```
+
+#
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+```
