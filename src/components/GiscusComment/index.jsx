@@ -10,13 +10,13 @@ const GiscusParams = {
   repoId: "R_kgDOKbtO9Q",
   category: "Docs Comments",
   categoryId: "DIC_kwDOKbtO9c4Cc9p4",
-  mapping: "specific",
+  mapping: "pathname",
   strict: "0",
   reactionsEnabled: "1",
   emitMetadata: "1",
   inputPosition: "bottom",
   lang: "en",
-  loading: "lazy",
+  loading: "eager",
   crossorigin: "anonymous",
 };
 
