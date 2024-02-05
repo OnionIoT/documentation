@@ -50,3 +50,9 @@ The following table describes which pins are used for which SPI signal:
 The DTS fragment that enables this functionality can be found at: https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/src/sw-spi.dts
 
 It is part of the `onion-dt-overlay` package.
+
+#
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

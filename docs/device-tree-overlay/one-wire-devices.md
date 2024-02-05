@@ -168,3 +168,9 @@ In the sample raw data above, the final `t=27062` indicates the temperature is 2
 - While connecting the One-Wire device to the Omega2 board, refer to the datasheet and documentation for your specific One-Wire device for detailed wiring and configuration instructions.
 
 - Some One-Wire devices will require a pull-up resistor on the Data line (DQ). For example, the popular DS18B20 temperature sensor requires a 4.7 kΩ pull-up resistor on the DQ to operate properly
+
+#
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
