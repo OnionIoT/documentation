@@ -76,6 +76,7 @@ const sidebars = {
         id: 'packages/intro'
       },
       items: [
+        'packages/getting-started-guide',
         'packages/opkg-package-manager',
       ],
       
