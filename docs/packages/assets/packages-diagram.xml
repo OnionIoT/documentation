@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2024-02-10T11:36:50.155Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="nCPrl_tLHI33jmm8JB0k" version="22.1.15" type="google">
+  <diagram name="Page-1" id="_wAdvapnzhzDmog9SxhL">
+    <mxGraphModel dx="1050" dy="565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-1" value="&lt;b style=&quot;font-weight:normal;&quot; id=&quot;docs-internal-guid-d76e5bba-7fff-a2b9-cbb7-01d33ca728ef&quot;&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="250" y="220" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="120" y="200" width="560" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-20" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="490" y="300" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-22" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.sharpArrow2;dy1=0.67;dx1=18;dx2=18;dy3=0.15;dx3=27;notch=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="310" y="330" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-23" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;direction=east;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="210" y="300" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-24" value="&lt;p style=&quot;line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;&quot; dir=&quot;ltr&quot;&gt;&lt;/p&gt;&lt;div&gt;&lt;/div&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(89, 89, 89); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline;&quot;&gt;Package Source&lt;/span&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(89, 89, 89); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline;&quot;&gt; Ex: software source code, files, etc&lt;/span&gt;&lt;p&gt;&lt;/p&gt;&lt;span id=&quot;docs-internal-guid-6aa17743-7fff-d1ed-a912-cad2b4611bde&quot;&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="180" y="260" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-26" value="&lt;b style=&quot;font-weight:normal;&quot; id=&quot;docs-internal-guid-179ce706-7fff-ac2b-862b-76cb56955a2d&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;&quot;&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(89, 89, 89); background-color: transparent; font-weight: 700; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline;&quot;&gt;Package&lt;/span&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;&quot;&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(89, 89, 89); background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline;&quot;&gt;(Installable package binary, ipk file)&lt;/span&gt;&lt;/p&gt;&lt;/b&gt;&lt;br class=&quot;Apple-interchange-newline&quot;&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="420" y="253" width="245" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-28" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Compilation&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="352" y="318" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jqDR2ZIPLkQR6TnNB0ky-29" value="Using OpenWRT SDK" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="317" y="353" width="130" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

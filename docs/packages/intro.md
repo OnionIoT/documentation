@@ -2,7 +2,8 @@
 title: OpenWRT Packages
 ---
 
-This getting started guide is a comprehensive cookbook that provides self-contained references for installing, creating, and configuring packages on Omega2 devices for practical applications. The guide includes a concise overview of key terms, such as packages, package manager, firmware, and package source code, offering a clear understanding of the essential concepts involved in working with Omega2 devices.
+This chapter provides an understanding on creating software packages for Omega2 devices.
+This article covers a brief explanation of the key terms that are essential to understand when dealing with OpenWRT packages.
 
 Let's get started 🚀
 
@@ -16,17 +17,17 @@ For example, `omega2-usb-autorun` package enables the execution of predefined sc
 Explore the available packages developed by Onion Corporation for Omega2 devices by navigating to the [**OnionIoT**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) package repo. You will see a list of packages compatible with Omega2 devices, which can be easily downloaded and installed using the package manager.
 :::
 
-![packages-diagram](./assets/ipk-packages.png)
+![packages-diagram](./assets/packages-diagram.png)
 
-<!-- Packages Diagram Source Code
+<!-- refer .xml file to edit this diagram in draw.io
 
-<iframe frameborder="0" style="width:100%;height:303px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1atYlLOH0eIhNPTF7XXZhrJ2OSuzK5ItA"></iframe>
+packages/assets/packages-diagram.xml
  -->
 
 <details>
 <summary>
 
-**Context:** More Details on the Packages Architecture
+**Context:** A note on architecture and packages
 
 </summary>
 
@@ -60,11 +61,11 @@ The firmware image is then typically flashed into non-volatile memory on devices
 
 The four components of the Omega2 firmware image are explained below:
 
-![firmware-image-diagram](./assets/firmware-image.png)
+![firmware-image-diagram](./assets/firmware-image-diagram.png)
 
-<!-- Firmware Image Diagram Code
+<!-- refer .xml file to edit this diagram in draw.io
 
-<iframe frameborder="0" style="width:100%;height:542px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1hVNJm84bH1W6PkfmFmQzoNbKQy0TgD82"></iframe>
+packages/assets/firmware-image-diagram.xml
  -->
 
 <details>
@@ -85,11 +86,10 @@ The four components of the Omega2 firmware image are explained below:
  - **File Systems:**
     A file system organizes and manages data on a storage device and defines how files are named, stored, and retrieved from a storage device.
 
+ - **Packages Collection:** 
+    Packages collection refers to the packages included in the firmware image. When the firmware image is installed on a device, these packages are also installed on the device, which extends the functionality of the firmware and application software.
+
 </details>
-
-## Packages Collection  
-
-Packages collection refers to the packages included in the firmware image. When the firmware image is installed on a device, these packages are also installed on the device, which extends the functionality of the firmware and application software.
 
 ## OPKG
 
@@ -109,9 +109,9 @@ The package source code is the collection of code and related files forming a so
 
 The package Makefile acts as the central blueprint for the packages, specifying details such as the package name, version, compilation instructions needed for building the package, and additional instructions.
 
-:::tip
-For a detailed guide on Package Source Code, refer to [**OpenWRT**](https://openwrt.org/docs/guide-developer/source-code/start#the_openwrt_source_code) developer documentation.
-:::
+<!-- :::tip 
+For a detailed guide on Package Source Code, refer to [**Package Source Code**](chapter link will be added in another iteration) chapter.
+::: -->
 
 ## Installable Package Binary (IPK files)
 
@@ -125,7 +125,8 @@ A Package Repository (Package Repo) is online storage for software packages that
 
 :::tip
 
-To further explore the package repo, refer to the official [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) repo. This repository contains a variety of packages, including those for interacting with expansions, docks, and Omega2 device software applications.
+To explore an example repo, see to [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) repo.
+
 :::
 
 ## Package Feed 
@@ -137,12 +138,6 @@ During the package compilation process, the build system verifies dependencies a
 :::tip
 For a detailed guide on the package feed, refer to [**OpenWRT**](https://openwrt.org/docs/guide-developer/feeds#feed_configuration) official documentation.
 :::
-
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
-<GiscusDocComment /> 
 
 <!-- chapters card -->
 
@@ -159,3 +154,11 @@ import PartialMarkdown from './_definitions_packages.mdx';
 ## Articles in this section
 
 <DocCardList />
+
+<!-- comment section -->
+#
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment /> 
+
+
