@@ -125,7 +125,7 @@ A Package Repository (Package Repo) is online storage for software packages that
 
 :::tip
 
-To explore an example repo, see to [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) repo.
+To explore an example repo, see the [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) repo.
 
 :::
 
