@@ -77,6 +77,7 @@ const sidebars = {
       },
       items: [
         'packages/opkg-package-manager',
+        'packages/custom-package',
       ],
       
     },
