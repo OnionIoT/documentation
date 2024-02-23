@@ -105,7 +105,7 @@ For further exploration, visit [**OpenWRT**](https://openwrt.org/docs/guide-deve
 
 :::
 
-### Package Dependencies
+## Package Dependencies
 
 Packages sometimes depend on other packages or libraries to function properly. Dependencies are defined in the package Makefile using the `DEPENDS` variable. This ensures the dependencies will also be installed when the package is installed. 
 
