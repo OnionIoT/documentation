@@ -1,4 +1,4 @@
-# Compile A Package
+# Compile a Package
 
 This guide provides steps to compile packages that are currently in development using the OpenWRT SDK. 
 
@@ -7,7 +7,7 @@ Let's get started 🚀
 ## Method Used to Compile Packages
 There are various methods to compile packages, but using the OpenWRT SDK is the most efficient way. The SDK is a precompiled toolchain intended for the creation of software packages without compiling the whole OpenWRT build system from scratch.
 
-Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omega2 devices. The wrapper makes use of the OpenWRT SDK and features set of supporting scripts and configurations that make it even quicker and easier to build and compile packages. 
+Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omega2 devices. The wrapper makes use of the OpenWRT SDK and features a set of supporting scripts and configurations that make it even quicker and easier to build and compile packages. 
 
 ## What Does it Mean for a Package to be in Development?
 
@@ -22,7 +22,7 @@ The OpenWRT build tools, including the SDK, are meant to be run on Linux. There 
  - Dedicated Linux machine
  - Linux server (like AWS EC2)
  - Docker virtual machine
- - Other virtual machines (like WSL, and VirtualBox)
+ - Other virtual machines (like WSL, VirtualBox, etc)
 
 **The method recommended by Onion is to use Ubuntu 22.04 Linux in a Docker container.** Using Docker provides isolation which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment. 
 
@@ -31,7 +31,7 @@ For those new to Docker, see Docker's [**installation guide**](https://docs.dock
 :::
 
 :::note
-When using Windows Subsystem for Linux (WSL), refer to [**OpenWRT developer guide**](https://openwrt.org/docs/guide-developer/toolchain/wsl#setting_up_path) for configuring environment paths and variables.
+When using Windows Subsystem for Linux (WSL), refer to the [**OpenWRT developer guide for WSL**](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
 :::
 
 ### Step 2: Install Required Dependencies
@@ -60,7 +60,9 @@ Locate the `PACKAGE_FEEDS` variable in the profile file and modify it to referen
 Assuming the custom package source is in the `/home/ubuntu/OpenWRT-Packages` directory, the updated `PACKAGE_FEEDS` variable should be:
 
 ```bash
-PACKAGE_FEEDS="src-link custom /home/ubuntu/OpenWRT-Packages"
+PACKAGE_FEEDS="
+src-link custom /home/ubuntu/OpenWRT-Packages
+"
 ```
 ### Step 2: Run Build Environment Setup Script
 
