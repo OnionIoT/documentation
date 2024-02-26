@@ -78,6 +78,7 @@ const sidebars = {
       items: [
         'packages/opkg-package-manager',
         'packages/custom-package',
+        'packages/compile-package',
       ],
       
     },
