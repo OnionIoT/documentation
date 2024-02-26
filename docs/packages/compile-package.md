@@ -90,3 +90,9 @@ openwrt-sdk/bin/packages/mipsel_24kc/custom/
 ```
 These packages have the extension `.ipk` and are compiled specifically for the `mipsel_24kc` architecture. 
 The compiled packages can be used for testing on a device to confirm proper operation.
+
+<!-- comment section -->
+#
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment /> 
