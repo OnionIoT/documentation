@@ -81,3 +81,9 @@ The `gpio-lookup` utility is included in the Omega2 firmware
 ### Interacting with GPIOs
 
  - **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the documentation at [**kernel.org**](http://kernel.org)
+
+<!-- comment section -->
+#
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment /> 
