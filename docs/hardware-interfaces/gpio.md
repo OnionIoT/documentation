@@ -8,7 +8,7 @@ Let's get started 🚀
 
 ## Hardware
 
-Table listing number of GPIOs on Omega2/2+ vs Omega2S/Omega2S+
+The table illustrated below shows the number of GPIOs available on the Omega2/2+ vs Omega2S/Omega2S+.
 
 ### Electrical Ratings
 
@@ -38,13 +38,15 @@ Standard 5V logic devices typically accept 3.3V as a logical HIGH, however, the 
 A number of the available pins can be used for multiple purposes other than general-purpose input/output when needed. Such pins are referred to as multiplexed pins.
 
 :::tip
-See detailed explanation of [**Multiplexed Pins**](https://documentation.onioniot.com/hardware-interfaces/pin-multiplexing).
+See detailed explanation of [**Multiplexed Pins**](./pin-multiplexing.md).
 
 :::
 
 ## Software
 
-The GPIOs can be accessed through the GPIO sysfs interface, see the [**documentation**](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) for details. The GPIO sysfs interface is deprecated but is currently the best option for userspace GPIO access. More context is available in this post by [**Luz on the Onion Community**](https://community.onion.io/topic/4892/can-bus-using-mcp2515-with-omega2/13).
+The GPIOs can be accessed through the GPIO sysfs interface, see the [**documentation**](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) for details. 
+
+| The GPIO sysfs interface is deprecated but is currently the best option for userspace GPIO access. More context is available in this post by [**Luz on the Onion Community**](https://community.onion.io/topic/4892/can-bus-using-mcp2515-with-omega2/13).
 
 ### GPIO Numbering Change
 
