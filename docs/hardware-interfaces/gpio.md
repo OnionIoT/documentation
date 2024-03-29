@@ -10,6 +10,11 @@ Let's get started 🚀
 
 The table illustrated below shows the number of GPIOs available on the Omega2/2+ vs Omega2S/Omega2S+.
 
+| Devices             | GPIOs |
+|---------------------|-------|
+|    Omega2/Omega2+   |  18   |
+|    Omega2S/Omega2S+ |  37   |
+
 ### Electrical Ratings
 
 GPIO Operating Voltage:
