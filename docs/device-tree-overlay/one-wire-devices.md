@@ -45,12 +45,6 @@ Please refer to your specific One-Wire device's datasheet to identify the pins a
 
 :::
 
-:::tip
-
-Building these connections is relatively easy if you have an Expansion, Power, or Arduino Dock since they all expose the Omega’s GPIOs. 
-
-:::
-
 :::warning
 
 Some One-Wire devices will require a pull-up resistor on the Data line (DQ). For example, the popular DS18B20 temperature sensor requires a 4.7 kΩ pull-up resistor on the DQ to operate properly.
