@@ -104,6 +104,13 @@ In the linked documentation, the `from smbus2 import SMBus` import statement is 
 Omega2 users must instead use `from smbus import SMBus`
 :::
 
+##  More Resources 
+
+- Default I2C bus clock speed and how it can be changed: https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz
+<!-- TODO: need to check with Jaymin if the below is still possible on OpenWRT 22 or 23 -->
+<!-- - Setting up a software-based (bit-bang) I2C bus: https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus -->
+
+
 
 
 #

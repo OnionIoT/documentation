@@ -32,11 +32,12 @@ const sidebars = {
       type: 'category',
       label: 'Hardware Interfaces',
       items: [
+        'hardware-interfaces/pinouts',
+        'hardware-interfaces/gpio',
+        'hardware-interfaces/pin-multiplexing',
         'hardware-interfaces/external-storage',
         'hardware-interfaces/i2c',
         'hardware-interfaces/spi',
-        'hardware-interfaces/gpio',
-        'hardware-interfaces/pin-multiplexing',
         'hardware-interfaces/pwm',
         {
           type: 'category',
