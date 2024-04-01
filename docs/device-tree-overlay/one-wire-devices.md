@@ -20,7 +20,7 @@ One Wire protocol follows a master-slave architecture with each bus allowing for
 
 ## Connect a One-Wire Device to the Omega2
 
-This section covers a three-stage process for establishing the physical wiring connection of your One-Wire device to GPIO19, where the latter will serve the role of the One-Wire master.
+This section covers a three-stage process for establishing the physical wiring connection of your One-Wire device to GPIO2, where the latter will serve the role of the One-Wire master.
 
 ### Stage 1: Identify the Connectors
 
@@ -30,19 +30,18 @@ One-Wire devices have three available connectors/wires as illustrated in the tab
 |-----------------|-----------------------------------------------------------------|
 | VCC             | Connect this wire to the 3.3V power source on the Omega2 board. |  
 | GND             | Connect this wire to the ground pin on the Omega2 board.        |  
-| DQ              | Connect this wire to the GPIO19 pin on the Omega2 board.        | 
+| DQ              | Connect this wire to the GPIO2 pin on the Omega2 board.        | 
 
-![one wire device circuit diagram](/img/one-wire-device-circuit-diagram-1.png)
+![one wire device circuit diagram](./assets/one-wire-device-circuit-diagram.png)
+
+<!-- refer .xml file to edit this diagram in draw.io
+
+/assets/one-wire-device-circuit-diagram.drawio.xml
+ -->
 
 :::note
 
 Please refer to your specific One-Wire device's datasheet to identify the pins and determine the recommended voltage. 
-
-:::
-
-:::tip
-
-Building these connections is relatively easy if you have an Expansion, Power, or Arduino Dock since they all expose the Omega’s GPIOs. 
 
 :::
 
@@ -59,19 +58,25 @@ Connect the power and ground wires belonging to your One-Wire device to the corr
 
 ### Stage 3: Connect the DQ
 
-Connect the DQ from your One-Wire device to the GPIO19 pin on the Omega2 board. 
+Connect the DQ from your One-Wire device to the GPIO2 pin on the Omega2 board. 
 
 ## Enable One-Wire Device Support
 
 
-Once the physical connections are made, install dts overlay package to register a one-wire master in Linux associated with GPIO19 to communicate with the one-wire slave device.  
+Once the physical connections are made, install dts overlay package to register a one-wire master in Linux associated with GPIO2 to communicate with the one-wire slave device.  
 
-**Step 1:**  Install the `onion-dt-overlay-w1-gpio` package using opkg
+**Step 1:**  Update the packages list using `opkg`
+
+```
+opkg update
+```
+
+**Step 2:**  Install the `onion-dt-overlay-w1-gpio` package using `opkg`
 
 ```
 opkg install onion-dt-overlay-w1-gpio
 ```
-**Step 2:** After the package is successfully installed, GPIO19 will act as a One-Wire Master. 
+**Step 3:** After the package is successfully installed, GPIO2 will act as a One-Wire Master. 
 
 ```
 /sys/devices/w1_bus_master1
@@ -79,7 +84,6 @@ opkg install onion-dt-overlay-w1-gpio
 ## Find Connected One-Wire Devices
 
 **Step 1:** Navigate to the relevant directory where One-Wire devices are listed. This is under `/sys/devices/w1_bus_master1`
-
 
 ```
 cd /sys/devices/w1_bus_master1
@@ -109,7 +113,7 @@ The One-Wire bus master kernel module scans the data pin every 10 seconds for ne
 **Step 4:** If a slave device is connected, run the following command: 
 
 ```
-cat/sys/devices/w1_bus_master1/w1_master_slaves
+cat /sys/devices/w1_bus_master1/w1_master_slaves
 ```
 
 This will return a (newline delimited) list of your slave device ID(s). 
@@ -163,7 +167,7 @@ In the sample raw data above, the final `t=27062` indicates the temperature is 2
 
 - Cross-check your wiring to make sure that VCC, GND, and DQ lines are correctly connected because incorrect wiring might lead to communication issues.  
 
-- Please ensure that the One-wire device’s dataline is connected to GPIO19. 
+- Please ensure that the One-wire device’s dataline is connected to GPIO2. 
 
 - While connecting the One-Wire device to the Omega2 board, refer to the datasheet and documentation for your specific One-Wire device for detailed wiring and configuration instructions.
 
