@@ -24,7 +24,7 @@ This article explains the layout and available connection options for Omega2/2+ 
 
 ## List of Supported Interfaces
 
-| Variant Name          | Omega2/2+ Specs                             | Omega2S/2S+ | 
+| Variant Name          | Omega2/2+                                   | Omega2S/2S+ | 
 |-----------------------|---------------------------------------------|-------------|
 | USB 2.0               | 1                                           | 1           |
 | SD/eMMC               | Omega2: none, Omega2+: MicroSD slot         | 1           | 
