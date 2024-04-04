@@ -32,26 +32,23 @@ Once the Omega has been booted, these pins can be used normally.
 
 ## SPI Pins
 
-The Omega’s hardware design uses dedicated GPIOs to control the Omega’s LED and accept an incoming Reset signal:
-
-
-The Omega’s processor communicates with the onboard SPI flash storage using `Chip Select 0` on the Omega’s SPI bus. Since there are two SPI chip select signals it’s possible to connect an additional SPI device to the Omega using `Chip Select 1`. As such, the SPI communication pins - CLK, MOSI, and MISO - are exposed on the Omega’s Expansion header as GPIOs 7, 8, and 9.
+The Omega’s processor communicates with the onboard SPI flash storage using `Chip Select 0` on the Omega’s SPI bus. Since there are two SPI chip select signals it’s possible to connect an additional SPI device to the Omega using `Chip Select 1`. As such, the SPI communication pins - CLK, MOSI, and MISO - are exposed on the Omega2 and Omega2S variants as GPIOs 7, 8, and 9.
 
 Since the Omega’s storage uses SPI, the SPI communication pins - GPIOs 7, 8, and 9 - must be used for the SPI protocol and cannot be used as regular GPIOs. If you wish to use these GPIOs, they are reserved only for SPI devices. These SPI devices will use Chip Select 1, on GPIO6, as their chip select signal on the Omega’s SPI bus.
 
 |   Name     |   I/O     | Description                                                                      |
 |------------|-----------|----------------------------------------------------------------------------------|
-|  SPI_CS1   |   O       | SPI Chip Select 1                                                                |  
+|  SPI_CS1   |   I/O     | SPI Chip Select 1                                                                |  
 |  SPI_CLK   |   O       | SPI Clock (Cannot be used as a regular GPIO)                                     |
 |  SPI_MISO  |   I       | SPI Master Input/Slave Output(Cannot be used as a regular GPIO)                  |
 |  SPI_MOSI  |   O       | SPI Master Output/Slave Input (Cannot be used as a regular GPIO)                 | 
-|  SPI_CS0   |   O       | SPI Chip Select 0 (Only exposed on Omega2S and cannot be used as a regular GPIO) | 
+|  SPI_CS0   |   O       | SPI Chip Select 0 (Cannot be used as a regular GPIO, *Only exposed on Omega2S*)  | 
 
 
 **IMPORTANT NOTES:**
 
  - **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.  They must be used for the SPI bus only.
- - Connecting non-SPI circuitry to these pins may prevent your Omega from booting or could potentially damage the device.
+    - Connecting non-SPI circuitry to these pins may prevent your Omega from booting or could potentially damage the device.
  - The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device.
  - The SPI CS1 pin, GPIO 6, may still be used as a regular GPIO when configured as a GPIO using `omega2-ctrl`.
 
@@ -62,7 +59,7 @@ For detailed information on GPIOs and Pins, refer to the [**Pin Multiplexing**](
 
 ## Reset Pins
 
-The Omega’s hardware design uses dedicated GPIOs to control the Omega’s LED and accept an incoming Reset signal:
+The Omega uses dedicated GPIOs to accept an incoming Reset signal:
 
 | Name             | I/O   | Function           |
 |------------------|-------|------------ -------|
@@ -79,6 +76,9 @@ when asserted low, will perform a hard reset (ie a power cycle) of the CPU.
 
 ## LED Pins
 
+The Omega uses a dedicated GPIO to control the status LED:
+
+
 |  GPIO   | Function         |   Omega2/Omega2+              | Omega2S Pin Number  |
 |-------- |------------------|-------------------------------|---------------------|
 |  GPIO44 | Omega Status LED | No, connected to onboard LED  | 19                  | 
@@ -91,7 +91,7 @@ Difference between Omega2/2+ vs Omega2S/2S+
 
 ## Pin Behaviour during Boot
 
-Most of Omega's pins will remain at the default digital low state during the boot process. However, there are a few pins that will behave differently:
+Most of the Omega's pins will remain at the default digital low state during the boot process. However, there are a few pins that will behave differently:
 
 |  GPIO   |  Behavior                                                                                                | 
 |---------|----------------------------------------------------------------------------------------------------------|
