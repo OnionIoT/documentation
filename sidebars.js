@@ -81,6 +81,7 @@ const sidebars = {
         'packages/opkg-package-manager',
         'packages/custom-package',
         'packages/compile-package',
+        'packages/deploy-a-package',
       ],
       
     },
