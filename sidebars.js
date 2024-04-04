@@ -35,6 +35,7 @@ const sidebars = {
         'hardware-interfaces/pinouts',
         'hardware-interfaces/gpio',
         'hardware-interfaces/pin-multiplexing',
+        'hardware-interfaces/special-pins',
         'hardware-interfaces/external-storage',
         'hardware-interfaces/i2c',
         'hardware-interfaces/spi',
