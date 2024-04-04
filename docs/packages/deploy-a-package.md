@@ -1,12 +1,12 @@
-# Deploy a Package 
+# Deploy a Package Repo
 
-This guide provides a detailed explanation of deploying a package on an HTTP web server after using the OpenWRT SDK to compile the package. It also covers the configurations that are necessary for compiling and building packages.
+This guide provides a detailed explanation of using the OpenWRT SDK to compile a package and then to deploy it in an online package repo. It also covers the configurations that are necessary for compiling and building packages.
 
 The primary objective of this guide is to offer an accessible method for deploying and accessing packages from an HTTP web server. A process is provided to use an AWS S3 bucket for deploying packages and maintaining a package feed repository on a remote web server. 
 
 ## Package Repo
 
-A package repo is an HTTP web server that stores compiled packages along with a package index. It is used to install packages in Omega2 devices using the package manager. A package repo helps enable and track the deployment of packages, which includes the package's release version.  Hosting a package repo streamlines the deployment of custom packages using OpenWRT's existing infrastructure. 
+A package repo is an HTTP web server that stores compiled packages along with a package index. It is used to by the package manager on Omega2 devices as a source from which to install packages. A package repo helps enable and track the deployment of packages, which includes the package's release version.  Hosting a package repo streamlines the deployment of custom packages using OpenWRT's existing infrastructure. 
 
 ## Compiling a Package Feed
 
@@ -52,10 +52,8 @@ See the [**OpenWRT Build System Setup instructions**](https://openwrt.org/docs/g
 To clone the **openwrt-sdk-wrapper** repository in the development  environment, open the terminal and run the following command:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/OnionIoT/openwrt-sdk-wrapper.git
 ```
-
-Replace `<repository_url>` with the actual URL of the **openwrt-sdk-wrapper** repository.
 
 ## Config Changes
 
@@ -66,18 +64,15 @@ Navigate to the cloned **openwrt-sdk-wrapper** repo to update the `PACKAGE_FEEDS
 Follow these steps:
 
 1. Modify the profile configuration file.
-2. Update the `PACKAGE_FEEDS` variable using the following syntax:
+2. Update the `PACKAGE_FEEDS` variable using the following syntax: `src-git <feed-name> <package-feed-url>[;<package-feed-branch>]`
+    - `<feed-name>`: Choose an arbitrary name for SDK usage.
+    - `<package-feed-url>`: Provide the Git repository URL
+    - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository.
 
-`src-git <feed-name> <package-feed-url>[;<package-feed-branch>]`
-
- - `<feed-name>`: Choose an arbitrary name for SDK usage.
- - `<package-feed-url>`: Provide the Git repository URL, similar to when cloning.
- - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository.
-
- For instance, consider the following example:
+For example, say the `openwrt-22.03` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:
 
 ```bash
-src-git onion https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
+src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
 ```
 
 ### Step 2: Select Packages from Package Feed 
@@ -116,11 +111,17 @@ Build and compile all desired packages listed in the `SDK_PACKAGES` variable in 
 bash onion_buildenv build_all_packages
 ```
 
-### Step 5: Build Output
+### Step 5: Compiled Package Location
 
-After compilation, find the compiled package files (`.ipk`) in the root directory. These files contain the compiled binaries and other necessary components of the packages.
-Navigate to **openwrt-sdk** represents the root directory of the SDK. Within this directory, the compiled packages are stored under the `bin/packages/mipsel_24kc/directory`. 
-`<feed-name>` denotes the name of the package feed specified during configuration.
+All compiled packages can be found in the following directory:
+
+```bash
+openwrt-sdk/bin/packages/mipsel_24kc/<feed-name>/
+```
+
+Where `<feed-name>` is the name of the feed that was added to the `profile` configuration file in Step 1 above.
+
+The packages have the extension `.ipk` and are compiled specifically for the `mipsel_24kc` architecture. Also included are package index files that will be used by the package manager on the device to install the packages.
 
 ## Deploying the Package Repo
 
