@@ -40,6 +40,8 @@ const sidebars = {
         'hardware-interfaces/i2c',
         'hardware-interfaces/spi',
         'hardware-interfaces/pwm',
+        'hardware-interfaces/uat',
+        'hardware-interfaces/one-wire',
         {
           type: 'category',
           label: 'Additional Hardware',
