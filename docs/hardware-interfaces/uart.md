@@ -5,6 +5,8 @@ title: UART
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# UART
+
 ## Introduction
 The Omega2 has two hardware serial UARTs, and the Omega2S has three hardware serial UARTs.
 
