@@ -37,10 +37,12 @@ To set up a serial line connection between two devices:
 <Tabs>
 	<TabItem value="omega2" label="Omega2 Pinout" default>
 The UART pins are highlighted on the Omega2 diagram below. GPIO 12 and 13 are used for the `UART0` and GPIO 45 and 46 are used for the `UART1`.
+
 ![omega2-pinout-uart](./assets/omega2-pinout-uart-highlights.png)
 	</TabItem>
 	<TabItem value="omega2s" label="Omega2S Pinout">
 The UART pins are highlighted on the Omega2S diagram below. GPIO 12 and 13 are used for the `UART0`, GPIO 45 and 46 are used for the `UART1`, and GPIO 20 and 21 are used for the `UART2`.
+
 ![omega2S-pinout-uart](./assets/omega2s-pinout-uart-highlights.png)
 	</TabItem>
 </Tabs>
