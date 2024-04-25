@@ -62,7 +62,7 @@ Using the command line tools, you can interact with the UART virtual device file
 **Sending data**
 
 To send data on `UART1`: `echo` to `/dev/ttyS1` like so:
-```bash
+```
 echo "my message" > /dev/ttyS1
 ```
 
@@ -71,7 +71,7 @@ The echo command will not display any text on the screen when entered, as you ar
 **Receiving data**
 
 To read data from `UART1`, run `cat` on it like so:
-```bash
+```
 cat /dev/ttyS1 
                              # waits for input data
 ```   
@@ -92,12 +92,12 @@ The screen utility allows you to use a terminal interface with a UART. Any data 
 To use the screen utility you’ll first need to update your packages and install the screen package using Omega’s package manager `opkg`.
 
 To update your list of packages:
-```bash
+```
 opkg update
 ```
 
 Next, you’ll install the screen package:
-```bash
+```
 opkg install screen
 ```
 
@@ -106,7 +106,7 @@ And now you’re ready to use `screen` with the UART!
 **Usage instructions:**
 
 To use the UART1 with `screen` enter the following command:
-```bash
+```
 screen /dev/ttyS1 <BAUD RATE>
 ```
 
@@ -128,13 +128,13 @@ Onion recommends using the `PySerial` Python module to communicate through seria
 You’ll be using Pip to install the PySerial Module. <!--For more details on Python3 and Pip, see our guide on installing and using Python on the Omega.-->
 
 First, you’ll need to install the Python3 version of Pip.
-```bash
+```
 opkg update
 opkg install python3-pip
 ```
 
 Then use Pip to install the `PySerial` module:
-```bash
+```
 pip3 install pyserial
 ```
 
