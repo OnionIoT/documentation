@@ -25,7 +25,7 @@ Support for one-wire devices on the Omega2 is enabled with a Device Tree Overlay
 
 Onion provides a device tree overlay package for one-wire support. The one-wire bus master is set to GPIO2 in this example package. You can change the setting of the bus master by creating a custom version of the one-wire device tree package.
 
-See the [Device tree overlay chapter](../device-tree-overlay/intro.md) for further details.
+See the [Device tree overlay chapter](../device-tree-overlay/intro) for further details.
 
 ### Connect a One-Wire device to the Omega2
 This section covers a three-stage process for establishing the physical wiring connection of your One-Wire device to GPIO2, where the latter will serve the role of the One-Wire master.
@@ -66,32 +66,32 @@ The following sections discuss how to install and work with the software used to
 Once the physical connections are made, install the dts overlay package to register a one-wire master in Linux associated with GPIO2 to communicate with the one-wire worker device.
 
 **Step 1:** Update the packages list using `opkg`.
-```bash
+```
 opkg update
 ```
 
 **Step 2:** Install the `onion-dt-overlay-w1-gpio` package using `opkg`.
 
-```bash  
+```  
 opkg install onion-dt-overlay-w1-gpio
 ```
 
 **Step 3:** After the package is successfully installed, GPIO2 will act as a One-Wire Master.
 
-```bash
+```
 /sys/devices/w1_bus_master1
 ```
 
 ### Find connected One-Wire devices
 
 **Step 1:** Navigate to the relevant directory where One-Wire devices are listed. This is under `/sys/devices/w1_bus_master1`.
-```bash
+```
 cd /sys/devices/w1_bus_master1
 ls
 ```
 
 **Step 2:** Perform a check to find if slave devices are connected or not.
-```bash
+```
 cat /sys/devices/w1_bus_master1/w1_master_slave_count
 ```
 
@@ -110,7 +110,7 @@ The One-Wire bus master kernel module scans the data pin every 10 seconds for ne
 :::
 
 **Step 4:** If a worker device is connected, run the following command:
-```bash
+```
 cat /sys/devices/w1_bus_master1/w1_master_slaves
 ```
 
@@ -131,21 +131,21 @@ Please keep a record of the `DeviceID` as the same ID will be used when reading 
 ### Read data from a connected One-Wire device
 
 **Step 1:** Navigate to the specific worker device directory and access the data from the **w1_slave file** by running the following command:
-```bash
+```
 cat /sys/devices/w1_bus_master1/DeviceID/w1_slave
 ```
 
 The `DeviceID` in the command above is the serial number of your One-Wire device we noted in the previous section. Please refer to **Step 4** of the command section "Find connected One-Wire devices" to learn more about finding the "DeviceID".
 
 Assuming the slave device is a temperature sensor "DS18B20", having a serial number- 28-000123456789, the command will be:
-```bash
+```
 cat /sys/devices/w1_bus_master1/28-000123456789/w1_slave
 ```
 
 **Step 2:** The command executed in **Step 1** will return the raw data from the connected One-Wire device.
 
 Example of the raw data from the connected temperature sensor like the DS18B20:
-```bash
+```
 b1 01 4b 46 7f ff 0c 10 d8 : crc=d8 YES
 b1 01 4b 46 7f ff 0c 10 d8 t=27062
 ```
