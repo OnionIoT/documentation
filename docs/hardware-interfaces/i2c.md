@@ -45,12 +45,12 @@ The Omega2 uses a hardware-based I2C controller:
 	<TabItem value="omega2" label="Omega2" default>
 	The I2C pins are highlighted on the Omega2 diagram below.
 
-![omega2-i2c-highlighted](./assets/omega2-pinout-i2c-highlighted.png)
+![omega2-pinout i2c-pins](./assets/omega2-pinout-i2c-highlighted.png)
 	</TabItem>
 	<TabItem value="omega2s" label="Omega2S">
 	The I2C pins are highlighted on the Omega2S diagram below.
 	
-![omega2s-i2c-highlighted](./assets/omega2s-pinout-i2c-highlighted.png)
+![omega2s-pinout i2c-pins](./assets/omega2s-pinout-i2c-highlighted.png)
 	</TabItem>
 </Tabs>
 
