@@ -1,5 +1,5 @@
 ---
-title: UART
+title: PWM
 ---
 
 import Tabs from '@theme/Tabs';
