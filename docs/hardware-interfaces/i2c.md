@@ -1,120 +1,131 @@
 ---
 title: I2C
 ---
-
-# I2C
-
-**I2C** (Inter-Integrated Circuit), sometimes called Two-Wire Interface, is a serial interface used to quickly and easily connect multiple devices to controllers and processors such as the Omega2. Examples of I2C devices include:
-
-* Sensors, such as temperature, humidity, current
-* Actuators, such as buzzers, lights
-* Controllers, such as motors, relays
-
-The Omega2 features one hardware I2C bus that acts in host-mode.
-
-## Context: How does I2C work? 
-
-Communication is performed over 2 data lanes, each given their own pin on the Omega2:
-- Clock (SCL) - Signals when data is being transferred
-- Data (SDA) - Carries the data to be transferred
-
-The I2C bus uses a **host-client** architecture:
-- Many clients on an I2C bus
-- Bus **hosts** are devices that are in control of when and to whom they send and receive data
-    - hosts send commands which include the address of the client who should receive it
-    - When using I2C with the Omega2, the Omega2 is configured to be the only bus host
-- Bus **clients** are devices that respond to hosts when they receive a command **addressed to them**.
-    - Each client is identified with a hexadecimal address (eg. 0x27)
-    - Clients will safely ignore commands not addressed to them
-
-Hosts and clients operate in either of two modes:
-- **transmit** - sending data
-- **receive** - receiving data
-
-## Hardware
-
-The Omega2 features a hardware I2C controller:
-- Logic level is 3.3V
-- Can operate in host-mode only
-- By default operates in standard mode (100kbps)
-    - Fast mode (400kbps) is also supported
-
-### I2C Pins
-
-The I2C pins (SCL and SDA) on the Omega2 and Omega2S are highlighted below.
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# I2C
+
+## Introduction
+The **Inter-Integrated Circuit (I2C)**, sometimes called the Two-Wire Interface, is a serial interface used to connect multiple devices quickly and easily to controllers and processors such as the Omega2. 
+
+Some examples of I2C devices include:
+- Sensors, such as temperature, humidity, and current.
+- Actuators, such as buzzers and lights.
+- Controllers, such as motors and relays.
+
+The Omega2 has one hardware I2C bus.
+
+## Context
+Communication with the I2C is performed over 2 data lanes, each given their own pin on the Omega2:
+- Clock (SCL) – Signals when data is being transferred.
+- Data (SDA) – Carries the data to be transferred.
+
+The I2C bus uses a **master-worker** architecture:
+- There are many workers on an I2C bus.
+- Bus **masters** are devices that are in control of when and to whom they send and receive data.
+	- Masters send commands which include the address of the worker who should receive it.
+	- When using I2C with the Omega2, the Omega2 is configured to be the only bus master.
+- Bus **workers** are devices that respond to masters when they receive a command addressed to them.
+	- Each worker is identified with a hexadecimal address (e.g. `0x27`).
+	- Workers will safely ignore commands not addressed to them.
+- Masters and workers operate in either of two modes:
+	- **Transmit** – sending data.
+	- **Receive** – receiving data.
+
+## Hardware
+The Omega2 uses a hardware-based I2C controller:
+- The logic level is 3.3V.
+- Can operate in host-mode only.
+- Has two baud rates.
+	- Standard mode - 100kbps (default)
+	- Fast mode - 400kbps (also supported)
+
 <Tabs>
-  <TabItem value="omega2" label="Omega2" default>
+	<TabItem value="omega2" label="Omega2" default>
+	The I2C pins are highlighted on the Omega2 diagram below.
 
-![omega2-pinout-diagram](./assets/omega2-pinout-i2c.png)
-
-  </TabItem>
-  <TabItem value="omega2s" label="Omega2S">
-
-![omega2s-pinout-diagram](./assets/omega2s-pinout-i2c.png)
-
-  </TabItem>
+![omega2-i2c-highlighted](./assets/omega2-pinout-i2c-highlighted.png)
+	</TabItem>
+	<TabItem value="omega2s" label="Omega2S">
+	The I2C pins are highlighted on the Omega2S diagram below.
+	
+![omega2s-i2c-highlighted](./assets/omega2s-pinout-i2c-highlighted.png)
+	</TabItem>
 </Tabs>
 
-## Software: Controlling I2C Devices
+## Software
+The Omega2 I2C bus interface is available at `/dev/i2c-0`.
 
-The I2C bus interface is available at `/dev/i2c-0`
+### Interacting with the I2C bus
+The following features are available on the I2C bus.
 
-> The `/dev/i2c-0` is a virtual device file. This is provided by `sysfs`, a pseudo-file system that holds information about the Omega’s hardware in files, and lets the user control the hardware by editing the files.
+#### Command line
+Use the i2c-tools command line program to communicate with any connected I2C device.
 
-### On the Command Line
+:::tip
 
-For basic testing and I2C access on the command line, it is recommended to use the `i2c-tools` command line utilities.
+The command line tools are useful for basic testing of I2C devices with your Omega2.
 
-To install the package:
+:::
 
+**Installation instructions:**
+
+To use the command line tools you’ll first need to update your packages and install the i2c-tools using Omega’s package manager `opkg`.
+
+To update your list of packages:
 ```
 opkg update
+```
+
+Next, you’ll install the i2c-tools package:
+```
 opkg install i2c-tools
 ```
 
-See the [i2c-tools documentation](https://linuxhint.com/i2c-linux-utilities/) to learn how to use the individual commands.
+Now you’re ready to work with the command line tools.
 
+**Usage instructions:**
 
-### Using C or C++
+For more information on how to use the command line tools, see [https://linuxhint.com/i2c-linux-utilities/](https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/tree/).
 
-To interact with I2C devices in C or C++, it is recommended to use the `/dev/i2c-0` adapter directly.
+#### C/C++
+Onion recommends using the `libi2c` library when programming with C/C++.
 
-See the documentation for using the I2C device adapter in user-space for more information: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+For more information on how to use the library, see the source code at: [https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/tree/](https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/tree/).
 
-### Using Python
+#### Python
+Onion recommends using the `python3-smbus` module when programming with Python. 
 
-The `python3-smbus` module is the recommended way to interact with I2C devices in Python.
+**Installation instructions:**
 
-To install the Python module:
+If you haven’t already done so, you’ll need to update your list of packages using Omega’s package manager `opkg`.
 
+To update your list of packages:
 ```
 opkg update
-opkg install python3-smbus 
 ```
 
-To learn how to use the module, see the documentation for an equivalent Python module here: https://pypi.org/project/smbus2/
+Next, you’ll install the `pthon3-smbus` module:
+```
+opkg install python3-smbus
+```
+
+And now you’re all set to use `python3-smbus` in your programs.
+
+**Usage instructions:**
+
+For more information on how to use the `python3-smbus` module, see the source code at: [https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/tree/py-smbus/smbusmodule.c](https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/tree/py-smbus/smbusmodule.c) .
 
 :::tip
-In the linked documentation, the `from smbus2 import SMBus` import statement is used. 
 
-Omega2 users must instead use `from smbus import SMBus`
+In the linked documentation, the from`smbus2` `import` SMBus import statement is used. Omega2 users must instead use from`smbus` `import` in their SMBus import statement.
+
 :::
 
-##  More Resources 
+## Additional resources
+- Default I2C bus clock speed and how it can be changed: [https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz](https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz) 
 
-- Default I2C bus clock speed and how it can be changed: https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz
-<!-- TODO: need to check with Jaymin if the below is still possible on OpenWRT 22 or 23 -->
-<!-- - Setting up a software-based (bit-bang) I2C bus: https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus -->
+<!-- 
+- Setting up software-based (bit-bang) I2C bus: [https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus](https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus) –>
 
-
-
-
-#
-
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
-<GiscusDocComment />
