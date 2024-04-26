@@ -41,15 +41,15 @@ The Omega2 does not support full-duplex SPI transmissions. This is due to a hard
 :::
 
 <Tabs>
-	<TabItem value="omega2" label="Omega2 Pinout" default>
+	<TabItem value="omega2" label="Omega2" default>
 The SPI pins and CS1 are highlighted on the Omega2 diagram below.
 
-![omega2-pinout-spi-cs1-pins](./assets/omega2-pinout-spi_cs1-highlights.png)
+![omega2-pinout spi-cs1 pins](./assets/omega2-pinout-spi_cs1-highlights.png)
 	</TabItem>
-	<TabItem value="omega2s" label="Omega2S Pinout">
+	<TabItem value="omega2s" label="Omega2S">
 The SPI pins and CS1 are highlighted on the Omega2S diagram below.
 
-![omega2s-pinout-spi-cs1-pins](./assets/omega2s-pinout-spi_cs1-highlights.png)
+![omega2s-pinout spi-cs1 pins](./assets/omega2s-pinout-spi_cs1-highlights.png)
 	</TabItem>
 </Tabs>
 
