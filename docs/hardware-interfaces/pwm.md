@@ -29,6 +29,7 @@ The hardware PWM modules have a frequency range of 39Hz to 40MHz. For lower freq
 | 2           | GPIO20 | Omega2S only |
 | 3           | GPIO21 | Omega2S only |
 
+The PWM pins are highlighted on the Omega2/2S diagrams below.
 
 <Tabs>
   <TabItem value="omega2" label="Omega2" default>
