@@ -35,16 +35,16 @@ To set up a serial line connection between two devices:
 - UARTs support standard **baud** rates up to 345,600 bps.
 
 <Tabs>
-	<TabItem value="omega2" label="Omega2" default>
-The UART pins are highlighted on the Omega2 diagram below. GPIO 12 and 13 are used for the `UART0` and GPIO 45 and 46 are used for the `UART1`.
+  <TabItem value="omega2" label="Omega2" default>
 
-![omega2-pinout-uart](./assets/omega2-pinout-uart-highlights.png)
-	</TabItem>
-	<TabItem value="omega2s" label="Omega2S">
-The UART pins are highlighted on the Omega2S diagram below. GPIO 12 and 13 are used for the `UART0`, GPIO 45 and 46 are used for the `UART1`, and GPIO 20 and 21 are used for the `UART2`.
+![omega2-pinout uart-pins](./assets/omega2-pinout-uart-highlights.png)
 
-![omega2S-pinout-uart](./assets/omega2s-pinout-uart-highlights.png)
-	</TabItem>
+  </TabItem>
+  <TabItem value="omega2s" label="Omega2S">
+
+![omega2s-pinout uart-pins](./assets/omega2s-pinout-uart-highlights.png)
+
+  </TabItem>
 </Tabs>
 
 ## Software
