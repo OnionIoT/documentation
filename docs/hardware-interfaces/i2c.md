@@ -42,16 +42,16 @@ The Omega2 uses a hardware-based I2C controller:
 	- Fast mode - 400kbps (also supported)
 
 <Tabs>
-	<TabItem value="omega2" label="Omega2" default>
-	The I2C pins are highlighted on the Omega2 diagram below.
+  <TabItem value="omega2" label="Omega2" default>
 
 ![omega2-pinout i2c-pins](./assets/omega2-pinout-i2c-highlighted.png)
-	</TabItem>
-	<TabItem value="omega2s" label="Omega2S">
-	The I2C pins are highlighted on the Omega2S diagram below.
-	
+
+  </TabItem>
+  <TabItem value="omega2s" label="Omega2S">
+
 ![omega2s-pinout i2c-pins](./assets/omega2s-pinout-i2c-highlighted.png)
-	</TabItem>
+
+  </TabItem>
 </Tabs>
 
 ## Software
@@ -124,8 +124,5 @@ In the linked documentation, the from`smbus2` `import` SMBus import statement is
 :::
 
 ## Additional resources
-- Default I2C bus clock speed and how it can be changed: [https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz](https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz) 
-
-<!-- 
-- Setting up software-based (bit-bang) I2C bus: [https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus](https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-bit-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus) –>
+- Default I2C bus clock speed and how it can be changed: [https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz](https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz)
 
