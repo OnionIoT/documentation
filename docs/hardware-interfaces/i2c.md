@@ -41,6 +41,8 @@ The Omega2 uses a hardware-based I2C controller:
 	- Standard mode - 100kbps (default)
 	- Fast mode - 400kbps (also supported)
 
+The I2C pins are highlighted on the Omega2/2S diagrams below.
+
 <Tabs>
   <TabItem value="omega2" label="Omega2" default>
 
