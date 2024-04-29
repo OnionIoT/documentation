@@ -34,12 +34,18 @@ To set up a serial line connection between two devices:
 - All UARTs are UART Lite controllers that do not feature hardware flow control.
 - UARTs support standard **baud** rates up to 345,600 bps.
 
+The UART pins are highlighted on the Omega2/2S diagrams below.
+
+- On the Omega2, GPIO 12 and 13 are used for the `UART0` and GPIO 45 and 46 are used for the `UART1`.
+
+- On the Omega2S, GPIO 12 and 13 are used for the `UART0`, GPIO 45 and 46 are used for the `UART1`, and GPIO 20 and 21 are used for the `UART2`.
+
 <Tabs>
   <TabItem value="omega2" label="Omega2" default>
 
-![omega2-pinout uart-pins](./assets/omega2-pinout-uart-highlights.png)
+  ![omega2-pinout uart-pins](./assets/omega2-pinout-uart-highlights.png)
 
-  </TabItem>
+   </TabItem>
   <TabItem value="omega2s" label="Omega2S">
 
 ![omega2s-pinout uart-pins](./assets/omega2s-pinout-uart-highlights.png)
