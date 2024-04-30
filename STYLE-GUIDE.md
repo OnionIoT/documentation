@@ -1,5 +1,4 @@
 # Style Guide
-
 This Style Guide provides an overview of a consistent method for writing and editing Omega2 documentation. Internal team members and technical writers who are responsible for creating or updating documentation will find this guide helpful. 
 
 Throughout the documentation process, standardization and effectiveness are maintained by following these guidelines.
@@ -10,7 +9,6 @@ Throughout the documentation process, standardization and effectiveness are main
 The guidelines are designed for technical writers, subject matter experts, and any other internal team member who wants to create or edit documentation.
 
 ### Tone and Style 
-
 - Use a clear and concise writing style.
 - Follow the standard capitalization rules of American English.
 - Maintain a professional technical tone and use a third-person POV (Point of View).
@@ -18,7 +16,6 @@ The guidelines are designed for technical writers, subject matter experts, and a
 - Maintain consistency in tone across all documents.
 
 ### Formatting
-
 - Maintain consistent Markdown formatting throughout the document development process(e.g. follow [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/) )
 - Use headings and subheadings tags using markdown hashtags (e.g. # for Title , ## for H1, ### for H2 and ### for H3 etc.)
 - For notes, tips, and warnings, use the built-in admonitions from [Docusaurus Admonitions](https://docusaurus.io/docs/markdown-features/admonitions) syntax.
@@ -35,15 +32,43 @@ The guidelines are designed for technical writers, subject matter experts, and a
 It should be surrounded by angle brackets `< >` and separated underscores `_` for multi-word values.
 **e.g.** `<PACKAGE_VERSION>`
 
-- Links and Hyperlinks, URLs must lead to the correct target locations within the document or to a valid external web page location.
+- Links and Hyperlinks
+	- URLs must lead to the correct target locations within the document or to a valid external web page location.
+	- Links and Hyperlinks should be embedded when possible.
+		- **Example:** Instead of using - see the Reference Guide at: http://somedocument - you should use - see the [Reference Guide](link_url), where the link is embedded.
 - Do not promise features that are in development and not in public. Only document features that exist already or that will be finished before the document is live.
 - Don't use a filename extension to refer to a type of file. 
  - **Example:** Use an `IPK` file instead of a `.ipk` file. 
 - Use qualifying nouns for technical keywords. 
  - **Example:** When referring to a file called `example.ipk`, call it the `example.ipk` file and not an `example.ipk` by itself.
+### File Naming Conventions
+Standard file naming conventions should be used for both Markdown and image files.
+
+**Markdown Files**
+
+Onion uses lowercase filenames for all Markdown files. For longer filenames use the en dash between words.
+
+**Example:** 
+
+*Correct:* one-wire-devices.md
+
+*==Incorrect==:* One-Wire-Devices.md
+
+**Image Files**
+
+Onion uses lowercase filenames for all image files. For longer filenames use the en dash or the underscore character between words. (*Do not use spaces between words.*)
+
+Use short descriptive names for the image file names.
+
+**Example:** 
+
+*Correct:* omega2-pinout-pwm-highlights.png
+
+*Correct:* omega2-pinout_pwm-highlights.png
+
+*==Incorrect==:* omega2 pinout pwm highlights.png
 
 ## Grammar and Language
-
 - Follow a recognized grammar style guide by following American English rules.
 - Use correct spelling and grammar.
 - Avoid words like "simple," "straightforward," "easy," "simple," "obviously," and "just,".
@@ -55,7 +80,6 @@ It should be surrounded by angle brackets `< >` and separated underscores `_` fo
 ## Visual Elements
 
 ### Images and Diagrams
-
 - Use clear and relevant visuals.
 - Use **[draw.io](https://app.diagrams.net)** to create state diagrams.
 - Maintain a consistent style for captions for every diagram.
@@ -65,7 +89,6 @@ It should be surrounded by angle brackets `< >` and separated underscores `_` fo
 - If a diagram is needed then store these images in the **OnionIoT/documentation repo** for future reference.
 
 ### Code Snippets
-
 - Use markdown syntax to add code snippets `(```YOUR_CODE_SNIPPET```)`.
 
 **Example:** if the code snippet is **opkg update** then convert it into
@@ -91,7 +114,6 @@ opkg update
 - Provide code snippets that conform to the most recent firmware software versions or configurations.
 
 ## Onion Corp Documentation Template 
-
 Onion Corp. adheres exclusively to the syntax conventions of Markdown and Docusaurus to create all documentation. This template is helpful for new technical writers and internal team members.
 
 Follow the given documentation template structure to create documentation.
@@ -125,18 +147,15 @@ Follow only standard American English rules and use a **professional technical t
 **Note:** Rearrange the following points by the specified documentation topic accordingly. For a more detailed overview follow the style guide points.
 
 ### Level 2: Heading
-
 Follow the same points written in Level 1: Heading
-### Level 3: Heading
 
+### Level 3: Heading
 Follow the same points written in Level 1: Heading
 
 **bold text**
-
 Follow the same points written in Level 1: Heading
 
 ### Article Comments
-
 To include a comment box on an article (powered Giscus and Github Discussions), add the following to the bottom of the article markdown:
 
 ```
