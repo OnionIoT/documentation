@@ -41,6 +41,7 @@ const sidebars = {
         'hardware-interfaces/i2c',
         'hardware-interfaces/one-wire',
         'hardware-interfaces/pwm',
+        'hardware-interfaces/usb',
         'hardware-interfaces/external-storage',
         {
           type: 'category',
