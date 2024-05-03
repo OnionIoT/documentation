@@ -34,8 +34,9 @@ It should be surrounded by angle brackets `< >` and separated underscores `_` fo
 
 - Links and Hyperlinks
 	- URLs must lead to the correct target locations within the document or to a valid external web page location.
+	- Use relative links within articles when linking to other sections of the documentation.
 	- Links and Hyperlinks should be embedded when possible.
-		- **Example:** Instead of using - see the Reference Guide at: http://somedocument - you should use - see the [Reference Guide](link_url), where the link is embedded.
+		- **Example:** Instead of saying - see the Reference Guide at: http://somedocument - you should say - see the [Reference Guide](link_url), where the link is embedded.
 - Do not promise features that are in development and not in public. Only document features that exist already or that will be finished before the document is live.
 - Don't use a filename extension to refer to a type of file. 
  - **Example:** Use an `IPK` file instead of a `.ipk` file. 
