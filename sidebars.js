@@ -42,6 +42,7 @@ const sidebars = {
         'hardware-interfaces/one-wire',
         'hardware-interfaces/pwm',
         'hardware-interfaces/usb',
+        'hardware-interfaces/sdio',
         'hardware-interfaces/ethernet',
         'hardware-interfaces/external-storage',
         {
