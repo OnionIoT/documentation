@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 ## Introduction
 The Omega2 features an SDIO/eMMC interface that enables the use of SD/MicroSD cards or eMMC storage chips.
 
-**Omega2:** Does not have a microSD slot and does not expose the SDIO/eMMC interface.
+ - **Omega2:** Does not have a microSD slot and does not expose the SDIO/eMMC interface.
 
-**Omega2+:** Has a microSD slot.
+- **Omega2+:** Has a microSD slot.
 
-**Omega2S/2S+:** Provides the SDIO/eMMC interface on exposed pins.
+- **Omega2S/2S+:** Provides the SDIO/eMMC interface on exposed pins.
 
 ## Hardware
 The Omega2 has a single SDIO interface.
@@ -39,10 +39,10 @@ The interface supports the SDXC specification for SD cards, with a maximum capac
 
 ![omega2s-sdio_emmc-diagram](./assets/omega2s-sdio_emmc-pinout.png)
 
+See [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf) for more information and recommendations on designing boards with microSD card slots or eMMC.
+
   </TabItem>
 </Tabs>
-
-See [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf) for more information and recommendations on designing boards with microSD card slots or eMMC.
 
 ## SD Card
 When you insert an SD Card into the microSD slot you will see a message like the following:
