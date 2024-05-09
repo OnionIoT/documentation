@@ -10,10 +10,8 @@ import TabItem from '@theme/TabItem';
 ## Introduction
 The Omega2 features an SDIO/eMMC interface that enables the use of SD/MicroSD cards or eMMC storage chips.
 
- - **Omega2:** Does not have a microSD slot and does not expose the SDIO/eMMC interface.
-
+- **Omega2:** Does not have a microSD slot and does not expose the SDIO/eMMC interface.
 - **Omega2+:** Has a microSD slot.
-
 - **Omega2S/2S+:** Provides the SDIO/eMMC interface on exposed pins.
 
 ## Hardware
