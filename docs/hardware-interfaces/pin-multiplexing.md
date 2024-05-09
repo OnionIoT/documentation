@@ -34,7 +34,7 @@ The `omega2-ctrl` utility is a user-friendly way to change the pin functionality
  - The Onion Omega2 firmware enables the /dev/mem device that is used to modify physical memory.
  - The omega2-ctrl program safely modifies the registers that configure pin multiplexing.
 
- :::note
+:::note
 
 The `omega2-ctrl` package is built into Onion firmware for the Omega2 family
 
