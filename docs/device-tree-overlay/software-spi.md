@@ -2,6 +2,8 @@
 title: Software SPI
 ---
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 # Software SPI Bus
 
 ## Introduction
@@ -50,4 +52,6 @@ The DTS fragment that enables the SPI Bus functionality can be found in the [Oni
 The package definition can be found at: [https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile](https://github.com/OnionIot/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile).
 
 It is part of the `onion-dt-overlay` package.
+
+<GiscusDocComment />
 
