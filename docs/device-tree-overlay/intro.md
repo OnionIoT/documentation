@@ -27,14 +27,14 @@ The Device Tree is a data structure that describes the hardware components of a 
 For more info, check out the [Device Tree for Dummies](https://elinux.org/images/f/f9/Petazzoni-device-tree-dummies_0.pdf) presentation by Thomas Petazzoni.
 
 ### Device Trees in OpenWRT
-By default, OpenWRT supports static Device Trees in the form of Device Tree Specification (DTS) files. For example, all the DTS files for ramips-based devices can be found on [GitHub's OpenWRT](https://github.com/openwrt/openwrt/tree/main/target/linux/ramips/dts) repository.
+By default, OpenWRT supports static Device Trees in the form of Device Tree Specification (DTS) files. For example, all the DTS files for ramips-based devices can be found on [OpenWRT's build system GitHub repo](https://github.com/openwrt/openwrt/tree/main/target/linux/ramips/dts) repository.
 
 With the current static device tree setup, if you want to make a change in the device tree, you must build custom firmware using the Build System. Not only does this take time to first figure out and then a lot of time to compile, but it also limits the number of people who are able to make these types of hardware configuration changes on the Omega2.
 
 ### What is a Device Tree Overlay?
 A Device Tree Overlay is a modification to the kernel’s live tree on a device - meaning adding support for new hardware or changing how hardware is supported.
 
-## How a Device Tree is implemented
+## How a Device Tree Overlay is implemented
 As a first step, runtime loadable device tree overlays are enabled in the [Onion-customized build system](https://github.com/OnionIoT/openwrt-buildsystem-wrapper) using patches. One of those patches includes a startup script so the device will automatically load compiled device tree overlays placed in `/lib/firmware/device-tree/overlays/*.dto` at startup.
 
 Next, the Build System is used to create an OpenWRT Image Builder and SDK (among other things). Any firmware created using this Image Builder supports runtime loadable device tree overlays.
@@ -55,7 +55,7 @@ See the [How Firmware is Built article](https://documentation.onioniot.com/firmw
 
 :::
 
-## How a Device Tree works on the device
+## How a Device Tree Overlay Package works on the device
 Use the `opkg` package manager to install a software package that features a compiled device tree overlay binary. After a reboot, the device tree overlay will be loaded, and the kernel will be made aware of a new device.
 
 The kernel will load drivers to enable support for the device. 
