@@ -59,14 +59,15 @@ const sidebars = {
     {
       type: 'category',
       label: 'Device Tree Overlay',
-      link: {
+      /*link: {
         type: 'doc',
         id: 'device-tree-overlay/intro'
-      },
+      },*/
       items: [
-        'device-tree-overlay/software-spi',
-        'device-tree-overlay/one-wire-devices'
-      ],
+          'device-tree-overlay/intro',
+          'device-tree-overlay/software-spi',
+          'device-tree-overlay/one-wire-devices',
+          ],
     },
     {
       type: 'category',
