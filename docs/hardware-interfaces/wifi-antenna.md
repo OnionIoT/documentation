@@ -18,9 +18,9 @@ The Omega2S/2S+ has a u.FL connector and an antenna (ANT) pin to connect to an e
 External antennas can directly connect to the u.FL connector on the module. However, on-board antennas like ceramic chip or PCB trace antennas need to connect to the ANT pin.
 
 ### U.FL connector
-Connect an external antenna to the Omega’s male surface-mounted u.FL connector. An external antenna will extend the range of the WiFi connection by using high gain antennas or directional Yagi antennas. When using an external antenna, the SMT and external antenna will split the transmission power, providing only half of the expected gain. 
+Connect an external antenna to the Omega’s male surface-mounted u.FL connector. An external antenna will extend the range of the WiFi connection by using high gain antennas or directional Yagi antennas. When using an external u.FL antenna along with an SMT antenna, the SMT and external antenna will split the transmission power, providing only half of the expected gain. 
 
-The Omega2/2+ requires a modification to maximize the performance with an external antenna. Remove the 0 Ohm resistor located between the WiFi antenna and u.FL connector so all the power goes to the external u.FL antenna.
+The Omega2/2+ requires a modification to maximize the performance with an external antenna. Remove the 0Ω resistor located between the SMT WiFi antenna and u.FL connector so the SMT antenna is disconnected and all the power goes to the external u.FL antenna.
 
 Follow the procedure outlined [here](https://onion.io/2bt-u-fl-antennas-with-the-omega/) to modify your Omega.
 
@@ -29,6 +29,8 @@ Follow the procedure outlined [here](https://onion.io/2bt-u-fl-antennas-with-the
 Make any device changes carefully and at your own risk. These changes are hard to undo and will require permanent use of an external antenna for reasonable WiFi connectivity. If you damage your Omega during modifications, Onion Corporation is not responsible.
 
 :::
+
+The Omega2S/Omega2S+ require no modification. When designing a custom board for the Omega2S/Omega2S+, you must choose between connecting the antenna to the ANT pin and the u.FL connector.
 
 <Tabs>
   <TabItem value="omega2" label="Omega2" default>
