@@ -44,6 +44,7 @@ const sidebars = {
         'hardware-interfaces/usb',
         'hardware-interfaces/sdio',
         'hardware-interfaces/ethernet',
+        'hardware-interfaces/wifi-antenna',
         'hardware-interfaces/external-storage',
         {
           type: 'category',
