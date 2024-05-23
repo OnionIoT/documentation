@@ -27,7 +27,6 @@ const sidebars = {
         'networking/wifi',
         'networking/ethernet',
         'networking/wifi-ethernet',
-        
       ],
     },
     {
