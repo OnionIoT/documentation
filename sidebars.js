@@ -24,8 +24,10 @@ const sidebars = {
       type: 'category',
       label: 'Networking',
       items: [
-        'networking/ethernet',
         'networking/wifi',
+        'networking/ethernet',
+        'networking/wifi-ethernet',
+        
       ],
     },
     {
