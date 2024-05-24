@@ -174,7 +174,7 @@ Having both the AP and STA enabled simultaneously may result in IP address colli
 ### What is an IP address collision?
 An IP address collision can occur if your Omega’s access point (AP) and WiFi network that you try connecting to share the same subnetwork (subnet). The Omega’s AP is 192.168.3.0/24 and it’s possible that your WiFi network has the same subnet. This results in the Omega not knowing what data to send where.
 
-See the article [Avoiding IP address collisions](./ip-address-collisions) for more information.
+See the article [Avoiding IP address collisions](./networking/ip-address-collisions) for more information.
 
 ## Disabling the WiFi radio
 You may want to completely power down the WiFi radio and disable all wireless networking.
