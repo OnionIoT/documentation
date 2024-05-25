@@ -26,6 +26,7 @@ const sidebars = {
       items: [
         'networking/wifi',
         'networking/ethernet',
+        'networking/wifi-ethernet',
         'networking/ip-address-collisions',
       ],
     },
