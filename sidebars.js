@@ -54,7 +54,7 @@ const sidebars = {
           collapsed: false,
           items: [
             'hardware-interfaces/ledchain',
-            'hardware-interfaces/omega2-lte',
+            'hardware-interfaces/lte-modem',
           ]
         },
       ],
