@@ -7,6 +7,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 # Software SPI Bus
 
 ## Introduction
+
 The SPI hardware on the Omega2 only supports 2 devices using CS0 (already used by internal flash) and CS1.
 
 If a use case requires an additional SPI device, software-based SPI chip selects can be specified by using other GPIOs. This is also known as bit-bang SPI.
@@ -24,29 +25,31 @@ Since this is a software-based bus, it will not be as fast as a hardware SPI bus
 :::
 
 ## Installation
+
 Ensure the Omega2 is connected to the internet, and install the package using opkg:
+
 ```
 opkg update
 opkg install onion-dt-overlay-sw-spi
 ```
 
-After installing the package, reboot the device.
-
 ## How it's used
+
 Once the `onion-dt-overlay-sw-spi` package is installed, there will be a software bus available at `/dev/spidev1.0`.
 
 The following table describes which pins are used for which SPI signal:
 
 | SPI Signal | GPIO |
 | :--------- | :--- |
-| SCK        | 11   |
-| MOSI       | 5    |
-| MISO       | 4    |
-| CS         | 23   |
+| SCK        | 14   |
+| MOSI       | 16   |
+| MISO       | 15   |
+| CS         | 17   |
 
 For further instruction on using the SPI Bus see the [SPI article](https://documentation.onioniot.com/hardware-interfaces/spi).
 
 ## Source Code
+
 The DTS fragment that enables the SPI Bus functionality can be found in the [OnionIoT/OpenWRT-Packages GitHub repository](https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/src/sw-spi.dts). 
 
 The package definition can be found at: [https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile](https://github.com/OnionIot/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile).
