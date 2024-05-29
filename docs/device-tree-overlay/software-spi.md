@@ -1,10 +1,8 @@
 ---
-title: Software SPI
+title: Software SPI BUS
 ---
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
-
-# Software SPI Bus
 
 ## Introduction
 
@@ -28,7 +26,7 @@ Since this is a software-based bus, it will not be as fast as a hardware SPI bus
 
 Ensure the Omega2 is connected to the internet, and install the package using opkg:
 
-```
+```shell
 opkg update
 opkg install onion-dt-overlay-sw-spi
 ```
@@ -57,4 +55,3 @@ The package definition can be found at: [https://github.com/OnionIoT/OpenWRT-Pac
 It is part of the `onion-dt-overlay` package.
 
 <GiscusDocComment />
-

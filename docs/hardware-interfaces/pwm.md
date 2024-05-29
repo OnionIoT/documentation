@@ -1,21 +1,24 @@
 ---
-title: PWM
+title: Hardware PWM
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Hardware PWM
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
+
 The Omega's SoC has several PWM modules. The Omega2 exposes 2 hardware PWM channels on its pin headers while the Omega2S exposes 4.
 
 ## Context
+
 Pulse-width modulation (PWM) is a technique of producing varying analog signals from a digital source.
+
 - Duty cycle = percentage of time the signal is high (0-100).
 - Frequency = signal frequency.
 
 ## Hardware
+
 In this section we are referring to hardware-based PWM modules.
 
 **Omega2/2+:** 2 channels, **Omega2S/2S+:** 4 channels
@@ -45,37 +48,45 @@ The PWM pins are highlighted on the Omega2/2S diagrams below.
 </Tabs>
 
 ## Software
+
 The following sections discuss enabling and working with the hardware PWM.
 
 ### Enabling Hardware PWM
+
 To enable the use of hardware PWM, a kernel module needs to be installed:
-```
+
+```shell
 opkg update   
 opkg install kmod-pwm-mediatek-ramips
 ```
 
 ### Adjusting pin multiplexing to enable PWM pins
+
 The Omega's pins are multiplexed allowing the exposed pins to be used for several different functions.
 
 The pin multiplexing configuration can be easily changed from the command line using `omega2-ctrl`.
 
 For GPIO18:
-```
+
+```shell
 omega2-ctrl gpiomux set pwm0 pwm
 ```
 
 For GPIO19:
-```
+
+```shell
 omega2-ctrl gpiomux set pwm1 pwm
 ```
 
 For GPIO20 (Omega2S only):
-```
+
+```shell
 omega2-ctrl gpiomux set uart2 pwm23
 ```
 
 For GPIO21 (Omega2S only):
-```
+
+```shell
 omega2-ctrl gpiomux set uart2 pwm23
 ```
 
@@ -86,27 +97,32 @@ The multiplexing configuration will need to be repeated after each reboot of the
 :::
 
 ### Generating PWM signals
+
 To generate PWM signals, we'll need to install the `omega2-script` package.
-```
+
+```shell
 opkg update
 opkg install omega2-script
 ```
 
 Once the pins have been configured for PWM usage, we can configure the PWM hardware module to generate a PWM signal using the following command:
-```
+
+```shell
 onion pwm <CHANNEL> <DUTY CYCLE> <FREQUENCY>
 ```
 
 Where:
 
 - CHANNEL is 0 (GPIO18), 1 (GPIO19), 2 (GPIO20), or 3 (GPIO21).
-	- Remember that channels 2 & 3 are exposed on the Omega2S only.
+  - Remember that channels 2 & 3 are exposed on the Omega2S only.
 - DUTY_CYCLE is the percentage of time the signal is `ON`, expressed 0-100
 - FREQUENCY is the signal frequency, expressed in Hz.
 
 #### Stopping the PWM signal
+
 To stop and disable the PWM signal:
-```
+
+```shell
 onion pwm <CHANNEL> disable
 ```
 
@@ -116,3 +132,4 @@ The `omega2-script` provides a helpful wrapper around `sysfs` for PWM. The sourc
 
 :::
 
+<GiscusDocComment />

@@ -1,4 +1,5 @@
 # Style Guide
+
 This Style Guide provides an overview of a consistent method for writing and editing Omega2 documentation. Internal team members and technical writers who are responsible for creating or updating documentation will find this guide helpful. 
 
 Throughout the documentation process, standardization and effectiveness are maintained by following these guidelines.
@@ -6,9 +7,11 @@ Throughout the documentation process, standardization and effectiveness are main
 ## General Guidelines And Formating
 
 ### Audience  
+
 The guidelines are designed for technical writers, subject matter experts, and any other internal team member who wants to create or edit documentation.
 
-### Tone and Style 
+### Tone and Style
+
 - Use a clear and concise writing style.
 - Follow the standard capitalization rules of American English.
 - Maintain a professional technical tone and use a third-person POV (Point of View).
@@ -16,8 +19,17 @@ The guidelines are designed for technical writers, subject matter experts, and a
 - Maintain consistency in tone across all documents.
 
 ### Formatting
+
 - Maintain consistent Markdown formatting throughout the document development process(e.g. follow [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/) )
-- Use headings and subheadings tags using markdown hashtags (e.g. # for Title , ## for H1, ### for H2 and ### for H3 etc.)
+- Use the following format to create a page title. D not use both a title and an H1 in the document as this violates Markdown rules.
+
+```mdx
+---
+title: My Title
+---
+```
+
+- Use headings and subheadings tags using markdown hashtags (e.g. # for H1, ## for H2 and ### for H3 etc.)
 - For notes, tips, and warnings, use the built-in admonitions from [Docusaurus Admonitions](https://docusaurus.io/docs/markdown-features/admonitions) syntax.
 - For single inverted commas, add customized commas without copy-paste (e.g. ` ’` replace it with ``` ' ``` by typing it in the markdown file)
 
@@ -42,26 +54,28 @@ It should be surrounded by angle brackets `< >` and separated underscores `_` fo
  - **Example:** Use an `IPK` file instead of a `.ipk` file. 
 - Use qualifying nouns for technical keywords. 
  - **Example:** When referring to a file called `example.ipk`, call it the `example.ipk` file and not an `example.ipk` by itself.
+
 ### File Naming Conventions
+
 Standard file naming conventions should be used for both Markdown and image files.
 
-**Markdown Files**
+#### Markdown Files
 
 Onion uses lowercase filenames for all Markdown files. For longer filenames use the en dash between words.
 
-**Example:** 
+**Example:**
 
 *Correct:* one-wire-devices.md
 
 *==Incorrect==:* One-Wire-Devices.md
 
-**Image Files**
+#### Image Files
 
 Onion uses lowercase filenames for all image files. For longer filenames use the en dash or the underscore character between words. (*Do not use spaces between words.*)
 
 Use short descriptive names for the image file names.
 
-**Example:** 
+**Example:**
 
 *Correct:* omega2-pinout-pwm-highlights.png
 
@@ -70,6 +84,7 @@ Use short descriptive names for the image file names.
 *==Incorrect==:* omega2 pinout pwm highlights.png
 
 ## Grammar and Language
+
 - Follow a recognized grammar style guide by following American English rules.
 - Use correct spelling and grammar.
 - Avoid words like "simple," "straightforward," "easy," "simple," "obviously," and "just,".
@@ -81,6 +96,7 @@ Use short descriptive names for the image file names.
 ## Visual Elements
 
 ### Images and Diagrams
+
 - Use clear and relevant visuals.
 - Use **[draw.io](https://app.diagrams.net)** to create state diagrams.
 - Maintain a consistent style for captions for every diagram.
@@ -90,46 +106,54 @@ Use short descriptive names for the image file names.
 - If a diagram is needed then store these images in the **OnionIoT/documentation repo** for future reference.
 
 ### Code Snippets
+
 - Use markdown syntax to add code snippets `(```YOUR_CODE_SNIPPET```)`.
+- Specify the code language `(```shell YOUR_CODE_SNIPPET```)`
 
 **Example:** if the code snippet is **opkg update** then convert it into
- ```
+
+ ```shell
 opkg update
 ```
+
 - Highlight important code elements in line using a single quotation (e.g. ``` `INLINE_CODE` ```)
 
 **Example:** If the inline code element is **.config** then convert it into `.config` 
 
-- Do not use screenshots to show code examples. 
+- Do not use screenshots to show code examples.
 - Avoid incorporating copyrighted code from external sources; instead, reference it by providing a link to the source.
 - Use syntax highlighting for better code readability.
 
-**Example:** If a code snippet is written in JavaScript(e.g. for NodeJs) then convert it into: 
+**Example:** If a code snippet is written in JavaScript(e.g. for NodeJs) then convert it into:
 
     ```js
     function A(){
     //code
     }
     ```
+
 - Test code snippets in the relevant environment/platforms to verify compatibility and accuracy.
 - Provide code snippets that conform to the most recent firmware software versions or configurations.
 
 ## Onion Corp Documentation Template 
+
 Onion Corp. adheres exclusively to the syntax conventions of Markdown and Docusaurus to create all documentation. This template is helpful for new technical writers and internal team members.
 
 Follow the given documentation template structure to create documentation.
 
-## Documentation Structure 
+## Documentation Structure
 
-### Title 
+### Title
 
 #### Introduction
+
 Write a **high-level** overview in **3 to 4 sentences** and make it relevant to the topic. Do not cover out-of-the-box things.
 
 #### Topic TL;DR
+
 Write an engaging **closer/ tl;dr** in 2 to 3 sentences and stick to the topic.
 
-###  Level 1: Heading
+### Level 1: Heading
 
 #### Article Body
 
@@ -148,21 +172,21 @@ Follow only standard American English rules and use a **professional technical t
 **Note:** Rearrange the following points by the specified documentation topic accordingly. For a more detailed overview follow the style guide points.
 
 ### Level 2: Heading
+
 Follow the same points written in Level 1: Heading
 
 ### Level 3: Heading
+
 Follow the same points written in Level 1: Heading
 
 **bold text**
 Follow the same points written in Level 1: Heading
 
 ### Article Comments
+
 To include a comment box on an article (powered Giscus and Github Discussions), add the following to the bottom of the article markdown:
 
-```
-
-#
-
+```mdx
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />

@@ -2,7 +2,10 @@
 title: Special Pins
 ---
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 Omega2 devices have special pins that require consideration at design time:
+
 - System Boot Pins affect the boot sequence
 - SPI pins used by onboard flash
 - GPIOs that control the Omega LED and Reset pins
@@ -41,18 +44,18 @@ Since the Omega’s storage uses SPI, the SPI communication pins - GPIOs 7, 8, a
 |  SPI_CS1   |   I/O     | SPI Chip Select 1                                                                |  
 |  SPI_CLK   |   O       | SPI Clock (Cannot be used as a regular GPIO)                                     |
 |  SPI_MISO  |   I       | SPI Master Input/Slave Output(Cannot be used as a regular GPIO)                  |
-|  SPI_MOSI  |   O       | SPI Master Output/Slave Input (Cannot be used as a regular GPIO)                 | 
-|  SPI_CS0   |   O       | SPI Chip Select 0 (Cannot be used as a regular GPIO, *Only exposed on Omega2S*)  | 
-
+|  SPI_MOSI  |   O       | SPI Master Output/Slave Input (Cannot be used as a regular GPIO)                 |
+|  SPI_CS0   |   O       | SPI Chip Select 0 (Cannot be used as a regular GPIO, *Only exposed on Omega2S*)  |
 
 **IMPORTANT NOTES:**
 
- - **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.  They must be used for the SPI bus only.
-    - Connecting non-SPI circuitry to these pins may prevent your Omega from booting or could potentially damage the device.
- - The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device.
- - The SPI CS1 pin, GPIO 6, may still be used as a regular GPIO when configured as a GPIO using `omega2-ctrl`.
+- **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.  They must be used for the SPI bus only.
+  - Connecting non-SPI circuitry to these pins may prevent your Omega from booting or could potentially damage the device.
+- The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device.
+- The SPI CS1 pin, GPIO 6, may still be used as a regular GPIO when configured as a GPIO using `omega2-ctrl`.
 
 :::tip
+
 For detailed information on GPIOs and Pins, refer to the [**Pin Multiplexing**](./pin-multiplexing.md) article.
 
 :::
@@ -78,15 +81,17 @@ when asserted low, will perform a hard reset (ie a power cycle) of the CPU.
 
 The Omega uses a dedicated GPIO to control the status LED:
 
-
 |  GPIO   | Function         |   Omega2/Omega2+              | Omega2S Pin Number  |
 |-------- |------------------|-------------------------------|---------------------|
 |  GPIO44 | Omega Status LED | No, connected to onboard LED  | 19                  | 
 
-:::note 
-Difference between Omega2/2+ vs Omega2S/2S+ 
- - On the Omega2/Omega2+, the pin is not exposed but directly connected to an onboard LED.
- - On the Omega2S/2S+, the pin is exposed.
+:::note
+
+Difference between Omega2/2+ vs Omega2S/2S+
+
+- On the Omega2/Omega2+, the pin is not exposed but directly connected to an onboard LED.
+- On the Omega2S/2S+, the pin is exposed.
+
 :::
 
 ## Pin Behaviour during Boot
@@ -97,16 +102,12 @@ Most of the Omega's pins will remain at the default digital low state during the
 |---------|----------------------------------------------------------------------------------------------------------|
 |  GPIO11 |     Will settle at Digital High - Previously used to provide power for the reset button on Omega2 Docks  |
 
-
 The behavior of these pins during boot is governed by the Omega's bootloader.
 
 :::info
+
 The Omega2 Bootloader is open source and can be found on repo [**OnionIoT/omega2-bootloader**](https://github.com/OnionIoT/omega2-bootloader).
 
 :::
-
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment /> 

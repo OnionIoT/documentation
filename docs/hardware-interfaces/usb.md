@@ -4,13 +4,14 @@ title: USB
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# USB
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
+
 The Omega2 features a single USB 2.0 host.
 
 ## Hardware
+
 One USB 2.0 host controller is available on dedicated pins. 
 
 A 5V power source needs to be supplied to the USB client device to properly operate.
@@ -37,12 +38,14 @@ See the [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/
 :::
 
 ## USB storage
+
 Omega2 firmware includes the kernel modules required for external USB storage - including support for a variety of file systems.
 
 ### Mounting the file system
+
 To mount the file system, plug in a USB drive and you’ll see a message like:
 
-```
+```shell
 [ 1704.267974] usb 1-1: new high-speed USB device number 2 using ehci-platform  [ 1704.479893] 
 usb-storage 1-1:1.0: USB Mass Storage device detected  [ 1704.502029] 
 scsi host0: usb-storage 1-1:1.0  [ 1705.530163] 
@@ -59,16 +62,18 @@ Note on the second last line that the new device is called `sda1`.
 
 The file system from the USB drive will be automatically mounted to the `/mnt/` directory, with the name of the device as the full path, so `/mnt/sda1` in this case.
 
-```
+```shell
 root@Omega-F19D:/_# ls -l /mnt/sda1_
 drwxrwxrwx    2 root     root          4096 Jun  1  2018 System Volume Information
 -rwxrwxrwx    1 root     root             0 Jun 17  2021 omega2p-v0.3.3-b251.bin
 ```
 
 ### Unmounting the file system
+
 Before you remove the USB drive, you must unmount the file system.
 
-```
+```shell
 umount /mnt/sda1
 ```
 
+<GiscusDocComment />

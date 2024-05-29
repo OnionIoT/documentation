@@ -2,10 +2,11 @@
 title: OpenWRT Packages
 ---
 
+import PartialMarkdown from './_definitions_packages.mdx';
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 This chapter provides an understanding on creating software packages for Omega2 devices.
 This article covers a brief explanation of the key terms that are essential to understand when dealing with OpenWRT packages.
-
-Let's get started 🚀
 
 ## Packages
 
@@ -45,11 +46,11 @@ Please refer to the [**OpenWRT**](https://openwrt.org/packages/start) documentat
 
 ## Why are Packages Helpful?
 
- - **Capabilities Enhancement:** Packages offer access to a wide range of pre-built functionalities and tools. Hence, instead of building from scratch, developers can incorporate the existing packages to extend the capabilities of the project.
+- **Capabilities Enhancement:** Packages offer access to a wide range of pre-built functionalities and tools. Hence, instead of building from scratch, developers can incorporate the existing packages to extend the capabilities of the project.
 
- - **Easy Installation & Management:** Packages make it easy to install and manage software components. A package can be easily installed using package managers like OPKG, similar to `apt-get` in Ubuntu Linux, which automatically manages dependencies and updates.
+- **Easy Installation & Management:** Packages make it easy to install and manage software components. A package can be easily installed using package managers like OPKG, similar to `apt-get` in Ubuntu Linux, which automatically manages dependencies and updates.
 
- - **Offers Standardisation:** Packages provide a standardized way of organizing and sharing code. They help to ensure that code is consistent across different projects and teams, making it easier to maintain and update.
+- **Offers Standardisation:** Packages provide a standardized way of organizing and sharing code. They help to ensure that code is consistent across different projects and teams, making it easier to maintain and update.
 
 ## Firmware
 
@@ -75,18 +76,18 @@ packages/assets/firmware-image-diagram.xml
 
 </summary>
 
- - **OS Files:**
+- **OS Files:**
     OS files are part of the software that runs on a computer. They help manage and organize all the computer's resources and act as a bridge between the software and the actual hardware.
 
- - **Kernel:**
+- **Kernel:**
     The kernel is a main part of the firmware that acts as a link between user programs and hardware devices. It mainly manages the communication between software applications and hardware like the CPU, disks, and memory.
     
     The Device Tree is a hierarchical data structure that describes the hardware configuration of a system during the Linux boot process. The kernel uses the Device Tree to discover the hardware topology at runtime, allowing it to support a wide range of hardware without hard-coding specific details into the kernel. 
 
- - **File Systems:**
+- **File Systems:**
     A file system organizes and manages data on a storage device and defines how files are named, stored, and retrieved from a storage device.
 
- - **Packages Collection:** 
+- **Packages Collection:** 
     Packages collection refers to the packages included in the firmware image. When the firmware image is installed on a device, these packages are also installed on the device, which extends the functionality of the firmware and application software.
 
 </details>
@@ -129,7 +130,7 @@ To explore an example repo, see the [**OnionIoT packages**](http://repo.onioniot
 
 :::
 
-## Package Feed 
+## Package Feed
 
 A package feed is a collection of package sources (software files, libraries, feeds, and scripts). The package sources are stored in a publicly or privately accessible source code repository. It acts as input when building packages using OpenWRT SDK or build system. 
 
@@ -147,18 +148,10 @@ import DocCardList from '@theme/DocCardList';
 
 <!-- importing content from definition markdown file (reference: https://docusaurus.io/docs/markdown-features/react#importing-markdown) -->
 
-import PartialMarkdown from './_definitions_packages.mdx';
-
 <PartialMarkdown/>
 
 ## Articles in this section
 
 <DocCardList />
 
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
 <GiscusDocComment /> 
-
-

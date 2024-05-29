@@ -4,6 +4,7 @@ title: Pinouts
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 This article explains the layout and available connection options for Omega2/2+ and Omega2S/Omega2S+ devices. It covers pinout information, including hardware interfaces, to provide a clear understanding of the pin layout structure.
 
@@ -38,9 +39,4 @@ This article explains the layout and available connection options for Omega2/2+ 
 | On-Board WiFi antenna | Ceramic surface-mount 2dBi directional chip | None        |
 | u.FL Connector        | 1                                           | 1           | 
 
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
-<GiscusDocComment /> 
-
+<GiscusDocComment />
