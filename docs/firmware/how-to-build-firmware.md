@@ -2,6 +2,8 @@
 title: How Firmware is Built
 ---
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 The OpenWRT-22.03 based firwmare is built using two different processes:
 
 **Step 1:**
@@ -116,3 +118,5 @@ The default version of the `profile` config file is used to build the Omega2 and
 #### Where is the output?
 
 The compiled firmware images can be found at: http://repo.onioniot.com/omega2/images/openwrt-22.03/
+
+<GiscusDocComment />
