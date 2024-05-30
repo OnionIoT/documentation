@@ -82,11 +82,12 @@ const sidebars = {
     {
       type: 'category',
       label: 'Packages',
-      link: {
+      /*link: {
         type: 'doc',
         id: 'packages/intro'
-      },
+      },*/
       items: [
+        'packages/intro',
         'packages/opkg-package-manager',
         'packages/custom-package',
         'packages/compile-package',
