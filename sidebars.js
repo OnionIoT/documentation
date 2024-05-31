@@ -47,7 +47,15 @@ const sidebars = {
         'hardware-interfaces/sdio',
         'hardware-interfaces/ethernet',
         'hardware-interfaces/wifi-antenna',
-        'hardware-interfaces/external-storage',
+        {
+          type: 'category',
+          label: 'Device Tree Overlay',
+          items: [
+              'device-tree-overlay/intro',
+              'device-tree-overlay/software-spi',
+              'device-tree-overlay/one-wire-devices',
+          ],
+        },
         {
           type: 'category',
           label: 'Additional Hardware',
@@ -61,19 +69,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Device Tree Overlay',
-      /*link: {
-        type: 'doc',
-        id: 'device-tree-overlay/intro'
-      },*/
-      items: [
-          'device-tree-overlay/intro',
-          'device-tree-overlay/software-spi',
-          'device-tree-overlay/one-wire-devices',
-          ],
-    },
-    {
-      type: 'category',
       label: 'Software',
       items: [
         'software/node',
@@ -82,17 +77,17 @@ const sidebars = {
     {
       type: 'category',
       label: 'Packages',
-      link: {
+      /*link: {
         type: 'doc',
         id: 'packages/intro'
-      },
+      },*/
       items: [
+        'packages/intro',
         'packages/opkg-package-manager',
         'packages/custom-package',
         'packages/compile-package',
         'packages/deploy-a-package',
       ],
-      
     },
     {
       type: 'category',
@@ -103,17 +98,6 @@ const sidebars = {
     },
     'feedback',
   ],
-  /*
-  tutorialSidebar: [
-    'intro',
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-   */
 };
 
 module.exports = sidebars;
