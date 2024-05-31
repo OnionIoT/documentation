@@ -1,5 +1,7 @@
 # Deploy a Package Repo
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 This guide provides a detailed explanation of using the OpenWRT SDK to compile a package and then to deploy it in an online package repo. It also covers the configurations that are necessary for compiling and building packages.
 
 The primary objective of this guide is to offer an accessible method for deploying and accessing packages from an HTTP web server. A process is provided to use an AWS S3 bucket for deploying packages and maintaining a package feed repository on a remote web server. 
@@ -32,11 +34,15 @@ The OpenWRT build tools, including the **openwrt-sdk-wrapper**, are meant to be 
 **The method recommended by Onion is to use Ubuntu 22.04 or a newer version in a Docker container**. Using Docker provides isolation which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment. 
 
 :::tip
+
 For those new to Docker, see Docker’s [**installation guide**](https://docs.docker.com/desktop/install/linux-install/) and the manual on [**running a Docker container**](https://docs.docker.com/engine/reference/run).
+
 :::
 
 :::note
+
 When using Windows Subsystem for Linux (WSL), refer to the [**OpenWRT developer guide for WSL**](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
+
 :::
 
 ### Step 2: Installation of Additional Software Dependencies
@@ -44,14 +50,16 @@ When using Windows Subsystem for Linux (WSL), refer to the [**OpenWRT developer 
 When using Ubuntu 22.04 or newer, it is essential to install the required dependencies. These dependencies consist of libraries, packages, or tools necessary for the proper functioning of the openwrt-sdk-wrapper and can be installed using the [**package manager**](./opkg-package-manager.md).
 
 :::tip
+
 See the [**OpenWRT Build System Setup instructions**](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu) for details on what packages need to be installed.
+
 :::
 
 ### Step 3: Clone the Repository
 
 To clone the **openwrt-sdk-wrapper** repository in the development  environment, open the terminal and run the following command:
 
-```bash
+```shell
 git clone https://github.com/OnionIoT/openwrt-sdk-wrapper.git
 ```
 
@@ -71,7 +79,7 @@ Follow these steps:
 
 For example, say the `openwrt-22.03` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:
 
-```bash
+```shell
 src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
 ```
 
@@ -79,13 +87,13 @@ src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
 
 To select specific packages from the package feed for compile, follow these steps:
 
- - Open the profile configuration file.
- - Locate the `SDK_PACKAGES` variable.
- - Modify the `SDK_PACKAGES` variable to include the packages from the package feed that you want to compile. Ensure that  the list is new-line delimited.
+- Open the profile configuration file.
+- Locate the `SDK_PACKAGES` variable.
+- Modify the `SDK_PACKAGES` variable to include the packages from the package feed that you want to compile. Ensure that  the list is new-line delimited.
 
 For example:
 
-```bash
+```shell
 SDK_PACKAGES="
 custom-lib
 custom-package1
@@ -99,7 +107,7 @@ In this example, `custom-lib`, `custom-package1`, and `new-software` packages, a
 
 First, download and setup the OpenWRT SDK with the following command:
 
-```bash
+```shell
 bash onion_buildenv setup_sdk
 ```
 
@@ -107,7 +115,7 @@ bash onion_buildenv setup_sdk
 
 Build and compile all desired packages listed in the `SDK_PACKAGES` variable in the profile, and run the following command:
 
-```bash
+```shell
 bash onion_buildenv build_all_packages
 ```
 
@@ -115,7 +123,7 @@ bash onion_buildenv build_all_packages
 
 All compiled packages can be found in the following directory:
 
-```bash
+```shell
 openwrt-sdk/bin/packages/mipsel_24kc/<feed-name>/
 ```
 
@@ -130,25 +138,30 @@ The packages have the extension `.ipk` and are compiled specifically for the `mi
 Deploy the compiled package on a reliable HTTP webserver allowing access to these deployed packages publicly. In this case, the AWS S3 bucket is a viable option for use as an HTTP web server. 
 
 :::tip
+
 To create and configure the **aws-s3** bucket, see the [**aws documentation**](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html).
+
 :::
 
 :::note
+
 Make sure that the bucket is configured to allow public access.
+
 :::
 
 Use the following command to deploy the compiled packages to the created S3 bucket:
 
-```bash
+```shell
 aws s3 cp <local_path> s3://<s3_bucket_name>/<optional_subdirectory> --recursive --acl public-read
 ```
+
 **Replace:**
 
- - **<local_path>** with the local path of the compiled packages.
- - **<s3_bucket_name>** with the name of the created S3 bucket.
- - **<optional_subdirectory>** with any optional subdirectory within your bucket where you want to store the packages.
- - The **--recursive** flag ensures that all files and subdirectories are uploaded recursively.
- - The **--acl public-read** switch enables public access to the files in the bucket, ensuring that the package repo is accessible by the [**package manager**](./opkg-package-manager.md) on the end device.
+- **<local_path>** with the local path of the compiled packages.
+- **<s3_bucket_name>** with the name of the created S3 bucket.
+- **<optional_subdirectory>** with any optional subdirectory within your bucket where you want to store the packages.
+- The **--recursive** flag ensures that all files and subdirectories are uploaded recursively.
+- The **--acl public-read** switch enables public access to the files in the bucket, ensuring that the package repo is accessible by the [**package manager**](./opkg-package-manager.md) on the end device.
 
 ### Step 2: Utilize the Package Repository
 
@@ -156,9 +169,4 @@ To utilize the AWS S3 bucket as the deployed package repository, use the OPKG pa
 
 Refer to the instructions provided in the [**OPKG Package Manager**](./opkg-package-manager.md) chapter. This chapter explains how to install packages from an HTTP web server, update existing packages, or remove installed packages from an Omega2 device.
 
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
-<GiscusDocComment /> 
-
+<GiscusDocComment />

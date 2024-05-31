@@ -4,6 +4,7 @@ title: Pin Multiplexing
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 A number of the available pins can be used for **multiple purposes** other than general-purpose input/output when needed. These pins are referred to as **multiplexed pins**.
 
@@ -30,9 +31,9 @@ The `omega2-ctrl` utility can be used to change the pin functionality.
 
 The `omega2-ctrl` utility is a user-friendly way to change the pin functionality:
 
- - The pin multiplexing configuration is controlled by a programmable register of Omega’s SoC.
- - The Onion Omega2 firmware enables the /dev/mem device that is used to modify physical memory.
- - The omega2-ctrl program safely modifies the registers that configure pin multiplexing.
+- The pin multiplexing configuration is controlled by a programmable register of Omega’s SoC.
+- The Onion Omega2 firmware enables the /dev/mem device that is used to modify physical memory.
+- The omega2-ctrl program safely modifies the registers that configure pin multiplexing.
 
 :::note
 
@@ -44,12 +45,13 @@ The `omega2-ctrl` package is built into Onion firmware for the Omega2 family
 
 To get the current configuration of the Omega's multiplexed pins, use the command:
 
-```bash
+```shell
 omega2-ctrl gpiomux get
 ```
+
 and you'll be given a list as a result:
 
-```bash
+```shell
 root@Omega-2757:/# omega2-ctrl gpiomux get
 Group i2c - [i2c] gpio
 Group uart0 - [uart] gpio
@@ -69,28 +71,29 @@ The current mode for each group is indicated with the `[]`.
 
 Let's examine the UART1 line:
 
-```bash
+```shell
 Group uart1 - [uart] gpio
 ```
+
 Here we see the group is `uart1`, and the available modes are `[uart] gpio`, with the current mode being `[uart]`.
 
 ### Changing the Pin Function
 
 To set a particular group of hardware pins to a specified mode, use the following command:
 
-```bash
+```shell
 omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
 ```
 
 To illustrate the above, the following command will set UART1 pins to operate in GPIO mode:
 
-```bash
+```shell
 omega2-ctrl gpiomux set uart1 gpio
 ```
 
 and running the `get` command from above to confirm our changes:
 
-```bash
+```shell
 root@Omega-2757:/# omega2-ctrl gpiomux get
 Group i2c - [i2c] gpio
 Group uart0 - [uart] gpio
@@ -108,13 +111,10 @@ Group wled - wled [gpio]
 
 We see:
 
-```bash
+```shell
 Group uart1 - uart [gpio]
 ```
-indicating that the change has indeed been applied.
 
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
+indicating that the change has indeed been applied.
 
 <GiscusDocComment /> 

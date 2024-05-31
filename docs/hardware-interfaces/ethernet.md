@@ -4,13 +4,14 @@ title: Ethernet
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Ethernet
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
+
 The Omega2 features a 10/100M Ethernet port for wired networking.
 
 ## Hardware
+
 The Omega2 has a single 10/100M integrated Ethernet Physical Layer (PHY).
 
 The Ethernet pins are highlighted on the Omega2/2S diagrams below.
@@ -31,7 +32,9 @@ The Ethernet pins are highlighted on the Omega2/2S diagrams below.
 See the [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf) for more information and recommendations on designing boards with Ethernet.
 
 ## Software
+
 The Ethernet port can be configured to be a client or a Dynamic Host Configuration Protocol (DHCP) host. It is set to client mode by default. 
 
 For more information on Ethernet networking, see the [Ethernet networking article](../networking/ethernet).
 
+<GiscusDocComment />

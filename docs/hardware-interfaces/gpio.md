@@ -2,15 +2,15 @@
 title: GPIO
 ---
 
-GPIOs (General Purpose Input Outputs) are user-controllable pins that can be used to interact with external circuits.
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Let's get started 🚀
+GPIOs (General Purpose Input Outputs) are user-controllable pins that can be used to interact with external circuits.
 
 ## Hardware
 
 The table illustrated below shows the number of GPIOs available on the Omega2/2+ vs Omega2S/Omega2S+.
 
-|                       | Omega2/2+                                   | Omega2S/2S+ | 
+|                       | Omega2/2+                                   | Omega2S/2S+ |
 |-----------------------|---------------------------------------------|-------------|
 | GPIOs                 | 18                                          | **37**      |
 
@@ -25,7 +25,7 @@ GPIO Operating Voltage:
 |Output HIGH | 2.4           | 3.3           |
 |Output LOW  | -             | 0.4           |
 
-:::note 
+:::note
 The Omega2/2+ GPIOs are not 5V input tolerant!
 
 :::
@@ -55,9 +55,10 @@ The GPIOs can be accessed through the GPIO sysfs interface, see the [**documenta
 ### GPIO Numbering Change
 
 :::note  
-Due to the changes in the kernel, the GPIO numbering system has been updated.  
- - GPIO 0 - 31 ⇒ GPIO 480 - 511 (GPIO n + 480)
- - GPIO 32 - 63 ⇒ GPIO 448 - 479 (GPIO n + 416)
+Due to the changes in the kernel, the GPIO numbering system has been updated.
+
+- GPIO 0 - 31 ⇒ GPIO 480 - 511 (GPIO n + 480)
+- GPIO 32 - 63 ⇒ GPIO 448 - 479 (GPIO n + 416)
 
 :::
 
@@ -67,7 +68,7 @@ To simplify Omega2 GPIO mapping a new utility `gpio-lookup` has been introduced,
 
 Here are a few examples of how to use `gpio-lookup`.
 
-```bash
+```shell
 # gpio-lookup 15
 495
 
@@ -77,6 +78,7 @@ Here are a few examples of how to use `gpio-lookup`.
 # gpio-lookup 99
 -1
 ```
+
 For valid GPIO numbers, `gpio-lookup` would display the corresponding kernel GPIO number, for all other cases It would display `-1` with a non-zero exit code.
 
 :::note
@@ -86,10 +88,6 @@ The `gpio-lookup` utility is included in the Omega2 firmware
 
 ### Interacting with GPIOs
 
- - **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the documentation at [**kernel.org**](http://kernel.org)
-
-<!-- comment section -->
-#
-import { GiscusDocComment } from '/src/components/GiscusComment';
+ **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the documentation at [**kernel.org**](http://kernel.org)
 
 <GiscusDocComment /> 
