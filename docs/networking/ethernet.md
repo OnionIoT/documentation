@@ -2,7 +2,7 @@
 title: Ethernet Networking
 ---
 
-# Ethernet Networking
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
 
@@ -32,7 +32,7 @@ The default network configuration is for the Ethernet port to act as DHCP client
 
 If Ethernet networking config has changed and is no longer a DHCP client:
 
-```
+```shell
 uci del_list network.@device[0].ports='eth0'
 uci set network.wan='interface'
 uci set network.wan.proto='dhcp'
@@ -58,7 +58,7 @@ By default, you can only connect one client. This is because there's a single Et
 
 To set up the Ethernet port as a DHCP host:
 
-```
+```shell
 uci del network.wan.device
 uci add_list network.@device[0].ports='eth0'
 uci commit network
@@ -82,7 +82,5 @@ There is a potential for an IP address conflict if the Omega2 is acting as an Et
 ## More on network configuration
 
 See the [OpenWRT docs](https://openwrt.org/docs/guide-user/network/network_configuration) on network configuration for more information and ideas on network configuration.
-
-import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment /> 
