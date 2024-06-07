@@ -15,7 +15,7 @@ With this, you can avoid:
 
 - Having to build fully custom firmware to configure specific hardware functionality.
 - Having to maintain multiple DTS files.
-- Having to use the Build System to create firmware for scratch - which can take hours.
+- Having to use the Build System to create firmware from scratch - which can take hours.
 
 Instead, you can:
 
