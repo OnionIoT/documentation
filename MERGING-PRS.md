@@ -33,7 +33,7 @@ When the updates in the PR branch cannot be successfully compiled by the CI syst
 
 ![PR that fails build](./img/build-failed-pr.png)
 
-The issue causing the build failure must be resolved before the PR can be merged. See the [CI Build section in the README](README.md###ci-build) for information on how the CI system builds the documentation site.
+The issue causing the build failure must be resolved before the PR can be merged. See the [CI Build section in the README](README.md#ci-build) for information on how the CI system builds the documentation site.
 
 Fixes can be pushed to the base branch involved in the PR, and the CI will try to build again. The PR is safe to merge when the PR shows the check is passing (see the [Merging a PR section](#merging-a-pr) above).
 
