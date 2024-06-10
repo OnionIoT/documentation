@@ -46,23 +46,11 @@ $ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-# TO DO
+### CI Build
 
-general:
+```
+$ npm ci
+$ npm run build
+```
 
-* [x] remove blog files
-* [x] setup CD
-* [x] add a contributing info file
-* [x] add pop-up notice stating these are new docs for beta firmware
-* [ ] update theme
-
-content:
-* [x] add all content from OnionIoT/OpenWRT-Packages repo openwrt-22.03 technical doc page
-* [x] add real intro
-* [x] improve feedback page - formatting + link to feedback on docs
-* [x] add ledchain article
-* [x] add how firmware works article
-* [x] add device tree overlay category with intro describing what it is and why it's important
-* [x] add software spi device tree overlay article
-* [x] populate pin multiplexing docs article
-* [ ] complete the TODOs in the content
+This is the command the AWS Amplify CI (Continuous Integration) system uses to build the site (generate static content into the `build` directory). This has stricter rules than the local development build. 
