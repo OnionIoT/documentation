@@ -7,6 +7,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 ## Introduction
 
 The Omega2 networking capabilities support WiFi and Ethernet applications simultaneously by default.
+See this [invalid link here](../invalid.md)
 
 ## Use Case
 
