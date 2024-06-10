@@ -23,6 +23,14 @@ If all 3 key items are ok and the content is good, click the **Merge Pull Reques
 
 This will push a commit to the `main` branch and will trigger the CI system to build and deploy to https://documentation.onioniot.com/
 
+### After Merging
+
+Once the PR is merged, the PR page will be updated with a prompt to Delete the branch. Go ahead with deleting the branch so we don't clutter up this repo with stale branches.
+
+![delete branch](./img/delete-branch.png)
+
+---
+
 ## Common Pitfalls
 
 Overivew of the common issues that can present in a PR and indicate it **should not be merged until the issues are resolved**.
