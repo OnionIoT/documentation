@@ -20,6 +20,7 @@ const sidebars = {
   docsSidebar: [
     'intro',
     'installing-firmware',
+    'firmware-revision-list',
     {
       type: 'category',
       label: 'Networking',
