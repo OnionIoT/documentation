@@ -18,8 +18,14 @@ const sidebars = {
 
   // But you can create a sidebar manually
   docsSidebar: [
-    'intro',
-    'installing-firmware',
+    {
+      type: 'category',
+      label: 'Introduction',
+      items: [
+        'introduction/intro',
+        'introduction/firmware-revision-list',
+      ],
+    },
     {
       type: 'category',
       label: 'Networking',
@@ -93,6 +99,7 @@ const sidebars = {
       type: 'category',
       label: 'Firmware',
       items: [
+        'firmware/installing-firmware',
         'firmware/how-to-build-firmware',
       ],
     },
