@@ -28,6 +28,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Product Overview',
+      items: [
+        'product-overview/omega2-mechanical',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Networking',
       items: [
         'networking/wifi',
