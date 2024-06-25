@@ -24,6 +24,7 @@ const sidebars = {
       items: [
         'introduction/intro',
         'introduction/firmware-revision-list',
+        'introduction/whats-new-in-v23.05.3',
       ],
     },
     {

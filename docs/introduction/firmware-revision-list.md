@@ -31,6 +31,6 @@ The current Omega2 stable firmware (23.05.3) is based on OpenWRT 23.05, and it's
 - Uses the open source mt76 WiFi driver - more flexibility and functionality.
 - Easier and faster methods for building custom packages and firmware.
 
-See the What's new in firmware 23.05.3 article for more details.
+See the [What's new in v23.05.3 article](./whats-new-in-v23.05.3) for more details.
 
 <GiscusDocComment />
