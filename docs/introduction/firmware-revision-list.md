@@ -3,11 +3,11 @@ title: Firmware Revision List
 ---
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-The legacy Omega firmware image repository is available at:[ ](http://repo.onioniot.com/omega2/images/)[http://repo.onioniot.com/omega2/images/](http://repo.onioniot.com/omega2/images/).
+The legacy Omega firmware image repository is available at: [http://repo.onioniot.com/omega2/images/](http://repo.onioniot.com/omega2/images/).
 
- The new Omega firmware repository, starting with release 23.05.3 is available at: [ ](http://repo.onioniot.com/omega2/images/openwrt-23.05/)[http://repo.onioniot.com/omega2/images/openwrt-23.05/](http://repo.onioniot.com/omega2/images/openwrt-23.05/).
+ The new Omega firmware repository, starting with release 23.05.3 is available at: [http://repo.onioniot.com/omega2/images/openwrt-23.05/](http://repo.onioniot.com/omega2/images/openwrt-23.05/).
 
- For a comprehensive set of firmware release notes, please refer to [ ](https://github.com/OnionIoT/OpenWRT-Packages/releases)[https://github.com/OnionIoT/OpenWRT-Packages/releases](https://github.com/OnionIoT/OpenWRT-Packages/releases).
+ For a comprehensive set of firmware release notes, please refer to [https://github.com/OnionIoT/OpenWRT-Packages/releases](https://github.com/OnionIoT/OpenWRT-Packages/releases).
 
 :::note
 
