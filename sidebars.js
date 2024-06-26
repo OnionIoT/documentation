@@ -24,11 +24,15 @@ const sidebars = {
       items: [
         'introduction/intro',
         'introduction/firmware-revision-list',
-
         'introduction/whats-new-in-v23.05.3',
-
         'introduction/comparison-of-firmware-v0.3.4-and-v23.05.3',
-
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Product Overview',
+      items: [
+        'product-overview/omega2-mechanical',
       ],
     },
     {
