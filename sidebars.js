@@ -33,6 +33,7 @@ const sidebars = {
       label: 'Product Overview',
       items: [
         'product-overview/omega2-mechanical',
+        'product-overview/omega2-electrical',
       ],
     },
     {
