@@ -27,7 +27,7 @@ The interface supports the SDXC specification for SD cards, with a maximum capac
 
   The microSD slot is highlighted on the Omega2+ photo below.
 
-![omega2-microSD-photo](./assets/omega2-microSD-photo.jpg)
+![omega2-microSD-photo](./assets/microSD-photo.jpg)
 
   </TabItem>
   <TabItem value="omega2s" label="Omega2S">
