@@ -35,7 +35,9 @@ const sidebars = {
         'product-overview/omega2',
         'product-overview/omega2-mechanical',
 
-        'product-overview/omega2-electrical',
+        'product-overview/omega2s-mechanical',
+
+
 
       ],
     },
