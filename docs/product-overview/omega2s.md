@@ -114,6 +114,6 @@ For more information on the WiFi antenna, please see the [Antenna and uFL connec
 
 ### Mechanical drawing
 
-Please see the Omega2S Mechanical article for a detailed diagram of the dimensions and geometry of the Omega2S and Omega2S+ modules.
+The following is a detailed [diagram](./omega2s-mechanical) of the dimensions and geometry of the Omega2S and Omega2S+ modules.
 
 <GiscusDocComment />
