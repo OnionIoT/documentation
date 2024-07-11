@@ -42,6 +42,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'QuickStart',
+      items: [
+        'quickstart/power-up',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Networking',
       items: [
         'networking/wifi',
