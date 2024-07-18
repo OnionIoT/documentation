@@ -1,5 +1,5 @@
 ---
-title: Power up
+title: Power Up
 ---
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
@@ -18,14 +18,15 @@ To get started with a device running the v0.3.4 firmware, please see the first t
 
 Onion recommends the following hardware setup for ease of use:
 
-#### For Omega2/2+:
+#### For Omega2/2+
 
 - Omega2 or Omega2+ device
 - Expansion dock
 
-#### For Omega2S/2S+:
+#### For Omega2S/2S+
 
 - Omega2S Development Kit. Please see the getting started guide on our GitHub site: [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Dev%20Kit%20-%20Getting%20Started.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Dev%20Kit%20-%20Getting%20Started.pdf)
+
 #### Additional required materials
 
 You'll need a computer and a microUSB to USB cable in addition to the Omega2 hardware.
@@ -81,4 +82,3 @@ If the amber LED on your Omega2 turns on and stays on, wait for a minute to allo
 :::
 
 <GiscusDocComment />
-
