@@ -45,11 +45,9 @@ const sidebars = {
       label: 'QuickStart',
       items: [
         'quickstart/power-up',
-
         'quickstart/serial-command-line',
-
         'quickstart/setup-wifi',
-
+        'quickstart/reference-material',
       ],
     },
     {
