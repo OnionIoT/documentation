@@ -101,7 +101,7 @@ const sidebars = {
       type: 'category',
       label: 'Software',
       items: [
-        'software/node',
+        'software/supported-languages',
       ],
     },
     {
