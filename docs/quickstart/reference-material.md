@@ -12,7 +12,7 @@ Onion has several articles to help you get started with your Omega2 development 
 
 The Omega2 supports several programming languages, so you can program in your language of choice. These include C/C++, Python, Node.js, Shell Scripts, Rust, GoLang, HTML, PHP, Ruby, and Perl.
 
-For further information, please see the article on Supported Programming Languages.
+For further information, please see the article on [Supported Programming Languages](/software/supported-languages).
 
 ### Hardware interfaces
 
@@ -50,7 +50,7 @@ For further information, please see the [Mini Dock article](https://docs.onion.i
 
 ### Arduino Dock 2
 
-The Arduino doc 2 is our version of an Arduino Uno R3 board. It has the same microcontroller, the Atmel Atmega328P, and the identical pin layout. This allows you to use any Arduino shields with the Arduino doc 2 and the Omega2. 
+The Arduino doc 2 is our version of an Arduino Uno R3 board. It has the same microcontroller, the Atmel Atmega328P, and the identical pin layout. This allows you to use any Arduino shields with the Arduino doc 2 and the Omega2.
 
 For further information, please see the [Arduino Dock 2 article](https://docs.onion.io/omega2-docs/arduino-dock-2.html).
 
@@ -107,4 +107,3 @@ The Omega2S can pinpoint its location using GPS and China's Beidou satellite pos
 For further information, please see the [GPS Expansion article](https://docs.onion.io/omega2-docs/gps-expansion.html).
 
 <GiscusDocComment />
-
