@@ -47,6 +47,7 @@ const sidebars = {
         'quickstart/power-up',
         'quickstart/serial-command-line',
         'quickstart/setup-wifi',
+        'quickstart/hello-world-demo',
         'quickstart/reference-material',
       ],
     },
