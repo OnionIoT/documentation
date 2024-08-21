@@ -1,122 +1,211 @@
 ---
-title: How Firmware is Built
+title: How to Build Custom Firmware
 ---
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-The OpenWRT-22.03 based firwmare is built using two different processes:
+## Context
 
-**Step 1:**
-The OpenWRT Build System is used to build all of the default packages, the OpenWRT SDK, and the OpenWRT Image Builder
+In the first part of this article, we define firmware and custom firmware. We discuss the benefits of using custom firmware and Onion's recommended method for building it. In the second part of the article, we walk you through the steps of how to build your own custom firmware.
 
-**Step 2:**
-Building the custom Onion packages and firmware for the Omega2
+### What is firmware?
 
-* Step 2A: The OpenWRT SDK *(built in Step 1)* is used to build the custom packages created by Onion
-* Step 2B: The OpenWRT Image Builder *(built in Step 1)* is used to build firmware images for Omega2 devices that include default packages and custom Onion Packages
+Before we discuss custom firmware, we need to define what firmware is. Firmware is a software program that is embedded in hardware devices. It is like an operating system, such as macOS or Windows, installed on a computer. When the device boots up, the firmware acts as the operating system for a Linux device. It performs all control, monitoring, and data manipulation functions. 
+
+Firmware is made by combining packages with a Linux kernel to create a firmware image. This image includes key components like the Linux kernel, WiFi drivers, text editor, and standard packages for enhanced usability.
+
+The firmware image comprises four components: OS files, kernel, file system, and packages collection.
+
+#### OS files
+
+OS files are part of the software that runs on a computer. They help manage and organize all the computer's resources and act as a bridge between the software and the hardware.
+
+#### Kernel
+
+The kernel is the main part of the firmware that acts as a link between user programs and hardware devices. It manages the communication between software applications and hardware like the CPU, memory, and peripheral devices.
+
+#### File system
+
+A file system organizes and defines how files are named, stored, and retrieved from a storage device.
+
+#### Packages collection
+
+The packages collection refers to the packages included in the firmware image. When the image is installed on a device, these packages are also installed. This extends the functionality of the firmware and application software.
+
+### What is custom firmware?
+
+Custom firmware involves creating firmware with customizations that are needed for your specific application use case.
+
+The firmware image can include both default software packages and custom packages, along with customized default configuration for device features like networking, WiFi setup, and system setup. This means that when the firmware is flashed to a device, it is ready for your application.
+
+**Note:** Custom firmware can be based on the Onion firmware. If you follow the build method outlined below, the custom firmware image WILL be based on Onion's firmware.
+
+### Benefits of custom firmware
+
+- Speeds up production time – a single firmware image can be flashed at the time of manufacture that features the Omega2 module and enables the customer's specific use case.
+- Better user experience in case of a factory reset - When a factory reset is performed, the device will reset to the default state of the firmware that was last flashed.
+	- **Custom firmware** - the device will run the customer's firmware with default settings after a factory reset.
+	- **Onion firmware with additional customizations added later by customer** - the device will run the Onion firmware after a factory reset without the customizations and no support for the customer's use case.
+
+## Recommended build method
+
+There are a few different methods to build firmware images. Onion recommends using the OpenWRT Image Builder to build firmware images. 
+
+The Image Builder is a pre-compiled environment for creating custom images without the need to compile them from source. It downloads pre-compiled software packages and integrates them into a single flashable image ([reference](https://openwrt.org/docs/guide-user/additional-software/imagebuilder#using_the_image_builder)).
+
+Why is the Image Builder favored over other methods:
+
+- Image Builder creates a firmware image in minutes as opposed to several hours using the OpenWRT build system.
+	- Allows for faster iteration during the development cycle.
+- Promotes encapsulation of image customizations into packages.
+	- Better maintainability as opposed to a mix of package customizations and file additions.
+
+Onion's Image Builder Wrapper makes use of the OpenWRT image builder and a set of supporting scripts and config files to make image creation straightforward, fast, and programmatic.
 
 :::note
 
-Step 2 is independent from Step 1.
+The Image Builder wrapper is used to build the firmware released by Onion. The default configuration of the wrapper will build a firmware image that is identical to the one built by Onion. Essentially, the starting point for your custom firmware is the Onion firmware.
 
-Step 1 is run from time to time, while Step 2 are run every time a new firmware is released.
+For more information, see the article on How Onion Firmware is Built.
 
 :::
 
-## OpenWRT Build System
+## Building a custom firmware image
 
-### Step 1 in the process
+In this section we discuss how to use the Onion Image Builder Wrapper to build custom firmware.
 
-The OpenWRT Build System is used to build:
+### System setup
 
-* all of the default packages
-* the OpenWRT SDK
-* the OpenWRT Image Builder
+Follow the steps outlined, to set up your local environment, install dependencies, and clone the OnionIoT/openwrt-imagebuilder-wrapper repo.
 
-**Key point:** The OpenWRT SDK and Image Builder are used in Steps 2 & 3 to create firmware and the Onion package repo. 
+#### 1. Setup your local environment 
 
-#### Why customize this?
+The OpenWRT build tools, including the Image Builder, are meant to run on Linux. There are several methods to do this:
 
-OpenWRT, the organization, also provides an SDK and Image Builder. However, these SDKs and Image Builders are based on the vanilla OpenWRT Build System. It is possible to build packages and create firmware using them, but they only provide control of the general configuration and what packages to include in the firmware. Deeper changes cannot be made.
+- Dedicated Linux computer
+- Linux server (AWS EC2)
+- Docker virtual machine
+- Other virtual machines (WSL, VirtualBox, etc.)
 
-Using a customized build system to create a customized SDK and Image Builder provides more flexibility when building packages and firmware - including making changes to the kernel and system configuration. 
+Onion recommends using **Ubuntu 22.04 Linux in a Docker container**. Using Docker provides isolation, which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
 
-Some examples includes making the changes required to:
+:::tip
 
-1. Support FPU emulation in the kernel in order to build and use modern NodeJS (modern versions are not supported on any other MIPS platform)
-2. Making settings changes in the kernel configuration - like enabling the `/dev/mem` device used for [pin multiplexing](/hardware-interfaces/pin-multiplexing)
-3. Building kernel modules not part of the Linux kernel
-4. The freedom to add patches in order to try out changes (created by yourself and others) quickly and efficiently
+For those new to Docker, see [Docker's installation guide](https://docs.docker.com/desktop/) and the manual on [running a Docker container](https://docs.docker.com/engine/reference/run).
 
-#### Where is the source code?
+:::
 
-All of the customizations to the build system used to compile our SDK and image builder are public and available on GitHub: https://github.com/OnionIoT/OpenWRT-buildsystem-wrapper
+:::note
 
-The customizations are based on patches to the build system. This is intentional, as it is easier than maintaining our own fork of the Build System, making it relatively easy to port our customizations to new releases of OpenWRT.
+When using Windows Subsystem for Linux (WSL), refer to the [OpenWRT developer guide for WSL](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
 
-See the [README in the Github repo](https://github.com/OnionIoT/openwrt-buildsystem-wrapper) for usage instructions.
+:::
 
-#### Where is the output?
+#### 2. Install required dependencies
 
-This customized OpenWRT build system is compiled by our CI system and the output is placed here: http://downloads.onioniot.com/
+When using Ubuntu 22.04 Linux or newer, you need to install the required dependencies. These can be installed using the packager manager.
 
-The default packages can be found here: http://downloads.onioniot.com/releases/22.03.5/packages/mipsel_24kc/
+:::tip
 
-The compiled SDK and Image Builder can be found here: http://downloads.onioniot.com/releases/22.03.3/targets/ramips/mt76x8/
+Please see the [OpenWRT Build System Setup instructions](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu) for details on which packages you need to install.
 
-This directory also has firmware images, which you can safely ignore since they are vanilla OpenWRT. 
+:::
 
-The Omega2 firmware can be found here: http://repo.onioniot.com/omega2/images/openwrt-22.03/
+**Note:** You may not need `sudo` in the commands when running in a Docker container.
 
-## OpenWRT SDK
+#### 3. Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
 
-### Step 2A in the process
+This repository is set up to build OpenWRT firmware for the Onion Omega2 and Omega2+. 
 
-The OpenWRT SDK is used to build the Onion customized packages. 
+To clone the openwrt-imagebuilder-wrapper repo, issue the following command:
 
-One of the (new) core tenets of Onion device firmware is to keep all customizations localized in packages. This makes it easy to port the changes to new releases and reduces the number of "fronts" that have to be maintained.
+```Shell
+git clone https://github.com/OnionIoT/openwrt-imagebuilder-wrapper.git
+``` 
 
-So the Onion packages are where all the magic happens - we try to add customizations that bring value to our customers, either by making it easier to use (for example, friendly default network configuration) or by providing more functionality (for example, a gpio muxing utility).
+### Customizing the firmware image
 
-We use a wrapper around the SDK to easily interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK built in Step 1, and compiles packages from the `openwrt-22.03` branch of the `OnionIoT/OpenWRT-Packages` GitHub repo. 
+The firmware image specifications are defined in the `profile` configuration file. 
 
-Both of these options can be changed to suit your specific needs.
+#### Customization
 
-#### Where is the source code?
+The `profile` configuration file defines:
 
-The package source code can be found on GitHub: https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03
+- Additional package repos to use as sources for packages.
+- Packages to include in the build.
+- Device models to build the firmware for.
 
-The `openwrt-sdk-wrapper` repo is used to easily and quickly compile packages using the OpenWRT SDK: https://github.com/OnionIoT/openwrt-sdk-wrapper
+#### How to customize
 
-The `profile` config file defines what SDK to use, the version of the SDK, the package feed to use, and which packages from the package feed to compile.
+All environment variables can be found in the `profile` configuration file.
 
-The default version of the `profile` config file is used to build the Onion package repo.
+##### Additional package repos
 
-#### Where is the output?
+The `PACKAGE_REPOS` variable defines which additional package repos to use as sources for packages.
 
-The compiled packages can be found at: http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/
+Edit the `PACKAGE_REPOS` variable to change which package feeds to check for packages. Each feed must be on a new line.
 
-## OpenWRT Image Builder
+The syntax for a git-based package repo is: `src/gz onion_openwrt_packages http://repo.onioniot.com/omega2/packages/openwrt-23.05/onion`.
 
-### Step 2B in the process
+For more configuration options, see the [OpenWRT documentation on Image Builder Package repositories](https://openwrt.org/docs/guide-user/additional-software/imagebuilder#adding_package_repositories).
 
-The OpenWRT Image Builder is used to build firmware images that includes:
+##### Packages to include
 
-* the default packages from Step 1 
-* the Onion custom packages from Step 2A
+The `IMAGE_BUILDER_PACKAGES` variable defines which packages to include in the firmware image.
 
-A wrapper is used to interact with the Image Builder, making it straight-forward to build firmware. By default, it uses the Onion-customized Image Builder built in Step 1. This can be changed to the vanilla Image Builder provided by OpenWRT.
+Edit this variable to change which packages to include. Each package must be listed on a new line.
 
-#### Where is the source code?
+:::note
 
-The `openwrt-imagebuilder-wrapper` repo is used to build firmware images for the Omega2 and Omega2+ using the OpenWRT Image Builder in an easily repeatable and maintainable way: https://github.com/OnionIoT/openwrt-imagebuilder-wrapper
+Only packages from the package repos defined in the `PACKAGE_REPOS` variable or from the default OpenWRT package repos can be included.
 
-The `profile` config file defines which image builder to use, the version of the image builder, for which devices to create firmware, which package repos should be used, and which packages should be included in the firmware.
+:::
 
-The default version of the `profile` config file is used to build the Omega2 and Omega2+ firmware.
+##### Device models
 
-#### Where is the output?
+The `BUILD_MODELS` variable defines which device model the firmware is built for.
 
-The compiled firmware images can be found at: http://repo.onioniot.com/omega2/images/openwrt-22.03/
+Edit this variable to change which devices the image builder outputs firmware for. List each device model on a separate line. (At least one device must be defined.)
+
+:::note
+
+The current image builder wrapper supports creating firmware images for `ramips/mt76x8` targets that use the `mipsel` architecture.
+
+:::
+
+#### Run the setup script
+
+To download and set up the image builder, run the following command:
+
+```Shell
+bash oinion_buildenv setup_imagebuilder
+```
+
+After completing this step, the OpenWRT Image Builder will download and is set up for use in the `openwrt-imagebuilder` directory.
+
+### Building the firmware image
+
+The following steps show you how to build a firmware image.
+
+#### 1. Run the build script
+
+To build the firmware image(s), run the following command:
+
+```Shell
+bash onion_buildenv build_all_firmware
+```
+
+The build should take less than 5 minutes.
+
+#### 2. Locate the compiled firmware image
+
+Compiled firmware images are in the `output` directory. 
+
+The firmware images are named based on the device model name, the OpenWRT version number specified in the `profile` file, and the date of the build: `<BUILD_MODEL>-<OPENWRT_VERSION>-<BUILD_DATE>.bin` .
+
+For example:
+
+For an Omega2+ device, with OPENWRT_VERSION="23.05.3" set in the `profile` config file and built on May 31, 2024. The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`. 
 
 <GiscusDocComment />
+
