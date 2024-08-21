@@ -126,6 +126,7 @@ const sidebars = {
       items: [
         'firmware/installing-firmware',
         'firmware/how-to-build-firmware',
+        'firmware/how-onion-builds-firmware',
       ],
     },
     'feedback',
