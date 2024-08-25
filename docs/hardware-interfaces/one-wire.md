@@ -18,7 +18,7 @@ Every One-Wire device connected to a network has its unique 64-bit address (a.k.
 
 ### What is the One-Wire protocol
 
-The One-Wire protocol is a communication protocol that establishes a low-speed communication bridge between One-Wire devices and processors/micro-controllers over a single data line. With a single data line as a communication methodology, the wiring process is tremendously simplified, and the number of pins required to bridge the connection is also reduced. 
+The One-Wire protocol is a communication protocol that establishes a low-speed communication bridge between One-Wire devices and processors/micro-controllers over a single data line. With a single data line as a communication methodology, the wiring process is tremendously simplified, and the number of pins required to bridge the connection is also reduced.
 
 One Wire protocol follows a master-worker architecture with each bus allowing for one master, in this case, an Omega2 board, and a worker device like the DS18B20 temperature sensor.
 
@@ -50,7 +50,7 @@ One-Wire devices require three connections as illustrated in the table below:
 
 **Note:** Please refer to your specific One-Wire device's datasheet to identify the pins and determine the recommended voltage.
 
-:::note[important note]
+:::note important note
 
 Some One-Wire devices will require a pull-up resistor on the Data line (DQ). For example, the popular DS18B20 temperature sensor requires a 4.7 kΩ pull-up resistor on the DQ to operate properly.
 
@@ -126,6 +126,12 @@ cat /sys/devices/w1_bus_master1/w1_master_slaves
 ```
 
 This will return a (newline delimited) list of your worker device ID(s).
+
+:::note
+
+The one-wire master pin should not be left floating after one-wire support is enabled. It should either be pulled to ground or connected to one or more one-wire devices. This will avoid detecting "ghost one-wire devices".
+
+:::
 
 :::info
 
