@@ -117,4 +117,8 @@ Group uart1 - uart [gpio]
 
 indicating that the change has indeed been applied.
 
-<GiscusDocComment /> 
+### Making the Pin Multiplexing configuration permanent
+
+To make the pin multiplexing configuration permanent we can configure the omega to run the gpio mux command automatically at boot time. For more information, see the article Running a command on boot.
+
+<GiscusDocComment />
