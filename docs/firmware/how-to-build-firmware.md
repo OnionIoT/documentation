@@ -178,7 +178,7 @@ The current image builder wrapper supports creating firmware images for `ramips/
 To download and set up the image builder, run the following command:
 
 ```Shell
-bash oinion_buildenv setup_imagebuilder
+bash onion_buildenv setup_imagebuilder
 ```
 
 After completing this step, the OpenWRT Image Builder will download and is set up for use in the `openwrt-imagebuilder` directory.
