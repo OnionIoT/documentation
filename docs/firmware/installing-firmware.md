@@ -6,15 +6,15 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 > This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html). 
 
-The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-22.03/
+The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-23.05/
 
 The firmware images are named according to this syntax: `<DEVICE-NAME>-<OPENWRT-VERSION>-<BUILD-DATE>.bin`
 
-So `onion_omega2p-22.03.2-20230221.bin` is:
+So `onion_omega2p-23.05.3-20240807.bin` is:
 
 * firmware made for the Omega2+/Omega2S+
-* based on OpenWRT release 22.03.2
-* was built on Feb 21, 2023
+* based on OpenWRT release 23.05.3
+* was built on Aug 7, 2024
 
 ## Selecting Firmware
 
@@ -37,13 +37,13 @@ Once you know which firmware image you want to install on your device:
 
 1. Connect to the command line of your device
 1. Go to the `/tmp` directory: `cd /tmp`
-1. Download the firmware image: `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-22.03/<SELECTED-FIRMWARE-IMAGE>.bin`
+1. Download the firmware image: `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/<SELECTED-FIRMWARE-IMAGE>.bin`
 1. Install the firwmare: `sysupgrade -F -n -v <SELECTED-FIRMWARE-IMAGE>.bin`
 
-Say you selected firmware `onion_omega2p-22.03.3-20230526.bin`:
+Say you selected firmware `onion_omega2p-23.05.3-20240807.bin`:
 
-* Your download command would be `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-22.03/onion_omega2p-22.03.3-20230526.bin`
-* Your installation command would be `sysupgrade -F -n -v onion_omega2p-22.03.3-20230526.bin`
+* Your download command would be `http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
+* Your installation command would be `sysupgrade -F -n -v onion_omega2p-23.05.3-20240807.bin`
 
 ## Updating
 
