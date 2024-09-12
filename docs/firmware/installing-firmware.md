@@ -14,7 +14,7 @@ So `onion_omega2p-23.05.3-20240807.bin` is:
 
 * firmware made for the Omega2+/Omega2S+
 * based on OpenWRT release 23.05.3
-* was built on Aug 7, 2024
+* built on Aug 7, 2024
 
 ## Selecting Firmware
 
@@ -42,7 +42,7 @@ Once you know which firmware image you want to install on your device:
 
 Say you selected firmware `onion_omega2p-23.05.3-20240807.bin`:
 
-* Your download command would be `http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
+* Your download command would be `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
 * Your installation command would be `sysupgrade -F -n -v onion_omega2p-23.05.3-20240807.bin`
 
 ## Updating
