@@ -20,7 +20,9 @@ So `onion_omega2p-23.05.3-20240807.bin` is:
 
 Before you install firmware to your device, you'll need to decide which firmware image to install.
 
-First, you'll need to find the firmware for your device:
+To start, use a browser to navigate to http://repo.onioniot.com/omega2/images/openwrt-23.05/
+
+Next, you'll need to find the firmware for your device:
 
 * Firmware for Omega2 and Omega2S starts with `onion_omega2-`
 * Firmware for Omega2**+** and Omega2S**+** starts with `onion_omega2p-`.
@@ -28,6 +30,12 @@ First, you'll need to find the firmware for your device:
 Then, you'll want to select the **highest** OpenWRT release and the **latest** build date. This will ensure you're using the very latest available firmware.
 
 Make a note of the filename of the firmware you've selected.
+
+:::info
+
+See the [OnionIoT/OpenWRT-Packages repo releases on Github](https://github.com/OnionIoT/OpenWRT-Packages/releases) for the packages and firmware changelog.
+
+:::
 
 ## Installing the firmware
 
@@ -37,12 +45,12 @@ Once you know which firmware image you want to install on your device:
 
 1. Connect to the command line of your device
 1. Go to the `/tmp` directory: `cd /tmp`
-1. Download the firmware image: `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/<SELECTED-FIRMWARE-IMAGE>.bin`
+1. Download the firmware image: `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/<SELECTED-FIRMWARE-IMAGE>.bin`
 1. Install the firwmare: `sysupgrade -F -n -v <SELECTED-FIRMWARE-IMAGE>.bin`
 
 Say you selected firmware `onion_omega2p-23.05.3-20240807.bin`:
 
-* Your download command would be `wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
+* Your download command would be `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
 * Your installation command would be `sysupgrade -F -n -v onion_omega2p-23.05.3-20240807.bin`
 
 ## Updating
