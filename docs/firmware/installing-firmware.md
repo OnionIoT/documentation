@@ -33,7 +33,7 @@ Make a note of the filename of the firmware you've selected.
 
 :::info
 
-See the [OnionIoT/OpenWRT-Packages repo releases on Github](https://github.com/OnionIoT/OpenWRT-Packages/releases) for the packages and firmware changelog.
+See the [OnionIoT/OpenWRT-Packages **Releases** on Github](https://github.com/OnionIoT/OpenWRT-Packages/releases) for the package and firmware **changelog**.
 
 :::
 
