@@ -15,15 +15,15 @@ Onion has modified the firmware version number system to help track the image al
 
 :::
 
-## Context: The previous firmware v0.3.4
+## The Previous Firmware v0.3.4
 
 The previous Omega2 stable firmware (v0.3.4) is based on OpenWRT 18.06, and it's running the Linux kernel 4.14.
 
 **Note:** The v0.3.4 numbering will end with this version. It will be replaced with the new current stable firmware numbering convention.
 
-## Context: The current stable firmware 23.05.3
+## The New Firmware 23.05.3
 
-The current Omega2 stable firmware (23.05.3) is based on OpenWRT 23.05, and it's running the Linux kernel 5.15.
+The new Omega2 firmware (23.05.3) is based on OpenWRT 23.05, and it's running the Linux kernel 5.15.
 
 ## Highlights
 
