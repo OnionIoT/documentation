@@ -50,44 +50,31 @@ See detailed explanation of [**Multiplexed Pins**](./pin-multiplexing.md).
 
 The GPIOs can be accessed through the GPIO sysfs interface, see the [**documentation**](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) for details. 
 
-| The GPIO sysfs interface is deprecated but is currently the best option for userspace GPIO access. More context is available in this post by [**Luz on the Onion Community**](https://community.onion.io/topic/4892/can-bus-using-mcp2515-with-omega2/13).
+:::info
+The GPIO sysfs interface is deprecated but is currently the best option for userspace GPIO access. More context is available in this post by [**Luz on the Onion Community**](https://community.onion.io/topic/4892/can-bus-using-mcp2515-with-omega2/13).
 
-### GPIO Numbering Change
+:::
 
-:::note  
-Due to the changes in the kernel, the GPIO numbering system has been updated.
+### GPIO Numbering Issue in OpenWRT 22.03
+
+:::caution  
+This only applies to Onion's OpenWRT 22.03 firmware releases
+
+:::
+
+In earlier 22.03 releases of the Onion Omega2 firmmware, the GPIO numbering in Linux did not match the device's actual GPIO numbers. This was due to changes in the kernel around GPIO handling.
 
 - GPIO 0 - 31 ⇒ GPIO 480 - 511 (GPIO n + 480)
 - GPIO 32 - 63 ⇒ GPIO 448 - 479 (GPIO n + 416)
 
-:::
+**This has been resolved in Onion's OpenWRT 23.05 firmware releases**
 
-### GPIO Lookup Utility
 
-To simplify Omega2 GPIO mapping a new utility `gpio-lookup` has been introduced, which would generate equivalent kernel GPIO numbers against a given "actual" GPIO number.
-
-Here are a few examples of how to use `gpio-lookup`.
-
-```shell
-# gpio-lookup 15
-495
-
-# gpio-lookup 62
-478
-
-# gpio-lookup 99
--1
-```
-
-For valid GPIO numbers, `gpio-lookup` would display the corresponding kernel GPIO number, for all other cases It would display `-1` with a non-zero exit code.
-
-:::note
-The `gpio-lookup` utility is included in the Omega2 firmware
-
-:::
 
 ### Interacting with GPIOs
 
  **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the [GPIO Sysfs usage documentation](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) documentation.
+
+ <!-- should add an example here -->
 
 <GiscusDocComment />
