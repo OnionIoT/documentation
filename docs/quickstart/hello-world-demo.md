@@ -37,7 +37,7 @@ opkg install python3-light python3-gpio
 
 **Step 3.** Copy the code below and paste it into your `hello_world.py` file.
 
-```Python
+```python
 import time
 import gpio
 import sys
@@ -49,50 +49,55 @@ OMEGA2_EVAL_BOARD = 15 # User programmable LED on Omega2 Eval Board
 OMEGA2S_EVAL_BOARD = 43 # User programmable LED on Omega2S Eval Board
 
 # Define the GPIO pin the program should use
-LED_PIN = EXPANSION_DOCK
+LED_PIN = EXPANSION_DOCK 
 
 # Initialize the GPIO module
 gpio.setup(LED_PIN, gpio.OUT)
 
 def turn_on_led():
-"""Turn on the LED."""
-gpio.output(LED_PIN, gpio.LOW)
+    """Turn on the LED."""
+    gpio.output(LED_PIN, gpio.LOW)
 
 def turn_off_led():
-"""Turn off the LED."""
-gpio.output(LED_PIN, gpio.HIGH)
+    """Turn off the LED."""
+    gpio.output(LED_PIN, gpio.HIGH)
 
 def main(on_time, off_time):
-print("Hello world! Welcome to the Omega2")
-print(f"The LED connected to GPIO{LED_PIN} will now flash with an on time of {on_time} milliseconds and an off time of {off_time} milliseconds.")
-print("Press ctrl+c to end the program")
+    print("Hello world! Welcome to the Omega2")
+    print(f"The LED connected to GPIO{LED_PIN} will now flash with an on time of {on_time} milliseconds and an off time of {off_time} milliseconds.")
+    print("Press ctrl+c to end the program")
 
-try:
-  while True:
-   turn_on_led()
-   time.sleep(on_time/ 1000.0) # Convert milliseconds to seconds
-   turn_off_led()
-   time.sleep(off_time/ 1000.0) # Convert milliseconds to seconds
-   except KeyboardInterrupt:
-   print("\nGoodbye! Try running the program with command line arguments next time to adjust the LED on and off time.")
-   print(f"\tUsage: python {os.path.basename(__file__)} [on_time_ms] [off_time_ms]")
-   print(f"\tExample: python {os.path.basename(__file__)} 2000 3000")
-   turn_off_led()
+    try:
+        while True:
+            turn_on_led()
+            time.sleep(on_time / 1000.0)  # Convert milliseconds to seconds
+            turn_off_led()
+            time.sleep(off_time / 1000.0)  # Convert milliseconds to seconds
 
-finally:
-  gpio.cleanup()
-    if__name__=="__main__":
-       # Default on and off times in milliseconds
-       default_on_time = 1000  
-       default_off_time = 1000
-       # Read command-line arguments if provided
-       if len(sys.argv) > 2:
-          on_time = int(sys.argv[1])
-          off_time = int(sys.argv[2])
-       else:
-          on_time = default_on_time
-          off_time = default_off_time
-          main(on_time, off_time)
+    except KeyboardInterrupt:
+        print("\nGoodbye! Try running the program with command line arguments next time to adjust the LED on and off time.")
+        print(f"\tUsage: python {os.path.basename(__file__)} [on_time_ms] [off_time_ms]")
+        print(f"\tExample: python {os.path.basename(__file__)} 2000 3000")
+        turn_off_led()
+
+    finally:
+        gpio.cleanup()
+
+if __name__ == "__main__":
+    # Default on and off times in milliseconds
+    default_on_time = 1000
+    default_off_time = 1000
+
+    # Read command-line arguments if provided
+    if len(sys.argv) > 2:
+        on_time = int(sys.argv[1])
+        off_time = int(sys.argv[2])
+    else:
+        on_time = default_on_time
+        off_time = default_off_time
+
+    main(on_time, off_time)
+    
 ```
 
 **Step 4.** To run your Hello World program, type the command `python hello_world.py`.
