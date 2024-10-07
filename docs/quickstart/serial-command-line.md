@@ -23,17 +23,17 @@ Omega2's command line is accessible on UART0.
 You'll need to download and install the Serial-to-USB driver on your computer for your specific operating system.
 
 <Tabs>
- <TabItem value="Mac OS" label="Mac OS Driver" default>
+ <TabItem value="Mac OS Serial Driver" label="Mac OS Serial Driver" default>
 
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip) for OS X.
 
  </TabItem>
- <TabItem value="Windows" label="Windows Driver" default>
+ <TabItem value="Windows Serial Driver" label="Windows Serial Driver" default>
 
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip) for Windows.
 
  </TabItem>
- <TabItem value="Linux" label="Linux Driver" default>
+ <TabItem value="Linux Serial Driver" label="Linux Serial Driver" default>
 
 Many modern Linux distributions include the CP210x driver by default, so there is no need to install it.
 
@@ -64,7 +64,7 @@ sudo chmod 666 /dev/ttyUSB0
 Before connecting to your Omega2 you'll need to check that the serial device exists.
 
 <Tabs>
- <TabItem value="Mac OS Serial" label="Mac OS Serial Device" default>
+ <TabItem value="Mac OS" label="Mac OS" default>
 
 Open a terminal on your Mac, and then follow these steps.
 
@@ -93,7 +93,7 @@ Another useful serial port communication program is [Minicom](https://wiki.emaci
 :::
 
  </TabItem>
-<TabItem value="Windows Serial" label="Windows Serial Device" default>
+<TabItem value="Windows" label="Windows" default>
 
 We'll be using PuTTY as our terminal, but you can use any terminal program that you like. Download and install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) on your computer, and then follow these steps.
 
@@ -118,7 +118,7 @@ Click the **Open** button to connect to your Omega2 via PuTTY. You should see th
 ![omega2-windows-conect](./assets/connecting-serial-windows-login.jpg)
 
 </TabItem>
-<TabItem value="Linux Serial" label="Linux Serial Device" default>
+<TabItem value="Linux" label="Linux" default>
 
 Some modern Linux versions already have the required serial driver installed.
 
