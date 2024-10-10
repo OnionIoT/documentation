@@ -181,7 +181,9 @@ The Omega2 will only connect to the wireless network specified. This version of 
 
 :::
 
-To disable this functionality of the radio and disconnect from any connected radio:
+#### Disabling the STA
+
+To disable this functionality of the radio and disconnect from any connected WiFi network:
 
 ```shell
  uci set wireless.client.disabled='1'
@@ -222,6 +224,8 @@ uci set wireless.radio0.disabled='1'
 uci commit wireless
 wifi
 ```
+
+Note this will turn off both the AP and STA.
 
 ## Additional configuration options
 

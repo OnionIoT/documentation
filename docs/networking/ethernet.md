@@ -28,7 +28,7 @@ The default network configuration is for the Ethernet port to act as DHCP client
 
 **Plug and play:** Add the Omega to your network by connecting an Ethernet cable.
 
-### How to set up a DHCP client
+### How to set up as a DHCP client
 
 If Ethernet networking config has changed and is no longer a DHCP client:
 
@@ -54,7 +54,7 @@ By default, you can only connect one client. This is because there's a single Et
 
 :::
 
-### How to set up a DHCP host
+### How to set up as a DHCP host
 
 To set up the Ethernet port as a DHCP host:
 
