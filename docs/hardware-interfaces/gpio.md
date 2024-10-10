@@ -73,8 +73,8 @@ In earlier 22.03 releases of the Onion Omega2 firmmware, the GPIO numbering in L
 
 ### Interacting with GPIOs
 
- **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the [GPIO Sysfs usage documentation](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) documentation.
+**Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the [GPIO Sysfs usage documentation](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) documentation.
 
- <!-- should add an example here -->
+<!-- should add an example here -->
 
 <GiscusDocComment />
