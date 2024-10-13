@@ -6,27 +6,28 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #9B4B63; /* Primary brand color */
+  --ifm-color-primary-dark: #874056; /* Darkened version of primary color */
+  --ifm-color-primary-darker: #77384d; /* Darker tone */
+  --ifm-color-primary-darkest: #5F2D3C; /* Darkest tone for emphasis */
+  --ifm-color-primary-light: #A85C77; /* Slightly lighter */
+  --ifm-color-primary-lighter: #B36D86; /* Lighter tone for subtle highlights */
+  --ifm-color-primary-lightest: #C48C9C; /* Lightest tone, for backgrounds */
+
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(155, 75, 99, 0.1); /* Slight tint of primary color for highlighting */
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #E2B6C4; /* Soft version of #9B4B63 for better contrast in dark mode */
+  --ifm-color-primary-dark: #CF9EA9; /* Slightly darker, but maintaining contrast */
+  --ifm-color-primary-darker: #BA8B96; /* Darker tone for strong elements */
+  --ifm-color-primary-darkest: #A3757F; /* Darkest variation for bold emphasis */
+  --ifm-color-primary-light: #E8C0CD; /* Lightened version, but keeping with the theme */
+  --ifm-color-primary-lighter: #ECC9D5; /* Lightest tone for subtle elements */
+  --ifm-color-primary-lightest: #F0D2DC; /* Very light, for subtle backgrounds */
+
+  --docusaurus-highlighted-code-line-bg: rgba(226, 182, 196, 0.3); /* Use a hint of light pink for highlighting */
 }
 
 /* Announcement bar styling */
