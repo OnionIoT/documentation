@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Omega2 Beta Firmware Documentation',
+  title: 'Onion Omega2 Documentation',
   tagline: 'Everything you need to know',
   favicon: 'img/favicon.ico',
 
@@ -64,7 +64,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/onion-badge.png',
       navbar: {
-        title: 'Omega2 Beta Firmware Documentation',
+        title: 'Onion Omega2 Documentation',
         logo: {
           alt: 'Onion Badge',
           src: 'img/onion-badge.png',
