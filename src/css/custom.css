@@ -28,3 +28,19 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Announcement bar styling */
+div[class^='announcementBar_'] {
+  font-size: 20px;
+
+  --site-announcement-bar-stripe-color1: #E2B6C4; /* Lightened version of #9B4B63 */
+  --site-announcement-bar-stripe-color2: #F5F5F5; /* Light grey near #FFFFFF */
+
+  background: repeating-linear-gradient(
+    -35deg,
+    var(--site-announcement-bar-stripe-color1),
+    var(--site-announcement-bar-stripe-color1) 20px,
+    var(--site-announcement-bar-stripe-color2) 10px,
+    var(--site-announcement-bar-stripe-color2) 40px
+  );
+}
