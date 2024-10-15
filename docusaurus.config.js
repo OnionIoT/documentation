@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Omega2 Beta Firmware Documentation',
+  title: 'Onion Omega2 Documentation',
   tagline: 'Everything you need to know',
   favicon: 'img/favicon.ico',
 
@@ -64,7 +64,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/onion-badge.png',
       navbar: {
-        title: 'Omega2 Beta Firmware Documentation',
+        title: 'Onion Omega2 Documentation',
         logo: {
           alt: 'Onion Badge',
           src: 'img/onion-badge.png',
@@ -87,8 +87,8 @@ const config = {
         // ],
       },
       announcementBar: {
-        id: 'announcementBar-0', // Increment on change
-        content: `Documentation for <strong>beta openwrt-22.03 firmware only!</strong> Visit <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">https://docs.onion.io</a> for stable v0.3.4 (and v0.3.3) firmware documentation`
+        id: 'announcementBar-1', // Increment on change
+        content: `<strong>⚠️This documentation is for firmware based on OpenWRT 23.05 only!⚠️</strong> For information on firmware v0.3.4 and earlier, visit our <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">legacy documentation site.</a>`
       },
       footer: {
         style: 'dark',
