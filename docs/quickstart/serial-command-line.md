@@ -2,6 +2,8 @@
 title: Serial Command Line
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Context
@@ -20,15 +22,18 @@ Omega2's command line is accessible on UART0.
 
 You'll need to download and install the Serial-to-USB driver on your computer for your specific operating system.
 
-### MAC OS driver
+<Tabs>
+ <TabItem value="Mac OS Serial Driver" label="Mac OS Serial Driver" default>
 
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip) for OS X.
 
-### Windows driver
+ </TabItem>
+ <TabItem value="Windows Serial Driver" label="Windows Serial Driver">
 
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip) for Windows.
 
-### Linux driver
+ </TabItem>
+ <TabItem value="Linux Serial Driver" label="Linux Serial Driver">
 
 Many modern Linux distributions include the CP210x driver by default, so there is no need to install it.
 
@@ -51,11 +56,15 @@ sudo usermod -a-G tty $USER
 sudo chmod 666 /dev/ttyUSB0
 ```
 
+ </TabItem>
+</Tabs>
+
 ## Connect to Omega2
 
 Before connecting to your Omega2 you'll need to check that the serial device exists.
 
-### MAC OS
+<Tabs>
+ <TabItem value="Mac OS" label="Mac OS" default>
 
 Open a terminal on your Mac, and then follow these steps.
 
@@ -83,7 +92,8 @@ Another useful serial port communication program is [Minicom](https://wiki.emaci
 
 :::
 
-### Windows
+ </TabItem>
+<TabItem value="Windows" label="Windows">
 
 We'll be using PuTTY as our terminal, but you can use any terminal program that you like. Download and install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) on your computer, and then follow these steps.
 
@@ -107,7 +117,8 @@ Click the **Open** button to connect to your Omega2 via PuTTY. You should see th
 
 ![omega2-windows-conect](./assets/connecting-serial-windows-login.jpg)
 
-### Linux
+</TabItem>
+<TabItem value="Linux" label="Linux">
 
 Some modern Linux versions already have the required serial driver installed.
 
@@ -208,5 +219,8 @@ You should see the following screen if the connection is successful.
 #### 7: Close screen
 
 After you've finished with the command line you can close the session by pressing the action key (Ctrl-a) then k.
+
+ </TabItem>
+</Tabs>
 
 <GiscusDocComment />
