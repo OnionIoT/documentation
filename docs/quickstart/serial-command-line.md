@@ -43,7 +43,7 @@ Run `sudo 1smod` to see a list of installed modules. If it is supported, CP210x 
 
 You may need to run `sudo modpobe cp210x` to load the driver.
 
-### Specific Linux distributions
+#### Specific Linux distributions
 
 - Included in Ubuntu since version 20.10 ([reference](https://community.silabs.com/s/question/0D51M00007xeTTESA2/cp210x-installing-on-ubuntu-2010?language=en_US)).
 - Included in Debian ([reference](https://unix.stackexchange.com/questions/754357/cp210x-driver-on-debian)).
