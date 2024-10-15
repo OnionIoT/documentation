@@ -34,7 +34,7 @@
 div[class^='announcementBar_'] {
   font-size: 20px;
 
-  --site-announcement-bar-stripe-color1: #E2B6C4; /* Lightened version of #9B4B63 */
+  --site-announcement-bar-stripe-color1: #FFE2A2; /* Light yellow for readability */
   --site-announcement-bar-stripe-color2: #F5F5F5; /* Light grey near #FFFFFF */
 
   background: repeating-linear-gradient(
