@@ -28,12 +28,12 @@ You'll need to download and install the Serial-to-USB driver on your computer fo
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip) for OS X.
 
  </TabItem>
- <TabItem value="Windows Serial Driver" label="Windows Serial Driver" default>
+ <TabItem value="Windows Serial Driver" label="Windows Serial Driver">
 
 Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip) for Windows.
 
  </TabItem>
- <TabItem value="Linux Serial Driver" label="Linux Serial Driver" default>
+ <TabItem value="Linux Serial Driver" label="Linux Serial Driver">
 
 Many modern Linux distributions include the CP210x driver by default, so there is no need to install it.
 
@@ -68,19 +68,19 @@ Before connecting to your Omega2 you'll need to check that the serial device exi
 
 Open a terminal on your Mac, and then follow these steps.
 
-### 1: Check for the serial device
+#### 1: Check for the serial device
 
 Plug in your Omega2 and Expansion dock, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-0001`.
 
 ![omega2-os-driver](./assets/connecting-serial-osx-check.jpg)
 
-### 2: Connect to Omega2
+#### 2: Connect to Omega2
 
 Run `screen /dev/tty.usbserial-0001`to connect to the Omega2's serial terminal using the screen utility. You should see the following screen if the connection is successful.
 
 ![omega2-os-connect](./assets/connecting-serial-osx-login.jpg)
 
-### 3: Close screen
+#### 3: Close screen
 
 After you've finished with the command line you can close the session by pressing the action key (Ctrl-a) then k.
 
@@ -93,17 +93,17 @@ Another useful serial port communication program is [Minicom](https://wiki.emaci
 :::
 
  </TabItem>
-<TabItem value="Windows" label="Windows" default>
+<TabItem value="Windows" label="Windows">
 
 We'll be using PuTTY as our terminal, but you can use any terminal program that you like. Download and install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) on your computer, and then follow these steps.
 
-### 1: Find the serial device
+#### 1: Find the serial device
 
 Plug in your Omega2 and Expansion dock and run the Device Manager (Start > Enter "Device Manager" and press **Enter**). Look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT). Take note of the Com number in brackets.
 
 ![windows-device-manager](./assets/connecting-serial-windows-device-manager.jpg)
 
-### 2: Configure the terminal program
+#### 2: Configure the terminal program
 
 - Open PuTTY and select Serial for the Connection type.
 - Enter the COM number noted in Step 1 as the Serial line.
@@ -111,20 +111,20 @@ Plug in your Omega2 and Expansion dock and run the Device Manager (Start > Enter
 
 ![configure-putty](./assets/connecting-serial-windows-putty-settings.jpg)
 
-### 3: Connect to Omega2
+#### 3: Connect to Omega2
 
 Click the **Open** button to connect to your Omega2 via PuTTY. You should see the following screen if the connection is successful.
 
 ![omega2-windows-conect](./assets/connecting-serial-windows-login.jpg)
 
 </TabItem>
-<TabItem value="Linux" label="Linux" default>
+<TabItem value="Linux" label="Linux">
 
 Some modern Linux versions already have the required serial driver installed.
 
 Follow the steps outlined to check the driver installation and connect to your Omega2.
 
-### 1: Check the serial driver is installed
+#### 1: Check the serial driver is installed
 
 Run `modinfo cp210x` on the command line. If it outputs several lines of information, then the driver is installed, and you can skip to Step 4.
 
@@ -134,14 +134,14 @@ If the output displays an error like the following, then the driver needs to be 
 modinfo: ERROR Module cp210x not found
 ```
 
-### 2: Download the Silicon Labs CP2102 driver
+#### 2: Download the Silicon Labs CP2102 driver
 
 Download the driver for your appropriate version of Linux.
 
 - Linux kernel [3.x.x and higher](https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip)
 - Linux kernel [2.6.x](https://www.silabs.com/documents/public/software/Linux_2.6.x_VCP_Driver_Source.zip)
 
-### 3: Build and install the driver
+#### 3: Build and install the driver
 
 Install the driver for your appropriate version of Linux.
 
@@ -181,7 +181,7 @@ Compile the driver with the `make` command.
  sudo usermod -a -G dialout $USER
 ```
 
-### 4: Install screen
+#### 4: Install screen
 
 Next, we'll install screen, a command line utility that allows connecting to the Omega2's serial terminal.
 
@@ -202,13 +202,13 @@ sudo yum install screen
 
 For information on how to use the screen utility, please see this [tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions).
 
-### 5: Find the USB-to-Serial device
+#### 5: Find the USB-to-Serial device
 
 Plug in your Omega2 and Expansion dock and run `sudo dmesg` to check the kernel log messages. If the driver is installed, you should see a message about the new USB device.
 
 ![linux-find-serial-driver](./assets/omega2-find-serial-linux.png)
 
-### 6: Open screen
+#### 6: Open screen
 
 Run `sudo screen /dev/ttyUSB0 115200` to connect to the Omega2's serial terminal using screen. If the screen remains blank, hit enter again to get to the command prompt.
 
@@ -216,7 +216,7 @@ You should see the following screen if the connection is successful.
 
 ![omega2-linux-connect](./assets/connecting-serial-linux-login.png)
 
-### 7: Close screen
+#### 7: Close screen
 
 After you've finished with the command line you can close the session by pressing the action key (Ctrl-a) then k.
 
