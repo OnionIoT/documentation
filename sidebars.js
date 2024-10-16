@@ -26,6 +26,7 @@ const sidebars = {
         'introduction/firmware-revision-list',
         'introduction/whats-new-in-v23.05.3',
         'introduction/comparison-of-firmware-v0.3.4-and-v23.05.3',
+        'introduction/revert-to-old-fw',
       ],
     },
     {
@@ -42,7 +43,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'QuickStart',
+      label: 'Quickstart',
       items: [
         'quickstart/power-up',
         'quickstart/serial-command-line',
