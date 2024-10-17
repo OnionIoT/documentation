@@ -7,7 +7,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
 
-The OpenWRT-22.03 based firmware supports runtime loading of Device Tree Overlays.
+The OpenWRT 23.05 based firmware supports runtime loading of Device Tree Overlays. <!-- TODO: update with OPENWRT_VERSION variable -->
 
 This means you can dynamically add hardware support to a running firmware just by installing packages, opening the door for easier support of more use cases for the Omega2.
 
@@ -68,7 +68,9 @@ The kernel will load drivers to enable support for the device.
 
 ## How to create custom Device Tree Overlay packages
 
-See the `onion-dt-overlay` package [README](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03/onion-dt-overlay#device-tree-runtime-overlay) to learn how to create your own device tree overlay packages.
+See the `onion-dt-overlay` package [README](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05/onion-dt-overlay#device-tree-runtime-overlay) to learn how to create your own device tree overlay packages.
+
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 ## Available Device Tree Overlay packages
 

@@ -84,13 +84,15 @@ One of the core tenets of Onion device firmware is to localize all customization
 
 Our goal is to create custom packages that bring value to our customers, by making them easy to use or by adding more functionality. Examples of this are the **default network configuration** and the **gpio muxing utility**.
 
-The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-22.03` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository.
+The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-23.05` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository. 
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 ### Where is the source code?
 
-The source code can be found on GitHub: [https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03)
+The source code can be found on GitHub: https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
-The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: [https://github.com/OnionIoT/openwrt-sdk-wrapper](https://github.com/OnionIoT/openwrt-sdk-wrapper)
+The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: https://github.com/OnionIoT/openwrt-sdk-wrapper
 
 The `profile` config file defines which SDK to use, the version of the SDK, the package feed, and which packages from the package feed to compile.
 
@@ -129,7 +131,8 @@ Onion uses the default version of the `profile` config file to build the Omega2 
 
 Our CI system uses Onion's custom OpenWRT Image Builder to compile firmware images and the output is placed in the repo section of our website.
 
-The compiled firmware images can be found at: [http://repo.onioniot.com/omega2/images/openwrt-22.03/](http://repo.onioniot.com/omega2/images/openwrt-22.03/)
+The compiled firmware images can be found at: http://repo.onioniot.com/omega2/images/openwrt-23.05/
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 <GiscusDocComment />
 

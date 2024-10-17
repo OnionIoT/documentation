@@ -2,6 +2,8 @@
 title: Determining the Firmware Version a Device is Running
 ---
 
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this article -->
+
 Follow this procedure to determine the version of the firmware running on an Omega device.
 
 ## Step 1: Finding the Firmware Version

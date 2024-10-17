@@ -337,7 +337,9 @@ Omega2 supports PHP 8.1.
 
 ### How to install PHP
 
-Update the opkg package feed list (23.05 packaged repos do not have PHP as of May 2024)
+Update the opkg package feed list (23.05 package repos do not have PHP as of May 2024)
+
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section as long as 23.05 package repos do not have PHP -->
 
 ```Shell
 echo https://downloads.openwrt.org/releases/22.03.5/packages/mipsel_24kc/packages >> /etc/opkg/distfeeds.conf
