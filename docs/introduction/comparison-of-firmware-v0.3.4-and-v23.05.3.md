@@ -41,7 +41,7 @@ OpenWRT build system is used to build:
 
 :::tip
 
-It takes about 3 hours for a build to run.
+It takes about 3-8 hours for a build to run, depending on the machine used for compilation
 
 :::
 
