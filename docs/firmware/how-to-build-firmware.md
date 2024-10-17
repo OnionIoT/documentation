@@ -145,7 +145,11 @@ The `PACKAGE_REPOS` variable defines which additional package repos to use as so
 
 Edit the `PACKAGE_REPOS` variable to change which package feeds to check for packages. Each feed must be on a new line.
 
-The syntax for a git-based package repo is: `src/gz onion_openwrt_packages http://repo.onioniot.com/omega2/packages/openwrt-23.05/onion`.
+The syntax for a git-based package repo is: `src/gz <PACKAGE REPO NAME> <PACKAGE REPO URL>`
+
+For example: `src/gz onion_openwrt_packages http://repo.onioniot.com/omega2/packages/openwrt-23.05/onion`. <!-- TODO: update with OPENWRT_VERSION variable -->
+
+Note the `<PACKAGE REPO NAME>` is arbitrary, it just needs to be different from the existing package repo names.
 
 For more configuration options, see the [OpenWRT documentation on Image Builder Package repositories](https://openwrt.org/docs/guide-user/additional-software/imagebuilder#adding_package_repositories).
 
@@ -206,6 +210,8 @@ The firmware images are named based on the device model name, the OpenWRT versio
 For example:
 
 For an Omega2+ device, with OPENWRT_VERSION="23.05.3" set in the `profile` config file and built on May 31, 2024. The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`. 
+
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section -->
 
 <GiscusDocComment />
 

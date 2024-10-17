@@ -4,7 +4,7 @@ title: How Onion Firmware is Built
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Onion's firmware is built based on the OpenWRT-22.03 firmware by using two different processes.
+Onion firmware based on OpenWRT 23.05 is built using two different processes. <!-- TODO: update with OPENWRT_VERSION variable -->
 
 **Process 1:**
 
@@ -65,8 +65,8 @@ Onion's custom OpenWRT Build System is compiled by our CI system and the output 
 
 The Build System output is available on our website:
 
-- Default packages - [http://downloads.onioniot.com/releases/22.03.5/packages/mipsel_24kc/](http://downloads.onioniot.com/releases/22.03.5/packages/mipsel_24kc/)
-- Compiled versions of the SDK and Image Builder - [http://downloads.onioniot.com/releases/22.03.3/targets/ramips/mt76x8/](http://downloads.onioniot.com/releases/22.03.3/targets/ramips/mt76x8/)
+- Default packages - http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/ <!-- TODO: update with OPENWRT_RELEASE variable -->
+- Compiled versions of the SDK and Image Builder - http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/ <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 :::note
 
@@ -84,13 +84,15 @@ One of the core tenets of Onion device firmware is to localize all customization
 
 Our goal is to create custom packages that bring value to our customers, by making them easy to use or by adding more functionality. Examples of this are the **default network configuration** and the **gpio muxing utility**.
 
-The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-22.03` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository.
+The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-23.05` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository. 
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 ### Where is the source code?
 
-The source code can be found on GitHub: [https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03)
+The source code can be found on GitHub: https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
-The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: [https://github.com/OnionIoT/openwrt-sdk-wrapper](https://github.com/OnionIoT/openwrt-sdk-wrapper)
+The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: https://github.com/OnionIoT/openwrt-sdk-wrapper
 
 The `profile` config file defines which SDK to use, the version of the SDK, the package feed, and which packages from the package feed to compile.
 
@@ -100,7 +102,7 @@ Onion's package repo is built using the default version of the `profile` config 
 
 Our CI system uses Onion's custom OpenWRT SDK to compile packages and the output is placed in the repo section of our website. 
 
-The compiled packages can be found at: [http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/).
+The compiled packages can be found at: http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/ <!-- TODO: update above with OPENWRT_RELEASE variable -->
 
 ## Process 2 - Step B: Onion-customized OpenWRT Image Builder
 
@@ -129,7 +131,8 @@ Onion uses the default version of the `profile` config file to build the Omega2 
 
 Our CI system uses Onion's custom OpenWRT Image Builder to compile firmware images and the output is placed in the repo section of our website.
 
-The compiled firmware images can be found at: [http://repo.onioniot.com/omega2/images/openwrt-22.03/](http://repo.onioniot.com/omega2/images/openwrt-22.03/)
+The compiled firmware images can be found at: http://repo.onioniot.com/omega2/images/openwrt-23.05/
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 <GiscusDocComment />
 

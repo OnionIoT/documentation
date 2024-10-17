@@ -44,13 +44,15 @@ The following table describes which pins are used for which SPI signal:
 | MISO       | 15   |
 | CS         | 17   |
 
-For further instruction on using the SPI Bus see the [SPI article](https://documentation.onioniot.com/hardware-interfaces/spi).
+For further instruction on using the SPI Bus see the [SPI article](../hardware-interfaces/spi).
 
 ## Source Code
 
-The DTS fragment that enables the SPI Bus functionality can be found in the [OnionIoT/OpenWRT-Packages GitHub repository](https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/src/sw-spi.dts). 
+The DTS fragment that enables the SPI Bus functionality can be found in the OnionIoT/OpenWRT-Packages GitHub repository at: https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-23.05/onion-dt-overlay/src/sw-spi.dts
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
-The package definition can be found at: [https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile](https://github.com/OnionIot/OpenWRT-Packages/blob/openwrt-22.03/onion-dt-overlay/Makefile).
+The package definition can be found at: https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-23.05/onion-dt-overlay/Makefile
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 It is part of the `onion-dt-overlay` package.
 

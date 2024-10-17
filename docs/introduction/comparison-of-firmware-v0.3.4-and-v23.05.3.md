@@ -1,12 +1,13 @@
 ---
 title: Comparison of firmware v0.3.4 & v23.05.3
 ---
+<!-- TODO: update above with OPENWRT_RELEASE variable? -->
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Note to reader
 
-This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to customers who have previous experience with the Omega2 family of products.
+This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to customers who have previous experience with the Omega2 family of products. <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 ## Context: The previous v0.3.4 firmware
 
@@ -70,22 +71,24 @@ It takes about 3-8 hours for a build to run, depending on the machine used for c
 
 ## How is the new v23.05.3 firmware different?
 
+<!-- TODO: update above with OPENWRT_RELEASE variable -->
+
 Onion is taking a new approach with the new firmware.
 
-- **Up to date** – Based on OpenWRT 23.05, released in 2024.
+- **Up to date** – Based on OpenWRT 23.05, released in 2024. <!-- TODO: update with OPENWRT_RELEASE and OPENWRT_VERSION_RELEASE_YEAR variable -->
 - **More performant**
   - Uses the open source `mt76` WiFi driver.
     - Offers more functionality and flexibility, while matching the raw performance of the custom WiFi driver.
   - Faster boot times.
   - Newer versions of packages available.
-  - Running a newer Linux kernel 5.15.
+  - Running a newer Linux kernel 5.15 <!-- TODO: update with KERNEL_VERSION variable -->
 - **Clean slate** – It does not include most of the utilities and packages from the existing stable (v0.3.4) Omega2 firmware.
   - [The Onion console](https://onion.io/getting-started-with-onionos/) (web GUI) is not included in the new firmware.
 - **Focus on usability** – Customizations are small and relate to usability improvements.
   - The default networking configuration is better and more accessible. It also has out-of-the-box support for hardware interfaces.
 - **Leverage our knowledge**
   - Onion has worked with OpenWRT since 2015. Over time we've learned a lot.
-  - The Omega2, with its new firmware, is the only MIPS platform that can run modern Node.js v16.
+  - The Omega2, with its new firmware, is the only MIPS platform that can run modern Node.js v18. <!-- TODO: update above with NODE_VERSION variable -->
 
 ### How is it built?
 

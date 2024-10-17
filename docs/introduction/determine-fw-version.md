@@ -2,6 +2,8 @@
 title: Determining the Firmware Version a Device is Running
 ---
 
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this article -->
+
 Follow this procedure to determine the version of the firmware running on an Omega device.
 
 ## Step 1: Finding the Firmware Version
@@ -19,9 +21,11 @@ onion.onion.version='23.05.3'
 onion.onion.build='20241015'
 ```
 
+<!-- TODO: update above with OPENWRT_RELEASE variable and ONION_FW_BUILDDATE variable -->
+
 The `onion.onion.version` value is the firmware version, and the `onion.onion.build` value is the firmware build number.
 
-In the case above the firmware version is `23.05.3` and the build is `20241015`.
+In the case above the firmware version is `23.05.3` and the build is `20241015`. <!-- TODO: update with OPENWRT_RELEASE variable and ONION_FW_BUILDDATE variable -->
 
 ### Version Info in the Login Banner 
 
@@ -35,15 +39,17 @@ The firmware version info is also contained in the login banner that's displayed
 
 ![firmware version info in login banner](./img/banner-fw-version-info.png)
 
-In this case, the firmware version is `23.05.3` and the build is `20240807`.
+In this case, the firmware version is `23.05.3` and the build is `20240807`. <!-- TODO: update with OPENWRT_RELEASE variable and ONION_FW_BUILDDATE variable -->
 
 ## Step 2: Identifying the Firwmare
+
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this paragraph -->
 
 If the firmware version is a number like `23.05.3` or `22.03.2`, and the build is a `YYYYMMDD` datecode like `20240807`, then **the firmware in question is the new firmware**. 
 
 This documentation site deals with the "new" firmware.
 
-The version number indicates which OpenWRT release the firmware is based on, and the build number indicates the date the firmware was built and released. So firmware with version `23.05.3` and build `20241015` is based on the OpenWRT 23.05.3 release and was built on October 15, 2024.
+The version number indicates which OpenWRT release the firmware is based on, and the build number indicates the date the firmware was built and released. So firmware with version `23.05.3` and build `20241015` is based on the OpenWRT 23.05.3 release and was built on October 15, 2024. <!-- TODO: update above with OPENWRT_RELEASE, ONION_FW_BUILDDATE, and ONION_FW_BUILDDATE_TEXT variables -->
 
 ### Previous Firmware
 

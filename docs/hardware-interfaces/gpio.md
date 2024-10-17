@@ -57,17 +57,21 @@ The GPIO sysfs interface is deprecated but is currently the best option for user
 
 ### GPIO Numbering Issue in OpenWRT 22.03
 
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section -->
+
 :::caution  
+
 This only applies to Onion's OpenWRT 22.03 firmware releases
 
 :::
+
 
 In earlier 22.03 releases of the Onion Omega2 firmmware, the GPIO numbering in Linux did not match the device's actual GPIO numbers. This was due to changes in the kernel around GPIO handling.
 
 - GPIO 0 - 31 ⇒ GPIO 480 - 511 (GPIO n + 480)
 - GPIO 32 - 63 ⇒ GPIO 448 - 479 (GPIO n + 416)
 
-**This has been resolved in Onion's OpenWRT 23.05 firmware releases**
+**This has been resolved in Onion's OpenWRT 23.05 firmware releases and all releases going forward**
 
 ### Interacting with GPIOs
 

@@ -4,9 +4,11 @@ title: Power Up
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
+<!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this article -->
+
 ## Introduction
 
-This article covers the quickest way for you to get up and running with your new Omega2 device. It applies to the Omega2 updated firmware, which is based on OpenWRT 22.03 and later.
+This article covers the quickest way for you to get up and running with your new Omega2 device. It applies to the Omega2 updated firmware, which is based on OpenWRT 23.05, 22.03, and later.
 
 ### Upgrading firmware from v0.3.4
 
