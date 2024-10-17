@@ -78,7 +78,7 @@ Onion is taking a new approach with the new firmware.
     - Offers more functionality and flexibility, while matching the raw performance of the custom WiFi driver.
   - Faster boot times.
   - Newer versions of packages available.
-  - Running a newer Linux kernel 5.15.
+  - Running a newer Linux kernel 5.15 <!-- TODO: update with KERNEL_VERSION variable -->
 - **Clean slate** – It does not include most of the utilities and packages from the existing stable (v0.3.4) Omega2 firmware.
   - [The Onion console](https://onion.io/getting-started-with-onionos/) (web GUI) is not included in the new firmware.
 - **Focus on usability** – Customizations are small and relate to usability improvements.

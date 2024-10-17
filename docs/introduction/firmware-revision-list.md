@@ -23,7 +23,7 @@ The previous Omega2 stable firmware (v0.3.4) is based on OpenWRT 18.06, and it's
 
 ## The New Firmware 23.05.3
 
-The new Omega2 firmware (23.05.3) is based on OpenWRT 23.05, and it's running the Linux kernel 5.15.
+The new Omega2 firmware (23.05.3) is based on OpenWRT 23.05, and it's running the Linux kernel 5.15. <!-- TODO: update with KERNEL_VERSION variable -->
 
 ## Highlights
 

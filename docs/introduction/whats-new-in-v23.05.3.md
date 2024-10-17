@@ -7,6 +7,8 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The new stable firmware is based on OpenWRT 23.05, and it's running the Linux kernel 5.15. The firmware is more modern, lightweight, and easier to customize than before. The idea was to start with a minimal firmware and have users add the functionality they need.
 
+<!-- TODO: update above with KERNEL_VERSION variable -->
+
 The process to build your own firmware has also been upgraded and simplified. It now takes minutes instead of hours!
 
 See the [full list of changes to the firwmare below](#list-of-changes-in-new-firmware).
