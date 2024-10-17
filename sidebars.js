@@ -103,6 +103,7 @@ const sidebars = {
       label: 'Software',
       items: [
         'software/supported-languages',
+        'software/running-command-on-boot',
       ],
     },
     {

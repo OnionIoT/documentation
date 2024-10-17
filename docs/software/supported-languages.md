@@ -31,8 +31,8 @@ C++ is a high performance, general purpose programming language, built as an ext
 
 - Fast execution of programs
 - Small binary size
-	- Space for other programs
-	- Utilities on the flash storage
+  - Space for other programs
+  - Utilities on the flash storage
 - Easy low-level hardware access
 
 ### How to compile C/C++ programs
@@ -51,7 +51,7 @@ To run a program: `./<binary-name>`
 
 Python is a high-level, general purpose programming language. It is an interpreted language, meaning programs do not have to be explicitly compiled before they can run.
 
-### Supported version
+### Supported Python version
 
 Omega2 supports Python 3.11. Onion no longer supports Python 2.
 
@@ -59,9 +59,9 @@ Omega2 supports Python 3.11. Onion no longer supports Python 2.
 
 - Clean syntax – ideal for rapid development and prototyping.
 - Rich ecosystem of modules – easy implementation of complex functionalities:
-	- Networking
-	- Data processing
-	- Hardware control
+  - Networking
+  - Data processing
+  - Hardware control
 - Lightweight, but still handle complex use cases.
 
 ### How to install Python
@@ -127,7 +127,7 @@ opkg install <selected package name>
 
 Node.js is a JavaScript runtime environment with an event-driven architecture capable of asynchronous I/O.
 
-### Supported version
+### Supported Node version
 
 The Omega2 family is the only MIPS architecture platform that supports modern Node.js. The Omega2 supports Node.js v20.13.1.
 
@@ -135,6 +135,7 @@ The Omega2 family is the only MIPS architecture platform that supports modern No
 
 - De facto standard for web and server applications – allows for a web-first language to create applications on hardware.
 - Asynchronous, event-driven execution and non-blocking I/O – ideal for real-time applications that need to consider hardware interactions, networking, and more.
+
 ### How to install Node
 
 To install Node, enter the following commands:
@@ -158,13 +159,13 @@ To run a program stored on the local file system, enter the following command:
 
 ```Node
 node <program-name>
-``` 
+```
 
 ## Shell Scripts
 
 A shell is a command-line interpreter; the Omega2 command line is a shell. Shell scripting is a series of commands written in a file that are then executed by the shell.
 
-### Supported version
+### Supported Shell version
 
 The Omega2 uses the `ash` shell command-line interpreter as part of BusyBox. The BusyBox software combines tiny versions of common Linux and Unix utilities into a single space optimized binary, which is great for embedded Linux systems like the Omega2.
 
@@ -190,7 +191,7 @@ sh <program-name>
 
 Rust is a general purpose programming language that emphasizes performance, type safety, and concurrency. Before being executed, programs must be compiled.
 
-### Supported version
+### Supported Rust version
 
 The Rust compiler supports cross-compilation to MIPS targets, like the Omega2 family.
 
@@ -238,7 +239,7 @@ GoLang, also known as Go, is an open-source programming language developed by Go
 
 Designed for simplicity, efficiency, and scalability, Go is excellent for high-performance server-side applications, distributed systems, and cloud services. It is a popular choice for modern software development because of its emphasis on readability and maintainability.
 
-### Supported version
+### Supported GoLang version
 
 Omega2 supports GoLang v1.21.
 
@@ -325,7 +326,7 @@ PHP is a general-purpose scripting language that is especially suited for web de
 
 PHP is often used to add programming logic to HTML pages. It processes inputs and creates static HTML. The code executes on the server and sends the HTML to the client. The client is unaware of the underlying PHP code.
 
-### Supported version
+### Supported PHP version
 
 Omega2 supports PHP 8.1.
 
@@ -356,7 +357,7 @@ PHP can be executed from the command line. To run a program stored on the local 
 
 Ruby is an interpreted scripting language for quick and easy object-oriented programming. It has several features to process text files and perform system management tasks (as in perl). It is simple, straight-forward, and extensible ([reference](https://github.com/openwrt/packages/blob/openwrt-23.05/lang/ruby/Makefile#L114-L118)).
 
-### Supported version
+### Supported Ruby version
 
 Omega2 supports Ruby v3.2.2.
 
@@ -364,7 +365,7 @@ Omega2 supports Ruby v3.2.2.
 
 - Great for web focused development with other libraries and frameworks like Ruby on Rails or Sinatra.
 - Easily integrate with other languages and technologies. Extends its functionality by interfacing with C libraries or executing system commands.
-- ~Clean and readable syntax, which promotes rapid development and easy maintenance.
+- Clean and readable syntax, which promotes rapid development and easy maintenance.
 
 ### How to install Ruby
 
@@ -383,7 +384,7 @@ Perl is a high-level, interpreted programming language known for its flexibility
 
 The language is suitable for system administration tasks, web development, network programming, and automation.
 
-### Supported version
+### Supported Perl version
 
 Omega2 supports Perl v5.28.
 
@@ -404,4 +405,3 @@ opkg install perl
 To run a program stored on the local file system: `perl <program-name>`.
 
 <GiscusDocComment />
-
