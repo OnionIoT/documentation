@@ -55,7 +55,8 @@ We no longer implement customizations to the firmware by adding individual files
 What's new:
 
 - Based on OpenWRT 23.05 release, running Linux kernel 5.15 <!-- TODO: update this with OPENWRT_VERSION and LINUX_KERNEL_VERSION variables -->
-- All WiFi configuration done through UCI. The `wifisetup` command is no longer available. 
+- The WiFi driver now supports configuration using the standard nl80211 interface. All WiFi configuration is now done through UCI (the `wifisetup` command is no longer available).
+<!-- - Now support connecting to WiFi networks with spaces, commas, and unicode carriers in the network SSID (name) TODO: verify this on device and uncomment -->
 - Now supports disabling the WiFi AP while connected to a WiFi network as a client (STA)
 - Support for more WiFi operating modes (Enterprise WiFi, roaming, etc)
 - The WiFi STA does not automatically switch WiFi networks. It will only attempt to connect to the network that is currently configured, nothing else.
