@@ -4,7 +4,7 @@ title: How Onion Firmware is Built
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Onion's firmware is built based on the OpenWRT-22.03 firmware by using two different processes.
+Onion firmware based on OpenWRT 23.05 is built using two different processes. <!-- TODO: update with OPENWRT_VERSION variable -->
 
 **Process 1:**
 
@@ -65,8 +65,10 @@ Onion's custom OpenWRT Build System is compiled by our CI system and the output 
 
 The Build System output is available on our website:
 
-- Default packages - [http://downloads.onioniot.com/releases/22.03.5/packages/mipsel_24kc/](http://downloads.onioniot.com/releases/22.03.5/packages/mipsel_24kc/)
-- Compiled versions of the SDK and Image Builder - [http://downloads.onioniot.com/releases/22.03.3/targets/ramips/mt76x8/](http://downloads.onioniot.com/releases/22.03.3/targets/ramips/mt76x8/)
+- Default packages - http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/
+- Compiled versions of the SDK and Image Builder - http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/
+
+<!-- TODO: update above with OPENWRT_RELEASE variable -->
 
 :::note
 
@@ -102,7 +104,7 @@ Onion's package repo is built using the default version of the `profile` config 
 
 Our CI system uses Onion's custom OpenWRT SDK to compile packages and the output is placed in the repo section of our website. 
 
-The compiled packages can be found at: [http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/).
+The compiled packages can be found at: http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/ <!-- TODO: update above with OPENWRT_RELEASE variable -->
 
 ## Process 2 - Step B: Onion-customized OpenWRT Image Builder
 
