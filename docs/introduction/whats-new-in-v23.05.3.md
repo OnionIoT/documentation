@@ -9,6 +9,8 @@ The new stable firmware is based on OpenWRT 23.05, and it's running the Linux ke
 
 The process to build your own firmware has also been upgraded and simplified. It now takes minutes instead of hours!
 
+See the [full list of changes to the firwmare below](#list-of-changes-in-new-firmware).
+
 ### New WiFi driver
 
 The new firmware uses the open source mt76 driver for WiFi, which offers several advantages over the previous driver.
@@ -27,21 +29,48 @@ Onion has reduced the number of customized utilities and packages included in th
 
 :::note
 
-- The new firmware does not include the Onion Console Web GUI.
+Highlights:
+
+- The new firmware does not include the OnionOS/Onion Console Web GUI.
 - There are no specific images for the Omega2 Pro, Omega2 LTE, and Omega2 Dash.
 
 :::
 
+### Easily Create Custom Firmware
+
 It's easier and faster to build a custom firmware image. **You can build a custom image in minutes as opposed to hours.** 
 
-See the [How Onion Firmware is Built article](../firmware/how-onion-builds-firmware.md) for all of the details on our new approach. And see the [Building Custom Firmware article](../firmware/how-to-build-firmware.md) for a guide on how to build your own firmware.
+Onion has a new approach to firmware customization. See the [How Onion Firmware is Built article](../firmware/how-onion-builds-firmware.md) for all of the details on our new approach. And see the [Building Custom Firmware article](../firmware/how-to-build-firmware.md) for a guide on how to build your own firmware.
 
-Onion has a new approach to firmware customization. Currently two methods are supported.
+Customizations to the firwmare are now either:
 
-Customizations are either:
-
-1. Part of packages
+1. Part of software packages
 1. Patches to the build system (intended for changes to the kernel and Linux configuration)
+
+We no longer implement customizations to the firmware by adding individual files to firmware images. This method made it harder to manage, track, and maintain the customizations.
+<!-- TODO: review this with Zheng -->
+
+### List of Changes in New Firmware
+
+What's new:
+
+- Based on OpenWRT 23.05 release, running Linux kernel 5.15 <!-- TODO: update this with OPENWRT_VERSION and LINUX_KERNEL_VERSION variables -->
+- All WiFi configuration done through UCI. The `wifisetup` command is no longer available. 
+- Now supports disabling the WiFi AP while connected to a WiFi network as a client (STA)
+- Support for more WiFi operating modes (Enterprise WiFi, roaming, etc)
+- The WiFi STA does not automatically switch WiFi networks. It will only attempt to connect to the network that is currently configured, nothing else.
+- New firmware version numbering schema. The version number indicates which OpenWRT release the firmware is based on, like `23.05.3`, and the build number indicates the date the firmware was built and released in `YYYYMMDD` firmat. <!-- TODO: update this with OPENWRT_RELEASE variable -->
+- Smaller firmware image size - incrementally faster boot time and more space for customization
+
+What's no longer included:
+
+- Avahi Daemon is not included, so the Omega will not announce or be available at its `omega-abcd.local` name on the local network
+- No more `wifisetup` utility. All WiFi configuration done through UCI. 
+- No more `oupgrade` utility. Firmware updates must be done using `sysupgrade` in Linux or through the bootloader
+- The OnionOS/Onion Console Web UI is not included
+- No web-based setup wizard - the legacy first time setup guide will not work with this firmware
+- Only firmware for the Omega2/2S and Omega2+/2S+ devices is provided. No device-specific firwmare for the Omega2 Pro, LTE, and Dash - instead the Omega2+/2S+ firmware with additional packages should be used
+- Utilities for the I2C-based Omega2 expansions are not included
 
 
 <GiscusDocComment />
