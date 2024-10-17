@@ -4,6 +4,32 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+// added placeholder definitions for future work to implement variable use in markdown
+const globalVariables = {
+  current: {
+    'OPENWRT_VERSION': '23.05',
+    'OPENWRT_VERSION_RELEASE_YEAR': '2024',
+    'OPENWRT_RELEASE': '23.05.3',
+    'KERNEL_VERSION': '5.15',
+    'ONION_FW_VERSION': '23.05.3-20240807',
+    'ONION_FW_BUILDDATE': '20240807',
+    'ONION_FW_BUILDDATE_TEXT': 'August 7, 2024',
+    'NODE_VERSION': 'v18',
+    'NODE_FULL_VERSION': 'v18.19.1'
+  },
+  '23.05.3': {
+    'OPENWRT_VERSION': '23.05',
+    'OPENWRT_VERSION_RELEASE_YEAR': '2024',
+    'OPENWRT_RELEASE': '23.05.3',
+    'KERNEL_VERSION': '5.15',
+    'ONION_FW_VERSION': '23.05.3-20240807',
+    'ONION_FW_BUILDDATE': '20240807',
+    'ONION_FW_BUILDDATE_TEXT': 'August 7, 2024',
+    'NODE_VERSION': 'v18',
+    'NODE_FULL_VERSION': 'v18.19.1'
+  }
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Onion Omega2 Documentation',
