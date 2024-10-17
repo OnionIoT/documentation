@@ -6,7 +6,7 @@ This repo is based on [Docusaurus 2](https://docusaurus.io/), a modern static we
 
 Continuous Deployment (CD) is setup for this repo so all pushes to the `main` branch will automatically update the https://documentation.onioniot.com/ site.
 
-**This is documentation for the beta openwrt-22.03 firmware only! Visit https://docs.onion.io for stable v0.3.4 (and v0.3.3) firmware documentation**
+**This is documentation for firmware based on OpenWRT 23.05 only! Visit the legacy https://docs.onion.io site for documentation on the v0.3.4 (and earlier) firmware**
 
 ## Editing Documentation
 
