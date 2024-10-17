@@ -12,7 +12,7 @@ This article covers the quickest way for you to get up and running with your new
 
 For devices running the Omega2 firmware v0.3.4, please see the instructions found in the [Installing the New Firmware](/firmware/installing-firmware) article and then return to this article.
 
-To get started with a device running the v0.3.4 firmware, please see the first time setup article in our legacy documentation: [https://docs.onion.io/omega2-docs/first-time-setup.html](https://docs.onion.io/omega2-docs/first-time-setup.html)
+To get started with a device running the v0.3.4 firmware, please see the first time setup article in our legacy documentation: [https://docs.onion.io/omega2-docs/first-time-setup.html](https://docs.onion.io/omega2-docs/first-time-setup.html). **Note the legacy first time setup will not work with the new firmware!**
 
 If you're unsure how to tell the difference between the "New" firmware and the previous v0.3.4 firmware, see the [article on identifying the firmware version](../introduction/determine-fw-version).
 
