@@ -8,9 +8,7 @@ Follow this procedure to flash your Omega with the earlier v0.3.4 firmware.
 
 This is only useful if your application depends on or expects the earlier v0.3.4 firmware, and the device in use is running the new firmware based on OpenWRT 23.05. 
 
-See the [article on identifying the firmware version](./determine-fw-version.md) for more information on deducing which firmware is currently installed on your device.
-
-<!-- TODO: update to link to article on determining fw version -->
+See the [article on identifying the firmware version](./determine-fw-version) for more information on deducing which firmware is currently installed on your device.
 
 :::info
 
