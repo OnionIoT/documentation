@@ -66,21 +66,37 @@ Before connecting to your Omega2 you'll need to check that the serial device exi
 <Tabs>
  <TabItem value="Mac OS" label="Mac OS" default>
 
-Open a terminal on your Mac, and then follow these steps.
+In this example, we will use the `screen` utility. There are other tools available but screen is simple and comes already installed on most Macs.
+
+Open a terminal on your Mac, and then follow these steps. 
 
 #### 1: Check for the serial device
 
 Plug in your Omega2 and Expansion dock, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-0001`.
 
+<!-- TODO: update usb serial name -->
+
 ![omega2-os-driver](./assets/connecting-serial-osx-check.jpg)
 
+<!-- TODO: need new screenshot with updated usb serial name -->
+
 #### 2: Connect to Omega2
+
+<!-- TODO: update usb serial name -->
 
 Run `screen /dev/tty.usbserial-0001`to connect to the Omega2's serial terminal using the screen utility. You should see the following screen if the connection is successful.
 
 ![omega2-os-connect](./assets/connecting-serial-osx-login.jpg)
 
+<!-- TODO: need new screenshot with updated usb serial name -->
+
 #### 3: Close screen
+
+:::tip 
+
+You don't need to do this right now, but we thought it would be useful to know how to close the screen session
+
+:::
 
 After you've finished with the command line you can close the session by pressing the action key (Ctrl-a) then k.
 

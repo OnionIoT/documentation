@@ -163,17 +163,9 @@ If a connection is successful, you’ll see the following message in the kernel 
 
 #### Checking the IP address on Omega
 
-To check the IP address given to the Omega:
+import Apcli0CheckIpAddr from './_apcli0-check-ip-addr.mdx';
 
-```shell
-ifconfig apcli0
-```
-
-This will return the following information.
-
-![omega2-ip-address-check](./assets/omega2-ip-address-check.png)
-
-Note the highlighted IP address `inet addr:`.
+<Apcli0CheckIpAddr/>
 
 :::note
 

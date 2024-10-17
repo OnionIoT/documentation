@@ -1,0 +1,13 @@
+To check the IP address given to the Omega:
+
+```shell
+ifconfig apcli0
+```
+
+This will return the following information.
+
+![omega2-ip-address-check](./assets/omega2-ip-address-check.png)
+
+Note the highlighted IP address `inet addr:`.
+
+If that line is blank, the Omega was not given an IP address. Double check the network configuration and try again.
