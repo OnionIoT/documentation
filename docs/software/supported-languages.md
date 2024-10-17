@@ -129,7 +129,7 @@ Node.js is a JavaScript runtime environment with an event-driven architecture ca
 
 ### Supported Node version
 
-The Omega2 family is the only MIPS architecture platform that supports modern Node.js. The Omega2 supports Node.js v20.13.1.
+The Omega2 family is the only MIPS architecture platform that supports modern Node.js. The Omega2 supports Node.js v18.19.1. <!-- TODO: update with NODE_FULL_VERSION variable -->
 
 ### Benefits of Node
 

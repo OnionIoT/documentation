@@ -85,7 +85,7 @@ Onion is taking a new approach with the new firmware.
   - The default networking configuration is better and more accessible. It also has out-of-the-box support for hardware interfaces.
 - **Leverage our knowledge**
   - Onion has worked with OpenWRT since 2015. Over time we've learned a lot.
-  - The Omega2, with its new firmware, is the only MIPS platform that can run modern Node.js v16.
+  - The Omega2, with its new firmware, is the only MIPS platform that can run modern Node.js v18. <!-- TODO: update above with NODE_VERSION variable -->
 
 ### How is it built?
 
