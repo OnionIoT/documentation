@@ -2,6 +2,8 @@
 title: Supported Languages
 ---
 
+<!-- TODO: consider creating variables for all supported language versions ? -->
+
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 There are many programming languages available to program the Omega2 modules. Each language has something unique to offer.
@@ -337,9 +339,9 @@ Omega2 supports PHP 8.1.
 
 ### How to install PHP
 
-Update the opkg package feed list (23.05 package repos do not have PHP as of May 2024)
-
 <!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section as long as 23.05 package repos do not have PHP -->
+
+Update the opkg package feed list (23.05 package repos do not have PHP as of May 2024)
 
 ```Shell
 echo https://downloads.openwrt.org/releases/22.03.5/packages/mipsel_24kc/packages >> /etc/opkg/distfeeds.conf

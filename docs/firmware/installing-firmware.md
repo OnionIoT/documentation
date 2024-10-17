@@ -6,21 +6,21 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 > This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html). 
 
-The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-23.05/
+The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
 
 The firmware images are named according to this syntax: `<DEVICE-NAME>-<OPENWRT-VERSION>-<BUILD-DATE>.bin`
 
-So `onion_omega2p-23.05.3-20240807.bin` is:
+So `onion_omega2p-23.05.3-20240807.bin` is: <!-- TODO: update with ONION_FW_VERSION variable -->
 
 * firmware made for the Omega2+/Omega2S+
-* based on OpenWRT release 23.05.3
-* built on Aug 7, 2024
+* based on OpenWRT release 23.05.3 <!-- TODO: update above with OPENWRT_RELEASE variable -->
+* built on Aug 7, 2024 <!-- TODO: update above with ONION_FW_BUILDDATE_TEXT variable -->
 
 ## Selecting Firmware
 
 Before you install firmware to your device, you'll need to decide which firmware image to install.
 
-To start, use a browser to navigate to http://repo.onioniot.com/omega2/images/openwrt-23.05/
+To start, use a browser to navigate to http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
 
 Next, you'll need to find the firmware for your device:
 
@@ -45,13 +45,13 @@ Once you know which firmware image you want to install on your device:
 
 1. Connect to the command line of your device
 1. Go to the `/tmp` directory: `cd /tmp`
-1. Download the firmware image: `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/<SELECTED-FIRMWARE-IMAGE>.bin`
+1. Download the firmware image: `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/<SELECTED-FIRMWARE-IMAGE>.bin` <!-- TODO: update with OPENWRT_VERSION variable -->
 1. Install the firwmare: `sysupgrade -F -n -v <SELECTED-FIRMWARE-IMAGE>.bin`
 
-Say you selected firmware `onion_omega2p-23.05.3-20240807.bin`:
+Say you selected firmware `onion_omega2p-23.05.3-20240807.bin`: <!-- TODO: update with ONION_FW_VERSION variable -->
 
-* Your download command would be `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin`
-* Your installation command would be `sysupgrade -F -n -v onion_omega2p-23.05.3-20240807.bin`
+* Your download command would be `wget http://repo.onioniot.com/omega2/images/openwrt-23.05/onion_omega2p-23.05.3-20240807.bin` <!-- TODO: update with ONION_FW_VERSION variable -->
+* Your installation command would be `sysupgrade -F -n -v onion_omega2p-23.05.3-20240807.bin` <!-- TODO: update with ONION_FW_VERSION variable -->
 
 ## Updating
 

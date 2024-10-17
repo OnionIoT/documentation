@@ -65,10 +65,8 @@ Onion's custom OpenWRT Build System is compiled by our CI system and the output 
 
 The Build System output is available on our website:
 
-- Default packages - http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/
-- Compiled versions of the SDK and Image Builder - http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/
-
-<!-- TODO: update above with OPENWRT_RELEASE variable -->
+- Default packages - http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/ <!-- TODO: update with OPENWRT_RELEASE variable -->
+- Compiled versions of the SDK and Image Builder - http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/ <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 :::note
 

@@ -1,12 +1,13 @@
 ---
 title: Comparison of firmware v0.3.4 & v23.05.3
 ---
+<!-- TODO: update above with OPENWRT_RELEASE variable? -->
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Note to reader
 
-This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to customers who have previous experience with the Omega2 family of products.
+This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to customers who have previous experience with the Omega2 family of products. <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 ## Context: The previous v0.3.4 firmware
 
@@ -70,9 +71,11 @@ It takes about 3-8 hours for a build to run, depending on the machine used for c
 
 ## How is the new v23.05.3 firmware different?
 
+<!-- TODO: update above with OPENWRT_RELEASE variable -->
+
 Onion is taking a new approach with the new firmware.
 
-- **Up to date** – Based on OpenWRT 23.05, released in 2024.
+- **Up to date** – Based on OpenWRT 23.05, released in 2024. <!-- TODO: update with OPENWRT_RELEASE and OPENWRT_VERSION_RELEASE_YEAR variable -->
 - **More performant**
   - Uses the open source `mt76` WiFi driver.
     - Offers more functionality and flexibility, while matching the raw performance of the custom WiFi driver.
