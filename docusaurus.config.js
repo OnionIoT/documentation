@@ -4,7 +4,7 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-// added placeholder definitions for future work to implement variable use in markdown
+// added valid placeholder definitions for future work to implement variable use in markdown
 const globalVariables = {
   current: {
     'OPENWRT_VERSION': '23.05',
