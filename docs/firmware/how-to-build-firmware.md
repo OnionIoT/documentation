@@ -95,11 +95,19 @@ For those new to Docker, see [Docker's installation guide](https://docs.docker.c
 
 :::
 
-:::note
+To start a Docker container running Ubuntu 22.04, make sure Docker is installed and running, and then run the following command:
 
-When using Windows Subsystem for Linux (WSL), refer to the [OpenWRT developer guide for WSL](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
+```
+docker run -it ubuntu:22.04 /bin/bash
+```
 
-:::
+import DockerAppleSiliconNote from './_docker-apple-silicon-note.mdx';
+
+<DockerAppleSiliconNote/>
+
+import WslNote from './_wsl-note.mdx';
+
+<WslNote/>
 
 #### 2. Install required dependencies
 
