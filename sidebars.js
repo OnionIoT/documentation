@@ -117,6 +117,7 @@ const sidebars = {
       items: [
         'packages/intro',
         'packages/opkg-package-manager',
+        'packages/advanced-package-management',
         'packages/custom-package',
         'packages/compile-package',
         'packages/deploy-a-package',
