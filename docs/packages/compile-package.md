@@ -136,11 +136,12 @@ Follow these steps:
    - `<package-feed-url>`: Provide the Git repository URL.
    - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository.
 
-For example, say the `openwrt-22.03` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:
+For example, say the `openwrt-23.05` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:  <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 ```shell
-src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
+src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-23.05
 ```
+<!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 ### Step 2: Select packages from the package feed
 
