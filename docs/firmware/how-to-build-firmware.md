@@ -80,37 +80,15 @@ Follow the steps outlined, to set up your local environment, install dependencie
 
 #### A Note on the Build Environment
 
-The OpenWRT build tools, including the Image Builder, are meant to run on Linux. There are several methods to do this:
+import BuildEnvNotes from './_build-env-notes.mdx';
 
-- Dedicated Linux computer
-- Linux server (AWS EC2)
-- Docker virtual machine
-- Other virtual machines (WSL, VirtualBox, etc.)
-
-import WslNote from './_wsl-note.mdx';
-
-<WslNote/>
-
-
-Onion recommends using **Ubuntu 22.04 Linux in a Docker container**. Using Docker provides isolation, which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
+<BuildEnvNotes tool="Image Builder" />
 
 #### 1. Start your Docker container
 
-:::tip
+import DockerInstructions from './_docker-instructions.mdx';
 
-For those new to Docker, see [Docker's installation guide](https://docs.docker.com/desktop/) and the manual on [running a Docker container](https://docs.docker.com/engine/reference/run).
-
-:::
-
-To start a Docker container running Ubuntu 22.04, make sure Docker is installed and running, and then run the following command:
-
-```
-docker run -it ubuntu:22.04 /bin/bash
-```
-
-import DockerAppleSiliconNote from './_docker-apple-silicon-note.mdx';
-
-<DockerAppleSiliconNote/>
+<DockerInstructions/>
 
 #### 2. Install software dependencies
 

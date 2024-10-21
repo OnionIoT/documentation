@@ -20,38 +20,15 @@ The system set up instructions are the same for compiling packages in **developm
 
 ### A Note on the Build Environment 
 
-The OpenWRT build tools, including the OpenWRT SDK, are meant to run on Linux.
+import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
-There are a variety of ways to do this:
-
-- Dedicated Linux machine
-- Linux server (like AWS EC2)
-- Docker virtual machine
-- Other virtual machines (like WSL, VirtualBox, etc)
-
-import WslNote from '../firmware/_wsl-note.mdx';
-
-<WslNote/>
-
-**The method recommended by Onion is to use Ubuntu 22.04 Linux in a Docker container.** Using Docker provides isolation which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
+<BuildEnvNotes tool="OpenWRT SDK" />
 
 ### Step 1: Start your Docker Container
 
-:::tip
+import DockerInstructions from '../firmware/_docker-instructions.mdx';
 
-For those new to Docker, see Docker's [**installation guide**](https://docs.docker.com/desktop/) and the manual on [**running a Docker container**](https://docs.docker.com/engine/reference/run).
-
-:::
-
-To start a Docker container running Ubuntu 22.04, make sure Docker is installed and running, and then run the following command:
-
-```
-docker run -it ubuntu:22.04 /bin/bash
-```
-
-import DockerAppleSiliconNote from '../firmware/_docker-apple-silicon-note.mdx';
-
-<DockerAppleSiliconNote/>
+<DockerInstructions/>
 
 ### Step 2: Install software dependancies
 
