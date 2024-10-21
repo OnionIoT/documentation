@@ -62,11 +62,11 @@ Why is the Image Builder favored over other methods:
 
 Onion's Image Builder Wrapper makes use of the OpenWRT image builder and a set of supporting scripts and config files to make image creation straightforward, fast, and programmatic.
 
-:::note
+:::info
 
 The Image Builder wrapper is used to build the firmware released by Onion. The default configuration of the wrapper will build a firmware image that is identical to the one built by Onion. Essentially, the starting point for your custom firmware is the Onion firmware.
 
-For more information, see the article on How Onion Firmware is Built.
+For more information, see the [article on How Onion Firmware is Built](./how-onion-builds-firmware).
 
 :::
 
@@ -78,7 +78,7 @@ In this section we discuss how to use the Onion Image Builder Wrapper to build c
 
 Follow the steps outlined, to set up your local environment, install dependencies, and clone the OnionIoT/openwrt-imagebuilder-wrapper repo.
 
-#### 1. Setup your local environment 
+#### A Note on the Build Environment
 
 The OpenWRT build tools, including the Image Builder, are meant to run on Linux. There are several methods to do this:
 
@@ -87,7 +87,14 @@ The OpenWRT build tools, including the Image Builder, are meant to run on Linux.
 - Docker virtual machine
 - Other virtual machines (WSL, VirtualBox, etc.)
 
+import WslNote from './_wsl-note.mdx';
+
+<WslNote/>
+
+
 Onion recommends using **Ubuntu 22.04 Linux in a Docker container**. Using Docker provides isolation, which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
+
+#### 1. Start your Docker container
 
 :::tip
 
@@ -105,21 +112,11 @@ import DockerAppleSiliconNote from './_docker-apple-silicon-note.mdx';
 
 <DockerAppleSiliconNote/>
 
-import WslNote from './_wsl-note.mdx';
+#### 2. Install software dependencies
 
-<WslNote/>
+import InstallDeps from './_install-deps.mdx';
 
-#### 2. Install required dependencies
-
-When using Ubuntu 22.04 Linux or newer, you need to install the required dependencies. These can be installed using the packager manager.
-
-:::tip
-
-Please see the [OpenWRT Build System Setup instructions](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu) for details on which packages you need to install.
-
-:::
-
-**Note:** You may not need `sudo` in the commands when running in a Docker container.
+<InstallDeps/>
 
 #### 3. Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
 

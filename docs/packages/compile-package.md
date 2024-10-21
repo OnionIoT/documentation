@@ -18,9 +18,9 @@ Packages that are currently undergoing active development will have frequent cha
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-### Step 1: Setup local environment
+### A Note on the Build Environment 
 
-The OpenWRT build tools, including the openwrt-sdk-wrapper, are meant to run on Linux.
+The OpenWRT build tools, including the OpenWRT SDK, are meant to run on Linux.
 
 There are a variety of ways to do this:
 
@@ -29,7 +29,13 @@ There are a variety of ways to do this:
 - Docker virtual machine
 - Other virtual machines (like WSL, VirtualBox, etc)
 
+import WslNote from '../firmware/_wsl-note.mdx';
+
+<WslNote/>
+
 **The method recommended by Onion is to use Ubuntu 22.04 Linux in a Docker container.** Using Docker provides isolation which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
+
+### Step 1: Start your Docker Container
 
 :::tip
 
@@ -37,21 +43,21 @@ For those new to Docker, see Docker's [**installation guide**](https://docs.dock
 
 :::
 
-:::note
+To start a Docker container running Ubuntu 22.04, make sure Docker is installed and running, and then run the following command:
 
-When using Windows Subsystem for Linux (WSL), refer to the [**OpenWRT developer guide for WSL**](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
+```
+docker run -it ubuntu:22.04 /bin/bash
+```
 
-:::
+import DockerAppleSiliconNote from '../firmware/_docker-apple-silicon-note.mdx';
+
+<DockerAppleSiliconNote/>
 
 ### Step 2: Install software dependancies
 
-When using Ubuntu 22.04 or newer, it is essential to install the required dependencies. These dependencies consist of libraries, packages, or tools necessary for the proper functioning of the openwrt-sdk-wrapper and can be installed using the package manager.
+import InstallDeps from '../firmware/_install-deps.mdx';
 
-:::tip
-
-See the [**OpenWRT Build System Setup instructions**](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu) for details on what packages need to be installed.
-
-:::
+<InstallDeps/>
 
 ### Step 3: Clone the repository
 
