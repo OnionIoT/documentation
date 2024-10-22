@@ -24,8 +24,8 @@ const sidebars = {
       items: [
         'introduction/intro',
         'introduction/firmware-revision-list',
-        'introduction/whats-new-in-v23.05.3',
-        'introduction/comparison-of-firmware-v0.3.4-and-v23.05.3',
+        'introduction/whats-new',
+        'introduction/comparison-of-firmware-old-and-new',
         'introduction/revert-to-old-fw',
       ],
     },
