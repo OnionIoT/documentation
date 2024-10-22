@@ -23,7 +23,7 @@ packages/assets/packages-diagram.xml
 
 :::tip
 
-Explore the available packages developed by Onion Corporation for Omega2 devices by navigating to the [**OnionIoT**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) package repo. You will see a list of packages compatible with Omega2 devices, which can be easily downloaded and installed using the package manager.
+Explore the available packages developed by Onion Corporation for Omega2 devices by navigating to the [**OnionIoT**](http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/onion/) package repo. You will see a list of packages compatible with Omega2 devices, which can be easily downloaded and installed using the package manager. <!-- TODO: update this with OPENWRT_RELEASE variable -->
 
 :::
 
@@ -84,7 +84,7 @@ A package repository (package repo) is online storage for software packages that
 
 :::tip
 
-To explore an example repo, see the [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-22.03.5/onion/) repo.
+To explore an example repo, see the [**OnionIoT packages**](http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/onion/) repo.  <!-- TODO: update this with OPENWRT_RELEASE variable -->
 
 :::
 

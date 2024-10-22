@@ -146,7 +146,7 @@ For further exploration of package dependencies and their types, visit the [**Op
 
 ## Examples and More Info
 
-For examples of custom packages, explore the [**OnionIoT/OpenWRT-Packages Github repo**](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-22.03). This repository contains the package source for the custom packages created by Onion. Feel free to use these packages as references of how a working package looks and works, or as a starting point for the creation of new custom packages.
+For examples of custom packages, explore the [**OnionIoT/OpenWRT-Packages Github repo**](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05). This repository contains the package source for the custom packages created by Onion. Feel free to use these packages as references of how a working package looks and works, or as a starting point for the creation of new custom packages. <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 For more information - including more details about packages, a reference for Package Makefile syntax, and details on edge cases - see the [**OpenWRT documentation on packages**](https://openwrt.org/docs/guide-developer/packages).
 

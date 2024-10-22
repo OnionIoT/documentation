@@ -18,40 +18,23 @@ Packages that are currently undergoing active development will have frequent cha
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-### Step 1: Setup local environment
+### A Note on the Build Environment 
 
-The OpenWRT build tools, including the openwrt-sdk-wrapper, are meant to run on Linux.
+import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
-There are a variety of ways to do this:
+<BuildEnvNotes tool="OpenWRT SDK" />
 
-- Dedicated Linux machine
-- Linux server (like AWS EC2)
-- Docker virtual machine
-- Other virtual machines (like WSL, VirtualBox, etc)
+### Step 1: Start your Docker Container
 
-**The method recommended by Onion is to use Ubuntu 22.04 Linux in a Docker container.** Using Docker provides isolation which helps prevent dependency conflicts with existing software on the host system and ensures a clean, reproducible development environment.
+import DockerInstructions from '../firmware/_docker-instructions.mdx';
 
-:::tip
-
-For those new to Docker, see Docker's [**installation guide**](https://docs.docker.com/desktop/) and the manual on [**running a Docker container**](https://docs.docker.com/engine/reference/run).
-
-:::
-
-:::note
-
-When using Windows Subsystem for Linux (WSL), refer to the [**OpenWRT developer guide for WSL**](https://openwrt.org/docs/guide-developer/toolchain/wsl) for configuring environment paths and variables.
-
-:::
+<DockerInstructions/>
 
 ### Step 2: Install software dependancies
 
-When using Ubuntu 22.04 or newer, it is essential to install the required dependencies. These dependencies consist of libraries, packages, or tools necessary for the proper functioning of the openwrt-sdk-wrapper and can be installed using the package manager.
+import InstallDeps from '../firmware/_install-deps.mdx';
 
-:::tip
-
-See the [**OpenWRT Build System Setup instructions**](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu) for details on what packages need to be installed.
-
-:::
+<InstallDeps/>
 
 ### Step 3: Clone the repository
 
@@ -136,11 +119,12 @@ Follow these steps:
    - `<package-feed-url>`: Provide the Git repository URL.
    - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository.
 
-For example, say the `openwrt-22.03` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:
+For example, say the `openwrt-23.05` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:  <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 ```shell
-src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-22.03
+src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-23.05
 ```
+<!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 ### Step 2: Select packages from the package feed
 

@@ -108,13 +108,13 @@ This will find all the installed packages related to Onion:
 
 ```shell
 root@Omega-539F:/# opkg list-installed | grep -i onion
-onion-dt-overlay - 1.0-1
-onion-repo-keys - 22.03.2-1
+onion-dt-overlay - 1.0-5
+onion-repo-keys - 23.05.3
 
 root@Omega-f195:/# opkg list-installed | grep -i omega2
-omega2-base - 22.03.5-20230922
-omega2-base-files - 22.03.5-20230922
-omega2-base-passwd - 22.03.5-20230922
+omega2-base - 23.05.3-20241015
+omega2-base-files - 23.05.3-20241015
+omega2-base-passwd - 23.05.3-20241015
 omega2-ctrl - 0.3-1
 ```
 
