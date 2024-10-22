@@ -16,7 +16,7 @@ The OpenWRT Build System is used to build all default packages, our custom OpenW
 
 **Step B:** Our custom OpenWRT Image Builder is used to build firmware images for Omega2.
 
-:::note
+:::info
 
 Onion runs the first process periodically and runs the second process each time we release new firmware.
 
@@ -51,11 +51,17 @@ The Omega2 family is the only MIPS platform that supports modern Node.js.
 
 :::
 
+:::caution
+
+It takes several hours for the OpenWRT Build System to build everything from scratch! Depending on the machine used for compilation this can take anywhere from 3 to 8 hours, or even more.
+
+:::
+
 ### Where is the Build System source code?
 
 All customizations to the Build System that are used to compile our SDK and Image Builder are publicly available on GitHub: [https://github.com/OnionIoT/OpenWRT-buildsystem-wrapper](https://github.com/OnionIoT/OpenWRT-buildsystem-wrapper)
 
-Our customizations are based on patches to the Build System. This is intentional and easier than maintaining our own fork of the Build System, which makes it straightforward to port our customizations to new releases of OpenWRT.
+**Our customizations are based on patches to the Build System. This is intentional and easier than maintaining our own fork of the Build System, which makes it straightforward to port our customizations to new releases of OpenWRT.**
 
 For usage instructions, see the [README in the Github repo](https://github.com/OnionIoT/openwrt-buildsystem-wrapper).
 
@@ -74,11 +80,17 @@ The release directory also has firmware images. You can safely ignore these, as 
 
 :::
 
+## Process 2
+
+The second process uses the Onion-customized OpenWRT SDK and Image Builder to build and release Onion's custom software packages and custom firmware images.
+
+This process is automatically started by our CI system whenever there is a release created in the `OnionIoT/OpenWRT-Packages` GitHub repository. 
+
 ## Process 2 - Step A: Onion-customized OpenWRT SDK
 
 In step A of the second process, we use the Onion-customized OpenWRT SDK to build Onion's custom packages.
 
-![Onion-cuatomized OpenWRT SDK](./assets/onion-firmware-build-step2a.png)
+![Onion-customized OpenWRT SDK](./assets/onion-firmware-build-step2a.png)
 
 One of the core tenets of Onion device firmware is to localize all customizations in packages. This makes it easy to port the changes to new releases and reduces the number of "fronts" that must be maintained.
 
@@ -97,6 +109,12 @@ The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the On
 The `profile` config file defines which SDK to use, the version of the SDK, the package feed, and which packages from the package feed to compile.
 
 Onion's package repo is built using the default version of the `profile` config file.
+
+:::tip
+
+See the [Compile a Package article](../packages/compile-package) for details on how to use the OpenWRT SDK wrapper to compile software packages.
+
+:::
 
 ### Where is the package output?
 
@@ -126,6 +144,12 @@ The `openwrt-imagebuilder-wrapper` repo builds firmware images for the Omega2 an
 The `profile` config file defines which Image Builder to use, the version of the Image Builder, which devices to create firmware for, the package repos to use, and which packages to include in the firmware.
 
 Onion uses the default version of the `profile` config file to build the Omega2 and Omega2+ firmware.
+
+:::tip
+
+See the [How to Build Custom Firmware article](./how-to-build-firmware) for details on how to use the OpenWRT Image Builder wrapper to build customized firmware images.
+
+:::
 
 ### Where is the Image Builder output?
 
