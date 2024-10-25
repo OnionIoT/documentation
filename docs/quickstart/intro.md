@@ -31,7 +31,7 @@ Onion recommends the following hardware setup for ease of use:
 
 You'll need a computer and a microUSB to USB cable in addition to the Omega2 hardware.
 
-#### Overview of the process
+### Overview of the process
 
 In this first article, we cover the unboxing and powering up of your Omega2. Then we’ll cover connecting to the Omega’s command line and WiFi in separate articles within the QuickStart section. Finally, we'll explore running a Hello World demo program using Python.
 
