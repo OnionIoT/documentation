@@ -145,7 +145,6 @@ const sidebars = {
         'guides/packages/c-package-example',
       ],
     },
-    'feedback',
   ]
 };
 

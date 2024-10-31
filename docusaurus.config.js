@@ -130,8 +130,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Beta Firmware Intro',
+                label: 'Documentation',
                 to: '/',
+              },
+              {
+                label: 'Guides',
+                to: '/guides/intro',
+              },
+              {
+                label: 'Feedback and Suggestions',
+                to: '/feedback',
               },
             ],
           },
