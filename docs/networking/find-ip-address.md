@@ -2,28 +2,45 @@
 title: Finding the Omega's IP Address
 ---
 
-Every machine on a network has a unique identifier, known as an IP address. An IPv4 address is 4 sets of numbers separated by periods. These numbers range from 0-255, and the format of an IP address is as follows: `192.168.0.100`.
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Finding out the Omega's IP address on the local network is required before accessing it through the local network. This includes: 
-- Accessing the command-line though SSH
+Every device on a network is assigned a unique identifier called an IP address. An IPv4 address consists of four numbers ranging from 0 to 255, separated by periods — for example, `192.168.0.100`.
+
+
+Knowing the Omega's IP address is required for accessing it over the local network. This includes:
+- Accessing the command-line through SSH
 - Accessing a web server hosted on the Omega
 - Transferring files to and from the Omega using protocols like SCP, FTP, and rsync
 
 ## Procedure to Determine the IP Address
 
-This procedure relies on the `ifconfig` utility to find the Omega's IP address. The `ifconfig` utility is a common Linux utility for monitoring network interfaces.  
+This procedure relies on the `ifconfig` utility to find the Omega's IP address. The `ifconfig` utility is a common Linux utility for monitoring network interfaces and is installed on the Omega by default.
 
 First, determine which network interface to check, and then use `ifconfig` to find the IP address. 
 
-### Determining the Relevant Network Interface
+:::info Note
 
-The Omega has several network interfaces. Which interface that should checked depends on the method of the Omega's connection to the network:
+To run the `ifconfig` command, access to the Omega's command line is required. To connect to the command line either:
+- Use a serial connection: see the [quickstart guide](../quickstart/serial-command-line) for details
+- Connect via the WiFi AP: Connect to the Omega's default WiFi Access Point and SSH into 192.168.3.1, which is the Omega's default IP address on its AP.
 
-* `apcli0` if Omega is connected to an existing WiFi network as a client
-* `eth0` if the Omega is connected to a network over ethernet
-* `ra0` if checking the Omega's IP address on the Omega's own WiFi AP
+:::
 
-### Finding the IP Address with `ifconfig`
+### Step 1: Determine the Relevant Network Interface
+
+The Omega has several network interfaces. The interface that should be checked depends on how the Omega is connected to the network:
+
+* Use `apcli0` for connections to an existing WiFi network as a client
+* Use `eth0` for Ethernet connections
+* Use `ra0` for the Omega's WiFi Access Point
+
+:::note Note
+
+The Omega's IP address on its own WiFi Access Point is set in the network configuration in `/etc/config/network`. It is not assigned by an external DHCP server.
+
+:::
+
+### Step 2: Run the `ifconfig` Command
 
 To find the IP address of the Omega on a specific interface, run the following command:
 
@@ -37,18 +54,30 @@ ifconfig <interface-name>
 ifconfig apcli0
 ```
 
-**When connected via ethernet to a network:**
+**When connected via Ethernet to a network:**
 
 ```shell
 ifconfig eth0
 ```
 
+**When connected to the Omega's own WiFi Access Point:**
 
-The IP address will be in the output, among other information:
+```shell
+ifconfig ra0
+```
 
-![omega2-ip-address-check](./assets/omega2-ip-address-check.png)
+### Step 3: Locate the IP Address
 
-Note the highlighted IP address `inet addr:`. **This is the Omega's IP address on that network.**
+The IP address will be in the output of the `ifconfig` command, among other information:
 
-If that line is blank, the Omega was not given an IP address. Double check the network configuration and try again.
+![command line output of ifconfig command with ip address highlighted on omega2 ](./assets/omega2-ip-address-check.png)
 
+Look for the line containing `inet addr:`. **This line shows the Omega's IP address on that network interface.**
+
+If that line is blank, the Omega does not have an IP address on that network interface. Double check the network configuration and try again.
+
+
+<!-- TODO: review if `hostname -I` is an alternate method of finding the ip address -->
+
+
+<GiscusDocComment />
