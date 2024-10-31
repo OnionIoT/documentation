@@ -137,7 +137,15 @@ const sidebars = {
     'feedback',
   ],
   guides: [
-    'feedback'
+    'guides/intro',
+    {
+      type: 'category',
+      label: 'Packages',
+      items: [
+        'guides/packages/c-package-example',
+      ],
+    },
+    'feedback',
   ]
 };
 
