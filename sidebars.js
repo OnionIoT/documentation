@@ -136,6 +136,9 @@ const sidebars = {
     },
     'feedback',
   ],
+  guides: [
+    'feedback'
+  ]
 };
 
 module.exports = sidebars;
