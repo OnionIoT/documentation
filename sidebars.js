@@ -60,6 +60,7 @@ const sidebars = {
         'networking/wifi',
         'networking/ethernet',
         'networking/wifi-ethernet',
+        'networking/find-ip-address',
         'networking/ip-address-collisions',
       ],
     },

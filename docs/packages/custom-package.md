@@ -32,9 +32,9 @@ A package makefile is a central blueprint that provides detailed information abo
 
 - `PKG_NAME` - name of the package.
 - `PKG_VERSION and PKG_RELEASE` - version number.
-- `Package/mycustomapp/install` - dependencies and package metadata.
+- `Package/$(PKG_NAME)` - dependencies and package metadata.
 - `Build/Compile` - instructions on how to compile the source code, which is optional and only required if the package source code needs to be compiled (e.g., for C, C++, Rust, or Go programs).
-- `Package/mypackage/install` - instructions for the package manager on how to install the compiled package on the target device.
+- `Package/$(PKG_NAME)/install` - instructions for the package manager on how to install the compiled package on the target device.
 
 An example of a package makefile:
 
@@ -48,14 +48,14 @@ PKG_RELEASE:=3
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/mycustomapp
+define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=My Custom Application
   DEPENDS:=+libuci +libubus
 endef
 
-define Package/mycustomapp/description
+define Package/$(PKG_NAME)/description
   Custom application for Omega2.
 endef
 
@@ -63,16 +63,12 @@ define Build/Compile
   # Add compilation instructions here if needed
 endef
 
-define Package/mycustomapp/install
+define Package/$(PKG_NAME)/install
   $(INSTALL_DIR) $(1)/usr/bin
   $(INSTALL_BIN) $(PKG_BUILD_DIR)/custom_binary $(1)/usr/bin/
 endef
 
-$(eval $(call BuildPackage,mycustomapp))
-  $(INSTALL_BIN) $(PKG_BUILD_DIR)/mybinary $(1)/usr/bin/
-endef
-
-$(eval $(call BuildPackage,mypackage))
+$(eval $(call BuildPackage,$(PKG_NAME)))
 
 ```
 
@@ -88,7 +84,7 @@ The file directory is an optional component found in the package source structur
 
 Additionally, it is a good place to store files that aren’t necessarily application source code but are still helpful to the package, such as config files or the files required to make the package run as a service.
 
-Any files in the file directory that are meant to be installed on the device must be added to the `Package/mypackage/install` section in the package makefile.
+Any files in the file directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
 
 ### Patch Directory
 
@@ -128,15 +124,15 @@ Packages sometimes depend on other packages or libraries to function properly. D
 By managing package dependencies effectively, developers can ensure their projects are reliable and maintainable.
 
 ```shell
-define Package/mypackage
+define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
-  TITLE:=My Custom Package
+  TITLE:=My Custom Application
   DEPENDS:= +libfoo # Example dependency on libfoo
 endef
 ```
 
-In the above example, the mypackage is defined with a dependency on `libfoo`. The `DEPENDS` variable specifies this dependency, ensuring that the `libfoo` package will be installed on the device when the mypackage is installed. This illustrates how package dependencies are explicitly declared and managed within the context of the OpenWRT framework for Omega2 devices.
+In the above example, the `mycustomapp` package is defined with a dependency on `libfoo`. The `DEPENDS` variable specifies this dependency, ensuring that the `libfoo` package will be installed on the device when the `mycustomapp` package is installed. This illustrates how package dependencies are explicitly declared and managed within the context of the OpenWRT framework for Omega2 devices.
 
 :::tip
 
