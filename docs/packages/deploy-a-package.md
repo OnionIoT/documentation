@@ -2,6 +2,8 @@
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
+<!-- TODO: potentially rename this file so it fixes the URL? -->
+
 <!-- TODO: rewrite this intro to make it clear the article aims to explain and show an example of deploying a package repo that can be used by an Omega device -->
 
 <!-- TODO: in whole article change HTTP web server -> HTTP file server -->
