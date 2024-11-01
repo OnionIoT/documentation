@@ -19,7 +19,7 @@ To add a package repo, follow these steps:
 **Step 2:** Edit the `distfeeds.conf` file and add a package repository link that is supported by Omega devices and the opkg package manager.
 
 ```shell
- src/gz openwrt_core <repository_name> <repository_url>
+ src/gz <repository_name> <repository_url>
  ```
 
 Replace `<repository_name>` and `<repository_url>` with the URL based on Omega2 device architecture and supported by the OpenWRT release version.
@@ -33,6 +33,8 @@ Only use package repos that are compatible with the `mipsel_24kc` architecture u
 **Step 3:** Now save the changed `distfeeds.conf` file and exit.
 
 **Step 4:** Open the Omega2 terminal and run the `opkg update` command to install the added package.
+
+<!-- TODO: add a tip here on seeing the existing `distfeeds.conf` file for examples -->
 
 ## Install a package that's not in a package repo
 
