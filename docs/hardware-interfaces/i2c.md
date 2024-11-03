@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
 
-The **Inter-Integrated Circuit (I2C)**, sometimes called the Two-Wire Interface, is a serial interface used to connect multiple devices quickly and easily to controllers and processors such as the Omega2. 
+The **Inter-Integrated Circuit (I2C)**, sometimes called the Two-Wire Interface, is a serial interface used to connect multiple devices quickly and easily to controllers and processors such as the Omega2.
 
 Some examples of I2C devices include:
 
@@ -111,7 +111,7 @@ For more information on how to use the library, see the source code at: [https:/
 
 #### Python
 
-Onion recommends using the `python3-smbus` module when programming with Python. 
+Onion recommends using the `python3-smbus` module when programming with Python.
 
 **Installation instructions:**
 

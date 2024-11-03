@@ -10,7 +10,7 @@ We want to connect the Omega2/2+ to an existing WiFi network, so that it has int
 
 ## Scan for available networks
 
-:::tip 
+:::tip
 
 Skip ahead to the next section if you don't need to scan for available networks.
 
@@ -71,7 +71,7 @@ If a connection is successful, you will see the following message in the kernel 
 
 ## Check Network Connection is Successful
 
-If the network connection is successful, the Omega will be given an IP address. 
+If the network connection is successful, the Omega will be given an IP address.
 
 import Apcli0CheckIpAddr from '../networking/_apcli0-check-ip-addr.mdx';
 

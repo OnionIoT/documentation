@@ -25,7 +25,7 @@ By default, the WiFi AP and Ethernet network interfaces are configured to use di
 
 :::note
 
-Whenever a network interface is connected to a network as a DHCP client, there’s a possibility for an IP address conflict with another network interface. For more information, see the article [Avoiding IP Address Collisions](./ip-address-collisions). 
+Whenever a network interface is connected to a network as a DHCP client, there’s a possibility for an IP address conflict with another network interface. For more information, see the article [Avoiding IP Address Collisions](./ip-address-collisions).
 
 :::
 

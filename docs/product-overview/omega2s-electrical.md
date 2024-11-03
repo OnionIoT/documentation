@@ -6,8 +6,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The following tables provide detailed information on the electrical specifications for the Omega2S/2S+ modules.
 
-
-# Absolute maximum ratings
+## Absolute maximum ratings
 
 | Parameter                                                | Symbol | Min         | Max         | Units |
 | :------------------------------------------------------- | :----- | :---------- | :---------- | :---- |
@@ -16,7 +15,7 @@ The following tables provide detailed information on the electrical specificatio
 | DC current through any digital I/O pin (except supplies) | Ipin   |             | 8           | mA    |
 | Storage temperature                                      | Tstg   | -20         | 80          | °C    |
 
-# Operating conditions
+## Operating conditions
 
 Operation beyond the specified operating conditions can affect device reliability.
 
@@ -30,7 +29,8 @@ Operation beyond the specified operating conditions can affect device reliabilit
 | Digital pin high level output voltage | Voh    | 2.4  |         | 3.3  | V     |
 | Operating temperature                 | Topr   | -10  |         | 55   | °C    |
 
-# Power consumption
+## Power consumption
+
 | State                                                     | Peak Current | Typical Current | Units |
 | :-------------------------------------------------------- | :----------- | :-------------- | :---- |
 | Booting                                                   | 180          | 170             | mA    |
@@ -46,4 +46,3 @@ All current measurements correspond to Vcc of 3.3V.
 :::
 
 <GiscusDocComment />
-

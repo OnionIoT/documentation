@@ -48,7 +48,7 @@ See detailed explanation of [**Multiplexed Pins**](./pin-multiplexing.md).
 
 ## Software
 
-The GPIOs can be accessed through the GPIO sysfs interface, see the [**documentation**](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) for details. 
+The GPIOs can be accessed through the GPIO sysfs interface, see the [**documentation**](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) for details.
 
 :::info
 The GPIO sysfs interface is deprecated but is currently the best option for userspace GPIO access. More context is available in this post by [**Luz on the Onion Community**](https://community.onion.io/topic/4892/can-bus-using-mcp2515-with-omega2/13).
@@ -65,7 +65,6 @@ This only applies to Onion's OpenWRT 22.03 firmware releases
 
 :::
 
-
 In earlier 22.03 releases of the Onion Omega2 firmmware, the GPIO numbering in Linux did not match the device's actual GPIO numbers. This was due to changes in the kernel around GPIO handling.
 
 - GPIO 0 - 31 ⇒ GPIO 480 - 511 (GPIO n + 480)
@@ -78,6 +77,5 @@ In earlier 22.03 releases of the Onion Omega2 firmmware, the GPIO numbering in L
 **Command Line:** Use the GPIO sysfs interface for basic testing and interaction with GPIOs. For detailed usage instructions, refer to the [GPIO Sysfs usage documentation](https://www.kernel.org/doc/Documentation/gpio/sysfs.txt) documentation.
 
 <!-- should add an example here -->
-
 
 <GiscusDocComment />

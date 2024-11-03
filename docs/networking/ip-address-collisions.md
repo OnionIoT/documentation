@@ -16,7 +16,7 @@ Fixing the IP address collision involves changing the IP address subnet. You can
 
 An IP address collision can happen with your Omega if both your Omega’s AP and the WiFi network that you try to connect to share the same subnetwork (subnet). The Omega’s AP subnet is `192.168.3.0/24` and it’s possible that your WiFi has the same subnet. This results in the Omega not knowing what data to send where.
 
-We’ll use an analogy to explain how this works. Say an IP address is the **street address** on a letter. You can think of the subnet as being the **city** of that address. Now, let's assume that your Omega's subnet is the same as the WiFi network's. 
+We’ll use an analogy to explain how this works. Say an IP address is the **street address** on a letter. You can think of the subnet as being the **city** of that address. Now, let's assume that your Omega's subnet is the same as the WiFi network's.
 
 If you try to send data to an IP address, it's like sending a letter to an address in **Paris, France** but then having it arrive at the same address in **_Paris, Texas, USA_**. Not what we wanted, but a good try, nonetheless.
 
@@ -32,14 +32,14 @@ An IP address collision will happen if your WiFi network’s IPv4 address is `19
 
 There are two possible solutions for fixing the collision.
 
-1. The first is to change the Omega’s AP network prefix. 
-  - This method is very simple and will be covered below.
+1. The first is to change the Omega’s AP network prefix.
+ - This method is very simple and will be covered below.
 3. The second is to change your router’s network prefix.
-  - This is relatively complex and will not be covered in this guide.
+ - This is relatively complex and will not be covered in this guide.
 
 First, connect to the Omega’s command-line interface.
 
-To change the Omega’s IP address, we can use UCI, a command-line tool that allows us to edit configuration files with simple commands. 
+To change the Omega’s IP address, we can use UCI, a command-line tool that allows us to edit configuration files with simple commands.
 
 Use the following command to modify the IP address of your Omega:
 

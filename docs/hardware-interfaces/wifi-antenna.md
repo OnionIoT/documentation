@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Introduction
 
-The Omega2 has a built-in 2.4 GHz IEEE 802.11 b/g/n WiFi radio that requires an antenna. 
+The Omega2 has a built-in 2.4 GHz IEEE 802.11 b/g/n WiFi radio that requires an antenna.
 
 ## Hardware
 
@@ -20,7 +20,7 @@ External antennas can directly connect to the u.FL connector on the module. Howe
 
 ### U.FL connector
 
-Connect an external antenna to the Omega’s male surface-mounted u.FL connector. An external antenna will extend the range of the WiFi connection by using high gain antennas or directional Yagi antennas. When using an external u.FL antenna along with an SMT antenna, the SMT and external antenna will split the transmission power, providing only half of the expected gain. 
+Connect an external antenna to the Omega’s male surface-mounted u.FL connector. An external antenna will extend the range of the WiFi connection by using high gain antennas or directional Yagi antennas. When using an external u.FL antenna along with an SMT antenna, the SMT and external antenna will split the transmission power, providing only half of the expected gain.
 
 The Omega2/2+ requires a modification to maximize the performance with an external antenna. Remove the 0Ω resistor located between the SMT WiFi antenna and u.FL connector so the SMT antenna is disconnected and all the power goes to the external u.FL antenna.
 

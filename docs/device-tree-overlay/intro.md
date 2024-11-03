@@ -56,7 +56,7 @@ The device tree overlay packages must specify the kernel drivers for the new dev
 
 :::tip
 
-See the [How Firmware is Built article](https://documentation.onioniot.com/firmware/how-to-build-firmware)[ ](https://documentation.onioniot.com/firmware/how-to-build-firmware) for more information on the details of building firmware.
+See the [How Firmware is Built article](https://documentation.onioniot.com/firmware/how-to-build-firmware) for more information on the details of building firmware.
 
 :::
 
@@ -64,7 +64,7 @@ See the [How Firmware is Built article](https://documentation.onioniot.com/firmw
 
 Use the `opkg` package manager to install a software package that features a compiled device tree overlay binary. After a reboot, the device tree overlay will be loaded, and the kernel will be made aware of a new device.
 
-The kernel will load drivers to enable support for the device. 
+The kernel will load drivers to enable support for the device.
 
 ## How to create custom Device Tree Overlay packages
 

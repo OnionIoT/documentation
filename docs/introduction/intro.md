@@ -24,7 +24,7 @@ All of this results in a quicker time to market for your IoT device.
 
 ## What does the Omega2 documentation offer?
 
-Our goal is to create resources that help guide customers through the various stages of a project.
+Our goal is to create resources that help guide users through the various stages of a project.
 
 **Project stages:**
 
@@ -38,7 +38,7 @@ Our corporate philosophy is to continuously improve. We value your input and fee
 
 ## How to provide feedback
 
-We want to learn from our customers what information is important to them.
+We want to learn from our users what information is important to them.
 
 **To provide feedback:**
 
@@ -46,6 +46,6 @@ We want to learn from our customers what information is important to them.
 - We encourage you to create an issue on GitHub.
 - See the [Feedback and Suggestions](./feedback) section for more details.
 
-We strive to keep open channels of communication with our customers and allow them an opportunity to provide feedback and share their insights. Our open communication policy also includes our product development plans and documentation decisions.
+We strive to keep open channels of communication with our users and allow them an opportunity to provide feedback and share their insights. Our open communication policy also includes our product development plans and documentation decisions.
 
 Thank you for your interest in the Omega product line.

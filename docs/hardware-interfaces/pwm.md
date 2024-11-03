@@ -128,7 +128,7 @@ onion pwm <CHANNEL> disable
 
 :::note
 
-The `omega2-script` provides a helpful wrapper around `sysfs` for PWM. The source code is available at: https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-23.05/omega2-base/files/usr/lib/onion-pwm-lib.sh
+The `omega2-script` provides a helpful wrapper around `sysfs` for PWM. The source code is available at: [https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-23.05/omega2-base/files/usr/lib/onion-pwm-lib.sh](https://github.com/OnionIoT/OpenWRT-Packages/blob/openwrt-23.05/omega2-base/files/usr/lib/onion-pwm-lib.sh)
 
 <!-- TODO: update above with OPENWRT_VERSION variable -->
 

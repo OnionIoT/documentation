@@ -43,7 +43,7 @@ Run `sudo 1smod` to see a list of installed modules. If it is supported, CP210x 
 
 You may need to run `sudo modpobe cp210x` to load the driver.
 
-#### Specific Linux distributions
+### Specific Linux distributions
 
 - Included in Ubuntu since version 20.10 ([reference](https://community.silabs.com/s/question/0D51M00007xeTTESA2/cp210x-installing-on-ubuntu-2010?language=en_US)).
 - Included in Debian ([reference](https://unix.stackexchange.com/questions/754357/cp210x-driver-on-debian)).
@@ -68,9 +68,9 @@ Before connecting to your Omega2 you'll need to check that the serial device exi
 
 In this example, we will use the `screen` utility. There are other tools available but screen is simple and comes already installed on most Macs.
 
-Open a terminal on your Mac, and then follow these steps. 
+Open a terminal on your Mac, and then follow these steps.
 
-#### 1: Check for the serial device
+### 1: Check for the serial device
 
 Plug in your Omega2 and Expansion dock, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-0001`.
 
@@ -92,7 +92,7 @@ Run `screen /dev/tty.usbserial-0001`to connect to the Omega2's serial terminal u
 
 #### 3: Close screen
 
-:::tip 
+:::tip
 
 You don't need to do this right now, but we thought it would be useful to know how to close the screen session
 

@@ -23,7 +23,7 @@ The **Serial Peripheral Interface (SPI)** is a four-wire synchronous communicati
 
 SPI is a **synchronous** data bus, meaning that one of the lines is a clock, used to synchronize the bits being sent on the data lines.
 
-The protocol is based on the **Master-Worker** architecture. 
+The protocol is based on the **Master-Worker** architecture.
 
 - The Master will generate the System Clock and the Chip Select signals.
 - Each worker requires its own Chip Select connection to the Master.

@@ -33,7 +33,7 @@ See the [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/
 
 ## Software
 
-The Ethernet port can be configured to be a client or a Dynamic Host Configuration Protocol (DHCP) host. It is set to client mode by default. 
+The Ethernet port can be configured to be a client or a Dynamic Host Configuration Protocol (DHCP) host. It is set to client mode by default.
 
 For more information on Ethernet networking, see the [Ethernet networking article](../networking/ethernet).
 

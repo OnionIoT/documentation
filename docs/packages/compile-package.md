@@ -18,7 +18,7 @@ Packages that are currently undergoing active development will have frequent cha
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-### A Note on the Build Environment 
+### A Note on the Build Environment
 
 import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 

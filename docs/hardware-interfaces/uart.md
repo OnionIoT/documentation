@@ -12,7 +12,7 @@ The Omega2 has two hardware serial UARTs, and the Omega2S has three hardware ser
 
 ## Context
 
-A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication between two devices. 
+A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication between two devices.
 
 Only **two devices** can communicate with each other per UART connection. This is different from other communication protocols, such as I2C or SPI, where there may be 3, 10, or many more devices connected to the same data lines.
 
@@ -62,9 +62,9 @@ UART interactions on the Omega2 are done using the virtual device files made ava
 
 Sysfs is a pseudo-file system that holds information about the Omega’s hardware in files, and lets the user control the hardware by editing the files.
 
-- `UART0` is accessible through `/dev/ttyS0` 
-- `UART1` is accessible through `/dev/ttyS1` 
-- `UART2` is accessible through `/dev/ttyS2` (Omega2S/2S+ only) 
+- `UART0` is accessible through `/dev/ttyS0`
+- `UART1` is accessible through `/dev/ttyS1`
+- `UART2` is accessible through `/dev/ttyS2` (Omega2S/2S+ only)
 
 ### Interacting with the UART
 
@@ -140,13 +140,13 @@ To end a screen session, type `Ctrl-a` then `k`.
 
 :::info
 
-For more information on using `screen` see [https://linux.die.net/man/1/screen](https://linux.die.net/man/1/screen). 
+For more information on using `screen` see [https://linux.die.net/man/1/screen](https://linux.die.net/man/1/screen).
 
 :::
 
 #### Python
 
-Onion recommends using the `PySerial` Python module to communicate through serial ports; this includes UART1 and any USB-based serial devices. 
+Onion recommends using the `PySerial` Python module to communicate through serial ports; this includes UART1 and any USB-based serial devices.
 
 You’ll be using Pip to install the PySerial Module. <!--For more details on Python3 and Pip, see our guide on installing and using Python on the Omega.-->
 

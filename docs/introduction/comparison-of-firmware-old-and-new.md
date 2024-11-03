@@ -7,7 +7,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Note to reader
 
-This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to customers who have previous experience with the Omega2 family of products. <!-- TODO: update with OPENWRT_RELEASE variable -->
+This is an advanced article that provides an overview of the differences between v0.3.4 and the new v23.05.3 stable version of the Omega firmware. The article is relevant to users who have previous experience with the Omega2 family of products. <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 ## Context: The previous v0.3.4 firmware
 
@@ -115,21 +115,21 @@ See the [How firmware is built](/firmware/how-to-build-firmware) article for mor
 
 ## Core tenets of the new firmware philosophy
 
-Onion has a new firmware philosophy that aims to guide our customers along their journey from development to production.
+Onion has a new firmware philosophy that aims to guide our users along their journey from development to production.
 
 ### Intentionality
 
-Our intention is to focus on the needs of our customers when making customizations and improvements.
+Our intention is to focus on the needs of our users when making customizations and improvements.
 
 We want to articulate the value provided by each customization or improvement.
 
 ### Openness to feedback
 
-Instead of assuming what our customers want and adding unnecessary features or keeping outdated packages that nobody uses, we want to hear from our customers. What is important to you and what isn't.
+Instead of assuming what our users want and adding unnecessary features or keeping outdated packages that nobody uses, we want to hear from our users. What is important to you and what isn't.
 
-Our customers have been helping us build our firmware from the start. When we asked for feedback, they responded eagerly, creating a list of issues on GitHub.
+Our users have been helping us build our firmware from the start. When we asked for feedback, they responded eagerly, creating a list of issues on GitHub.
 
-We continue to seek feedback from our customers. They can comment on our documentation, post issues on our community forum, and log GitHub issues.
+We continue to seek feedback from our users. They can comment on our documentation, post issues on our community forum, and log GitHub issues.
 
 ### Portability + modularity
 
@@ -147,8 +147,8 @@ Onion wants to avoid anything that adds unnecessary friction into the developer'
 
 - Getting up and running should be trivial.
 - Build time should be in minutes, not hours.
-- Provide ways for customers to make their own customizations (don't leave them groping around in the dark).
-- Provide easy to use tools and documentation for common parts of the customer journey, such as RF certification.
+- Provide ways for users to make their own customizations (don't leave them groping around in the dark).
+- Provide easy to use tools and documentation for common parts of the user journey, such as RF certification.
 - Make it easy to collaborate with other developers. By putting customizations into packages, patches, and so on, others can test changes quickly and easily. They can also collaborate on them.
 
 ### Lightweight and modular
@@ -156,22 +156,22 @@ Onion wants to avoid anything that adds unnecessary friction into the developer'
 We want to make sure the default firmware is "minimum viable" firmware by providing:
 
 - Support and utilities for the essential interfaces.
-- Minimal additions to enhance the customer's experience.
+- Minimal additions to enhance the user's experience.
 - Everything else should be installed later as a package.
 - The benefits of this approach are:
   - Small image size.
   - A quicker boot time.
-  - More storage space for customers to customize their own firmware.
+  - More storage space for users to customize their own firmware.
   
 ### Well documented
 
-Our aim is to provide good documentation throughout the entire customer journey.
+Our aim is to provide good documentation throughout the entire user journey.
 
 - Ties back to optimizing a good developer experience.
-- Leverages knowledge gained from working with OpenWRT to create content that helps our customers through each step of their journey.
+- Leverages knowledge gained from working with OpenWRT to create content that helps our users through each step of their journey.
   - Development – building out functionality.
   - Deployment – packaging development work for use on many production devices.
   - Production – everything needed for mass production.
-- Providing guides on how to move through development 🡪 deployment 🡪 production. This reduces friction for developers and our customers. It also enhances the fact that using the Omega2 speeds up getting to market.
+- Providing guides on how to move through development 🡪 deployment 🡪 production. This reduces friction for developers and our users. It also enhances the fact that using the Omega2 speeds up getting to market.
 
 <GiscusDocComment />

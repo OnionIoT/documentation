@@ -128,7 +128,7 @@ Differences between Omega2/2+ vs Omega2S/2S+
 
 Omegas’a bootloader governs pin behavior. Most of Omega’s pins will remain at the default digital low state during the boot process. There is one pin that behaves differently. The GPIO 11 pin will settle at digital high. Previously, this pin provided power for the reset button on the Omega docks.
 
-|  GPIO   |  Behavior                                                                                                | 
+|  GPIO   |  Behavior                                                                                                |
 |---------|----------------------------------------------------------------------------------------------------------|
 |  GPIO11 |     Will settle at Digital High - Previously used to provide power for the reset button on Omega2 Docks  |
 

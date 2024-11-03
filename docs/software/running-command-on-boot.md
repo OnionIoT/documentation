@@ -16,7 +16,7 @@ Individual commands or scripts can be added to the `/etc/rc.local` file.
 
 The `/etc/rc.local` file must complete execution for the Omega to complete the boot sequence. Any scripts added to the file must end in `exit 0`.
 
-The `/etc/rc.local` executes toward the end of the boot sequence. Most other device functionality should be available, but this isn't deterministic, and customers shouldn't assume networking will be available.
+The `/etc/rc.local` executes toward the end of the boot sequence. Most other device functionality should be available, but this isn't deterministic, and users shouldn't assume networking will be available.
 
 If a command is expected to take more than a few seconds to complete, and you don’t want to hold up completion of the system boot, you can fork the process into the background.
 

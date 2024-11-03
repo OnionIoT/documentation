@@ -76,11 +76,11 @@ For a detailed guide on the package feed, refer to [**OpenWRT**](https://openwrt
 
 When the package source is compiled, it becomes an Installable Package (IPK) binary and is used for distributing software packages on OpenWRT-based firmware. These files contain the necessary binaries and metadata files for the package installation.
 
-The IPK files can be added to a package repository and customers can install these packages on the Omega2 devices directly from the package repository using a package manager such as OPKG.
+The IPK files can be added to a package repository and users can install these packages on the Omega2 devices directly from the package repository using a package manager such as OPKG.
 
 ## Package repo
 
-A package repository (package repo) is online storage for software packages that are made available for customers to install on their devices using OPKG. Package repos contain collections of software packages.
+A package repository (package repo) is online storage for software packages that are made available for users to install on their devices using OPKG. Package repos contain collections of software packages.
 
 :::tip
 

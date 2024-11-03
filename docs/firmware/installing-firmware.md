@@ -4,9 +4,9 @@ title: Installing the New Firmware
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-> This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html). 
+> This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html).
 
-The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
+The new firmware can be found online at [http://repo.onioniot.com/omega2/images/openwrt-23.05/](http://repo.onioniot.com/omega2/images/openwrt-23.05/) <!-- TODO: update with OPENWRT_VERSION variable -->
 
 The firmware images are named according to this syntax: `<DEVICE-NAME>-<OPENWRT-VERSION>-<BUILD-DATE>.bin`
 
@@ -20,7 +20,7 @@ So `onion_omega2p-23.05.3-20240807.bin` is: <!-- TODO: update with ONION_FW_VERS
 
 Before you install firmware to your device, you'll need to decide which firmware image to install.
 
-To start, use a browser to navigate to http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
+To start, use a browser to navigate to [http://repo.onioniot.com/omega2/images/openwrt-23.05/](http://repo.onioniot.com/omega2/images/openwrt-23.05/) <!-- TODO: update with OPENWRT_VERSION variable -->
 
 Next, you'll need to find the firmware for your device:
 

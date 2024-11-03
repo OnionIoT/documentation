@@ -36,7 +36,7 @@ Only use package repos that are compatible with the `mipsel_24kc` architecture u
 
 ## Install a package that's not in a package repo
 
-It's sometimes useful to install a package that's not in any of opkg's configured package repos. This is especially true in early development, when the customer may want to install a package that's still in development or quickly try out a particular package from a package repo.
+It's sometimes useful to install a package that's not in any of opkg's configured package repos. This is especially true in early development, when the user may want to install a package that's still in development or quickly try out a particular package from a package repo.
 
 :::danger
 

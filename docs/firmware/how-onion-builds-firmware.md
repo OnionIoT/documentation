@@ -71,8 +71,8 @@ Onion's custom OpenWRT Build System is compiled by our CI system and the output 
 
 The Build System output is available on our website:
 
-- Default packages - http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/ <!-- TODO: update with OPENWRT_RELEASE variable -->
-- Compiled versions of the SDK and Image Builder - http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/ <!-- TODO: update with OPENWRT_RELEASE variable -->
+- Default packages - [http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/](http://downloads.onioniot.com/releases/23.05.3/packages/mipsel_24kc/) <!-- TODO: update with OPENWRT_RELEASE variable -->
+- Compiled versions of the SDK and Image Builder - [http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/](http://downloads.onioniot.com/releases/23.05.3/targets/ramips/mt76x8/) <!-- TODO: update with OPENWRT_RELEASE variable -->
 
 :::note
 
@@ -84,7 +84,7 @@ The release directory also has firmware images. You can safely ignore these, as 
 
 The second process uses the Onion-customized OpenWRT SDK and Image Builder to build and release Onion's custom software packages and custom firmware images.
 
-This process is automatically started by our CI system whenever there is a release created in the `OnionIoT/OpenWRT-Packages` GitHub repository. 
+This process is automatically started by our CI system whenever there is a release created in the `OnionIoT/OpenWRT-Packages` GitHub repository.
 
 ## Process 2 - Step A: Onion-customized OpenWRT SDK
 
@@ -94,17 +94,17 @@ In step A of the second process, we use the Onion-customized OpenWRT SDK to buil
 
 One of the core tenets of Onion device firmware is to localize all customizations in packages. This makes it easy to port the changes to new releases and reduces the number of "fronts" that must be maintained.
 
-Our goal is to create custom packages that bring value to our customers, by making them easy to use or by adding more functionality. Examples of this are the **default network configuration** and the **gpio muxing utility**.
+Our goal is to create custom packages that bring value to our users, by making them easy to use or by adding more functionality. Examples of this are the **default network configuration** and the **gpio muxing utility**.
 
-The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-23.05` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository. 
+The SDK has a wrapper around it, which makes it easier to interact with the SDK. By default, it uses the Onion-customized OpenWRT SDK, and compiles packages from the `openwrt-23.05` branch of the `OnionIoT/OpenWRT-Packages` GitHub repository.
 <!-- TODO: update above with OPENWRT_VERSION variable -->
 
 ### Where is the source code?
 
-The source code can be found on GitHub: https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05
+The source code can be found on GitHub: [https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05)
 <!-- TODO: update above with OPENWRT_VERSION variable -->
 
-The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: https://github.com/OnionIoT/openwrt-sdk-wrapper
+The `openwrt-sdk-wrapper` repo easily and quickly compiles packages using the Onion OpenWRT SDK: [https://github.com/OnionIoT/openwrt-sdk-wrapper](https://github.com/OnionIoT/openwrt-sdk-wrapper)
 
 The `profile` config file defines which SDK to use, the version of the SDK, the package feed, and which packages from the package feed to compile.
 
@@ -118,9 +118,9 @@ See the [Compile a Package article](../packages/compile-package) for details on 
 
 ### Where is the package output?
 
-Our CI system uses Onion's custom OpenWRT SDK to compile packages and the output is placed in the repo section of our website. 
+Our CI system uses Onion's custom OpenWRT SDK to compile packages and the output is placed in the repo section of our website.
 
-The compiled packages can be found at: http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/ <!-- TODO: update above with OPENWRT_RELEASE variable -->
+The compiled packages can be found at: [http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/](http://repo.onioniot.com/omega2/packages/openwrt-23.05.3/) <!-- TODO: update above with OPENWRT_RELEASE variable -->
 
 ## Process 2 - Step B: Onion-customized OpenWRT Image Builder
 
@@ -133,7 +133,7 @@ The compiled firmware images include:
 - The default packages.
 - Onion's custom packages.
 
-We use a wrapper to interact with the OpenWRT Image Builder, which makes it easy to build firmware. By default, the wrapper is set up to use the Onion-customized Image Builder that is built in the first process. 
+We use a wrapper to interact with the OpenWRT Image Builder, which makes it easy to build firmware. By default, the wrapper is set up to use the Onion-customized Image Builder that is built in the first process.
 
 **Note:** You can instead use the vanilla Image Builder from OpenWRT to build firmware.
 
@@ -155,8 +155,7 @@ See the [How to Build Custom Firmware article](./how-to-build-firmware) for deta
 
 Our CI system uses Onion's custom OpenWRT Image Builder to compile firmware images and the output is placed in the repo section of our website.
 
-The compiled firmware images can be found at: http://repo.onioniot.com/omega2/images/openwrt-23.05/
+The compiled firmware images can be found at: [http://repo.onioniot.com/omega2/images/openwrt-23.05/](http://repo.onioniot.com/omega2/images/openwrt-23.05/)
 <!-- TODO: update above with OPENWRT_VERSION variable -->
 
 <GiscusDocComment />
-

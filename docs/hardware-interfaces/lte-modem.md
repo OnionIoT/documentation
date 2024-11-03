@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Omega2 supports the Quectel EC25/EG25 LTE modem which is enabled through a software package.
 
-The modem is featured in the Omega2 LTE single board computer and enables a cellular data connection - LTE Cat4. 
+The modem is featured in the Omega2 LTE single board computer and enables a cellular data connection - LTE Cat4.
 
 Maximum Data Rates: 150 Mpbs downlink, 50 Mpbs uplink.
 
@@ -16,14 +16,14 @@ Maximum Data Rates: 150 Mpbs downlink, 50 Mpbs uplink.
 
 The LTE modem must be connected to the Omega2 host USB port.
 
-The Omega2 LTE single board computer features the LTE modem on-board. 
+The Omega2 LTE single board computer features the LTE modem on-board.
 
 ## Software
 
 To install the software package to provide support for the LTE modem:
 
-1. Flash the latest available Omega2+ firmware to your device – see [installing the new firmware article](https://documentation.onioniot.com/installing-firmware)
-2. Connect the WiFi – see the [WiFi article](https://documentation.onioniot.com/networking/wifi)
+1. Flash the latest available Omega2+ firmware to your device – see [installing the new firmware article](../firmware/installing-firmware)
+2. Connect the WiFi – see the [WiFi article](../networking/wifi)
 3. Install the software
 
  ```shell
@@ -48,4 +48,4 @@ The software does not include the `ugps` utility out-of-the-box. Additional work
 
 We’re open to suggestions on improving this experience and software package.lease provide feedback by leaving a comment in this article. Or, create an issue in the [OnionIoT/OpenWRT-Packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/issues).
 
-<GiscusDocComment /> 
+<GiscusDocComment />

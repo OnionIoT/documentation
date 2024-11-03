@@ -2,15 +2,13 @@
 title: External Storage
 ---
 
-# External Storage
-
-This firmware includes the kernel modules required for external USB and SD Card storage - including support for a variety of filesystems. 
+This firmware includes the kernel modules required for external USB and SD Card storage - including support for a variety of filesystems.
 
 ## USB
 
 Plug in a USB drive and you’ll see a message like:
 
-```
+```shell
 [ 1704.267974] usb 1-1: new high-speed USB device number 2 using ehci-platform
 [ 1704.479893] usb-storage 1-1:1.0: USB Mass Storage device detected
 [ 1704.502029] scsi host0: usb-storage 1-1:1.0

@@ -40,7 +40,7 @@ Highlights:
 
 ### Easily Create Custom Firmware
 
-It's easier and faster to build a custom firmware image. **You can build a custom image in minutes as opposed to hours.** 
+It's easier and faster to build a custom firmware image. **You can build a custom image in minutes as opposed to hours.**
 
 Onion has a new approach to firmware customization. See the [How Onion Firmware is Built article](../firmware/how-onion-builds-firmware.md) for all of the details on our new approach. And see the [Building Custom Firmware article](../firmware/how-to-build-firmware.md) for a guide on how to build your own firmware.
 
@@ -68,12 +68,11 @@ What's new:
 What's no longer included:
 
 - Avahi Daemon is not included, so the Omega will not announce or be available at its `omega-abcd.local` name on the local network
-- No more `wifisetup` utility. All WiFi configuration done through UCI. 
+- No more `wifisetup` utility. All WiFi configuration done through UCI.
 - No more `oupgrade` utility. Firmware updates must be done using `sysupgrade` in Linux or through the bootloader
 - The OnionOS/Onion Console Web UI is not included
 - No web-based setup wizard - the legacy first time setup guide will not work with this firmware
 - Only firmware for the Omega2/2S and Omega2+/2S+ devices is provided. No device-specific firwmare for the Omega2 Pro, LTE, and Dash - instead the Omega2+/2S+ firmware with additional packages should be used
 - Utilities for the I2C-based Omega2 expansions are not included
-
 
 <GiscusDocComment />

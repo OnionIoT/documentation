@@ -12,7 +12,7 @@ The Omega2 features a single USB 2.0 host.
 
 ## Hardware
 
-One USB 2.0 host controller is available on dedicated pins. 
+One USB 2.0 host controller is available on dedicated pins.
 
 A 5V power source needs to be supplied to the USB client device to properly operate.
 
@@ -33,7 +33,7 @@ The USB pins are highlighted on the Omega2/2S diagrams below.
 
 :::info
 
-See the [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf) for more information and recommendations on designing boards with USB. 
+See the [Omega2S hardware design guide](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf) for more information and recommendations on designing boards with USB.
 
 :::
 

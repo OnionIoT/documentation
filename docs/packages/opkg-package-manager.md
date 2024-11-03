@@ -20,7 +20,7 @@ This command fetches the latest list of packages from the configured package rep
 
 :::tip
 
-Customers must run the `opkg update` command after each reboot of the device to find or install a package.
+Users must run the `opkg update` command after each reboot of the device to find or install a package.
 
 :::
 
@@ -163,5 +163,21 @@ The output should look like this:
 root@Omega-2757:/# opkg remove curl
 Removing package curl from root...
 ```
+
+## Advanced package management
+
+Sometimes you may want to add additional packages or custom repositories to your Omega2 device. These are advanced topics that are outside the everyday use of the opkg package manager.
+
+Here, we offer a brief description of these two advanced topics.
+
+### Add a package repo
+
+You can configure the opkg package manager to access additional package repositories that are beyond its default configuration and enable installation of packages within those repos.
+
+### Install a package that's not in a package repo
+
+During early development you may want to try out a package or install just a single package from a package repo that is not part of the opkg’s configured package repos.
+
+For more detail on these advanced topics, see the [Advanced Package Management](./advanced-package-management) article.
 
 <GiscusDocComment />

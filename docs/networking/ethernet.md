@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Omega2 family devices feature a single 10/100M Ethernet integrated physical layer (PHY). The addition of a transformer and an RJ45 port allow for quick and easy wired networking with Ethernet cables.
 
-The Ethernet port can be configured to be a client or a DHCP host. 
+The Ethernet port can be configured to be a client or a DHCP host.
 
 ### Default behaviour
 
@@ -83,4 +83,4 @@ There is a potential for an IP address conflict if the Omega2 is acting as an Et
 
 See the [OpenWRT docs](https://openwrt.org/docs/guide-user/network/network_configuration) on network configuration for more information and ideas on network configuration.
 
-<GiscusDocComment /> 
+<GiscusDocComment />

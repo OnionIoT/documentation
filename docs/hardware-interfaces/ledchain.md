@@ -10,7 +10,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The `p44-ledchain` kernel module created by [plan44](https://github.com/plan44) can be used to drive external, individually addressable WS281x-type RGB and RGBW LED chains.
 
-The LED chains must be connected to 1 of the 4 hardware [PWM channels](/hardware-interfaces/pwm) on the Omega2/Omega2S. 
+The LED chains must be connected to 1 of the 4 hardware [PWM channels](/hardware-interfaces/pwm) on the Omega2/Omega2S.
 
 For full details about the `p44-ledchain` kernel module and its usage, see the [README](https://github.com/plan44/plan44-feed/tree/master/p44-ledchain#p44-ledchain-for-mt7688) on GitHub. (*Below are quick notes on how to get an LED Chain up and running.*)
 
@@ -102,7 +102,7 @@ This command do not persist after shutdown and will need to be run after every s
 
 :::info
 
-The command will depend on which PWM channel the LED chain is connected to, and what type of LEDs are in the chain. 
+The command will depend on which PWM channel the LED chain is connected to, and what type of LEDs are in the chain.
 
 See the `p44-ledchain` [README](https://github.com/plan44/plan44-feed/tree/master/p44-ledchain#p44-ledchain-for-mt7688) on GitHub for more info.
 
@@ -116,7 +116,7 @@ For a single, non-inverted WS2812(B) LED connected to PWM channel 2, the command
 insmod p44-ledchain ledchain2=0,1,0x0001
 ```
 
-Now a `/dev/ledchain2` device will be created. 
+Now a `/dev/ledchain2` device will be created.
 
 For more detail on using LED Chains, see the `p44-ledchain` [README](https://github.com/plan44/plan44-feed/tree/master/p44-ledchain#using-p44-ledchain).
 

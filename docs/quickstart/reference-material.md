@@ -102,7 +102,7 @@ For further information, please see the [ADC Expansion article](https://docs.oni
 
 ### GPS
 
-The Omega2S can pinpoint its location using GPS and China's Beidou satellite positioning systems with the addition of Onion's USB based GPS Expansion. 
+The Omega2S can pinpoint its location using GPS and China's Beidou satellite positioning systems with the addition of Onion's USB based GPS Expansion.
 
 For further information, please see the [GPS Expansion article](https://docs.onion.io/omega2-docs/gps-expansion.html).
 

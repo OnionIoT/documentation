@@ -2,7 +2,7 @@
 title: How to Revert to the Previous v0.3.4 Firmware
 ---
 
-Follow this procedure to flash your Omega with the earlier v0.3.4 firmware. 
+Follow this procedure to flash your Omega with the earlier v0.3.4 firmware.
 
 **This step is not necessary if you plan to use the new firmware.**
 
@@ -34,7 +34,7 @@ Say you need firmware for the Omega2+, the device prefix will be `omega2p`
 
 ## Step 2: Find the URL of the Desired Firmware Image
 
-In a web browser, navigate to http://repo.onioniot.com/omega2/images/ - this repo holds the v0.3.4 and earlier firmware images.
+In a web browser, navigate to [http://repo.onioniot.com/omega2/images/](http://repo.onioniot.com/omega2/images/) - this repo holds the v0.3.4 and earlier firmware images.
 
 Using the device prefix from step 1, select which firmware image version and build you want to flash on the Omega.
 
@@ -43,25 +43,25 @@ Get the link of the selected firmware image by right-clicking and selecting the 
 
 ## Step 3: Download the Firmware Image to the Omega
 
-The firmware image must be downloaded to the `/tmp` directory on the Omega. 
+The firmware image must be downloaded to the `/tmp` directory on the Omega.
 
-Connect to the Omega's command line and run the following: 
+Connect to the Omega's command line and run the following:
 
-```
+```shell
 cd /tmp
 wget <URL FROM STEP 2> 
 ```
 
 Say you're interested in firmware version 0.3.4 build 259 for the Omega2+, the command would look like this:
 
-```
+```shell
 cd /tmp
 wget http://repo.onioniot.com.s3.amazonaws.com/omega2/images/omega2p-v0.3.4-b259.bin
 ```
 
 The output of the command will look something like this:
 
-```
+```shell
 Downloading 'http://repo.onioniot.com.s3.amazonaws.com/omega2/images/omega2p-v0.3.4-b259.bin'
 Connecting to 52.216.208.217:80
 Writing to 'omega2p-v0.3.4-b259.bin'
@@ -71,18 +71,17 @@ Download completed (9699502 bytes)
 
 Take note of the name of the firmware image that was just downloaded. In this example, the firmware image name is `omega2p-v0.3.4-b259.bin`.
 
-
 ## Step 4: Flash the new firmware
 
 Run the following command to flash the downloaded firmware image:
 
-```
+```shell
 sysupgrade -F -n -v <FIRMWARE IMAGE NAME FROM STEP 3>
 ```
 
 Continuing the example, the command would be:
 
-```
+```shell
 sysupgrade -F -n -v omega2p-v0.3.4-b259.bin
 ```
 

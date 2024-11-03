@@ -31,7 +31,7 @@ Configuration changes are made using the Unified Configuration Interface (UCI) c
 
 The Omega2 hosts a WiFi Access Point (AP), also known as a WiFi Hotspot, that other WiFi-enabled devices can connect to. This is like a WiFi router.
 
-### Default behaviour
+### AP Default behaviour
 
 The AP is enabled on the Omega2 by default. The SSID, name of the network, will be **Omega-abcd** where abcd matches the last 4 digits of the device’s MAC address.
 
@@ -94,7 +94,7 @@ See the [OpenWRT wireless](https://openwrt.org/docs/guide-user/network/wifi/basi
 
 The Station (STA) allows you to connect the Omega2 to an existing wireless network as a client.
 
-### Default behaviour
+### STA Default behaviour
 
 The STA is disabled on the Omega2 by default.
 

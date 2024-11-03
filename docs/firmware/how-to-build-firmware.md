@@ -10,7 +10,7 @@ In the first part of this article, we define firmware and custom firmware. We di
 
 ### What is firmware?
 
-Before we discuss custom firmware, we need to define what firmware is. Firmware is a software program that is embedded in hardware devices. It is like an operating system, such as macOS or Windows, installed on a computer. When the device boots up, the firmware acts as the operating system for a Linux device. It performs all control, monitoring, and data manipulation functions. 
+Before we discuss custom firmware, we need to define what firmware is. Firmware is a software program that is embedded in hardware devices. It is like an operating system, such as macOS or Windows, installed on a computer. When the device boots up, the firmware acts as the operating system for a Linux device. It performs all control, monitoring, and data manipulation functions.
 
 Firmware is made by combining packages with a Linux kernel to create a firmware image. This image includes key components like the Linux kernel, WiFi drivers, text editor, and standard packages for enhanced usability.
 
@@ -42,23 +42,23 @@ The firmware image can include both default software packages and custom package
 
 ### Benefits of custom firmware
 
-- Speeds up production time – a single firmware image can be flashed at the time of manufacture that features the Omega2 module and enables the customer's specific use case.
+- Speeds up production time – a single firmware image can be flashed at the time of manufacture that features the Omega2 module and enables the user's specific use case.
 - Better user experience in case of a factory reset - When a factory reset is performed, the device will reset to the default state of the firmware that was last flashed.
-	- **Custom firmware** - the device will run the customer's firmware with default settings after a factory reset.
-	- **Onion firmware with additional customizations added later by customer** - the device will run the Onion firmware after a factory reset without the customizations and no support for the customer's use case.
+  - **Custom firmware** - the device will run the user's firmware with default settings after a factory reset.
+  - **Onion firmware with additional customizations added later by user** - the device will run the Onion firmware after a factory reset without the customizations and no support for the user's use case.
 
 ## Recommended build method
 
-There are a few different methods to build firmware images. Onion recommends using the OpenWRT Image Builder to build firmware images. 
+There are a few different methods to build firmware images. Onion recommends using the OpenWRT Image Builder to build firmware images.
 
 The Image Builder is a pre-compiled environment for creating custom images without the need to compile them from source. It downloads pre-compiled software packages and integrates them into a single flashable image ([reference](https://openwrt.org/docs/guide-user/additional-software/imagebuilder#using_the_image_builder)).
 
 Why is the Image Builder favored over other methods:
 
 - Image Builder creates a firmware image in minutes as opposed to several hours using the OpenWRT build system.
-	- Allows for faster iteration during the development cycle.
+  - Allows for faster iteration during the development cycle.
 - Promotes encapsulation of image customizations into packages.
-	- Better maintainability as opposed to a mix of package customizations and file additions.
+  - Better maintainability as opposed to a mix of package customizations and file additions.
 
 Onion's Image Builder Wrapper makes use of the OpenWRT image builder and a set of supporting scripts and config files to make image creation straightforward, fast, and programmatic.
 
@@ -98,17 +98,17 @@ import InstallDeps from './_install-deps.mdx';
 
 #### 3. Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
 
-This repository is set up to build OpenWRT firmware for the Onion Omega2 and Omega2+. 
+This repository is set up to build OpenWRT firmware for the Onion Omega2 and Omega2+.
 
 To clone the openwrt-imagebuilder-wrapper repo, issue the following command:
 
 ```Shell
 git clone https://github.com/OnionIoT/openwrt-imagebuilder-wrapper.git
-``` 
+```
 
 ### Customizing the firmware image
 
-The firmware image specifications are defined in the `profile` configuration file. 
+The firmware image specifications are defined in the `profile` configuration file.
 
 #### Customization
 
@@ -186,15 +186,14 @@ The build should take less than 5 minutes.
 
 #### 2. Locate the compiled firmware image
 
-Compiled firmware images are in the `output` directory. 
+Compiled firmware images are in the `output` directory.
 
 The firmware images are named based on the device model name, the OpenWRT version number specified in the `profile` file, and the date of the build: `<BUILD_MODEL>-<OPENWRT_VERSION>-<BUILD_DATE>.bin` .
 
 For example:
 
-For an Omega2+ device, with OPENWRT_VERSION="23.05.3" set in the `profile` config file and built on May 31, 2024. The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`. 
+For an Omega2+ device, with OPENWRT_VERSION="23.05.3" set in the `profile` config file and built on May 31, 2024. The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`.
 
 <!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section -->
 
 <GiscusDocComment />
-
