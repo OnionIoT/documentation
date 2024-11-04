@@ -4,39 +4,58 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 This article provides steps to compile packages that are currently in **development** and compile packages for **production** from package feeds. In both cases, the OpenWRT SDK is used to compile packages.
 
+## Development vs production packages
+
+The following are the key differences between packages in development and packages in production.
+
+| Packages in Development         | Packages in Production |  
+|:--------------------------------| :----------------------|
+| Not stable                      | Stable    |
+| Frequent changes during testing | Less frequent updates provided as releases |
+| Local source code | Source code in Git  |
+| Built from local source code    | Built from Git repository (package feed)   |
+
+### What does it mean for a package to be in development?
+
+Packages that are currently undergoing active development will have frequent changes during the testing and debugging phases. Several iterations may be required to ensure stability for production. As part of this process, the package source is stored locally rather than being built from a Git repository. This setup enables a rapid development-build-test cycle.
+
+### What does it mean for a package to be in production?
+
+Packages that are in production are stable and have gone through rigorous testing during the development phase. The package source is stored and built from a package feed.
+
+#### What is a package feed?
+
+A package feed is a collection of package source files stored in a code repository, like a Git repository. The package source files serve as input when building a package, with the output being an installable package binary.
+
 ## Method used to compile packages
 
 There are various methods to compile packages, but using the OpenWRT SDK is the most efficient way. The SDK is a precompiled toolchain intended for the creation of software packages without compiling the whole OpenWRT build system from scratch.
 
 Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omega2 devices. The wrapper makes use of the OpenWRT SDK and features a set of supporting scripts and configurations that make it even quicker and easier to build and compile packages.
 
-## What does it mean for a package to be in development?
-
-Packages that are currently undergoing active development will have frequent changes during the testing and debugging phases. Several iterations may be required to ensure stability for production. As part of this process, the package source is stored locally rather than being built from a Git repository. This setup enables a rapid development-build-test cycle.
-
-## System setup for development and production
+## System setup
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-### A Note on the Build Environment 
+**Step 1: Set up local environment**
 
 import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
 <BuildEnvNotes tool="OpenWRT SDK" />
 
-### Step 1: Start your Docker Container
+**Step 2: Start your Docker Container**
 
 import DockerInstructions from '../firmware/_docker-instructions.mdx';
 
 <DockerInstructions/>
 
-### Step 2: Install software dependancies
+**Step 3: Install software dependancies**
 
 import InstallDeps from '../firmware/_install-deps.mdx';
 
 <InstallDeps/>
 
-### Step 3: Clone the repository
+**Step 4: Clone the repository**
 
 To clone the **openwrt-sdk-wrapper** repository in the development environment, open the terminal and run the following command:
 
@@ -44,11 +63,15 @@ To clone the **openwrt-sdk-wrapper** repository in the development environment, 
 git clone https://github.com/OnionIoT/openwrt-sdk-wrapper.git
 ```
 
-## Config changes for development
+## Compiling packages for development
+
+The following sections cover configuration changes and compiling packages for a development environment.
+
+### Config changes
 
 After setting up the `openwrt-sdk-wrapper`, it is necessary to configure the required changes for system updates, package installations, or environment customization.
 
-### Step 1: Update package feed variable
+#### Step 1: Update package feed variable
 
 Locate the `PACKAGE_FEEDS` variable in the profile file and modify it to reference the local source. This is necessary during development if there is a need to retrieve package makefiles from a local repository.
 
@@ -60,7 +83,7 @@ src-link custom /home/ubuntu/OpenWRT-Packages
 "
 ```
 
-### Step 2: Run build environment setup script
+#### Step 2: Run build environment setup script
 
 Run the command to download and set up the `openwrt-sdk` in the OniontIoT's `openwrt-sdk-wrapper`. Execute the following command:
 
@@ -70,9 +93,9 @@ bash onion_buildenv setup_sdk
 
 After completing this step, the OpenWRT SDK will be downloaded and set up for use in the `openwrt-sdk` directory.
 
-## Compile a package for development
+### Compile a package
 
-### Step 1: Run the build script
+#### Step 1: Run the build script
 
 To compile and build the desired packages, run the following commands in the development environment:
 
@@ -82,7 +105,7 @@ bash onion_buildenv build_packages <PACKAGE_NAME>
 
 Replace `<PACKAGE_NAME>` with the actual package name.
 
-### Step 2: Compiled package location
+#### Step 2: Compiled package location
 
 All compiled packages can be found in the following directory:
 
@@ -92,22 +115,13 @@ openwrt-sdk/bin/packages/mipsel_24kc/custom/
 
 These packages have the extension `.ipk` and are compiled specifically for the `mipsel_24kc` architecture. The compiled packages can be used for testing on a device to confirm proper operation.
 
-## What is a package feed?
+## Compiling packages for production
 
-A package feed is a collection of package source files stored in a code repository. The package source files serve as input when building a package, with the output being an installable package binary.
+The following sections cover configuration changes and compiling package feeds for a production environment.
 
-Stable packages that are intended for production use cases are compiled from package feeds.
-There are various methods to compile packages, but using the OpenWRT SDK is the most efficient way. The SDK is a precompiled toolchain intended for the creation of software packages without compiling the whole OpenWRT build system from scratch.
+### Config changes
 
-Onion's OpenWRT SDK wrapper is the recommended method for building packages for Omega2 devices. The wrapper makes use of the OpenWRT SDK and features a set of supporting scripts and configurations that make it quicker and easier to build and compile packages.
-
-## System setup instructions
-
-Follow the steps outlined above in **System setup for development and production**. These steps apply to both environments.
-
-## Config changes for production
-
-### Step 1: Point to the package feed
+#### Step 1: Point to the package feed
 
 Navigate to the cloned **openwrt-sdk-wrapper** repo to update the `PACKAGE_FEEDS` variable.
 
@@ -126,7 +140,7 @@ src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-23.05
 ```
 <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
-### Step 2: Select packages from the package feed
+#### Step 2: Select packages from the package feed
 
 To select specific packages from the package feed to compile, follow these steps:
 
@@ -146,7 +160,7 @@ SDK_PACKAGES="
 
 In this example, `custom-lib`, `custom-package1`, and `new-software` packages, along with any dependencies they require, will be compiled and built.
 
-### Step 3: Setup the SDK and environment
+#### Step 3: Set up the SDK and environment
 
 First, download and setup the OpenWRT SDK with the following command:
 
@@ -154,9 +168,9 @@ First, download and setup the OpenWRT SDK with the following command:
  bash onion_buildenv setup_sdk
 ```
 
-## Compile packages for production
+### Compile a package feed
 
-### Step 1: Build packages
+#### Step 1: Build packages
 
 Build and compile all desired packages listed in the `SDK_PACKAGES` variable in the profile, and run the following command:
 
@@ -164,7 +178,7 @@ Build and compile all desired packages listed in the `SDK_PACKAGES` variable in 
 bash onion_buildenv build_all_packages
 ```
 
-### Step 2: Compiled packages location
+#### Step 2: Compiled packages location
 
 All compiled packages can be found in the following directory:
 
