@@ -18,7 +18,7 @@ The guidelines are designed for technical writers, subject matter experts, and a
 - Use active voice for clarity. 
 - Maintain consistency in tone across all documents.
 
-### Formatting
+### Formatting Guidelines
 
 - Maintain consistent Markdown formatting throughout the document development process(e.g. follow [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/) )
 - Use the following format to create a page title. Do not use both a title and an H1 in the document as this violates Markdown rules.
@@ -44,16 +44,20 @@ title: Document Title
 It should be surrounded by angle brackets `< >` and separated underscores `_` for multi-word values.
 **e.g.** `<PACKAGE_VERSION>`
 
-- Links and Hyperlinks
-  - URLs must lead to the correct target locations within the document or to a valid external web page location.
-  - Use relative links within articles when linking to other sections of the documentation.
-  - Links and Hyperlinks should be embedded when possible.
-    - **Example:** Instead of saying - see the Reference Guide at: http://somedocument - you should say - see the [Reference Guide](link_url), where the link is embedded.
 - Do not promise features that are in development and not in public. Only document features that exist already or that will be finished before the document is live.
 - Don't use a filename extension to refer to a type of file.
   - **Example:** Use an `IPK` file instead of a `.ipk` file.
 - Use qualifying nouns for technical keywords.
   - **Example:** When referring to a file called `example.ipk`, call it the `example.ipk` file and not an `example.ipk` by itself.
+
+
+#### Links and Hyperlinks
+- URLs must lead to the correct target locations within the document or to a valid external web page location.
+- **Use relative links within articles when linking to other articles or sections of the documentation.**
+- Links and Hyperlinks should be embedded when possible.
+  - **Example:** Instead of saying - see the Reference Guide at: http://somedocument - you should say - see the [Reference Guide](link_url), where the link is embedded.
+- If a bare URL is included in a document, like when linking to a specific Onion website page or Github repository page, leave the URL as-is and do not use the markdown link (`[]()`) syntax. Docusaurus will automatically hyperlink bare URLs.
+
 
 ### File Naming Conventions
 
