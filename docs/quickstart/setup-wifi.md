@@ -4,15 +4,14 @@ title: Setup WiFi
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-## Introduction
+We want to connect the Omega to a local WiFi network, so that it has internet access.
 
-We want to connect the Omega2/2+ to an existing WiFi network, so that it has internet access.
-
-## Scan for available networks
+## Step 1: Scan for available networks
 
 :::tip 
 
-Skip ahead to the next section if you don't need to scan for available networks.
+The Omega2 can only connect to 2.4 GHz WiFi networks. Scanning for networks is useful to double-check the Omega can detect your WiFi network. 
+Skip ahead to the next section if you know your WiFi network name and don't need to double check compatibility.
 
 :::
 
@@ -44,7 +43,7 @@ Cell 02 - Address: 0C:AC:8A:E3:27:51
 
 Make sure the network you intend to connect to is on this list!
 
-## Connect to a network
+## Step 2: Connect to a network
 
 Enter the following command to enable WiFi client mode on the Omega:
 
@@ -69,7 +68,7 @@ If a connection is successful, you will see the following message in the kernel 
 [ 993.442095] apcli0: associated
 ```
 
-## Check Network Connection is Successful
+## Step 3: Check Network Connection is Successful
 
 If the network connection is successful, the Omega will be given an IP address. 
 
@@ -77,9 +76,14 @@ import Apcli0CheckIpAddr from '../networking/_apcli0-check-ip-addr.mdx';
 
 <Apcli0CheckIpAddr/>
 
+#### Connected! 
+
+If the `apcli0` network interface has been assigned an IP address, the Omega is now connected to the specified WiFi network and to the internet!
+
+
 :::info More Info
 
-For more information on WiFi networking, please see the article [WiFi networking](/networking/wifi).
+For more information on WiFi networking and configuration, please see the article [WiFi networking](/networking/wifi).
 
 :::
 

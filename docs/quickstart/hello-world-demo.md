@@ -4,38 +4,49 @@ title: Hello World Demo
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-## Introduction
+In this article, we'll show you how to write and run small a Hello World demo program in Python. The program will blink the built-in user programmable LED on the Omega2 Eval Board - demonstrating how to run a small program in just a few minutes and how to interact with an LED connected to an Omega2 GPIO.
 
-In this article, we'll show you how to build a Hello World demo: LED blinker application, to demonstrate how you can interact with an LED connected to the Omega2.
-
-A user programmable LED can:
+In general, a user programmable LED can:
 
 - Show the code is configured, installed, and running correctly.
 - Help with debugging your code in real-time, where you can program it to blink different patterns based on what code is executing.
 
-## LED Blinker application
+## Python Blink Program
 
-The goal of the LED Blinker application is to provide a basic example of how to build your own application on Omega2. This will show and provide the basic building blocks needed to create your own unique applications.
+The goal of the LED Blinker application is to provide a basic example of how to write your own application on Omega2. This will show and provide the basic building blocks needed to create your own unique applications.
 
 For this example, a user programmable LED is available on the following GPIO pins:
 
-- Expansion Dock: GPIO 15 controls the Blue LED
+- **Omega2 Eval Board**: GPIO 15 controls the Blue user programmable LED
+- **Omega2S Eval Board**: GPIO 43 controls the Blue user programmable LED
 
-[//]: # (- Omega2 SBC: GPIO 15 controls the Blue user programmable LED)
-[//]: # (- Omega2S SBC: GPIO 43 controls the Blue user programmable LED)
 
-Before building the application, you'll need to install Python. Make sure your Omega is connected to the internet before running the update command.
 
-**Step 1.** Install pre-reqs:
+
+### Step 1: Install pre-reqs
+
+Before writing the application, you'll need to install Python and the module we'll use to control GPIOs. Make sure your Omega is connected to the internet before running the OPKG commands. See the [previous quickstart step on setting up WiFi](./setup-wifi) if you haven't already.
+
+On the command line, run
 
 ```Shell
 opkg update
 opkg install python3-light python3-gpio
 ```
 
-**Step 2.** Create an empty file called `hello_world.py` on your device. A good place for it is in the `/root` directory.
+This will take a minute or two
 
-**Step 3.** Copy the code below and paste it into your `hello_world.py` file.
+### Step 2: Create the file
+
+Create an empty file called `blink.py` on your device. A good place for it is in the `/root` directory.
+
+```
+touch /root/blink.py
+```
+
+### Step 3: Populate the file
+
+Copy the code below and paste it into your `blink.py` file. 
 
 ```python
 import time
@@ -44,12 +55,12 @@ import sys
 import os
 
 # Define the GPIO pins on different Omega hardware
-EXPANSION_DOCK = 15 # Blue LED in RGB LED on Expansion Dock
 OMEGA2_EVAL_BOARD = 15 # User programmable LED on Omega2 Eval Board
 OMEGA2S_EVAL_BOARD = 43 # User programmable LED on Omega2S Eval Board
+EXPANSION_DOCK = 15 # Blue LED in RGB LED on Expansion Dock
 
 # Define the GPIO pin the program should use
-LED_PIN = EXPANSION_DOCK 
+LED_PIN = OMEGA2_EVAL_BOARD 
 
 # Initialize the GPIO module
 gpio.setup(LED_PIN, gpio.OUT)
@@ -100,7 +111,43 @@ if __name__ == "__main__":
     
 ```
 
-**Step 4.** To run your Hello World program, type the command `python hello_world.py`.
+:::tip Using the vi Editor
+
+If you're not familiar, the `vi` text editor is included on the Omega by default. To copy the code above:
+1. Run `vi /root/blink.py`
+1. Enter insert mode by pressing `i`
+1. Paste the code
+1. Return to command mode by pressing `esc` once
+1. Save and close the file by typing `:wq` and pressing enter
+
+Learn more about the small but powerful `vi` editor [online](https://www.redhat.com/en/blog/introduction-vi-editor).
+
+:::
+
+### Step 4: Adjust the LED Pin in the Program
+
+Depending on the hardware that you're using, you may need to adjust the program to specify a different pin for the LED.
+
+- **Omega2 Eval Board**: No changes required. The code above is configured to use GPIO15 as the LED pin by default.
+- **Omega2S Eval Board**: Changing the `LED_PIN` variable is required. Update the `LED_PIN = OMEGA2_EVAL_BOARD` line to `LED_PIN = OMEGA2S_EVAL_BOARD`
+
+### Step 5: Run the program
+
+To run the Python program, enter the command 
+
+```
+python /root/blink.py
+```
+
+Watch the output on the command line, it should look something like this:
+
+```
+TODO: enter command line output
+```
+
+And watch what happens on your Eval Board
+
+<!-- TODO: add a gif or video of the eval board running the program -->
 
 :::note
 

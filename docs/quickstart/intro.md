@@ -6,30 +6,32 @@ title: Quickstart Overview
 
 This quickstart guide covers the quickest way to get up and running with an Omega2 Device. It applies to all Omega2 devices running the updated firmware, which is based on OpenWRT 23.05.
 
-### Upgrading firmware from v0.3.4
+### Upgrading from v0.3.4 firmware
 
 For devices running the Omega2 firmware v0.3.4, please see the instructions found in the [Installing the New Firmware](/firmware/installing-firmware) article and then return to this article.
 
-> To get started with a device running the v0.3.4 firmware, please see the first time setup article in our legacy documentation: [https://docs.onion.io/omega2-docs/first-time-setup.html](https://docs.onion.io/omega2-docs/first-time-setup.html). **Note the legacy first time setup will not work with the new firmware!**
+> To get started with a device running the v0.3.4 firmware, please see the [first time setup article in our legacy documentation](https://docs.onion.io/omega2-docs/first-time-setup.html). **Note the legacy first time setup will not work with the new firmware!**
 
 If you're unsure how to tell the difference between the "New" firmware and the previous v0.3.4 firmware, see the [article on identifying the firmware version](../introduction/determine-fw-version).
 
 ### Recommended hardware
 
-Onion recommends the following hardware setup for ease of use:
+For ease of use, Onion recommends using the Omega2 Eval Boards. 
 
-#### For Omega2/2+
+![Omega2 Eval Board (left) and Omega2S Eval Board (right)](./assets/omega2-eval-boards-front.jpg)
+*Omega2 Eval Board (left) and Omega2S Eval Board (right)*
 
-- Omega2 or Omega2+ device
-- Expansion dock
+:::caution Other Hardware
 
-#### For Omega2S/2S+
+If you are using other hardware, please see [onion.io/getstarted](https://onion.io/getstarted) for guides on getting started with that hardware.
 
-- Omega2S Development Kit. Please see the getting started guide on our GitHub site: [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Dev%20Kit%20-%20Getting%20Started.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Dev%20Kit%20-%20Getting%20Started.pdf)
+:::
 
 #### Additional required materials
 
-You'll need a computer and a microUSB to USB cable in addition to the Omega2 hardware.
+In addition to the Omega device, you will also need:
+- A computer
+- USB-C cable *to connect the Omega to the computer*
 
 ### Overview of the process
 
