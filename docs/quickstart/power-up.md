@@ -45,9 +45,7 @@ Turn on your Omega2 using the switch.
 
 ### Wait until it boots
 
-The amber LED on your Omega2 should turn on and start blinking after about 10 seconds. The LED will stop blinking and remain solid after about a minutes. This means your Omega2 has completed its boot sequence.
-
-<!-- TODO: check if amber LED takes 10s to start blinking -->
+The amber LED on your Omega2 should turn on and start blinking after a few seconds. The LED will stop blinking and remain solid after about a minutes. This means your Omega2 has completed its boot sequence.
 
 ![omega2-booted-up](./assets/omega2-led-active.jpg)
 

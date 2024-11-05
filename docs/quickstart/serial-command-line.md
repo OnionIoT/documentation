@@ -76,29 +76,41 @@ Open a terminal on your Mac, and then follow these steps.
 
 #### Step 1: Check for the serial device
 
-Plug in your Omega2 and Expansion dock, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-0001`.
+Plug in your Omega2 Eval Board, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-02B4E355`. Note the device name, keep in mind **the last 7 digits of the device name are unique!** 
 
-<!-- TODO: update usb serial name -->
+![mac check serial device](./assets/serial-mac-check-device.png)
 
-![omega2-os-driver](./assets/connecting-serial-osx-check.jpg)
+:::info
 
-<!-- TODO: need new screenshot with updated usb serial name -->
+The Omega2 Eval Boards use the newer CP2104 USB-to-Serial chip so the serial device name is unique. Keep in mind the `/dev/tty.usbserial-0001` device name from previous boards will not work.
+
+:::
 
 #### Step 2: Connect to Omega2
 
-<!-- TODO: update usb serial name -->
+To connect to the Omega's serial terminal using the screen utility, run the following command using the device name from the previous step:
 
-Run `screen /dev/tty.usbserial-0001`to connect to the Omega2's serial terminal using the screen utility. You should see the following screen if the connection is successful.
+```
+screen /dev/tty.usbserial-<UNIQUE DIGITS FROM STEP 1> 115200
+```
 
-![omega2-os-connect](./assets/connecting-serial-osx-login.jpg)
+In this example, the command would be:
 
-<!-- TODO: need new screenshot with updated usb serial name -->
+```
+screen /dev/tty.usbserial-02B4E355 115200
+```
 
-#### Step 3: Close screen
+#### Step 3: Confirm connection is successful
+
+Press Enter and, if the connection is successful, you should see the following:
+
+![mac connection](./assets/serial-mac-device-connection.png)
+
+#### Step 4: Closing screen
 
 :::tip 
 
-You don't need to do this right now, but we thought it would be useful to know how to close the screen session
+Of course, you don't need to do this right away. We wanted to let you know how to close the screen session. For best results, close the screen session before disconnecting the device.
 
 :::
 
