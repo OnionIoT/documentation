@@ -34,7 +34,7 @@ opkg update
 opkg install python3-light python3-gpio
 ```
 
-This will take a minute or two
+This will take a few minutes.
 
 ### Step 2: Create the file
 
@@ -131,6 +131,12 @@ Depending on the hardware that you're using, you may need to adjust the program 
 - **Omega2 Eval Board**: No changes required. The code above is configured to use GPIO15 as the LED pin by default.
 - **Omega2S Eval Board**: Changing the `LED_PIN` variable is required. Update the `LED_PIN = OMEGA2_EVAL_BOARD` line to `LED_PIN = OMEGA2S_EVAL_BOARD`
 
+:::note
+
+The Hello World program also works with external LEDs connected to GPIOs, but you'll need to set the `LED_PIN` variable based on the hardware you're using.
+
+:::
+
 ### Step 5: Run the program
 
 To run the Python program, enter the command 
@@ -142,17 +148,28 @@ python /root/blink.py
 Watch the output on the command line, it should look something like this:
 
 ```
-TODO: enter command line output
+root@Omega-FB94:/# python /root/blink.py
+Hello world! Welcome to the Omega2
+The LED connected to GPIO43 will now flash with an on time of 1000 milliseconds and an off time of 1.
+Press ctrl+c to end the program
 ```
 
 And watch what happens on your Eval Board
 
 <!-- TODO: add a gif or video of the eval board running the program -->
 
-:::note
+### Step 6: End the Program
 
-The Hello World program also works with LEDs connected directly to GPIOs, but you'll need to set the `LED_PIN` variable based on the hardware you're using.
+Press ctrl+c to end the program and stop the LED blinking. 
 
-:::
+### Step 7: Experiment with the Program
+
+You'll notice after you stopped the program, it printed out some more information on how to adjust the LED on and off time. Try playing around with that.
+
+### Step 8: Make your own
+
+You've now run a Python program on the Omega. Now try making your own!
+
+
 
 <GiscusDocComment />
