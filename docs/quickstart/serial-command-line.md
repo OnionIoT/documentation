@@ -20,7 +20,7 @@ Keep in mind the serial command line can only be accessed on hardware with a USB
 
 :::
 
-## Install USB-to-Serial driver on your computer
+## Step 1: Install USB-to-Serial driver on your computer
 
 You'll need to download and install the Serial-to-USB driver on your computer for your specific operating system.
 
@@ -63,7 +63,7 @@ sudo chmod 666 /dev/ttyUSB0
  </TabItem>
 </Tabs>
 
-## Connect to the Omega's Command Line
+## Step 2: Connect to the Omega's Command Line
 
 Before connecting to your Omega2 you'll need to check that the serial device exists.
 

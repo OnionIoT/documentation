@@ -6,7 +6,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 Next, we'll cover unboxing the device, powering it on, and connecting it to your computer.
 
-## Unpack the device
+## Step 1: Unbox the device
 
 Unpack your Omega2 Eval Board
 
@@ -26,7 +26,7 @@ On the Omega2S Eval Board, the surface-mount Omega2S module is soldered down to 
 
 :::
 
-## Connect the Eval Board to a computer
+## Step 2: Connect the Eval Board to a computer
 
 Plug the USB cable into the USB-C port on the Omega2 Eval Board and connect the other end to a USB port on your computer. This provides power to the Omega as well as a connection with Omega2’s command line.
 
@@ -37,7 +37,7 @@ The Omega2 Eval Boards have voltage regulators so the USB port can power the Ome
 
 :::
 
-## Power on
+## Step 3: Power on
 
 Turn on your Omega2 using the switch.
 

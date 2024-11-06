@@ -15,9 +15,13 @@ Skip ahead to the next section if you know your WiFi network name and don't need
 
 :::
 
-To see what networks are available, run the following command: `iwinfo ra0 scan`. You should see a list of available networks along with information about each network.
+To see what networks are available, run the following command: 
 
-The list of available networks will look something like this:
+```
+iwinfo ra0 scan
+```
+
+You should see a list of available networks along with information about each network. It will look something like this:
 
 ```shell
 Cell 01 - Address: 0C:AC:8A:51:F4:1B 
