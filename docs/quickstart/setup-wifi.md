@@ -10,7 +10,8 @@ We want to connect the Omega to a local WiFi network, so that it has internet ac
 
 :::tip 
 
-The Omega2 can only connect to 2.4 GHz WiFi networks. Scanning for networks is useful to double-check the Omega can detect your WiFi network. 
+The Omega2 is compatible with 2.4 GHz WiFi networks. Scanning for networks is useful to double-check the Omega can detect your WiFi network. 
+
 Skip ahead to the next section if you know your WiFi network name and don't need to double check compatibility.
 
 :::
