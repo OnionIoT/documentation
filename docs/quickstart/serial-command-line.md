@@ -89,7 +89,7 @@ Plug in your Omega2 Eval Board, then run `ls /dev/tty.*` to see if the USB-to-Se
 
 :::info
 
-The Omega2 Eval Boards use the newer CP2104 USB-to-Serial chip so the serial device name is unique. Keep in mind the `/dev/tty.usbserial-0001` device name from previous boards will not work.
+The Omega2 Eval Boards use the newer CP2104 USB-to-Serial chip so the serial device name is unique. Previous boards with the CP2102 chip will still use the `/dev/tty.usbserial-0001` device name. Make sure to use the device name that corresponds to your device.
 
 :::
 

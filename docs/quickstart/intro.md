@@ -23,7 +23,7 @@ For ease of use, Onion recommends using the Omega2 Eval Boards.
 
 :::caution Other Hardware
 
-If you are using other hardware, please see [onion.io/getstarted](https://onion.io/getstarted) for guides on getting started with that hardware.
+If you are using other hardware that's running the new firmware, please see [onion.io/getstarted](https://onion.io/getstarted) for guides on the initial unboxing and harware setup. Then continue with this quickstart guide. Let us know in the article comments if you run into any issues!
 
 :::
 
