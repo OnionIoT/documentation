@@ -10,7 +10,7 @@ Next, we'll cover unboxing the device, powering it on, and connecting it to your
 
 Unpack your Omega2 Eval Board
 
-![omega2-unboxing](./assets/omega2-unboxing.jpg)
+![omega2-unboxing](./assets/omega2-eval-boards-front.jpg)
 
 ### Ensure the Omega is plugged in to the Eval Board 
 
@@ -18,7 +18,7 @@ Unpack your Omega2 Eval Board
 
 Make sure the Omega2 is plugged into the socket on the Eval Board and the Omega's pins are securely seated in the socket.
 
-![omega2-connected](./assets/omega2-connected.jpg)
+![omega2-connected](./assets/omega2-eval-board-o2-connected.png)
 
 :::info
 
@@ -41,13 +41,13 @@ The Omega2 Eval Boards have voltage regulators so the USB port can power the Ome
 
 Turn on your Omega2 using the switch.
 
-![omega2-switched-on](./assets/omega2-switchedon.jpg)
+![omega2-switched-on](./assets/omega2-eval-board-switched-on.gif)
 
 ### Wait until it boots
 
 The amber LED on your Omega2 should turn on and start blinking after a few seconds. The LED will stop blinking and remain solid after about a minutes. This means your Omega2 has completed its boot sequence.
 
-![omega2-booted-up](./assets/omega2-led-active.jpg)
+![omega2-booted-up](./assets/omega2-eval-board-powered-on.png)
 
 Congratulations, your Omega2 is now powered up and you're ready to further explore your device.
 
