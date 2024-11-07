@@ -154,9 +154,9 @@ The LED connected to GPIO43 will now flash with an on time of 1000 milliseconds 
 Press ctrl+c to end the program
 ```
 
-And watch what happens on your Eval Board
+And watch what happens on your Eval Board!
 
-<!-- TODO: add a gif or video of the eval board running the program -->
+![Omega2 Eval Board blink example](./assets/hello-world-blink.gif)
 
 ### Step 6: End the Program
 
