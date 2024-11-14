@@ -143,6 +143,7 @@ const sidebars = {
       label: 'Packages',
       items: [
         'guides/packages/c-package-example',
+        'guides/packages/python-package-example',
       ],
     },
   ]

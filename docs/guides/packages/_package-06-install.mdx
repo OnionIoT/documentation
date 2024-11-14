@@ -1,0 +1,23 @@
+:::info What we're doing in this step
+
+Now that you’ve transferred the compiled package to the Omega, you’ll use the opkg package manager to install the package. Opkg will also install any package dependencies.
+
+:::
+
+On your Omega:
+
+```shell
+cd /tmp
+```
+
+You can do a `ls -l` to see the ipk file.
+
+```shell
+opkg update
+```
+
+To install a generic package:
+
+```shell
+opkg install <package ipk file name>
+```

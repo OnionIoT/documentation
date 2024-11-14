@@ -42,7 +42,7 @@ You will need the following set up and software installed to follow along with t
 - An Omega2 device
   - Set up and connected to the internet. See the [quickstart guide](../../quickstart/intro) for details.
 
-### Application source code
+## Application source code
 
 :::info What we're doing in this step
 

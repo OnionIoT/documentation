@@ -1,0 +1,22 @@
+**Step 4:** Copy the compiled ipk file from the Docker container to your development computer's file system.
+
+In the Docker container, run the following commands:
+
+```shell
+mkdir openwrt-sdk/package/apps/output
+cp openwrt-sdk/bin/packages/mipsel_24kc/base/*.ipk openwrt-sdk/package/apps/output
+ ```
+
+Outside the Docker container in the top level directory of the source code, run `ls -l output` to see the contents of the output directory.
+
+You'll see `c-example_1.0-1_mipsel_24kc.ipk` listed, which is the file you're interested in.
+
+**Note:** To run the commands outside of the Docker container, either use a new terminal window or type exit to stop the container.
+
+:::info
+
+For further details on using the OpenWRT SDK wrapper, see the [Compile a Package](../../packages/compile-package) article.
+
+The procedure in your example uses a slightly modified method than the one in the article, but the same principles apply.
+
+:::
