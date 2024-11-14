@@ -56,7 +56,7 @@ bash onion_buildenv build_packages c-example
 
 The `c-example` package name is defined in the package makefile: [https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L6](https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L6).
 
-This will compile the C program for the Omega2 and create an installable ipk file, as well as compile any dependencies. For the c-example package, this will take about 5 minutes. It might be more or less depending on the CPU performance of your development computer.
+This will compile the C program for the Omega2 and create an installable ipk file, as well as compile any dependencies. For the `c-example` package, this will take about 5 minutes. It might be more or less depending on the CPU performance of your development computer.
 
 If a package has dependencies, all the dependencies will be built as separate ipks.
 
@@ -70,7 +70,7 @@ For additional details on the package makefile, see the [Compile a Package](../.
 
 import CompileWithDockerP2 from './_package-04-compile-w-docker-p2.mdx';
 
-<CompileWithDockerP2/>
+<CompileWithDockerP2 ipkFilename="c-example_1.0-1_mipsel_24kc.ipk"/>
 
 ## Transfer the package to Omega
 
@@ -99,7 +99,7 @@ import RunProgram from './_package-07-run-program.mdx';
 
 <RunProgram/>
 
-Look for the `Package/$(PKG_NAME)/install` block in the c-example package makefile: https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L43
+Look for the `Package/$(PKG_NAME)/install` block in the `c-example` package makefile: https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L43
 
 
 import RunProgramPathNote from './_package-08-run-program-path-note.mdx';
