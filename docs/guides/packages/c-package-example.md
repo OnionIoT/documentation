@@ -31,22 +31,26 @@ You will need the following set up and software installed to follow along with t
 - A development computer  
   - Running Mac OS, Windows, or Linux.
   - Access to terminal/command line
+  - Git installed
   - Docker installed and running
     - **Tip**: For those new to Docker, see [Docker's installation guide](https://docs.docker.com/desktop/) and the manual on [running a Docker container](https://docs.docker.com/engine/reference/run).
 
     - **Important Note on Macs with Apple Silicon:** The OpenWRT build system, SDK, and Image Builder expect an x86_64 processor architecture. Attempting to build in a Docker container on a Mac with Apple Silicon will result in compilation errors. We recommend using an x86_64 machine for best results. Some users have reported successful compilation if Rosetta for x86/amd64 emulation on Apple Silicon is enabled in Docker.
 
-  - Git installed
+  
 
 - An Omega2 device
-  - Set up and connected to the internet. See the [quickstart guide](../../quickstart/setup-wifi) for details.
+  - Set up and connected to the internet. See the [quickstart guide](../../quickstart/intro) for details.
 
 ### Application source code
 
-#### What you’re doing here
+:::info What we're doing in this step
 
-- Getting some package source code that you’ll compile into a package.
-- Learn more about package source code and [custom packages](../../packages/custom-package).
+Getting some package source code that you’ll compile into a package.
+
+Learn more about package source code and software packages in the [Create a Custom Package article](../../packages/custom-package).
+
+:::
 
 Onion's sample is a small C program that uses `libcurl` to send an HTTP request to an API (that returns dummy data) and outputs the response to the terminal.
 
@@ -63,22 +67,24 @@ cd Example-OpenWRT-Packages
 
 ## Compile the sample package with Docker
 
-### What you’re doing here
+:::info What we're doing in this step
 
 At this stage of the example, you'll use the OpenWRT SDK in a Docker container to compile the sample package. After compiling the sample package in the Docker container, you’ll transfer it to the development computer.
 
 We're using Docker because it provides a clean, ready to go, reproducible development environment that will work on Mac, Windows, or Linux development computers. The `onion/openwrt-sdk-wrapper` Docker image used in this guide already has all the dependencies needed by OpenWRT SDK installed and the OpenWRT SDK Wrapper configured and ready to use for package creation. Docker and this image save time on environment setup and allow you to focus more of your efforts on the packages themselves.
 
-Within your terminal, make sure you are in the top level directory of the source code. Your terminal should look something like this:
+:::
+
+Within your terminal, make sure you are in the top level directory of the source code. If you run an `ls -l` command, your terminal should look something like this:
 
 ```shell
-Example-OpenWRT-Packages (main) X ll total 16
-drwxr-xr-x 7 lazar staff 224 24 Oct 14:40 .
-drwxr-xr-x 26 lazar staff 832 24 Oct 14:34 ..
-drwxr-xr-x 12 lazar staff 384 24 Oct 14:35 .git
-rw-r--r-- 1 lazar staff 1062 24 Oct 14:34 LICENSE
-rw-r--r-- 1 lazar staff 52 24 Oct 14:34 README.md
-drwxr-xr-x 4 lazar staff 128 24 Oct 14:35 c-example
+➜  Example-OpenWRT-Packages (main) ✗ ls -l
+total 16
+-rw-r--r--@   1 lazar  staff  1062 24 Oct 14:34 LICENSE
+-rw-r--r--    1 lazar  staff    52 24 Oct 14:34 README.md
+drwxr-xr-x    4 lazar  staff   128 24 Oct 14:35 c-example
+drwxr-xr-x    4 lazar  staff   128 24 Oct 16:21 hello-world-c
+drwxr-xr-x  176 lazar  staff  5632 30 Oct 21:18 output
 ```
 
 **Step 1:** Download the `onion/openwrt-sdk-wrapper` image:
@@ -87,13 +93,13 @@ drwxr-xr-x 4 lazar staff 128 24 Oct 14:35 c-example
 docker pull onion/openwrt-sdk-wrapper
 ```
 
-:::info
+:::note
 
-It might take a few minutes to download the Docker image depending on your internet connection. After the image downloads, starting the container will only take a few seconds.
+It might take a few minutes to download the Docker image depending on your internet connection. After the image downloads, you won't need to download it again and this step can be skipped the next time you compiled a package.
 
 :::
 
-**Step 2:** Start a Docker container based on the onion/openwrt-sdk-wrapper image with the following command:
+**Step 2:** Start a Docker container based on the `onion/openwrt-sdk-wrapper` image with the following command:
 
 <Tabs>
  <TabItem value="Mac and Linux" label="Mac OS & Linux" default>
@@ -173,7 +179,7 @@ mkdir openwrt-sdk/package/apps/output
 cp openwrt-sdk/bin/packages/mipsel_24kc/base/*.ipk openwrt-sdk/package/apps/output
  ```
 
-Outside the Docker container in the top level directory of the source code, do ls -1 output to see the contents of the output directory.
+Outside the Docker container in the top level directory of the source code, run `ls -l output` to see the contents of the output directory.
 
 You'll see `c-example_1.0-1_mipsel_24kc.ipk` listed, which is the file you're interested in.
 
@@ -189,9 +195,13 @@ The procedure in your example uses a slightly modified method than the one in th
 
 ## Transfer the package to Omega
 
-### What you’re doing here
+:::info What we're doing in this step
 
-Now that you’ve compiled the package, you’ll need to transfer it to an Omega so it can be installed. You'll use the sftp protocol to transfer the ipk file from your development computer to the Omega.
+Now that you’ve compiled the package, you’ll need to transfer it to an Omega so it can be installed. 
+
+:::
+
+You'll use the sftp protocol to transfer the ipk file from your development computer to the Omega.
 
 **Step 1:** Install the sftp server on the Omega so it can receive the ipk file.
 
@@ -206,7 +216,7 @@ opkg install openssh-sftp-server
 
 **Step 2:** Find Omega's IP address and note it down for use in the next step
 
-> See the Checking the Ip address on Omega, to find a device's IP address ([https://documentation.onioniot.com/networking/wifi#checking-the-ip-address-on-omega](https://documentation.onioniot.com/networking/wifi#checking-the-ip-address-on-omega)).
+See the [Finding the Omega's IP address article](../../networking/find-ip-address) for the procedure.
 
 **Step 3:** Copy the ipk file from step 1 to Omega's `/tmp` directory.
 
@@ -254,11 +264,11 @@ In the left-hand pane you'll see your newly created connection.
 
 Select the new connection and click **Login**, to connect to your Omega.
 
-If you connection fails, WinSCP will let you know the host was not found. If this is the case, make sure that both you and your Omega have an internet connection, and that you have Apple’s Bonjour Service installed. If you don’t have Apple’s Bonjour Service, you can connect to your Omega’s access point, and connect to its IP.
+If you connection fails, WinSCP will let you know the host was not found. If this is the case, make sure that both your development computer and your Omega have an internet connection.
 
 The first time you connect to WinSCP you'll get a warning message something like "*Continue connecting to an unknown server and add its host key to a cache?*". Click the **Yes** button to continue.
 
-Once connected, you can copy the ipk file from your development computer to your Omega.
+Once connected, you can copy the ipk file from your development computer to the `/tmp` directory on your Omega.
 
 ![WinSCP Connected](./assets/onion-omega-winscp-7.png)
 
@@ -273,9 +283,11 @@ If the dependencies for your custom package are not custom as well (they are alr
 
 ## Install the package
 
-### What you’re doing here
+:::info What we're doing in this step
 
 Now that you’ve transferred the compiled package to the Omega, you’ll use the opkg package manager to install the package. Opkg will also install any package dependencies.
+
+:::
 
 On your Omega:
 
@@ -305,19 +317,21 @@ Opkg will first install the dependencies and then the package.
 
 ## Run the program
 
-### What you’re doing here
+:::info What we're doing in this step
 
 Next, you’ll run the program you just installed.
 
+:::
+
 To locate where the program is installed, consult the package makefile for package installation instructions.
 
-Look for the `Package/$(PKG_NAME)/install` block in the c-example makefile ([https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L43](https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L43).
+Look for the `Package/$(PKG_NAME)/install` block in the c-example package makefile: https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L43
 
 Since your program executable is installed in `/usr/bin`, and `/usr/bin` is in the PATH variable, you can just call the executable name directly.
 
-:::info Linux PATH variable
+:::note Linux PATH variable
 
-The PATH variable has a list of directories the system checks before running a command. It allows you to run executables in those directories without using the absolute path – this is good for time saving. To learn more, see the following Linux tutorial [https://www.digitalocean.com/community/tutorials/how-to-view-and-update-the-linux-path-environment-variable](https://www.digitalocean.com/community/tutorials/how-to-view-and-update-the-linux-path-environment-variable).
+The PATH variable has a list of directories the system checks before running a command. It allows you to run executables in those directories without using the absolute path – this is good for time saving. To learn more, see this [tutorial on the Linux PATH variable](https://www.digitalocean.com/community/tutorials/how-to-view-and-update-the-linux-path-environment-variable).
 
 :::
 
