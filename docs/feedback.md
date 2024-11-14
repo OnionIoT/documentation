@@ -17,6 +17,8 @@ There are issue templates for Bug Reports and Improvement Suggestions/Feature Re
 
 ## Documentation Improvements
 
-If there's something unclear or missing in this documentation, or if it can be improved in some way, create an issue in the [OnionIoT/documentation GitHub Repo](https://github.com/OnionIoT/documentation) and explain what could be better documented.
+All documentation articles now have comment sections! If anything is missing, unclear, or needs attention, login with Github and drop a comment right in the article.
 
-If there's a specific edit you'd like to make to one of these documentation pages, click the **Edit this page** and you'll be taken to the corresponding file on GitHub. We welcome all Pull Requests.
+For longer-form bug reports or documentation requests, please create an issue in the [OnionIoT/documentation GitHub Repo](https://github.com/OnionIoT/documentation) and explain what could be better documented.
+
+If there's a specific edit you'd like to directly make to one of these documentation pages, click the **Edit this page** link at the bottom of the article and you'll be taken to the corresponding file on GitHub. We welcome all Pull Requests.

@@ -136,6 +136,16 @@ const sidebars = {
     },
     'feedback',
   ],
+  guides: [
+    'guides/intro',
+    {
+      type: 'category',
+      label: 'Packages',
+      items: [
+        'guides/packages/c-package-example',
+      ],
+    },
+  ]
 };
 
 module.exports = sidebars;

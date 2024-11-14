@@ -97,20 +97,27 @@ const config = {
           // alt: 'Onion Logo',
           // src: 'img/Onion-Logo-Full.svg',
         },
-        // items: [
-        //   {
-        //     type: 'docSidebar',
-        //     sidebarId: 'docsSidebar',
-        //     position: 'left',
-        //     label: 'Tutorial',
-        //   },
+        items: [
+          {
+            type: 'doc',
+            sidebarId: 'docsSidebar',
+            position: 'right',
+            docId: 'introduction/intro',
+            label: 'Docs',
+          },
+          {
+            type: 'docSidebar',
+            position: 'right',
+            sidebarId: 'guides',
+            label: 'Guides',
+          },
         //   {to: '/blog', label: 'Blog', position: 'left'},
         //   {
         //     href: 'https://github.com/facebook/docusaurus',
         //     label: 'GitHub',
         //     position: 'right',
         //   },
-        // ],
+        ],
       },
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
@@ -123,8 +130,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Beta Firmware Intro',
+                label: 'Documentation',
                 to: '/',
+              },
+              {
+                label: 'Guides',
+                to: '/guides/intro',
+              },
+              {
+                label: 'Feedback and Suggestions',
+                to: '/feedback',
               },
             ],
           },
