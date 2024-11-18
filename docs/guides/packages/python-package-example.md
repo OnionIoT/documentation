@@ -10,13 +10,18 @@ This guide will show how to compile a **Python** program into a package for the 
 
 The Python program simply prints out `Hello World!` when it's run.
 
-### Output
-
-Onion's sample program compiled into an ipk package file you can install on an Omega using the opkg package manager.
-
 ### Why is this important?
 
 This guide and the sample program provide a sure-fire way to build a Python program into a package. You can use the procedure and sample code to build your own custom packages based on Python programs.
+
+Packages make deploying your own custom applications much easier as opposed to copying loose files to your devices:
+- Packages can be easily installed, updated, and removed with the OPKG package manager
+- The Package definition and OPKG take care of any dependencies for the application
+- Versioning is built into the package definition and creation process
+
+### Output
+
+Onion's sample program compiled into an ipk package file you can install on an Omega using the opkg package manager.
 
 ### How long will this take?
 
