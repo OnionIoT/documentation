@@ -57,9 +57,7 @@ bash onion_buildenv build_packages hello-world-python
 The package name, `hello-world-python` in this case, is defined in the package makefile: 
 https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/hello-world-python/Makefile#L6
 
-This will create an installable ipk file, as well as compile any dependencies. For the `hello-world-python` package, this will only take about a minute because the `onion/openwrt-sdk-wrapper` Docker image already has the basic Python dependencies compiled.
-
-It might take more or less time on your end depending on the CPU performance of your development computer.
+**This will create an installable ipk file, as well as compile any dependencies.** For the `hello-world-python` package, this will only take about a minute because the `onion/openwrt-sdk-wrapper` Docker image already has the basic Python dependencies compiled. It might take more or less time on your end depending on the CPU performance of your development computer.
 
 If a package has dependencies, all the dependencies will be built as separate ipks.
 

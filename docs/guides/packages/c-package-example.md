@@ -10,13 +10,18 @@ This guide will show how to compile a C program into a package for the Omega2, b
 
 The C program sends an HTTP request to an API and then outputs the response to a terminal. The API response includes a To Do list item in JSON format.
 
-### Output
-
-Onion's sample program compiled into an ipk package file you can install on an Omega using the opkg package manager.
-
 ### Why is this important?
 
 This guide and the sample program provide a sure-fire way to build a C program into a package. You can use the procedure and sample code to build your own custom packages based on C programs.
+
+Packages make deploying your own custom applications much easier as opposed to copying loose files to your devices:
+- Packages can be easily installed, updated, and removed with the OPKG package manager
+- The Package definition and OPKG take care of any dependencies for the application
+- Versioning is built into the package definition and creation process
+
+### Output
+
+Onion's sample program compiled into an ipk package file you can install on an Omega using the opkg package manager.
 
 ### How long will this take?
 
@@ -56,7 +61,7 @@ bash onion_buildenv build_packages c-example
 
 The `c-example` package name is defined in the package makefile: [https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L6](https://github.com/OnionIoT/Example-OpenWRT-Packages/blob/main/c-example/Makefile#L6).
 
-This will compile the C program for the Omega2 and create an installable ipk file, as well as compile any dependencies. For the `c-example` package, this will take about 5 minutes. It might be more or less depending on the CPU performance of your development computer.
+**This will compile the C program for the Omega2 and create an installable ipk file, as well as compile any dependencies.** For the `c-example` package, this will take about 5 minutes. It might be more or less depending on the CPU performance of your development computer.
 
 If a package has dependencies, all the dependencies will be built as separate ipks.
 
