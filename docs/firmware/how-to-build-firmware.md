@@ -84,17 +84,17 @@ import BuildEnvNotes from './_build-env-notes.mdx';
 
 <BuildEnvNotes tool="Image Builder" />
 
-#### 1. Start your Docker container
+#### 1. Pull the Docker Image
 
-import DockerInstructions from './_docker-instructions.mdx';
+import DockerPullInstructions from './_docker-pull-instructions.mdx'; 
 
-<DockerInstructions/>
+<DockerPullInstructions/>
 
-#### 2. Install software dependencies
+#### 2. Start your Docker Container
 
-import InstallDeps from './_install-deps.mdx';
+import DockerStartInstructions from './_docker-start-instructions.mdx'; 
 
-<InstallDeps/>
+<DockerStartInstructions/>
 
 #### 3. Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
 
@@ -104,6 +104,12 @@ To clone the openwrt-imagebuilder-wrapper repo, issue the following command:
 
 ```Shell
 git clone https://github.com/OnionIoT/openwrt-imagebuilder-wrapper.git
+``` 
+
+When the repo is cloned, enter the directory:
+
+```Shell
+cd openwrt-imagebuilder-wrapper
 ``` 
 
 ### Customizing the firmware image
@@ -182,7 +188,7 @@ To build the firmware image(s), run the following command:
 bash onion_buildenv build_all_firmware
 ```
 
-The build should take less than 5 minutes.
+The build should take **about 2 minutes.** It might be more or less depending on the CPU performance of your development computer.
 
 #### 2. Locate the compiled firmware image
 
@@ -190,9 +196,13 @@ Compiled firmware images are in the `output` directory.
 
 The firmware images are named based on the device model name, the OpenWRT version number specified in the `profile` file, and the date of the build: `<BUILD_MODEL>-<OPENWRT_VERSION>-<BUILD_DATE>.bin` .
 
-For example:
+##### For example
 
-For an Omega2+ device, with OPENWRT_VERSION="23.05.3" set in the `profile` config file and built on May 31, 2024. The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`. 
+For an Omega2+ device, with:
+- `OPENWRT_VERSION="23.05.3"` set in the `profile` config file
+- built on May 31, 2024
+
+The firmware image name will be `onion_omega2p-23.05.3-20240531.bin`. 
 
 <!-- NOTE: Ok to keep OpenWRT release numbers hard-coded in this section -->
 

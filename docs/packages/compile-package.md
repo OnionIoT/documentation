@@ -45,9 +45,9 @@ import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
 **Step 2: Start your Docker Container**
 
-import DockerInstructions from '../firmware/_docker-instructions.mdx';
+import DockerStartInstructions from '../firmware/_docker-start-instructions.mdx';
 
-<DockerInstructions/>
+<DockerStartInstructions/>
 
 **Step 3: Install software dependancies**
 
