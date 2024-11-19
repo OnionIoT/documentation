@@ -122,7 +122,7 @@ const sidebars = {
         'packages/advanced-package-management',
         'packages/custom-package',
         'packages/compile-package',
-        'packages/deploy-a-package',
+        'packages/deploy-package-repo',
       ],
     },
     {
