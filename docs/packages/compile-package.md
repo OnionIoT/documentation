@@ -37,35 +37,43 @@ Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omeg
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-**Step 1: Set up local environment**
+#### Step 1: Set up local environment
 
 import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
 <BuildEnvNotes tool="OpenWRT SDK" />
 
-**Step 2: Start your Docker Container**
+#### Step 2. Pull the Docker Image
+
+import DockerPullInstructions from '../firmware/_docker-pull-instructions.mdx'; 
+
+<DockerPullInstructions/>
+
+#### Step 3: Start your Docker Container
 
 import DockerStartInstructions from '../firmware/_docker-start-instructions.mdx';
 
 <DockerStartInstructions/>
 
-**Step 3: Install software dependancies**
-
-import InstallDeps from '../firmware/_install-deps.mdx';
-
-<InstallDeps/>
-
 **Step 4: Clone the repository**
 
-To clone the **openwrt-sdk-wrapper** repository in the development environment, open the terminal and run the following command:
+To clone the **openwrt-sdk-wrapper** repository in the Docker container, run the following command:
 
 ```shell
 git clone https://github.com/OnionIoT/openwrt-sdk-wrapper.git
 ```
 
+When the repo is cloned, enter the directory:
+
+```shell
+cd openwrt-sdk-wrapper
+```
+
 ## Compiling packages for development
 
 The following sections cover configuration changes and compiling packages for a development environment.
+
+To compile packages for production, see the [relevant section below](#compiling-packages-for-production).
 
 ### Config changes
 
@@ -97,13 +105,15 @@ After completing this step, the OpenWRT SDK will be downloaded and set up for us
 
 #### Step 1: Run the build script
 
-To compile and build the desired packages, run the following commands in the development environment:
+To compile and build the desired packages, run the following command:
 
 ```bash
 bash onion_buildenv build_packages <PACKAGE_NAME>
 ```
 
 Replace `<PACKAGE_NAME>` with the actual package name.
+
+This will compile the selected pacakge and its dependencies.
 
 #### Step 2: Compiled package location
 
@@ -114,6 +124,8 @@ openwrt-sdk/bin/packages/mipsel_24kc/custom/
 ```
 
 These packages have the extension `.ipk` and are compiled specifically for the `mipsel_24kc` architecture. The compiled packages can be used for testing on a device to confirm proper operation.
+
+---
 
 ## Compiling packages for production
 
@@ -129,9 +141,9 @@ Follow these steps:
 
 1. Modify the profile configuration file.
 2. Update the `PACKAGE_FEEDS` variable using the following syntax: `src-git <feed-name> <package-feed-url>[;<package-feed-branch>]`
-   - `<feed-name>`: Choose an arbitrary name for SDK usage.
-   - `<package-feed-url>`: Provide the Git repository URL.
-   - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository.
+   - `<feed-name>`: Choose an arbitrary name for the package feed
+   - `<package-feed-url>`: Provide the Git repository URL
+   - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository
 
 For example, say the `openwrt-23.05` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:  <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
@@ -172,13 +184,15 @@ First, download and setup the OpenWRT SDK with the following command:
 
 #### Step 1: Build packages
 
-Build and compile all desired packages listed in the `SDK_PACKAGES` variable in the profile, and run the following command:
+Build and compile all the packages listed in the `SDK_PACKAGES` variable in the profile, along with their dependencies, by running the following command:
 
 ```bash
 bash onion_buildenv build_all_packages
 ```
 
-#### Step 2: Compiled packages location
+Compilation time depends on the packages that are being compiled. Packages that are complex and/or have many dependencies take longer to compile. For reference, it takes about 30 minutes to compile the packages from the [OnionIoT/OpenWRT-Packages repo](https://github.com/OnionIoT/openwrt-packages/tree/openwrt-23.05).
+
+#### Step 2: Compiled package location
 
 All compiled packages can be found in the following directory:
 
@@ -186,14 +200,19 @@ All compiled packages can be found in the following directory:
 openwrt-sdk/bin/packages/mipsel_24kc/<feed-name>/
 ```
 
-Where `<feed-name>` is the name of the feed that was added to the `profile` configuration file in Step 1 above.
+Where `<feed-name>` is the name of the feed that was added to the `profile` configuration file in [Step 1 in the Config Changes section above](#config-changes-1).
 
-The packages have the extension `.ipk` and are compiled specifically for the `mipsel_24kc` architecture. Also included are package index files that will be used by the package manager on the device to install the packages.
+The packages have the extension `.ipk` and are compiled specifically for the Omega2 `mipsel_24kc` architecture. Also included are **package index files** that are required by OPKG on the device to recognize and install the packages from the repository.
 
-:::note Important note
 
-The last step of compiling a package feed is creating an index of the packages and signing the packages. This step is required so the compiled packages can be used as an opkg package repository by the device.
+:::info Package Indexing and Signing
+
+The last step of compiling a package feed is creating an index of the packages and signing the packages. This step is required so the compiled packages can be used as a package repository by the device. 
+
+When the `bash onion_buildenv build_all_packages` command is run, the Onion OpenWRT SDK Wrapper will automatically perform indexing and signing as the last step.
 
 :::
+
+The compiled packages can now be deployed as a package repo. See the [Deploy a Package Repo article](./deploy-package-repo) for more details.
 
 <GiscusDocComment />

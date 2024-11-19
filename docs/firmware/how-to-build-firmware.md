@@ -100,7 +100,7 @@ import DockerStartInstructions from './_docker-start-instructions.mdx';
 
 This repository is set up to build OpenWRT firmware for the Onion Omega2 and Omega2+. 
 
-To clone the openwrt-imagebuilder-wrapper repo, issue the following command:
+To clone the **openwrt-imagebuilder-wrapper** repo in the Docker container, run the following command:
 
 ```Shell
 git clone https://github.com/OnionIoT/openwrt-imagebuilder-wrapper.git
