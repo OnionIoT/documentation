@@ -1,13 +1,7 @@
-:::tip
-
-For those new to Docker, see [Docker's installation guide](https://docs.docker.com/desktop/) and the manual on [running a Docker container](https://docs.docker.com/engine/reference/run).
-
-:::
-
-To start a Docker container running Ubuntu 22.04, make sure Docker is installed and running, and then run the following command:
+To start a Docker container based on the `onion/openwrt-builder` image run the following command:
 
 ```
-docker run -it ubuntu:22.04 /bin/bash
+docker run -it onion/openwrt-builder /bin/bash
 ```
 
 :::info Macs with Apple Silicon
@@ -17,3 +11,12 @@ The OpenWRT build system, SDK, and Image Builder expect an x86_64 processor arch
 Some users have reported successful compilation if Rosetta for x86/amd64 emulation on Apple Silicon is enabled in Docker. 
 
 :::
+
+You should see something similar to:
+
+```shell
+~ docker run -it onion/openwrt-builder /bin/bash
+root@385d649fdab7:~#
+```
+
+You are now inside the Docker container.
