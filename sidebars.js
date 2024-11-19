@@ -141,6 +141,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Packages',
+      collapsed: false,
       items: [
         'guides/packages/c-package-example',
         'guides/packages/python-package-example',
