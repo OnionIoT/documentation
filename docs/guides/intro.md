@@ -2,6 +2,9 @@
 title: Intro
 ---
 
-Guides for the Omega2
+This section of the documentation features Guides illustrating how to do specific things with the Omega2. Each Guide covers a single concept, and is meant to educate and provide a step-by-step tutorial that can be followed to achieve a specific result.
 
-TODO: update the text to introduce the guide section, link to the available guides
+Available guides:
+
+- [Compile a Software Package based on a C Program](./packages/c-package-example)
+- [Create a Software Package based on a Python progrma](./packages/c-package-example)

@@ -1,0 +1,86 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::info What we're doing in this step
+
+At this stage of the example, you'll use the OpenWRT SDK in a Docker container to compile the sample package. After compiling the sample package in the Docker container, you’ll transfer it to the development computer.
+
+
+We're using Docker because it provides a clean, ready to go, reproducible development environment that will work on Mac, Windows, or Linux development computers. The `onion/openwrt-sdk-wrapper` Docker image used in this guide already has all the dependencies needed by OpenWRT SDK installed and the OpenWRT SDK Wrapper configured and ready to use for package creation. Using Docker and this image saves time on environment setup and allow you to focus more of your efforts on the packages themselves.
+:::
+
+Within your terminal, make sure you are in the top level directory of the source code. If you run an `ls -l` command, your terminal should look something like this:
+
+```shell
+total 16
+-rw-r--r--@   1 lazar  staff  1062 24 Oct 14:34 LICENSE
+-rw-r--r--    1 lazar  staff    52 24 Oct 14:34 README.md
+drwxr-xr-x    4 lazar  staff   128 24 Oct 14:35 c-example
+drwxr-xr-x    4 lazar  staff   128 24 Oct 16:21 hello-world-c
+drwxr-xr-x    4 lazar  staff   128 14 Nov 12:32 hello-world-python
+drwxr-xr-x  176 lazar  staff  5632 30 Oct 21:18 output
+drwxr-xr-x    4 lazar  staff   128 14 Nov 12:33 webserver-example-python
+```
+
+**Step 1:** Download the `onion/openwrt-sdk-wrapper` image:
+
+```shell
+docker pull onion/openwrt-sdk-wrapper
+```
+
+:::note
+
+It might take a few minutes to download the Docker image depending on your internet connection. After the image downloads, you won't need to download it again and this step can be skipped the next time you compiled a package.
+
+:::
+
+**Step 2:** Start a Docker container based on the `onion/openwrt-sdk-wrapper` image with the following command:
+
+<Tabs>
+ <TabItem value="Mac and Linux" label="Mac OS & Linux" default>
+
+```shell
+docker run -it --name openwrt-sdk-wrapper -v "$(pwd)":/root/openwrt-sdk-wrapper/openwrt-sdk/package/apps --rm onion/openwrt-sdk-wrapper
+```
+
+ </TabItem>
+ <TabItem value="Windows" label="Windows">
+
+If you are using the command prompt:
+
+```shell
+docker run -it --name openwrt-sdk-wrapper -v %cd%:/root/openwrt-sdk-wrapper/openwrt-sdk/package/apps --rm onion/openwrt-sdk-wrapper
+```
+
+If you are using Powershell:
+
+```shell
+docker run -it --name openwrt-sdk-wrapper -v ${PWD}:/root/openwrt-sdk-wrapper/openwrt-sdk/package/apps --rm onion/openwrt-sdk-wrapper
+```
+
+  </TabItem>
+</Tabs>
+
+:::note Notes
+
+The `-v` option will mount the current directory with your sample program as a volume in the `openwrt-sdk/package` directory. During the build, the SDK will automatically index any changes made to the project source.
+
+The `--rm` flag means the container will be deleted after it is stopped to save disk space. For a subsequent compilation, you will start with a fresh container and compile again. If you prefer to keep the same container for future re-use, remove the `--rm` flag from the launch command. To start an existing container run `docker start -ai openwrt-sdk-wrapper`.
+
+:::
+
+Once the Docker container is running you should see something similar to:
+
+```shell
+root@3368eeceae37:~/openwrt-sdk-wrapper#
+```
+
+You are now inside the Docker container.
+
+**Step 3:** Build the package in the Docker container:
+
+The generic command to build a package is:
+
+```shell
+bash onion_buildenv build_packages {package_name}
+```
