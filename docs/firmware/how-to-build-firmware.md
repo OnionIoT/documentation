@@ -84,19 +84,19 @@ import BuildEnvNotes from './_build-env-notes.mdx';
 
 <BuildEnvNotes tool="Image Builder" />
 
-#### 1. Pull the Docker Image
+#### Step 1: Pull the Docker Image
 
 import DockerPullInstructions from './_docker-pull-instructions.mdx'; 
 
 <DockerPullInstructions/>
 
-#### 2. Start your Docker Container
+#### Step 2: Start your Docker Container
 
 import DockerStartInstructions from './_docker-start-instructions.mdx'; 
 
 <DockerStartInstructions/>
 
-#### 3. Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
+#### Step 3: Clone the OnionIoT/openwrt-imagebuilder-wrapper repo
 
 This repository is set up to build OpenWRT firmware for the Onion Omega2 and Omega2+. 
 
@@ -180,7 +180,7 @@ After completing this step, the OpenWRT Image Builder will download and is set u
 
 The following steps show you how to build a firmware image.
 
-#### 1. Run the build script
+#### Step 1: Run the build script
 
 To build the firmware image(s), run the following command:
 
@@ -190,7 +190,7 @@ bash onion_buildenv build_all_firmware
 
 The build should take **about 2 minutes.** It might be more or less depending on the CPU performance of your development computer.
 
-#### 2. Locate the compiled firmware image
+#### Step 2: Locate the compiled firmware image
 
 Compiled firmware images are in the `output` directory. 
 

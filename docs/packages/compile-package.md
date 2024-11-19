@@ -37,25 +37,25 @@ Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omeg
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
 
-#### Step 1: Set up local environment
+#### A Note on the Build Environment
 
 import BuildEnvNotes from '../firmware/_build-env-notes.mdx';
 
 <BuildEnvNotes tool="OpenWRT SDK" />
 
-#### Step 2. Pull the Docker Image
+#### Step 1: Pull the Docker Image
 
 import DockerPullInstructions from '../firmware/_docker-pull-instructions.mdx'; 
 
 <DockerPullInstructions/>
 
-#### Step 3: Start your Docker Container
+#### Step 2: Start your Docker Container
 
 import DockerStartInstructions from '../firmware/_docker-start-instructions.mdx';
 
 <DockerStartInstructions/>
 
-**Step 4: Clone the repository**
+#### Step 3: Clone the OnionIoT/penwrt-sdk-wrapper repository
 
 To clone the **openwrt-sdk-wrapper** repository in the Docker container, run the following command:
 
