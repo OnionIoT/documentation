@@ -81,15 +81,15 @@ After setting up the `openwrt-sdk-wrapper`, it is necessary to configure the req
 
 #### Step 1: Update package feed variable
 
-Locate the `PACKAGE_FEEDS` variable in the profile file and modify it to reference the local source. This is necessary during development if there is a need to retrieve package makefiles from a local repository.
+Locate the `PACKAGE_FEEDS` variable in the `profile` file and modify it to reference the local source. This is necessary during development if there is a need to retrieve package makefiles from a local repository.
 
-**Example:** Assuming the custom package source is in the `/home/ubuntu/OpenWRT-Packages` directory, the updated `PACKAGE_FEEDS` variable should be:
-
-```shell
-PACKAGE_FEEDS="
-src-link custom /home/ubuntu/OpenWRT-Packages
-"
-```
+> **For example:** Assuming the custom package source is in the `/home/ubuntu/OpenWRT-Packages` directory, the updated `PACKAGE_FEEDS` variable should be:
+>
+>```shell
+>PACKAGE_FEEDS="
+>src-link custom /home/ubuntu/OpenWRT-Packages
+>"
+>```
 
 #### Step 2: Run build environment setup script
 
@@ -135,21 +135,24 @@ The following sections cover configuration changes and compiling package feeds f
 
 #### Step 1: Point to the package feed
 
-Navigate to the cloned **openwrt-sdk-wrapper** repo to update the `PACKAGE_FEEDS` variable.
+In you local copy of the **openwrt-sdk-wrapper**, update the `PACKAGE_FEEDS` variable in the `profile` configuration file.
 
-Follow these steps:
+Use the following syntax:
 
-1. Modify the profile configuration file.
-2. Update the `PACKAGE_FEEDS` variable using the following syntax: `src-git <feed-name> <package-feed-url>[;<package-feed-branch>]`
-   - `<feed-name>`: Choose an arbitrary name for the package feed
-   - `<package-feed-url>`: Provide the Git repository URL
-   - `<package-feed-branch>`: Optionally, specify a branch of the package feed repository
-
-For example, say the `openwrt-23.05` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:  <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
-
-```shell
-src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-23.05
 ```
+src-git <feed-name> <package-feed-url>[;<package-feed-branch>]
+```
+
+Replace the placeholder parameters with:
+- `<feed-name>` - choose a name for the package feed
+- `<package-feed-url>` - provide the Git repository URL
+- `<package-feed-branch>` - optionally, specify a branch of the package feed repository
+
+> **For example:** say the `openwrt-23.05` branch of the `https://github.com/OnionIoT/OpenWRT-Packages` repo is the package feed, the addition to the `PACKAGE_FEEDS` variable should be:  <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
+> 
+> ```shell
+> src-git myfeed https://github.com/OnionIoT/OpenWRT-Packages.git;openwrt-23.05
+>```
 <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
 
 #### Step 2: Select packages from the package feed
@@ -160,17 +163,17 @@ To select specific packages from the package feed to compile, follow these steps
 2. Locate the `SDK_PACKAGES` variable.
 3. Modify the `SDK_PACKAGES` variable to include the packages from the package feed that you want to compile. Ensure that the list is new-line delimited.
 
-For example:
-
-```shell
-SDK_PACKAGES="
-  custom-lib
-  custom-package1
-  new-software
- "
- ```
-
-In this example, `custom-lib`, `custom-package1`, and `new-software` packages, along with any dependencies they require, will be compiled and built.
+>For example:
+>
+>```shell
+>SDK_PACKAGES="
+>  custom-lib
+>  custom-package1
+>  new-software
+> "
+> ```
+>
+>In this example, `custom-lib`, `custom-package1`, and `new-software` packages, along with any dependencies they require, will be compiled and built.
 
 #### Step 3: Set up the SDK and environment
 
