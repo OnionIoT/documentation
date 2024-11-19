@@ -144,7 +144,7 @@ When working on your own packages, remember to begin with the package makefile.
 :::note Important notes
 
 - Set the package name and version number at the very top.
-- Any dependencies should be added to the package definition (`Package/$(PKG_NAME)`) and to the compile flags (`TARGET_LIB)`.
+- Any dependencies should be added to the package definition (the `Package/$(PKG_NAME)` block).
 - Change the package installation instructions as required `define Package/$(PKG_NAME)/install`.
 
 :::
