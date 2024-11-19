@@ -26,12 +26,21 @@ Before deploying your packages, you will need a web-accessible place to store th
 
 **This step only needs to be done once!** 
 
-Setup an AWS S3 bucket to store and host your packages. Follow the AWS documentation to set up your S3 bucket securely:
+Setup an AWS S3 bucket to store and host your packages. Follow the AWS documentation to set up your S3 bucket:
 
 1. [Setting up and using an AWS S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html) - create the bucket to host your package repo
 1. [S3 Access control and enabling public access](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-management.html) - the files in the bucket must be publicly read accessible in order to be used by OPKG
 1. [Enabling static website hosting from the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html) - make it accessible through HTTP, which is how OPKG will access the repo
 
+:::caution Important Security Note
+
+When setting up your S3 bucket, take care to balance accessibility with security. While the package manager requires public read access to download packages, you should:
+
+- Avoid Granting Excessive Permissions: Only grant the minimum necessary read permissions needed for opkg to function.
+- Restrict Write Access: Ensure that only authorized users can upload or modify the contents of the bucket.
+- Use HTTPS: Enable HTTPS access to encrypt data in transit.
+
+:::
 
 
 ### Step 2: Copy Compiled Packages to the Package Repo
