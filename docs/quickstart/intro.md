@@ -16,7 +16,10 @@ If you're unsure how to tell the difference between the "New" firmware and the p
 
 ### Recommended hardware
 
-For ease of use, Onion recommends using the Omega2 Eval Boards. 
+For ease of use, Onion recommends using the Omega2 Eval Boards:
+
+1. The Eval Boards are the new starting point for working with the Omega2 modules and expose almost all of the Omega's functionality
+2. The Eval Boards come pre-loaded with the latest firmware based on OpenWRT 23.05 
 
 ![Omega2 Eval Board (left) and Omega2S Eval Board (right)](./assets/omega2-eval-boards-front.jpg)
 *Omega2 Eval Board (left) and Omega2S Eval Board (right)*
