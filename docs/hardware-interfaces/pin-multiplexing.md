@@ -119,6 +119,6 @@ indicating that the change has indeed been applied.
 
 ### Making the Pin Multiplexing configuration permanent
 
-To make the pin multiplexing configuration permanent we can configure the omega to run the gpio mux command automatically at boot time. For more information, see the article on [running a command on boot](../software/running-command-on-boot).
+To make the pin multiplexing configuration permanent we can configure the omega to run the gpio mux command automatically at boot time. For more information, see the article on [running a command on boot](../software/running-command-on-boot). 
 
 <GiscusDocComment />
