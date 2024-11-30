@@ -6,49 +6,54 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
+Now, we'll dicscuss how to connect to the Omega's command line over USB.
+
 ## Context
 
-The Serial Command Line terminal interface is for debugging during early development. The serial command line is always accessible if the device is on. There is no need to rely on a network connection, like there is with SSH connections. For stable projects, SSH should be used to access the command line.
+The Serial Command Line terminal interface is ideal for configuration and debugging during early development. The serial command line is always accessible if the device is on. There is no need to rely on a network connection, like there is with SSH connections. For Omega devices in production environments or with stable network connections, SSH is a valid alternative to securely access the command line through the local network.
 
-The Omega2’s Serial Command Line interface is accessed with a USB cable connected to your computer. This will be the case if you are using an Omega2/2+ on an Expansion Dock, Mini Dock, or an Omega2S/2S+ with a Development Kit.
+The Omega’s Serial Command Line interface is accessible on UART0. On hardware with an on-board USB-to-Serial chip - like the Omega2 Eval Boards - the serial command line can be accessed over USB. The USB-to-Serial chip translates the UART serial terminal signals into USB signals that your computer can understand and vice versa.
 
-The Omega2 uses its UART pins to run a terminal and the Expansion Dock USB-to-Serial chip translates the serial terminal signals into USB signals that your computer can understand and vice versa.
+:::caution
 
-Note that the Expansion and Mini docks are the only docks that have USB-to-Serial chips, so the serial terminal only works with these docks.
+Keep in mind the serial command line can only be accessed on hardware with a USB-to-Serial chip. This includes the Omega2 Eval Boards, Omega2 Pro, Omega2 LTE, Omega2 Dash, Omega2S Development Kit, Expansion Dock, and Mini Dock
 
-Omega2's command line is accessible on UART0.
+:::
 
-## Install USB-to-Serial driver on your computer
+## Step 1: Install USB-to-Serial driver on your computer
 
 You'll need to download and install the Serial-to-USB driver on your computer for your specific operating system.
 
 <Tabs>
  <TabItem value="Mac OS Serial Driver" label="Mac OS Serial Driver" default>
 
-Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip) for OS X.
+Download and install the [Silicon Labs CP210x driver for Mac OS](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
 
  </TabItem>
  <TabItem value="Windows Serial Driver" label="Windows Serial Driver">
 
-Download and install the [Silicon Labs CP2102 driver](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip) for Windows.
+Download and install the [Silicon Labs CP210x driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
 
  </TabItem>
  <TabItem value="Linux Serial Driver" label="Linux Serial Driver">
 
-Many modern Linux distributions include the CP210x driver by default, so there is no need to install it.
+Most modern Linux distributions include the CP210x driver by default, so there is no need to install it. 
 
-**Details:** The CP210x driver is included on any Linux OS running kernel v2.6 and later ([reference](https://community.silabs.com/s/article/are-cp210x-devices-supported-in-my-version-of-linux-x?language=en_US)).
+#### Confirm the Serial Driver is Installed
 
-Run `sudo 1smod` to see a list of installed modules. If it is supported, CP210x should be on this list.
+Run `modinfo cp210x` on the command line. If it outputs several lines of information, then the driver is installed, and you can skip to Step 4.
 
-You may need to run `sudo modpobe cp210x` to load the driver.
+If the output displays an error like the following: 
 
-#### Specific Linux distributions
+```shell
+modinfo: ERROR Module cp210x not found
+```
 
-- Included in Ubuntu since version 20.10 ([reference](https://community.silabs.com/s/question/0D51M00007xeTTESA2/cp210x-installing-on-ubuntu-2010?language=en_US)).
-- Included in Debian ([reference](https://unix.stackexchange.com/questions/754357/cp210x-driver-on-debian)).
+Then the driver needs to be installed. Drop a comment in this article with the name and version of the Linux distribution you're using, and we'll do our best to help out!
 
-To make the device accessible to the user you'll need to run a few additional commands:
+#### Enable the Serial Device for the user
+
+To make the device accessible to the user you'll need to run a few additional commands with the Omega2 Eval Board plugged in
 
 ```shell
 sudo usermod -a-G dialout $USER
@@ -56,45 +61,63 @@ sudo usermod -a-G tty $USER
 sudo chmod 666 /dev/ttyUSB0
 ```
 
+:::note
+
+This only needs to be done once
+
+:::
+
  </TabItem>
 </Tabs>
 
-## Connect to Omega2
+## Step 2: Connect to the Omega's Command Line
 
 Before connecting to your Omega2 you'll need to check that the serial device exists.
 
 <Tabs>
  <TabItem value="Mac OS" label="Mac OS" default>
 
-In this example, we will use the `screen` utility. There are other tools available but screen is simple and comes already installed on most Macs.
+In this example, we will use the `screen` utility to connect to the Omega's serial command line. There are other tools available but screen is simple and comes already installed on most Macs.
 
 Open a terminal on your Mac, and then follow these steps. 
 
-#### 1: Check for the serial device
+#### Step 1: Check for the serial device
 
-Plug in your Omega2 and Expansion dock, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-0001`.
+Plug in your Omega2 Eval Board, then run `ls /dev/tty.*` to see if the USB-to-Serial device is detected. If the driver is installed, you should see a device with a name like `/dev/tty.usbserial-02B4E355`. Note the device name, keep in mind **the last 7 digits of the device name are unique!** 
 
-<!-- TODO: update usb serial name -->
+![mac check serial device](./assets/serial-mac-check-device.png)
 
-![omega2-os-driver](./assets/connecting-serial-osx-check.jpg)
+:::info
 
-<!-- TODO: need new screenshot with updated usb serial name -->
+The Omega2 Eval Boards use the newer CP2104 USB-to-Serial chip so the serial device name is unique. Previous boards with the CP2102 chip will still use the `/dev/tty.usbserial-0001` device name. Make sure to use the device name that corresponds to your device.
 
-#### 2: Connect to Omega2
+:::
 
-<!-- TODO: update usb serial name -->
+#### Step 2: Connect to Omega2
 
-Run `screen /dev/tty.usbserial-0001`to connect to the Omega2's serial terminal using the screen utility. You should see the following screen if the connection is successful.
+To connect to the Omega's serial terminal using the screen utility, run the following command using the device name from the previous step:
 
-![omega2-os-connect](./assets/connecting-serial-osx-login.jpg)
+```
+screen /dev/tty.usbserial-<UNIQUE DIGITS FROM STEP 1> 115200
+```
 
-<!-- TODO: need new screenshot with updated usb serial name -->
+In this example, the command would be:
 
-#### 3: Close screen
+```
+screen /dev/tty.usbserial-02B4E355 115200
+```
+
+#### Step 3: Confirm connection is successful
+
+Press Enter again and, if the connection is successful, you should see the following:
+
+![mac connection](./assets/serial-mac-device-connection.png)
+
+#### Step 4: Closing screen
 
 :::tip 
 
-You don't need to do this right now, but we thought it would be useful to know how to close the screen session
+Of course, you don't need to do this right away. We wanted to let you know how to close the screen session. For best results, close the screen session before disconnecting the device.
 
 :::
 
@@ -113,21 +136,21 @@ Another useful serial port communication program is [Minicom](https://wiki.emaci
 
 We'll be using PuTTY as our terminal, but you can use any terminal program that you like. Download and install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) on your computer, and then follow these steps.
 
-#### 1: Find the serial device
+#### Step 1: Find the serial device
 
 Plug in your Omega2 and Expansion dock and run the Device Manager (Start > Enter "Device Manager" and press **Enter**). Look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT). Take note of the Com number in brackets.
 
 ![windows-device-manager](./assets/connecting-serial-windows-device-manager.jpg)
 
-#### 2: Configure the terminal program
+#### Step 2: Configure the terminal program
 
-- Open PuTTY and select Serial for the Connection type.
-- Enter the COM number noted in Step 1 as the Serial line.
-- Enter 115200 as the Speed.
+- Open PuTTY and select **Serial** for the Connection type.
+- Enter the **COM number noted in Step 1** as the Serial line.
+- Enter **115200** as the Speed.
 
 ![configure-putty](./assets/connecting-serial-windows-putty-settings.jpg)
 
-#### 3: Connect to Omega2
+#### Step 3: Connect to Omega2
 
 Click the **Open** button to connect to your Omega2 via PuTTY. You should see the following screen if the connection is successful.
 
@@ -136,105 +159,68 @@ Click the **Open** button to connect to your Omega2 via PuTTY. You should see th
 </TabItem>
 <TabItem value="Linux" label="Linux">
 
-Some modern Linux versions already have the required serial driver installed.
+In this example, we will use the `screen` utility to connect to the Omega's serial command line. 
 
-Follow the steps outlined to check the driver installation and connect to your Omega2.
-
-#### 1: Check the serial driver is installed
-
-Run `modinfo cp210x` on the command line. If it outputs several lines of information, then the driver is installed, and you can skip to Step 4.
-
-If the output displays an error like the following, then the driver needs to be installed.
-
-```shell
-modinfo: ERROR Module cp210x not found
-```
-
-#### 2: Download the Silicon Labs CP2102 driver
-
-Download the driver for your appropriate version of Linux.
-
-- Linux kernel [3.x.x and higher](https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip)
-- Linux kernel [2.6.x](https://www.silabs.com/documents/public/software/Linux_2.6.x_VCP_Driver_Source.zip)
-
-#### 3: Build and install the driver
-
-Install the driver for your appropriate version of Linux.
-
-**Ubuntu/Debian:**
-
-Unzip the archive and navigate to the unzipped directory.
-
-Compile the driver with the `make` command.
-
-```shell
-sudo cp cp210x.ko /lib/modules/<kernel-version>/kernel/drivers/usb/serial/
-sudo insmod /lib/modules/<kernel- version>/kernel/drivers/usb/serial/usbserial.ko
-sudo insmod cp210x.ko
-sudo chmod 666 /dev/ttyUSB0
-sudo usermod -a -G dialout $USER
-```
-
-**RedHat/CentOS:**
-
-Update the kernel before compiling the driver.
-
-```shell
- sudo yum update kernel //need to update the kernel first otherwise your header won't match
- sudo yum install kernel-devel kernel-headers //get the devel and header packages
- sudo reboot //your build link should be fixed after your system come back
- ```
-
-Unzip the archive and navigate to the unzipped directory.
-
-Compile the driver with the `make` command.
-
-```shell
- sudo cp cp210x.ko /lib/modules/<kernel-version>/kernel/drivers/usb/serial/
- sudo insmod /lib/modules/<kernel- version>/kernel/drivers/usb/serial/usbserial.ko
- sudo insmod cp210x.ko
- sudo chmod 666 /dev/ttyUSB0
- sudo usermod -a -G dialout $USER
-```
-
-#### 4: Install screen
+#### Step 1: Install screen
 
 Next, we'll install screen, a command line utility that allows connecting to the Omega2's serial terminal.
 
-**Ubuntu/Debian:**
+<Tabs>
+ <TabItem value="Ubuntu/Debian" label="Ubuntu/Debian" default>
 
 ```shell
  sudo apt-get update
  sudo apt-get upgrade
  sudo apt-get install screen
  ```
-
-**RedHat/CentOS:**
+ 
+ </TabItem>
+<TabItem value="RedHat/CentOS" label="RedHat/CentOS">
 
 ```shell
 sudo yum update
 sudo yum install screen
 ```
 
-For information on how to use the screen utility, please see this [tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions).
+ </TabItem>
+</Tabs>
 
-#### 5: Find the USB-to-Serial device
 
-Plug in your Omega2 and Expansion dock and run `sudo dmesg` to check the kernel log messages. If the driver is installed, you should see a message about the new USB device.
+For more information on how to use the screen utility, please see this [tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions).
 
-![linux-find-serial-driver](./assets/omega2-find-serial-linux.png)
+#### Step 2: Find the USB-to-Serial device
 
-#### 6: Open screen
+Plug in your Omega2 Eval Board and run `sudo dmesg` to check the kernel log messages. If the driver is installed, you should see a message about the new USB device.
 
-Run `sudo screen /dev/ttyUSB0 115200` to connect to the Omega2's serial terminal using screen. If the screen remains blank, hit enter again to get to the command prompt.
+![linux-find-serial-driver](./assets/connecting-serial-linux-serial-device.png)
 
-You should see the following screen if the connection is successful.
+The `cp210x converter now attached to ttyUSB0` line is what interests us. Note the `ttyUSB0` device name for the next step.
 
-![omega2-linux-connect](./assets/connecting-serial-linux-login.png)
+#### Step 3: Connect to Omega2
 
-#### 7: Close screen
+To connect to the Omega's serial terminal using the screen utility, run the following command using the device name from the previous step:
+
+```
+screen /dev/ttyUSB0 115200
+```
+
+#### Step 4: Confirm connection is successful
+
+Press Enter again and, if the connection is successful, you should see the following:
+
+![omega2-linux-connect](./assets/connecting-serial-linux-screen-connected.png)
+
+#### Step 5: Closing screen
+
+:::tip 
+
+Of course, you don't need to do this right away. We wanted to let you know how to close the screen session. For best results, close the screen session before disconnecting the device.
+
+:::
 
 After you've finished with the command line you can close the session by pressing the action key (Ctrl-a) then k.
+
+For information on how to use the screen utility, please see this [tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions).
 
  </TabItem>
 </Tabs>

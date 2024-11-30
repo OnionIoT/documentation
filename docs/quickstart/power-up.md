@@ -4,46 +4,52 @@ title: Power Up
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-## Unbox and hardware setup
+Next, we'll cover unboxing the device, powering it on, and connecting it to your computer.
 
-This section assumes you have an Omega2 device and an Expansion dock. If you didn't purchase an Expansion dock, see our guide on [powering the Omega without a dock](https://docs.onion.io/omega2-docs/hardware-prep-no-dock.html#hardware-prep-no-dock).
+## Step 1: Unbox the device
 
-### Unpack the device
+Unpack your Omega2 Eval Board
 
-Unpack your Omega2 and Expansion Dock from their boxes.
+![omega2-unboxing](./assets/omega2-eval-boards-front.jpg)
 
-![omega2-unboxing](./assets/omega2-unboxing.jpg)
+### Ensure the Omega is plugged in to the Eval Board 
 
-### Connect the device
+**Through-hole Omega2 only**
 
-Plug your Omega2 into the socket on the Expansion Dock, making sure the Omega2’s pins are securely seated in the socket.
+Make sure the Omega2 is plugged into the socket on the Eval Board and the Omega's pins are securely seated in the socket.
 
-![omega2-connected](./assets/omega2-connected.jpg)
+![omega2-connected](./assets/omega2-eval-board-o2-connected.png)
 
-### Connect the dock to a computer
+:::info
 
-Plug the microUSB cable into your Omega2 and connect the other end to the USB port on your computer. This provides power to the Omega2 as well as a connection with Omega2’s command line utility.
+On the Omega2S Eval Board, the surface-mount Omega2S module is soldered down to the Eval Board, so this step is not necessary.
 
-All Omega Docks have voltage regulators so the USB port can power the Omega2 with the required 3.3Vdc.
+:::
 
-### Power on
+## Step 2: Connect the Eval Board to a computer
 
-Turn on your Omega2 using the switch.
+Plug the USB cable into the USB-C port on the Omega2 Eval Board and connect the other end to a USB port on your computer. This provides power to the Omega as well as a connection with Omega2’s command line.
 
-![omega2-switched-on](./assets/omega2-switchedon.jpg)
-
-### Wait until it boots
-
-The amber LED on your Omega2 should turn on and start blinking after about 10 seconds. The LED will stop blinking and remain solid after about a couple of minutes. This means your Omega2 has completed its boot sequence.
-
-![omega2-booted-up](./assets/omega2-led-active.jpg)
-
-Congratulations, your Omega2 is now powered up and you're ready to further explore your device.
 
 :::note
 
-If the amber LED on your Omega2 turns on and stays on, wait for a minute to allow your Omega2 to complete its boot.
+The Omega2 Eval Boards have voltage regulators so the USB port can power the Omega2 with the required 3.3Vdc.
 
 :::
+
+## Step 3: Power on
+
+Turn on your Omega2 using the switch.
+
+![omega2-switched-on](./assets/omega2-eval-board-switched-on.gif)
+
+### Wait until it boots
+
+The amber LED on your Omega2 should turn on and start blinking after a few seconds. The LED will stop blinking and remain solid after about a minutes. This means your Omega2 has completed its boot sequence.
+
+![omega2-booted-up](./assets/omega2-eval-board-powered-on.png)
+
+Congratulations, your Omega2 is now powered up and you're ready to further explore your device.
+
 
 <GiscusDocComment />
