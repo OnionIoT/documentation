@@ -45,3 +45,17 @@ div[class^='announcementBar_'] {
     var(--site-announcement-bar-stripe-color2) 40px
   );
 }
+
+/* for youtube embed */
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.yt-lite > .lty-playbtn {
+  cursor: pointer;
+  border: 0;
+}
