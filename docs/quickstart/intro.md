@@ -16,7 +16,7 @@ If you're unsure how to tell the difference between the "New" firmware and the p
 
 ### Quickstart Video
 
-Follow along with our Omega2 Eval Board Quickstart video:
+Prefer visual instructions? Our Quickstart Video covers all the steps in this guide with clear visuals and explanations. Watch as we set up the Omega2 Eval Board from scratch, so you can follow along easily:
 
 ```mdx-code-block
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
@@ -33,8 +33,6 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
   />
 </div>
 ```
-
-It covers all of the steps listed below!
 
 ### Recommended hardware
 
