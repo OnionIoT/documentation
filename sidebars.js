@@ -33,12 +33,26 @@ const sidebars = {
       type: 'category',
       label: 'Product Overview',
       items: [
-        'product-overview/omega2',
-        'product-overview/omega2-mechanical',
-        'product-overview/omega2-electrical',
-        'product-overview/omega2s',
-        'product-overview/omega2s-mechanical',
-        'product-overview/omega2s-electrical',
+        {
+          type: 'category',
+          label: 'Omega2',
+          collapsed: false,
+          items: [
+            'product-overview/omega2',
+            'product-overview/omega2-mechanical',
+            'product-overview/omega2-electrical',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Omega2S',
+          collapsed: false,
+          items: [
+            'product-overview/omega2s',
+            'product-overview/omega2s-mechanical',
+            'product-overview/omega2s-electrical',
+          ]
+        },
       ],
     },
     {

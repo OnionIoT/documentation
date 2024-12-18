@@ -47,15 +47,15 @@ Onion's Omega2S is ideal for high volume production with its low profile, extend
 
 ## Resources
 
-### Omega2S datasheet
+### Omega2S Datasheet
 
-For further details on the Omega2S module, please see the datasheet on our GitHub site: [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf)
+For further details on the Omega2S module, please see the datasheet on GitHub: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf
 
-### Omega2S hardware design guide
+### Omega2S Hardware Design Guide
 
-If you plan to develop custom hardware using the Omega2S modules, please refer to our hardware design guide on our GitHub site. [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf)
+If you plan to develop custom hardware using the Omega2S modules, please refer to our hardware design guide on GitHub site: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf
 
-### Omega2S development kit
+### Omega2S Development Kit
 
 The Omega2S development kit lets you evaluate the Omega2S module's functionality and start developing your IoT product.
 
@@ -88,7 +88,7 @@ Onion built the Omega2S to interact with other hardware. It has a wide variety o
 Omega2S supports the following hardware-based serial communication protocols:
 
 - I2C bus
-- 3 UART's
+- 3 UARTs
 - 4 PWM channels
 
 Omega2S has dedicated pins for:
@@ -106,13 +106,15 @@ Please refer to the following articles to learn more about Omega2S' GPIO's, mult
 - [Pin multiplexing](/hardware-interfaces/pin-multiplexing)
 - [Special pins](/hardware-interfaces/special-pins)
 
-### WiFi antenna
+### WiFi Antenna
 
 The Omgea2S supports 2.4 GHz IEEE 802.11 b/g/n WiFi with a maximum 150 Mbps PHY rate.
 
+There is no built-in antenna on the module. An antenna can be connected to the Antenna (ANT) pin or the u.FL connector.
+
 For more information on the WiFi antenna, please see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
 
-### Mechanical drawing
+### Mechanical Drawing
 
 The following is a detailed [diagram](./omega2s-mechanical) of the dimensions and geometry of the Omega2S and Omega2S+ modules.
 

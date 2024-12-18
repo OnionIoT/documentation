@@ -29,15 +29,21 @@ Both variants come with built-in WiFi, a Linux operating system, flexible GPIOs,
 
 ## Resources
 
-### Omega2 datasheet
+### Omega2 Datasheet
 
-For details on the Omega2 embedded module, see the datasheet on our GitHub site: [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2%20Datasheet.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2%20Datasheet.pdf)
+For details on the Omega2 embedded module, see the datasheet on GitHub: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2%20Datasheet.pdf
 
-### Processor datasheet
+### Omega2S Hardware Design Guide
 
-For details on the Omega2's processor, see the datasheet on our GitHub site: [https://github.com/OnionIoT/Onion-Docs/raw/master/Omega2/MT7688_Datasheet_v1_4.pdf](https://github.com/OnionIoT/Onion-Docs/raw/master/Omega2/MT7688_Datasheet_v1_4.pdf%20)
+If you plan to develop custom hardware using the Omega2 modules, please use the Omega2S hardware design guide for reference. While not everything from the guide is relevant to designing hardware with the Omega2 through-hole modules, it is a useful reference.
 
-### Operating system
+Find the guide on GitHub: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf
+
+### Processor Datasheet
+
+For details on the Omega2's processor, see the datasheet on GitHub: https://github.com/OnionIoT/Onion-Docs/raw/master/Omega2/MT7688_Datasheet_v1_4.pdf
+
+### Operating System
 
 Both the Omega2 and Omega2+ run the OpenWRT Linux operating system. OpenWRT is great for embedded Linux and networking applications. It includes the OPKG package manager. With OPKG you can download and install a variety of packages to extend the functionality of your device.
 
@@ -52,7 +58,7 @@ Onion built the Omega2 to interact with other hardware. It has a wide variety of
 Omega2 supports the following hardware-based serial communication protocols:
 
 - I2C bus
-- 2 UART's
+- 2 UARTs
 - 2 PWM channels
 
 Omega2 has dedicated pins for:
@@ -81,9 +87,9 @@ You can reset the Omega2/2+ using GPIO38. When plugged into a dock, such as an E
 - Single quick button press – triggers a reboot command.
 - Long button press (10 sec) – triggers a factory reset.
 
-### MicroSD card slot
+### MicroSD Card Slot
 
-The MicroSD card slot is only available on the Omega2+ variant. It allows for much more storage.
+The MicroSD card slot is only available on the Omega2+ variant. It allows for extending the available storage.
 
 The card slot is located on the bottom of the Omega2+. To mount a MicroSD card, insert it into the slot, then push it down to secure it.
 
@@ -91,13 +97,13 @@ The card slot is located on the bottom of the Omega2+. To mount a MicroSD card, 
 
 For more information on using the MicroSD card slot, see the [SDIO article](/hardware-interfaces/sdio).
 
-### WiFi antenna
+### WiFi Antenna
 
 The Omega2/2+ WiFi antenna is an on-board ceramic surface-mount chip antenna. The WiFi signal can travel up to 100m (300ft) line-of-sight outdoors.
 
 For more information on the WiFi antenna, see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
 
-### Mechanical drawing
+### Mechanical Drawing
 
 The following are detailed [diagrams](./omega2-mechanical) of the dimensions and geometry of the Omega2 and Omega2+ embedded modules.
 
