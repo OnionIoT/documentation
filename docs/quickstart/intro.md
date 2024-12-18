@@ -14,6 +14,28 @@ For devices running the Omega2 firmware v0.3.4, please see the instructions foun
 
 If you're unsure how to tell the difference between the "New" firmware and the previous v0.3.4 firmware, see the [article on identifying the firmware version](../introduction/determine-fw-version).
 
+### Quickstart Video
+
+Follow along with our Omega2 Eval Board Quickstart video:
+
+```mdx-code-block
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+
+<div className="video-container">
+  <LiteYouTubeEmbed
+    // cSpell:ignore Yhyx Sksg
+    id="L4LP01gOgPM"
+    params="autoplay=1&autohide=1&showinfo=0&rel=0"
+    title="Omega2 Eval Board Quickstart Guide"
+    poster="maxresdefault"
+    webp
+  />
+</div>
+```
+
+It covers all of the steps listed below!
+
 ### Recommended hardware
 
 For ease of use, Onion recommends using the Omega2 Eval Boards:
