@@ -120,63 +120,83 @@ The firmware image specifications are defined in the `profile` configuration fil
 
 The `profile` configuration file defines:
 
-- Additional package repos to use as sources for packages.
-- Packages to include in the build.
-- Device models to build the firmware for.
+- [Additional package repos to use as sources for packages](#additional-package-repos)
+- [Packages to include in the build](#packages-to-include)
+- [Packages to *not* include in the build](#packages-to-not-include)
+- [Device models to build the firmware for](#device-models)
 
-#### How to customize
-
-All environment variables can be found in the `profile` configuration file.
-
-##### Additional package repos
+#### Additional package repos
 
 The `PACKAGE_REPOS` variable defines which additional package repos to use as sources for packages.
 
 Edit the `PACKAGE_REPOS` variable to change which package feeds to check for packages. Each feed must be on a new line.
 
-The syntax for a git-based package repo is: `src/gz <PACKAGE REPO NAME> <PACKAGE REPO URL>`
+The syntax for a git-based package repo is: 
+```
+src/gz <PACKAGE REPO NAME> <PACKAGE REPO URL>
+```
 
-For example: `src/gz onion_openwrt_packages http://repo.onioniot.com/omega2/packages/openwrt-23.05/onion`. <!-- TODO: update with OPENWRT_VERSION variable -->
+For example: 
+```
+src/gz onion_openwrt_packages http://repo.onioniot.com/omega2/packages/openwrt-23.05/onion
+```
+<!-- TODO: update above with OPENWRT_VERSION variable -->
 
 Note the `<PACKAGE REPO NAME>` is arbitrary, it just needs to be different from the existing package repo names.
 
 For more configuration options, see the [OpenWRT documentation on Image Builder Package repositories](https://openwrt.org/docs/guide-user/additional-software/imagebuilder#adding_package_repositories).
 
-##### Packages to include
+#### Packages to Include
 
 The `IMAGE_BUILDER_PACKAGES` variable defines which packages to include in the firmware image.
 
 Edit this variable to change which packages to include. Each package must be listed on a new line.
 
-:::note
+:::info
 
 Only packages from the package repos defined in the `PACKAGE_REPOS` variable or from the default OpenWRT package repos can be included.
 
 :::
 
-##### Device models
+#### Packages to *Not* Include
+
+It's also possible to change the configuraiton to make sure packages are usually included by default do not get included in the firmware image.
+
+To make sure a package is not included in the firmware image: edit the `IMAGE_BUILDER_PACKAGES` variable in the `profile` configuration file, on a new line add the name of the package with a `-` prefix.
+
+For example, say the `dnsmasq` package should not be included in the firmware, the `IMAGE_BUILDER_PACKAGES` might look like this:
+
+```
+IMAGE_BUILDER_PACKAGES="
+i2c-tools
+-dnsmasq
+"
+```
+
+
+#### Device Models
 
 The `BUILD_MODELS` variable defines which device model the firmware is built for.
 
 Edit this variable to change which devices the image builder outputs firmware for. List each device model on a separate line. (At least one device must be defined.)
 
-:::note
+:::info
 
 The current image builder wrapper supports creating firmware images for `ramips/mt76x8` targets that use the `mipsel` architecture.
 
 :::
 
-#### Run the setup script
+### Setup the Image Builder
 
-To download and set up the image builder, run the following command:
+After making changes to the `profile` configuration file, run the following command to download and set up the image builder:
 
 ```Shell
 bash onion_buildenv setup_imagebuilder
 ```
 
-After completing this step, the OpenWRT Image Builder will download and is set up for use in the `openwrt-imagebuilder` directory.
+After completing this step, the OpenWRT Image Builder will downloaded and set up for use in the `openwrt-imagebuilder` directory.
 
-### Building the firmware image
+### Building the Firmware Image
 
 The following steps show you how to build a firmware image.
 
