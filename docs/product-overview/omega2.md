@@ -58,7 +58,7 @@ Onion built the Omega2 to interact with other hardware. It has a wide variety of
 Omega2 supports the following hardware-based serial communication protocols:
 
 - I2C bus
-- 2 UART's
+- 2 UARTs
 - 2 PWM channels
 
 Omega2 has dedicated pins for:
@@ -87,9 +87,9 @@ You can reset the Omega2/2+ using GPIO38. When plugged into a dock, such as an E
 - Single quick button press – triggers a reboot command.
 - Long button press (10 sec) – triggers a factory reset.
 
-### MicroSD card slot
+### MicroSD Card Slot
 
-The MicroSD card slot is only available on the Omega2+ variant. It allows for much more storage.
+The MicroSD card slot is only available on the Omega2+ variant. It allows for extending the available storage.
 
 The card slot is located on the bottom of the Omega2+. To mount a MicroSD card, insert it into the slot, then push it down to secure it.
 
@@ -97,13 +97,13 @@ The card slot is located on the bottom of the Omega2+. To mount a MicroSD card, 
 
 For more information on using the MicroSD card slot, see the [SDIO article](/hardware-interfaces/sdio).
 
-### WiFi antenna
+### WiFi Antenna
 
 The Omega2/2+ WiFi antenna is an on-board ceramic surface-mount chip antenna. The WiFi signal can travel up to 100m (300ft) line-of-sight outdoors.
 
 For more information on the WiFi antenna, see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
 
-### Mechanical drawing
+### Mechanical Drawing
 
 The following are detailed [diagrams](./omega2-mechanical) of the dimensions and geometry of the Omega2 and Omega2+ embedded modules.
 

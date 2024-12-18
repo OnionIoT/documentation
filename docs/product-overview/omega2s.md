@@ -88,7 +88,7 @@ Onion built the Omega2S to interact with other hardware. It has a wide variety o
 Omega2S supports the following hardware-based serial communication protocols:
 
 - I2C bus
-- 3 UART's
+- 3 UARTs
 - 4 PWM channels
 
 Omega2S has dedicated pins for:
@@ -106,13 +106,15 @@ Please refer to the following articles to learn more about Omega2S' GPIO's, mult
 - [Pin multiplexing](/hardware-interfaces/pin-multiplexing)
 - [Special pins](/hardware-interfaces/special-pins)
 
-### WiFi antenna
+### WiFi Antenna
 
 The Omgea2S supports 2.4 GHz IEEE 802.11 b/g/n WiFi with a maximum 150 Mbps PHY rate.
 
+There is no built-in antenna on the module. An antenna can be connected to the Antenna (ANT) pin or the u.FL connector.
+
 For more information on the WiFi antenna, please see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
 
-### Mechanical drawing
+### Mechanical Drawing
 
 The following is a detailed [diagram](./omega2s-mechanical) of the dimensions and geometry of the Omega2S and Omega2S+ modules.
 
