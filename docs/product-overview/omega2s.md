@@ -47,15 +47,15 @@ Onion's Omega2S is ideal for high volume production with its low profile, extend
 
 ## Resources
 
-### Omega2S datasheet
+### Omega2S Datasheet
 
-For further details on the Omega2S module, please see the datasheet on our GitHub site: [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf)
+For further details on the Omega2S module, please see the datasheet on GitHub: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Datasheet.pdf
 
-### Omega2S hardware design guide
+### Omega2S Hardware Design Guide
 
-If you plan to develop custom hardware using the Omega2S modules, please refer to our hardware design guide on our GitHub site. [https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf](https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf)
+If you plan to develop custom hardware using the Omega2S modules, please refer to our hardware design guide on GitHub site: https://github.com/OnionIoT/Omega2/blob/master/Documents/Omega2S%20Hardware%20Design%20Guide.pdf
 
-### Omega2S development kit
+### Omega2S Development Kit
 
 The Omega2S development kit lets you evaluate the Omega2S module's functionality and start developing your IoT product.
 
