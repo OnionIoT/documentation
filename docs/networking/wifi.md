@@ -92,7 +92,9 @@ See the [OpenWRT wireless](https://openwrt.org/docs/guide-user/network/wifi/basi
 
 ## STA
 
-The Station (STA) allows you to connect the Omega2 to an existing wireless network as a client.
+The Station (STA) mode allows you to connect the Omega2 to an existing wireless network as a client. 
+
+*The wireless interface used for Station mode is also called the wireless client interface.**
 
 ### Default behaviour
 
@@ -100,7 +102,7 @@ The STA is disabled on the Omega2 by default.
 
 ### Configuring the STA
 
-The STA has several settings that are configurable.
+The STA has several settings that are configurable, mostly related to connecting to an external network.
 
 #### Enabling an STA connection
 
@@ -161,6 +163,14 @@ If a connection is successful, you’ll see the following message in the kernel 
 [ 993.442095] apcli0: associated
 ```
 
+:::warning
+
+If the connection is not successful, make sure to disable the client interface before rebooting the device. If the Omega’s WiFi client interface is configured and enabled but cannot connect to the specified network, the Omega’s access point will not be available after a reboot. 
+
+See the [AP Not Accessible if STA cannot Connect section below](#ap-not-accessible-if-sta-cannot-connect) for more details.
+
+:::
+
 #### Checking the IP address on Omega
 
 import Apcli0CheckIpAddr from './_apcli0-check-ip-addr.mdx';
@@ -189,13 +199,36 @@ See the [OpenWRT wireless](https://openwrt.org/docs/guide-user/network/wifi/basi
 
 The Omega2 can host a wireless network access point and connect to an existing wireless network simultaneously.
 
-:::caution WARNING
+### AP Not Accessible if STA cannot Connect
+
+:::danger
+
+If the Omega’s WiFi client interface is configured but cannot connect to the specified network (for example, the network is offline or out of range), **the Omega’s access point will not be available** after a reboot. 
+
+:::
+
+This behaviour differs from previous firmware versions (e.g., v0.3.4) where the AP remained accessible even if the client could not connect.
+
+#### Why this Happens
+
+The new mt76 WiFi driver enforces tighter coupling between the AP and STA virtual interfaces running on the same radio. If the STA fails to associate, the AP cannot operate.
+
+#### Recommended Mitigation
+
+- Ensure the STA configuration always points to a known, reachable network.  
+- If persistent local AP availability is required regardless of STA connectivity, consider disabling the STA interface
+- If persistent local AP availability is required in addition to STA connectivity, consider creating a script that checks if the wireless client configuration is enabled and, if the wireless client interface is not connected to a network, will disable the wireless client interface.
+
+
+### Potential for IP Address Collisions
+
+:::caution
 
 Having both the AP and STA enabled simultaneously may result in IP address collisions.
 
 :::
 
-### What is an IP address collision?
+#### What is an IP address collision?
 
 An IP address collision can occur if your Omega’s access point (AP) and WiFi network that you try connecting to share the same subnetwork (subnet). The Omega’s AP is 192.168.3.0/24 and it’s possible that your WiFi network has the same subnet. This results in the Omega not knowing what data to send where.
 
