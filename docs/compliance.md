@@ -52,6 +52,13 @@
 |OM-O2      |Omega2                                   |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 |OM-O2P     |Omega2+                                  |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 
+### Eval Boards
+
+|SKU          |Name                                     |Product Status|ECCN   |HS Code      |CCATS                |
+|-------------|-----------------------------------------|--------------|-------|-------------|---------------------|
+|OM-O2P-EVAL  |Omega2 Eval Board                        |Active        |5A992.C|8471.50.0150 |740.17 (b)(1) as MMKT|
+|OM-O2SP-EVAL |Omega2S Eval Board                       |Active        |5A992.C|8471.50.0150 |740.17 (b)(1) as MMKT|
+
 ### Single Board Computers (SBCs)
 
 |SKU        |Name                                     |Product Status|ECCN   |HS Code      |CCATS                |
