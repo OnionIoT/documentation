@@ -123,7 +123,9 @@ The program will run and output:
 Fetching To Do from the API at: `http://dummyapi.online/api/todods/2`
 
 {"id":2,"title":"Buy groceries","completed":false,"priority":"medium"}
- ```
+```
+
+![output of c-example program on omega command line](./assets/c-example-output.png)
 
 ## Next steps
 
