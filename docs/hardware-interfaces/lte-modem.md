@@ -42,9 +42,8 @@ To install the software package to provide support for the LTE modem:
 Using the Omega2 LTE with the latest firmware is a bit different. The new firmware is not the same as the v0.3.4 firmware for the Omega2 LTE.
 
 Key differences:
-There is no firmware specific to the Omega2 LTE. Instead, the Omega2 or Omega2+ firmware must be used. You can add LTE modem support by installing the `omega2-lte-base` software package.
-
-The software does not include the `ugps` utility out-of-the-box. Additional work is needed to use the GNSS receiver.
+- There is no firmware specific to the Omega2 LTE. Instead, the Omega2 or Omega2+ firmware must be used. You can add LTE modem support by installing the `omega2-lte-base` software package.
+- The software does not include the `ugps` utility out-of-the-box. Additional work is needed to use the GNSS receiver.
 
 We’re open to suggestions on improving this experience and software package.lease provide feedback by leaving a comment in this article. Or, create an issue in the [OnionIoT/OpenWRT-Packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/issues).
 
