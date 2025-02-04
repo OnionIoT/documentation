@@ -111,4 +111,6 @@ import Omega2EvalPowerConnector from './_omega2-eval-power-connector.mdx';
 
 ### WiFi Antenna
 
-The on-board antenna is a 2dBi ceramic surface-mount chip antenna. 
+import Omega2WifiAntenna from './_omega2-wifi-antenna.mdx';
+
+<Omega2WifiAntenna/> 
