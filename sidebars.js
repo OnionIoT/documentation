@@ -54,6 +54,7 @@ const sidebars = {
           ]
         },
         'product-overview/omega2-eval-board',
+        'product-overview/omega2s-eval-board',
       ],
     },
     {

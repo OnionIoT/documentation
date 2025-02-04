@@ -1,0 +1,15 @@
+The Reset Button is connected directly to the Omega2 Soft Reset pin (GPIO38). Pressing this button do one of two things: reboot, or factory restore.
+
+#### Reboot
+
+Momentarily pressing the reset button and letting go will initiate a reboot of the Linux operating system.
+
+#### Factory Restore
+
+Pressing and holding the reset button for 10 seconds then releasing will trigger a factory restore.
+
+:::danger
+
+This will reset your Omega to the default filesystem of the last firmware update, this will delete ALL of your data!
+
+:::
