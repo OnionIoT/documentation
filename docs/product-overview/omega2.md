@@ -76,26 +76,37 @@ Please refer to the following articles to learn more about Omega2's GPIO's, mult
 - [Pin multiplexing](/hardware-interfaces/pin-multiplexing)
 - [Special pins](/hardware-interfaces/special-pins)
 
-### Omega LED
+### Omega2 System Status LED
 
-Omega2's amber system status LED provides a visual indication of its current state. The Omega2 LED uses GPIO44, and you can program it to do several interesting things. To learn more about the Omega2's LED, see the article [LED Chains](/hardware-interfaces/ledchain).
+The Omega2's amber LED is located on the Omega2 module 
+itself and indicates the current System Status. 
+
+import Omega2Led from './_omega2-led.mdx';
+
+<Omega2Led/> 
 
 ### Reset GPIO
 
-You can reset the Omega2/2+ using GPIO38. When plugged into a dock, such as an Expansion Dock, this GPIO provides various functions to the reset button found on docks.
+You can reset the Omega2/2+ using GPIO38. When plugged into an Omega2 Eval Board or an Omega2 Dock, such as an Expansion Dock, this GPIO provides various functions to the reset button found on Docks.
 
 - Single quick button press – triggers a reboot command.
 - Long button press (10 sec) – triggers a factory reset.
 
 ### MicroSD Card Slot
 
-The MicroSD card slot is only available on the Omega2+ variant. It allows for extending the available storage.
+import Omega2MicrosdSlot from './_omega2-microsd-slot.mdx';
 
-The card slot is located on the bottom of the Omega2+. To mount a MicroSD card, insert it into the slot, then push it down to secure it.
+<Omega2MicrosdSlot/> 
+
+The card slot is located on the bottom of the Omega2+.
 
 ![microSD slot](./assets/microSD-photo.jpg)
 
-For more information on using the MicroSD card slot, see the [SDIO article](/hardware-interfaces/sdio).
+:::info
+
+The MicroSD card slot is only available on the Omega2+ variant (OM-O2P). It is not available on the Omega2 (OM-O2).
+
+:::
 
 ### WiFi Antenna
 

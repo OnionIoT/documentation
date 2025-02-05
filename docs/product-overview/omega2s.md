@@ -12,7 +12,7 @@ Onion’s Omega2S is a smaller, surface-mount packaged version of the through-ho
 
 Both variants come with built-in WiFi, a Linux operating system, flexible GPIOs, and a powerful processor. The Omega2S+ has a larger memory module and extra storage.
 
-| Specifications | Omega2S         | Omega2S+        |
+| Specifications | Omega2S (OM-O2S)  | Omega2S+ (OM-O2SP)       |
 | :------------- | :-------------- | :-------------- |
 | Processor      | 580MHz MIPS CPU | 580MHz MIPS CPU |
 | Memory         | 64MB            | **128MB**       |
