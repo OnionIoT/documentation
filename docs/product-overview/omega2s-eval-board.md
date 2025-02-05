@@ -11,7 +11,7 @@ It lowers the cost barrier for working with the Omega2S module by providing acce
 This board can also serve as template for custom designs and even as standalone SBC for custom applications.
 
 
-![omega2s eval board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2s-eval-board-front-01.jpeg)
+![omega2s eval board](./assets/omega2s-eval-board-front-01.jpeg)
 
 ## Resources
 
@@ -31,7 +31,7 @@ The Omega2S Eval Board design is open source and can be found in the [OnionIoT/O
 
 ### Overview
 
-![labelled diagram of the Omega2S Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2s-eval-board-labelled-diagram.png)
+![labelled diagram of the Omega2S Eval Board](./assets/omega2s-eval-board-labelled-diagram.png)
 
 |                                   |                       |
 |-----------------------------------|-----------------------|
@@ -52,7 +52,7 @@ The Omega2S Eval Board exposes all of the I/O available on the Omega2S through:
 - The 30-pin Header (backwards compatible with all Omega2 Expansions)
 - The **new** 24-pin header
 
-![pinout diagram of the Omega2S Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2s-eval-board-pinout.svg)
+![pinout diagram of the Omega2S Eval Board](./assets/omega2s-eval-board-pinout.svg)
 
 For more information on using the Hardware Interfaces chapter on this Documentation site.
 

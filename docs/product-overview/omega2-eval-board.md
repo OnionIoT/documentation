@@ -9,7 +9,7 @@ The Omega2 Eval Board is a stand-alone single board computer meant for evaluatin
 Almost all of the Omega2's capabilities and I/O are available, making it an essential tool for evaluation, prototyping, and development. This board can serve as template for custom designs and even as a standalone SBC for custom applications.
 
 
-![omega2 eval board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2-eval-board-front-01.jpeg)
+![omega2 eval board](./assets/omega2-eval-board-front-01.jpeg)
 
 ## Resources
 
@@ -29,7 +29,7 @@ The Omega2 Eval Board design is open source and can be found in the [OnionIoT/Om
 
 ### Overview
 
-![labelled diagram of the Omega2 Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2-eval-board-labelled-diagram.png)
+![labelled diagram of the Omega2 Eval Board](./assets/omega2-eval-board-labelled-diagram.png)
 
 |                                   |                       |
 |-----------------------------------|-----------------------|
@@ -50,7 +50,7 @@ The Omega2 Eval Board exposes all of the I/O available on the Omega2 through:
 - The 30-pin Header (backwards compatible with all Omega2 Expansions)
 - The **new** 8-pin header
 
-![pinout diagram of the Omega2 Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2-eval-board-pinout.svg)
+![pinout diagram of the Omega2 Eval Board](./assets/omega2-eval-board-pinout.svg)
 
 For more information on using the Hardware Interfaces chapter on this Documentation site.
 
