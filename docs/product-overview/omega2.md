@@ -78,6 +78,9 @@ Please refer to the following articles to learn more about Omega2's GPIO's, mult
 
 ### Omega2 System Status LED
 
+The Omega2's amber LED is located on the Omega2 module 
+itself and indicates the current System Status. 
+
 import Omega2Led from './_omega2-led.mdx';
 
 <Omega2Led/> 

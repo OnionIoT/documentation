@@ -1,7 +1,7 @@
-The Omega2's amber LED is located on the Omega2 module itself and indicates the current System Status. It provides a visual indication of its current state:
+It provides a visual indication of its current system state:
 
 - Off – Device not powered on
 - Blinking – Booting/updating
 - On – Up and running
 
-The Omega2 LED is connected to GPIO44. In the Omega2 firmware, the kernel is in control of the Omega2 LED.
+The Omega2 system status LED is connected to GPIO44. In the Omega2 firmware, the kernel is in control of the LED - meaning it cannot be controlled directly through the GPIO.

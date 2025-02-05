@@ -4,9 +4,9 @@ title: Omega2 Eval Board
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-The Omega2 Eval Board is a stand-alone single board computer meant for evaluating the through-hole Onion Omega2 module. 
+The Omega2 Eval Board is a stand-alone single board computer meant for evaluating and working with the through-hole Onion Omega2 modules. 
 
-Almost all of the Omega2's capabilities and I/O are available, making it an essential tool for evaluation, prototyping, and development. This board can function as template for custom designs and even as standalone SBCs for custom applications.
+Almost all of the Omega2's capabilities and I/O are available, making it an essential tool for evaluation, prototyping, and development. This board can serve as template for custom designs and even as a standalone SBC for custom applications.
 
 
 ![omega2 eval board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2-eval-board-front-01.jpeg)
@@ -27,6 +27,8 @@ The Omega2 Eval Board design is open source and can be found in the [OnionIoT/Om
 
 ## Hardware 
 
+### Overview
+
 ![labelled diagram of the Omega2 Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2-eval-board-labelled-diagram.png)
 
 |                                   |                       |
@@ -40,8 +42,7 @@ The Omega2 Eval Board design is open source and can be found in the [OnionIoT/Om
 | **G.** USB Type-A Host Port | **N.** 8-pin I/O Header |
 
 
-Included with the Omega2 Eval Board is an Onion Omega2+ module (OM-O2P).
-<!-- TODO: put in specs of Omega2+? -->
+Included with the Omega2 Eval Board is an [Onion Omega2+ module (OM-O2P)](/product-overview/omega2).
 
 ### Pins
 
@@ -63,7 +64,7 @@ import Omega2EvalUsbcPort from './_omega2-eval-usb-c-port.mdx';
 
 import Omega2EvalEthernetPort from './_omega2-eval-ethernet-port.mdx';
 
-<Omega2EvalEthernetPort/>
+<Omega2EvalEthernetPort device="Omega2 Eval Board"/>
 
 ### USB Type-A Port
 
@@ -94,6 +95,9 @@ import Omega2EvalResetButton from './_omega2-eval-reset-button.mdx';
 <Omega2EvalResetButton/> 
 
 ### Omega2 System Status LED
+
+The Omega2's amber LED is located on the Omega2 module 
+itself and indicates the current System Status. 
 
 import Omega2Led from './_omega2-led.mdx';
 

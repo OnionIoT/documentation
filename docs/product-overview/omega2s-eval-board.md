@@ -4,11 +4,11 @@ title: Omega2S Eval Board
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-The Omega2S Eval Board is a stand-alone single board computer meant for evaluating the surface-mount Onion Omega2S module. 
+The Omega2S Eval Board is a stand-alone single board computer meant for evaluating and working with the surface-mount Onion Omega2S modules. 
 
-It lowers the cost barrier for working with the Omega2S module by providing access to almost all the Omega2S capabilities and I/O, without the need of an expensive development kit. This makes it an essential tool for evaluation, prototyping, and development. 
+It lowers the cost barrier for working with the Omega2S module by providing access to almost all the Omega2S capabilities and I/O, without the need for an expensive development kit. This makes it an essential tool for evaluation, prototyping, and development. 
 
-This board even can function as template for custom designs and even as standalone SBCs for custom applications.
+This board can also serve as template for custom designs and even as standalone SBC for custom applications.
 
 
 ![omega2s eval board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2s-eval-board-front-01.jpeg)
@@ -29,12 +29,14 @@ The Omega2S Eval Board design is open source and can be found in the [OnionIoT/O
 
 ## Hardware 
 
+### Overview
+
 ![labelled diagram of the Omega2S Eval Board](https://raw.githubusercontent.com/OnionIoT/Omega2-Eval-Boards/refs/heads/main/Images/omega2s-eval-board-labelled-diagram.png)
 
 |                                   |                       |
 |-----------------------------------|-----------------------|
 | **A.** 30-pin I/O Header                        | **H.** Ethernet Port     |
-| **B.** MicroSD Slot (underneath)                | **I.** Mounting Hole |
+| **B.** MicroSD Slot                             | **I.** Mounting Hole |
 | **C.** External Power Connector                 | **J.** LEDs (Boot status and user programmable) |
 | **D.** Reset Button                             | **K.** Omega2S+ Module    |
 | **E.** Power Switch                             | **L.** WiFi Antenna |
@@ -42,8 +44,7 @@ The Omega2S Eval Board design is open source and can be found in the [OnionIoT/O
 | **G.** USB Type-A Host Port | |
 
 
-Included on the Omega2S Eval Board is a soldered-down Onion Omega2S+ module (OM-O2SP).
-<!-- TODO: put in specs of Omega2S+? -->
+Included on the Omega2S Eval Board is a soldered-down [Onion Omega2S+ module (OM-O2SP)](/product-overview/omega2s).
 
 ### Pins
 
@@ -65,7 +66,7 @@ import Omega2EvalUsbcPort from './_omega2-eval-usb-c-port.mdx';
 
 import Omega2EvalEthernetPort from './_omega2-eval-ethernet-port.mdx';
 
-<Omega2EvalEthernetPort/>
+<Omega2EvalEthernetPort device="Omega2S Eval Board"/>
 
 ### USB Type-A Port
 
@@ -92,6 +93,8 @@ import Omega2EvalResetButton from './_omega2-eval-reset-button.mdx';
 <Omega2EvalResetButton/> 
 
 ### Omega2 System Status LED
+
+The amber LED located on the Omega2S Eval Board indicates the current System Status. 
 
 import Omega2Led from './_omega2-led.mdx';
 
