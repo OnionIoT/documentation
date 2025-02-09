@@ -6,6 +6,12 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 We want to connect the Omega to a local WiFi network, so that it has internet access.
 
+:::info 
+
+**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/quickstart/serial-command-line) for details.
+
+:::
+
 ## Step 1: Scan for available networks
 
 :::tip 

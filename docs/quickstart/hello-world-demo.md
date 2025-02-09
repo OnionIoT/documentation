@@ -11,6 +11,12 @@ In general, a user programmable LED can:
 - Show the code is configured, installed, and running correctly.
 - Help with debugging your code in real-time, where you can program it to blink different patterns based on what code is executing.
 
+:::info 
+
+**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/quickstart/serial-command-line) for details.
+
+:::
+
 ## Python Blink Program
 
 The goal of the LED Blinker application is to provide a basic example of how to write your own application on Omega2. This will show and provide the basic building blocks needed to create your own unique applications.
