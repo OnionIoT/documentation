@@ -25,7 +25,7 @@ Packages that are in production are stable and have gone through rigorous testin
 
 #### What is a package feed?
 
-A package feed is a collection of package source files stored in a code repository, like a Git repository. The package source files serve as input when building a package, with the output being an installable package binary.
+A package feed is a directory or repository that holds the package source files for one or more software packages. Packages source files include the Package Makefiles and related source code and files. The package source files serve as input when building a package, with the output being an installable package binary.
 
 ## Method used to compile packages
 

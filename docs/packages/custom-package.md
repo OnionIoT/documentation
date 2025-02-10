@@ -78,13 +78,13 @@ For more information on the package makefile refer to OpenWRT [**Package Makefil
 
 :::
 
-### File Directory
+### Files Directory
 
-The file directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
+The files directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
 
 Additionally, it is a good place to store files that aren’t necessarily application source code but are still helpful to the package, such as config files or the files required to make the package run as a service.
 
-Any files in the file directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
+Any files in the files directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
 
 ### Patch Directory
 
@@ -142,7 +142,11 @@ For further exploration of package dependencies and their types, visit the [**Op
 
 ## Examples and More Info
 
-For examples of custom packages, explore the [**OnionIoT/OpenWRT-Packages Github repo**](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05). This repository contains the package source for the custom packages created by Onion. Feel free to use these packages as references of how a working package looks and works, or as a starting point for the creation of new custom packages. <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
+For examples of basic custom packages, explore the [**OnionIoT/Example-OpenWRT-Packages Github repo**](https://github.com/OnionIoT/example-openwrt-packages). This repository contains a collection of sample software packages written in C and Python.
+
+For more complex example, see the [**OnionIoT/OpenWRT-Packages Github repo**](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-23.05). This repository contains the package source for the custom packages created by Onion. <!-- TODO: update this 23.05 with OPENWRT_VERSION variable -->
+
+Feel free to use these packages as references of how a working package looks and works, or as a starting point for the creation of new custom packages. 
 
 For more information - including more details about packages, a reference for Package Makefile syntax, and details on edge cases - see the [**OpenWRT documentation on packages**](https://openwrt.org/docs/guide-developer/packages).
 
