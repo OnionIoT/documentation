@@ -74,7 +74,7 @@ What's no longer included:
 - No web-based setup wizard - the legacy first time setup guide will not work with this firmware
 - Only firmware for the Omega2/2S and Omega2+/2S+ devices is provided. No device-specific firwmare for the Omega2 Pro, LTE, and Dash - instead the Omega2+/2S+ firmware with additional packages should be used
   - For more information on using the Omega2 LTE, see the [LTE Modem article](/hardware-interfaces/lte-modem)
-  - No special support for the Omega2 LTE is currently available. However, users can enable display support by building custom firmware, see [this thread on the Onion Community](https://community.onion.io/topic/5096/how-do-we-get-the-23-05-firmware-for-the-dash/2) for more information.
+  - No special support for the Omega2 Dash TFT display is currently available. However, users can enable display support by building custom firmware, see [this thread on the Onion Community](https://community.onion.io/topic/5096/how-do-we-get-the-23-05-firmware-for-the-dash/2) for more information.
 - Utilities for the I2C-based Omega2 expansions are not included in the firmware by default
   - Command line utilities that control the OLED, PWM, and Relay Expansion available as packages for the new firmware and can be installed by running `opkg update; opkg install oled-exp relay-exp pwm-exp`
 
