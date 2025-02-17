@@ -20,7 +20,7 @@ This command fetches the latest list of packages from the configured package rep
 
 :::tip
 
-Users must run the `opkg update` command after each reboot of the device to find or install a package.
+Users must run the `opkg update` command after each reboot of the device to find or install packages.
 
 :::
 
@@ -28,7 +28,7 @@ Users must run the `opkg update` command after each reboot of the device to find
 
 In this section, we show you how to view the list of all available packages with their descriptions and find a particular package of interest. Follow the steps outlined below to search for packages using opkg.
 
-### Step 1: Display available packages
+### Step 1: Display all available packages
 
 Run the following command to view all the available packages:
 
@@ -36,46 +36,44 @@ Run the following command to view all the available packages:
 opkg list
 ```
 
-### Step 2: Find packages
+### Step 2: Find specific packages
 
-To find a particular package from the repository, use the `grep` command. Narrow down your search operation using a specific keyword along with this command.
+The `opkg list` command supports searching with wildcards, making it easy to search for specific packages in the configured package repos.
+
+Narrow down your package search based on the package name and one or more wildcards:
 
 ```shell
-opkg list | grep keyword
+opkg list 'keyword*'   # starting with 'keyword'
+opkg list '*keyword'   # ending with 'keyword'
+opkg list '*keyword*'  # contains 'keyword'
 ```
 
-**Example:** To find the packages related to `kmod-usb`, run the command:
+**Example:** To find all packages starting with `kmod-usb`, run the command:
 
 ```shell
-opkg list | grep kmod-usb
-```
-
-:::tip
-
-Use the `grep` command with the `-i` command to make your query **case-independent** (no discrimination between uppercase and lowercase letters).
-
-:::
-
-```shell
-opkg list | grep -i kmod-usb
+opkg list 'kmod-usb*'
 ```
 
 This will show all the available packages with `kmod-usb` in their name or description:
 
 ```shell
-root@Omega-539F:/# opkg list | grep -i kmod-usb
-kmod-usb-acm - 5.10.176-1 - Kernel support for USB ACM devices (modems/isdn controllers)
-kmod-usb-atm - 5.10.176-1 - Kernel support for USB DSL modems
-kmod-usb-atm-cxacru - 5.10.176-1 - Kernel support for cxacru based USB ADSL modems
-kmod-usb-atm-speedtouch - 5.10.176-1 - Kernel support for SpeedTouch USB ADSL modems
-kmod-usb-atm-ueagle - 5.10.176-1 - Kernel support for Eagle 8051 based USB ADSL modems
-kmod-usb-audio - 5.10.176-1 - Kernel support for USB audio devices
-kmod-usb-cm109 - 5.10.176-1 - Kernel support for CM109 VOIP phone
-kmod-usb-core - 5.10.176-1 - Kernel support for USB
-kmod-usb-dwc2 - 5.10.176-1 - This driver provides USB Device Controller support for the Synopsys DesignWare USB OTG Core
-kmod-usb-dwc3 - 5.10.176-1 - This driver provides support for the Dual Role SuperSpeed USB Controller based on the Synopsys DesignWaree
-kmod-usb-ehci - 5.10.176-1 - EHCI controller support
-kmod-usb-hid - 5.10.176-1 - Kernel support for USB HID devices such as keyboards and mice
+root@Omega-FBF4:/# opkg list 'kmod-usb*'
+kmod-usb-acm - 5.15.150-1 - Kernel support for USB ACM devices (modems/isdn controllers)
+kmod-usb-atm - 5.15.150-1 - Kernel support for USB DSL modems
+kmod-usb-atm-cxacru - 5.15.150-1 - Kernel support for cxacru based USB ADSL modems
+kmod-usb-atm-speedtouch - 5.15.150-1 - Kernel support for SpeedTouch USB ADSL modems
+kmod-usb-atm-ueagle - 5.15.150-1 - Kernel support for Eagle 8051 based USB ADSL modems
+kmod-usb-audio - 5.15.150-1 - Kernel support for USB audio devices
+kmod-usb-cm109 - 5.15.150-1 - Kernel support for CM109 VOIP phone
+kmod-usb-core - 5.15.150-1 - Kernel support for USB
+kmod-usb-dwc2 - 5.15.150-1 - This driver provides USB Device Controller support for the
+ Synopsys DesignWare USB OTG Core
+kmod-usb-dwc2-pci - 5.15.150-1 - The Designware USB2.0 PCI interface module for controllers
+ connected to a PCI bus.
+kmod-usb-dwc3 - 5.15.150-1 - This driver provides support for the Dual Role SuperSpeed
+ USB Controller based on the Synopsys DesignWare USB3 IP Core
+kmod-usb-ehci - 5.15.150-1 - EHCI controller support
+kmod-usb-hid - 5.15.150-1 - Kernel support for USB HID devices such as keyboards and mice
 ```
 
 ## List installed packages
@@ -92,29 +90,31 @@ opkg list-installed
 
 ### List specific packages
 
-To display a list of **specific** installed packages, use the `grep` command. Narrow down the search operation using a specific keyword alongside this command.
+The `opkg list-installed` command supports searching with wildcards, making it easy to display a list of **specific** installed packages. Narrow down the search operation using a specific keyword alongside this command.
 
 ```shell
-opkg list-installed | grep keyword
+opkg list-installed 'keyword*'   # starting with 'keyword'
+opkg list-installed '*keyword'   # ending with 'keyword' 
+opkg list-installed '*keyword*'  # contains 'keyword'
 ```
 
-**Example:** To locate all installed packages with onion in the package directory, execute the following command:
+**Example:** To see all installed packages starting with `onion` in the package directory, run the following command:
 
 ```shell
-opkg list-installed | grep onion
+opkg list-installed 'onion*'
 ```
 
-This will find all the installed packages related to Onion:
+This will find all the installed packages that start with `onion`:
 
 ```shell
-root@Omega-539F:/# opkg list-installed | grep -i onion
+root@Omega-FBF4:/# opkg list-installed 'onion*'
 onion-dt-overlay - 1.0-5
-onion-repo-keys - 23.05.3
+onion-repo-keys - 23.05.3-1
 
-root@Omega-f195:/# opkg list-installed | grep -i omega2
-omega2-base - 23.05.3-20241015
-omega2-base-files - 23.05.3-20241015
-omega2-base-passwd - 23.05.3-20241015
+root@Omega-FBF4:/# opkg list-installed 'omega2*'
+omega2-base - 23.05.3-20250121
+omega2-base-files - 23.05.3-20250121
+omega2-base-passwd - 23.05.3-20250121
 omega2-ctrl - 0.3-1
 ```
 
