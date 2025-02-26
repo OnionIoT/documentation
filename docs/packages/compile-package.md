@@ -33,6 +33,12 @@ There are various methods to compile packages, but using the OpenWRT SDK is the 
 
 Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omega2 devices. The wrapper makes use of the OpenWRT SDK and features a set of supporting scripts and configurations that make it even quicker and easier to build and compile packages.
 
+:::note
+
+Onion recommends compiling packages using OpenWRT SDK. Firmware images can be created with the OpenWRT Image Builder, but this is a different tool. For further information on building firmware images, see the article [How Onion Firmware is Built](/firmware/how-onion-builds-firmware).
+
+:::
+
 ## System setup
 
 The system set up instructions are the same for compiling packages in **development** and in **production**. The configuration and compilation steps differ between the two environments.
@@ -55,7 +61,7 @@ import DockerStartInstructions from '../firmware/_docker-start-instructions.mdx'
 
 <DockerStartInstructions/>
 
-#### Step 3: Clone the OnionIoT/penwrt-sdk-wrapper repository
+#### Step 3: Clone the OnionIoT/openwrt-sdk-wrapper repository
 
 To clone the **openwrt-sdk-wrapper** repository in the Docker container, run the following command:
 
@@ -74,6 +80,12 @@ cd openwrt-sdk-wrapper
 The following sections cover configuration changes and compiling packages for a development environment.
 
 To compile packages for production, see the [relevant section below](#compiling-packages-for-production).
+
+:::note
+
+When compiling packages that are in development, the compilation process assumes a local package feed is being used. Local meaning the package feed is a directory on the same computer running the SDK.
+
+:::
 
 ### Config changes
 
@@ -98,6 +110,8 @@ Run the command to download and set up the `openwrt-sdk` in the OniontIoT's `ope
 ```bash
 bash onion_buildenv setup_sdk
 ```
+
+The setup step updates the package feeds. **This step is necessary to make the packages from the configured package feeds available to compile**.
 
 After completing this step, the OpenWRT SDK will be downloaded and set up for use in the `openwrt-sdk` directory.
 
@@ -130,6 +144,12 @@ These packages have the extension `.ipk` and are compiled specifically for the `
 ## Compiling packages for production
 
 The following sections cover configuration changes and compiling package feeds for a production environment.
+
+:::note
+
+When compiling production packages, the compilation process uses package source from a package feed that is a remote repository.
+
+:::
 
 ### Config changes
 
@@ -182,6 +202,8 @@ First, download and setup the OpenWRT SDK with the following command:
 ```bash
  bash onion_buildenv setup_sdk
 ```
+
+The setup step updates the package feeds. **This step is necessary to make the packages from the configured package feeds available to compile**.
 
 ### Compile a package feed
 
