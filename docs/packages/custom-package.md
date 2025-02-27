@@ -26,12 +26,28 @@ Package feeds generally hold a collection of packages that are related or serve 
 ### Package Feed Structure
 The following diagram illustrates the structure of a feed directory.
 
-![package-structure-diagram](./assets/package-structure-diagram.png)
+```shell
+custom-feed/
+|-- example-package-simple/
+|   |-- files/
+|   |   `--config.txt
+|   `-- Makefile
+`-- example-package-complex/
+    |-- files/
+    |   `config.txt
+    |-- patches/
+    |   `-- 000-fix-typo.patch
+    |-- src/
+    |    |-- main.c
+    |    `-- makefile
+    `-- Makefile
+```
+
 
 ### Working with Package Feeds
 A Package Feed can be considered an input to the OpenWRT SDK or build system. It must be added to the feed configuration and then initialized before packages from the feed can be compiled.
 
-For information on how to work with Package feeds with Onion’s OpenWRT SDK wrapper, see the article on how to [Compile a Package](compile-package).
+For information on how to work with Package feeds with Onion’s OpenWRT SDK wrapper, see the article on how to [Compile a Package](/packages/compile-package).
 
 ## The Structure of the Package Source
 
@@ -39,8 +55,8 @@ The package source will always contain a package makefile, which provides inform
 
 Packages may also include:
 
-- A file directory to hold configuration and other additional files.
-- A patch directory is meant to store patches for source code.
+- A files directory to hold configuration and other additional files.
+- A patches directory is meant to store patches for source code.
 - The source code for the package.
 
 ### Package makefile

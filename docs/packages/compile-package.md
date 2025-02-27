@@ -21,7 +21,7 @@ Packages that are currently undergoing active development will have frequent cha
 
 ### What does it mean for a package to be in production?
 
-Packages that are in production are stable and have gone through rigorous testing during the development phase. The package source is stored and built from a package feed.
+Packages that are in production are stable and have gone through rigorous testing during the development phase. The package source is stored in a remote repository. This remote repository is considered a package feed that the SDK will use as input.
 
 #### What is a package feed?
 
@@ -322,6 +322,8 @@ These changes can include:
 
 1. Changing which repos are listed in the profile config file.
 2. Updates to the code in the repo - new versions of code available or fixes to issues causing compilation errors.
+
+### Commands to Rerun Compilation
 
 Run the following command to ensure all changes are pulled in before compilation:
 
