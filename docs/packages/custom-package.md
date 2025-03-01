@@ -16,6 +16,39 @@ Creating a custom package is valuable for IoT applications, where customizing th
 
 - **Easy Updates:** Custom packages can be easily updated using the Opkg package manager.
 
+## Package Feeds
+A package feed is a directory or repository that holds the package source files for one or more software packages. 
+
+Package source code is the collection of source code and related files forming a software package. Package source files include the Package Makefiles and related source code and files. The package source files serve as input when building a package, with the output being an installable package binary.
+
+Package feeds generally hold a collection of packages that are related or serve a particular use case. Adding a package feed to the feed configuration of the OpenWRT SDK or build system allows users to compile the packages in that feed.
+
+### Package Feed Structure
+The following diagram illustrates the structure of a feed directory.
+
+```shell
+custom-feed/
+|-- example-package-simple/
+|   |-- files/
+|   |   `--config.txt
+|   `-- Makefile
+`-- example-package-complex/
+    |-- files/
+    |   `config.txt
+    |-- patches/
+    |   `-- 000-fix-typo.patch
+    |-- src/
+    |    |-- main.c
+    |    `-- makefile
+    `-- Makefile
+```
+
+
+### Working with Package Feeds
+A Package Feed can be considered an input to the OpenWRT SDK or build system. It must be added to the feed configuration and then initialized before packages from the feed can be compiled.
+
+For information on how to work with Package feeds with Onion’s OpenWRT SDK wrapper, see the article on how to [Compile a Package](/packages/compile-package).
+
 ## The Structure of the Package Source
 
 The package source will always contain a package makefile, which provides information about the package name, version number, dependencies, and the make-up of the package.
@@ -72,36 +105,40 @@ $(eval $(call BuildPackage,$(PKG_NAME)))
 
 ```
 
-:::note
+:::caution
 
-For more information on the package makefile refer to OpenWRT [**Package Makefile**](https://openwrt.org/docs/guide-developer/packages#file_installation_macros) documentation.
+The software application makefile and package makefile are **not the same**. 
+
+The application makefile provides instructions on how to compile and build a single application. The package makefile defines the software package, manages dependencies, and specifies the compilation and package installation instructions.
+
+For more information on the package makefile refer to [OpenWRT Packages documentation](https://openwrt.org/docs/guide-developer/packages).
 
 :::
 
 ### Files Directory
 
-The files directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
+The `files` directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
 
 Additionally, it is a good place to store files that aren’t necessarily application source code but are still helpful to the package, such as config files or the files required to make the package run as a service.
 
-Any files in the files directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
+Any files in the `files` directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
 
-### Patch Directory
+### Patches Directory
 
-The patch directory is optional and is a place to store patch files for the source code of the package. Patches are small updates to the existing code and can be used for:
+The `patches` directory is optional and is a place to store patch files for the source code of the package. Patches are small updates to the existing code and can be used for:
 
 - Bug fixes
 - Efficient troubleshooting
 - Implementing version-specific changes
 - Implementing configuration changes
 
-The patch directory organizes the patches, allowing for easy access and management.
+The `patches` directory organizes the patch files, allowing for easy access and management.
 
-**Note:** Patch files in this directory will automatically be applied when the package source is compiled.
+**Note:** Patch files in this directory will be automatically applied when the package source is compiled.
 
 :::tip
 
-For further exploration, see the [**OpenWRT**](https://openwrt.org/docs/guide-developer/toolchain/use-patches-with-buildsystem) documentation. This documentation provides a comprehensive guide on working with patches, including adding new patches, editing existing ones, and managing patch collections.
+For further information, see the [**OpenWRT** documentation on working with patches](https://openwrt.org/docs/guide-developer/toolchain/use-patches-with-buildsystem). This documentation provides a comprehensive guide on working with patches, including adding new patches, editing existing ones, and managing patch collections.
 
 :::
 
