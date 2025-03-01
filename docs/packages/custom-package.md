@@ -105,38 +105,40 @@ $(eval $(call BuildPackage,$(PKG_NAME)))
 
 ```
 
-:::note
+:::caution
 
-The software application and package makefiles are not the same. The application makefile provides instructions on how to compile and build a single application. The package makefile defines the software package, manages dependencies, and specifies the compilation and package installation instructions.
+The software application makefile and package makefile are **not the same**. 
 
-For more information on the package makefile refer to OpenWRT [**Package Makefile**](https://openwrt.org/docs/guide-developer/packages#file_installation_macros) documentation.
+The application makefile provides instructions on how to compile and build a single application. The package makefile defines the software package, manages dependencies, and specifies the compilation and package installation instructions.
+
+For more information on the package makefile refer to [OpenWRT Packages documentation](https://openwrt.org/docs/guide-developer/packages).
 
 :::
 
-### File Directory
+### Files Directory
 
-The file directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
+The `files` directory is an optional component found in the package source structure. It serves as a designated space for storing various additional items that are essential for the package.
 
 Additionally, it is a good place to store files that aren’t necessarily application source code but are still helpful to the package, such as config files or the files required to make the package run as a service.
 
-Any files in the file directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
+Any files in the `files` directory that are meant to be installed on the device must be added to the `Package/$(PKG_NAME)/install` section in the package makefile.
 
-### Patch Directory
+### Patches Directory
 
-The patch directory is optional and is a place to store patch files for the source code of the package. Patches are small updates to the existing code and can be used for:
+The `patches` directory is optional and is a place to store patch files for the source code of the package. Patches are small updates to the existing code and can be used for:
 
 - Bug fixes
 - Efficient troubleshooting
 - Implementing version-specific changes
 - Implementing configuration changes
 
-The patch directory organizes the patches, allowing for easy access and management.
+The `patches` directory organizes the patch files, allowing for easy access and management.
 
-**Note:** Patch files in this directory will automatically be applied when the package source is compiled.
+**Note:** Patch files in this directory will be automatically applied when the package source is compiled.
 
 :::tip
 
-For further exploration, see the [**OpenWRT**](https://openwrt.org/docs/guide-developer/toolchain/use-patches-with-buildsystem) documentation. This documentation provides a comprehensive guide on working with patches, including adding new patches, editing existing ones, and managing patch collections.
+For further information, see the [**OpenWRT** documentation on working with patches](https://openwrt.org/docs/guide-developer/toolchain/use-patches-with-buildsystem). This documentation provides a comprehensive guide on working with patches, including adding new patches, editing existing ones, and managing patch collections.
 
 :::
 
