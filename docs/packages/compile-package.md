@@ -252,7 +252,7 @@ This is an example of a failed package compilation. The SDK Wrapper attempts to 
 
 The error message near the bottom reveals the root cause of the error in the code.
 
-```shell
+```
 ubuntu@ip-172-31-85-151:~/openwrt-sdk-wrapper$ bash onion_buildenv build_packages c-example
 make: Entering directory '/home/ubuntu/openwrt-sdk-wrapper/openwrt-sdk'
 

@@ -26,7 +26,7 @@ Package feeds generally hold a collection of packages that are related or serve 
 ### Package Feed Structure
 The following diagram illustrates the structure of a feed directory.
 
-```shell
+```
 custom-feed/
 |-- example-package-simple/
 |   |-- files/
