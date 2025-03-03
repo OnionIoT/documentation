@@ -149,6 +149,8 @@ You've seen how to:
 
 These examples provide a strong foundation for working with SPI devices on the Omega2. You're now ready to modify these scripts or write your own SPI-based programs!
 
+See the [README file in the OnionIoT/python-spidev GitHub repo](https://github.com/OnionIoT/python-spidev?tab=readme-ov-file#python-spidev) for more information on the method available in the module.
+
 ## Troubleshooting
 
 If you're having issues, here are some things to check:
