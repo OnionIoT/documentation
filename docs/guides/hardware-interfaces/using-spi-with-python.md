@@ -71,12 +71,13 @@ wget https://raw.githubusercontent.com/OnionIoT/python-spidev/refs/heads/master/
 
 ### Run the Program 
 
-Execute the program to send data over SPI:
+Now, let’s run the script to send data over SPI:
+
 ```
 python writebytes.py
 ```
 
-Once the script starts, the bytes will be transmitted on the SPI bus. If you have a logic analyzer or oscilloscope connected, you should see activity.
+This will send 256 bytes of incremental data (`0x00`, `0x01`, `0x02`, ...) over SPI, repeating 8 times. If you have a logic analyzer or oscilloscope connected, you should see activity.
 
 <!-- TODO: add screenhot output of logic analyzer? -->
 
