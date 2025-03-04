@@ -104,4 +104,6 @@ The `python3-spidev` module provides a series of functions that implement SPI co
 
 For installation and usage instructions see: [https://github.com/OnionIoT/python-spidev#python-spidev](https://github.com/OnionIoT/python-spidev#python-spidev).
 
+**Follow along with the [Using SPI with Python guide](/guides/hardware-interfaces/using-spi-with-python) to quickly get started using the Python spidev module to communicate with SPI devices on the Omega2.**
+
 <GiscusDocComment />
