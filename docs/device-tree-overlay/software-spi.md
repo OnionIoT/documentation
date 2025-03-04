@@ -1,5 +1,5 @@
 ---
-title: Software SPI BUS
+title: Software SPI Bus
 ---
 
 import { GiscusDocComment } from '/src/components/GiscusComment';

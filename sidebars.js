@@ -156,6 +156,14 @@ const sidebars = {
     'guides/intro',
     {
       type: 'category',
+      label: 'Hardware Interfaces',
+      collapsed: false,
+      items: [
+        'guides/hardware-interfaces/using-spi-with-python',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Packages',
       collapsed: false,
       items: [
