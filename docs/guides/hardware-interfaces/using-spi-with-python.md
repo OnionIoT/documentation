@@ -49,6 +49,7 @@ The Omega2 supports both **hardware SPI** (using a built-in controller) and **so
 | **System Load**         | Low (uses dedicated SPI controller) | Higher (CPU handles SPI signals) |
 
 <!-- TODO: see if chart from docs/hardware-interfaces/spi.md can be reused -->
+<!-- TODO: measure sw spi bus speed and update table -->
 
 ### Option 1: Using the Hardware SPI Bus (CS1)
 The **hardware SPI bus** is pre-configured on the Omega2 and is accessed through `/dev/spidev0.1`. It supports **high-speed** SPI communication but is limited to **half-duplex mode** and uses **the fixed SPI pins**:
@@ -132,6 +133,7 @@ To do this, we will first download the `writebytes.py` example Python proscript 
 cd /root
 wget https://raw.githubusercontent.com/OnionIoT/python-spidev/refs/heads/master/examples/writebytes.py
 ```
+
 ### Software SPI: Change SPI bus in script
 
 If you decided to use a software SPI bus in step 2, the script needs to be updated to use the correct device.
@@ -170,9 +172,14 @@ Now, let’s run the script to send data over SPI:
 python writebytes.py
 ```
 
-This will send 256 bytes of incremental data (`0x00`, `0x01`, `0x02`, ...) over SPI, repeating 8 times. If you have a logic analyzer or oscilloscope connected, you should see activity.
+This will send 256 bytes of incremental data (`0x00`, `0x01`, `0x02`, ...) over SPI, repeating 8 times. If you have a logic analyzer or oscilloscope connected, you should see activity:
 
-<!-- TODO: add screenhot output of logic analyzer? -->
+![logic analyzer showing 8 SPI transmissions](./assets/spi-writebytes-0.png)
+*Logic analyzer showing eight blocks of SPI writes*
+
+Zooming in, we can confirm the data being sent is incremental:
+ 
+![logic analyzer showing incremental data being transmitted](./assets/spi-writebytes-1.png)
 
 ## Step 5: Half-Duplex SPI Transmission
 
@@ -250,13 +257,11 @@ python xfer3.py
 The program will display the received bytes on the terminal:
 
 ```
-root@Omega-FB94://# python xfer3.py
+root@Omega-FB94:~# python xfer3.py
 Half-duplex transmission: writing 1 byte, reading 2 bytes
-Read: 0x11, 0x9a
+Read: [4, 2]
 Done
 ```
-
-<!-- TODO: confirm above output -->
 
 This confirms that the SPI device is responding to commands and returning data.
 
