@@ -72,7 +72,7 @@ Unlike hardware SPI, which uses a dedicated controller to handle communication, 
 
 | Feature                 | Hardware SPI (CS1)                     | Software SPI |
 |-------------------------|--------------------------------------|--------------|
-| **Speed**               | Up to **40MHz** (fast)               | Slower, best for low-data applications |
+| **Speed**               | Up to **40MHz** (fast)               | Up to **1.4MHz** - Slower, best for low-data applications |
 | **Full-Duplex Support** | ❌ No on Omega2                                | ✅ Yes |
 | **SPI Configuration**   | Limited; CS0 is reserved for flash | Flexible; can be configured as needed |
 | **GPIO Flexibility**    | Fixed to SPI pins                   | Any GPIOs can be used |
