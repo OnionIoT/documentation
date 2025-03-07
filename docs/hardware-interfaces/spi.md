@@ -41,6 +41,8 @@ The Omega2 has one hardware SPI interface available:
 
 The Omega2 does not support full-duplex SPI transmissions. This is due to a hardware bug in the underlying MT7688 SoC used in the Omega2.
 
+For use cases where full-duplex SPI is a requirement, consider using a [software-based SPI bus](#software-based-spi-bus).
+
 :::
 
 The SPI and CS1 pins are highlighted on the Omega2/2S diagrams below.
@@ -72,7 +74,7 @@ Unlike hardware SPI, which uses a dedicated controller to handle communication, 
 
 | Feature                 | Hardware SPI (CS1)                     | Software SPI |
 |-------------------------|--------------------------------------|--------------|
-| **Speed**               | Up to **40MHz** (fast)               | Slower, best for low-data applications |
+| **Speed**               | Up to **40MHz** (fast)               | Up to **1.4MHz** - Slower, best for low-data applications |
 | **Full-Duplex Support** | ❌ No on Omega2                                | ✅ Yes |
 | **SPI Configuration**   | Limited; CS0 is reserved for flash | Flexible; can be configured as needed |
 | **GPIO Flexibility**    | Fixed to SPI pins                   | Any GPIOs can be used |
