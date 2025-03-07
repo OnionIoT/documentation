@@ -119,7 +119,7 @@ If you decided to use **software SPI** in Step 2, connect the SPI pins of the ex
 
 Additionally, make sure the SPI device is supplied with power according to its specifications.
 
-## Step 4: SPI Hello World - Write Bytes to the Device
+## Step 4: SPI Hello World - Write Bytes to the Bus
 
 To confirm that the SPI bus is working, we'll run a Python program that **writes 256 bytes of incremental data** over SPI in eight cycles.
 
