@@ -20,7 +20,7 @@ Users that need to use different pins can create their own customized version ba
 
 :::caution **Drawback: Lower Bus Speed**
 
-Since this is a software-based bus, it will not be as fast as a hardware SPI bus. The highest speed is **1.4MHz** if CPU load is low. This is much slower compared the 40MHz maximum of the hardware SPI bus.
+Since this is a software-based bus, it will not be as fast as a hardware SPI bus. The maximum bus speed is **1.4MHz** if CPU load is low - much slower compared the 40MHz maximum of the hardware SPI bus.
 
 This is adequate for most SPI devices, but it is not recommended for data-intensive use cases like driving a display.
 
