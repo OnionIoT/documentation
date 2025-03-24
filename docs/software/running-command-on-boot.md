@@ -20,11 +20,11 @@ The `/etc/rc.local` executes toward the end of the boot sequence. Most other dev
 
 If a command is expected to take more than a few seconds to complete, and you don’t want to hold up completion of the system boot, you can fork the process into the background.
 
-If a process needs to run in the background continuously, you should consider creating a service. For more information on creating a service, see the blog post Running a program as a service at:[https://onion.io/2bt-custom-initd-service/](https://onion.io/2bt-custom-initd-service/).
+If a process needs to run in the background continuously, you should consider creating a service. For more information on creating a service, see the blog post Running a program as a service at: https://onion.io/2bt-custom-initd-service/
 
 :::note
 
-For more information on the boot process, see the OpenWRT documentation at:[https://openwrt.org/docs/techref/process.boot?l#init](https://openwrt.org/docs/techref/process.boot?l#init).
+For more information on the boot process, see the OpenWRT documentation at: https://openwrt.org/docs/techref/process.boot?l#init
 
 :::
 
@@ -87,7 +87,7 @@ Group uart1 - uart [gpio]
 
 :::note
 
-For more information on Pin Multiplexing, see the article [https://documentation.onioniot.com/hardware-interfaces/pin-multiplexing](https://documentation.onioniot.com/hardware-interfaces/pin-multiplexing).
+See the [Pin Multiplexing article](/hardware-interfaces/pin-multiplexing) in the Hardware Interfaces chapter for more information. 
 
 :::
 

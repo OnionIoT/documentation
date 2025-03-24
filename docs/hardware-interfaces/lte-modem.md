@@ -22,8 +22,8 @@ The Omega2 LTE single board computer features the LTE modem on-board.
 
 To install the software package to provide support for the LTE modem:
 
-1. Flash the latest available Omega2+ firmware to your device – see [installing the new firmware article](https://documentation.onioniot.com/installing-firmware)
-2. Connect the WiFi – see the [WiFi article](https://documentation.onioniot.com/networking/wifi)
+1. Flash the latest available Omega2+ firmware to your device – see [installing the new firmware article](/firmware/installing-firmware)
+2. Connect the WiFi – see the [WiFi article](/networking/wifi)
 3. Install the software
 
  ```shell
