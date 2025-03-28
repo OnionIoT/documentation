@@ -10,13 +10,13 @@ In this article, we discuss adding custom package repositories and installing pa
 
 The opkg package manager can be configured to access additional package repositories beyond its default configuration, enabling the installation of any packages in those repos. This is useful if there are key packages that are not included in the standard list of package repos.
 
-The package feed configuration is stored in the `distfeeds.conf` file.
+Additional package repositories can be added to the `customfeeds.conf` file.
 
 To add a package repo, follow these steps:
 
-**Step 1:** Open the `/etc/opkg/distfeeds.conf` file in the editor.
+**Step 1:** Open the `/etc/opkg/customfeeds.conf` file in the editor.
 
-**Step 2:** Edit the `distfeeds.conf` file and add a package repository link that is supported by Omega devices and the opkg package manager.
+**Step 2:** Edit the `customfeeds.conf` file and add a package repository link that is supported by Omega devices and the opkg package manager.
 
 ```shell
  src/gz <repository_name> <repository_url>
@@ -30,11 +30,11 @@ Only use package repos that are compatible with the `mipsel_24kc` architecture u
 
 :::
 
-**Step 3:** Now save the changed `distfeeds.conf` file and exit.
+**Step 3:** Now save the changed `customfeeds.conf` file and exit.
 
 **Step 4:** Open the Omega2 terminal and run the `opkg update` command to install the added package.
 
-<!-- TODO: add a tip here on seeing the existing `distfeeds.conf` file for examples -->
+<!-- TODO: add a tip here on seeing the existing `customfeeds.conf` file for examples -->
 
 ## Install a package that's not in a package repo
 
