@@ -4,7 +4,7 @@ title: Installing the New Firmware
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-> This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html). 
+> This firmware doesn't include the `oupgrade` utility, so we'll need to manually install the firmware. The procedure is very similar to the [Manual Firmware Installation instructions in the legacy Onion Documentation](http://docs.onion.io/omega2-docs/manual-firmware-installation.html). 
 
 The new firmware can be found online at http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
 
@@ -20,14 +20,9 @@ So `onion_omega2p-23.05.3-20240807.bin` is: <!-- TODO: update with ONION_FW_VERS
 
 Before you install firmware to your device, you'll need to decide which firmware image to install.
 
-To start, use a browser to navigate to http://repo.onioniot.com/omega2/images/openwrt-23.05/ <!-- TODO: update with OPENWRT_VERSION variable -->
+import InstallingFirmwareSelectImage from './_installing-firmware-select-image.mdx'
 
-Next, you'll need to find the firmware for your device:
-
-* Firmware for Omega2 and Omega2S starts with `onion_omega2-`
-* Firmware for Omega2**+** and Omega2S**+** starts with `onion_omega2p-`.
-
-Then, you'll want to select the **highest** OpenWRT release and the **latest** build date. This will ensure you're using the very latest available firmware.
+<InstallingFirmwareSelectImage/>
 
 Make a note of the filename of the firmware you've selected.
 
