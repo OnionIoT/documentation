@@ -157,6 +157,7 @@ const sidebars = {
         'bootloader/overview',
         'bootloader/upgrading-old-bootloader',
         'bootloader/activating-bootloader',
+        'bootloader/flashing-firmware-over-ethernet',
       ],
     },
     'feedback',
