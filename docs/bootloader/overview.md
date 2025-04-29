@@ -10,7 +10,7 @@ A bootloader based on the latest release of u-boot is now available for the Omeg
 
 ## Better by Miles
 
-It provides many benefits over the previously available, much older bootloader:
+It provides many benefits over the previously available and much older bootloader:
 
 - Better and faster firmware flashing and recovery options
 - Support available for more modern features: enhanced command line utilities, support for scripting, networking, - End-users can customize bootloader behaviour without rebuilding the bootloader

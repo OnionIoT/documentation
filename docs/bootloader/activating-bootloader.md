@@ -2,6 +2,8 @@
 title: Activating the Bootloader Command Line
 ---
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 By default, the bootloader will automatically boot into the Linux operating system. This is called autoboot. However, autoboot can be stopped so the device remains in the bootloader and opens the bootloader command line. 
 
 The bootloader gives the user access to low level system tools to change settings, flash new firwmare, and more.
@@ -30,4 +32,5 @@ That's ok, just power off the device and try again.
 
 TODO: add links to guides
 
-<StopAutobootInstructions/>
+
+<GiscusDocComment />

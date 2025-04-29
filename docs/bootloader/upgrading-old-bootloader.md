@@ -16,6 +16,8 @@ import BootloaderUpgradeWarning from './_bootloader-upgrade-warning.mdx';
 
 <!-- TODO: when new bootloader becomes standards, add a note on mfg date and which bootloader it ships with -->
 
+TODO: add note saying we can tell by the output!
+
 import StopAutobootInstructions from './_stop-autoboot-instructions.mdx'
 
 <StopAutobootInstructions/>
@@ -49,7 +51,7 @@ Gather the requirements:
 
 #### Serial Command Line Drivers Installed
 
-Follow the instructions in [step 1 of the connecting to serial command line article](/quickstart/serial-command-line#step-1-install-usb-to-serial-driver-on-your-computer) to install the drivers required to use the serial command line
+Follow the instructions in [step 1 of the connecting to serial command line article](/quickstart/serial-command-line#step-1-install-usb-to-serial-driver-on-your-computer) to install the drivers required to use the serial command line. 
 
 #### Configure the Ethernet Network
 
