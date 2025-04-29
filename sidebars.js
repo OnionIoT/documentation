@@ -150,13 +150,14 @@ const sidebars = {
         'firmware/how-onion-builds-firmware',
       ],
     },
-    /*{
+    {
       type: 'category',
       label: 'Bootloader',
       items: [
         'bootloader/overview',
+        'bootloader/upgrading-old-bootloader',
       ],
-    },*/
+    },
     'feedback',
   ],
   guides: [
