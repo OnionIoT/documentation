@@ -156,6 +156,7 @@ const sidebars = {
       items: [
         'bootloader/overview',
         'bootloader/upgrading-old-bootloader',
+        'bootloader/activating-bootloader',
       ],
     },
     'feedback',
