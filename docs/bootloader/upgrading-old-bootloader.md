@@ -6,33 +6,25 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-This guide will show how to upgrade an Omega2 module with the previous bootloader to the new, modern, u-boot-based bootloader. 
+This guide will show how to upgrade an Omega2 module from the previous bootloader to the new, modern, u-boot-based bootloader. 
 
-:::danger
+import BootloaderUpgradeWarning from './_bootloader-upgrade-warning.mdx';
 
-Updating the bootloader has the potential to be a destructive action and can lead to a device becoming unsable. 
-
-Take care to ensure:
-- The bootloader binary to be flahed is not corrupted and has been confirmed to be working
-- The Omega2 device remains powered on during the update
-
-Onion is not responsible for damage to any devices.
-
-:::
+<BootloaderUpgradeWarning/>
 
 ## How do I know if my Omega2 has the Old Bootloader?
 
-[Connect to the Omega2 command line through serial](/quickstart/serial-command-line). Then power on the device **and** press the SW Reset button at the same time. 
+<!-- TODO: when new bootloader becomes standards, add a note on mfg date and which bootloader it ships with -->
 
-:::info
+import StopAutobootInstructions from './_stop-autoboot-instructions.mdx'
 
-The Reset button is connected to the active-high FW_RST/GPIO38 pin. Pressing the reset button sends a digital-high signal to the FW_RST/GPIO38 pin.
-
-:::
+<StopAutobootInstructions/>
 
 If the serial command line shows a menu like the one below, the device is running the old version of the bootloader:
 
 ![previous omega2 bootloader boot menu](./assets/old-bootloader-menu.png)
+
+TODO: add comparison to new bootloader, say already runnning new bootloader
 
 
 ## Upgrade Procedure
@@ -81,15 +73,7 @@ If the target device is an **Omega2+ (OM-O2P) or Omega2S+ (OM-O2SP)**, download 
 
 Connect the target Omega to the host computer with the ethernet cable. But do not power on the device just yet!
 
-TODO: reuse these steps??
-
-[Connect to the Omega2 command line through serial](/quickstart/serial-command-line). Then power on the device **and** press the SW Reset button at the same time. 
-
-:::info
-
-The Reset button is connected to the active-high FW_RST/GPIO38 pin. Pressing the reset button sends a digital-high signal to the FW_RST/GPIO38 pin.
-
-:::
+<StopAutobootInstructions/>
 
 This will activate the (old) bootloader and display a menu of options:
 
@@ -115,19 +99,7 @@ Open a browser on the host computer and navigate to `192.168.8.8/uboot.html`. It
 
 Next, press the **Choose File** button to select the bootloader binary downloaded in [Step 3 above](#step-3-download-the-new-bootloader-binary). 
 
-TODO: reuse this warning??
-
-:::danger
-
-Updating the bootloader has the potential to be a destructive action and can lead to a device becoming unsable. 
-
-Take care to ensure:
-- The bootloader binary to be flahed is not corrupted and has been confirmed to be working
-- The Omega2 device remains powered on during the update
-
-Onion is not responsible for damage to any devices.
-
-:::
+<BootloaderUpgradeWarning/>
 
 When you’re ready, press the **Update!** button. The serial command line will show messages like this:
 

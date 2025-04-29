@@ -8,6 +8,8 @@ The bootloader is the very first program an embedded device will run when it pow
 
 A bootloader based on the latest release of u-boot is now available for the Omega2 family of modules. 
 
+## Better by Miles
+
 It provides many benefits over the previously available, much older bootloader:
 
 - Better and faster firmware flashing and recovery options
