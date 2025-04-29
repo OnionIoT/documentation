@@ -16,6 +16,8 @@ The flashing procedure involves using the bootloader command line to copy a firm
 
 You will need access to the reset button (GPIO38), the serial console on UART0, and the Ethernet port.
 
+<!-- TODO: consider adding this guide is for connecting the omega directly to a computer, but it's also possible to connect the host computer and the target omega to an ethernet switch and accomplish the same thing, just need to know the ip address of the host computer -->
+
 ### Step 1: Gather Requirements
 
 Gather the requirements:
