@@ -36,17 +36,15 @@ Follow the steps below to setup the host computer for use with this guide.
 
 #### Serial Command Line Drivers Installed
 
-TODO: reuse this content?
+import ComputerSetupSerialDrivers from './_computer-setup-serial-drivers.mdx'
 
-Follow the instructions in [step 1 of the connecting to serial command line article](/quickstart/serial-command-line#step-1-install-usb-to-serial-driver-on-your-computer) to install the drivers required to use the serial command line. 
+<ComputerSetupSerialDrivers/>
 
 #### Configure the Ethernet Network
 
-TODO: reuse this content?
+import ComputerSetupEthernetStaticIp from './_computer-setup-ethernet-static-ip.mdx'
 
-Configure your computer’s ethernet network to manually set its IP address to `192.168.8.100` and subnet mask to `255.255.255.0`. By doing so, your computer will be able to communicate with the Omega over ethernet while it is in web recovery mode.
-
-TODO: decide if including steps to setup ethernet here
+<ComputerSetupEthernetStaticIp/>
 
 #### Install TFPT Tools
 
