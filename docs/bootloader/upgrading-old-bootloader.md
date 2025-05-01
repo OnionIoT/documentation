@@ -76,7 +76,7 @@ Gather the requirements:
 - Ethernet Cable
 - USB cable to connect to the Omega
 
-### Step 2: Computer setup
+### Step 2: Computer Setup
 
 Follow the steps below to setup the host computer for use with this guide.
 

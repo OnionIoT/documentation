@@ -22,8 +22,8 @@ It provides many benefits over the previously available and much older bootloade
 See the guides in this section:
 
 - [Upgrading an Omega2 module running the previous bootloader to the new bootloader](./upgrading-old-bootloader)
-- [How to activate the bootloader command line](./activating-bootloader.md)
-- [How to flash firmware using the bootloader and ethernet](./flashing-firmware-over-ethernet.md)
+- [How to activate the bootloader command line](./activating-bootloader)
+- [How to flash firmware using the bootloader and ethernet](./flashing-firmware-over-ethernet)
 
 ## Details about the Omega2 U-Boot Support
 
