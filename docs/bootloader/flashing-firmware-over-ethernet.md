@@ -153,15 +153,27 @@ Bytes transferred = 7144233 (6d0329 hex)
 
 ## Step 7: Write the Firmware Image to Flash
 
-The previous step transferred the firmware image from the host computer to the Omega's memory. Now, write the firmware image to the flash storage by running this command **as-is**: 
+The previous step transferred the firmware image from the host computer to the Omega's memory. Now, write the firmware image to the flash storage.
+
+First initialize the flash storage:
 
 ```
-mtd write.dontskipff firmware $loadaddr 0x0 $filesize
+sf probe
 ```
+
+Then write the firmware image by running this command **as-is**: 
+
+```
+sf update $loadaddr 0x050000 $filesize
+```
+
+<!-- ```
+mtd write.dontskipff firmware $loadaddr 0x0 $filesize
+``` -->
 
 The `$loadaddr` variable is set by the bootloader compile-time configuration and the `$filesize` is automatically populated by the command used in the previous step.
 
-This will take about 10 seconds, again depending on the size of the firmware image. **The Omega2 module has now been flashed with the selected firmware image.**
+This will take about 40 seconds, again depending on the size of the firmware image. **The Omega2 module has now been flashed with the selected firmware image.**
 
 ## Step 8: Boot into the Firmware
 
