@@ -63,7 +63,7 @@ Download the firmware image to be flashed on the target Omega2 device to your ho
 
 This step assumes official firmware released by Onion is being flashed on the device. However, this process will work for any Omega2/Omega2+ firmware image. 
 
-If you're bringing your own firmware, note the firmware image filename and skip to the [next step](t#step-4-start-the-tftp-server).
+If you're bringing your own firmware, note the firmware image filename and skip to the [next step](#step-4-start-the-tftp-server).
 
 :::
 
@@ -156,7 +156,7 @@ Bytes transferred = 7144233 (6d0329 hex)
 The previous step transferred the firmware image from the host computer to the Omega's memory. Now, write the firmware image to the flash storage by running this command **as-is**: 
 
 ```
-mtd write firmware $loadaddr 0x0 $filesize
+mtd write.dontskipff firmware $loadaddr 0x0 $filesize
 ```
 
 The `$loadaddr` variable is set by the bootloader compile-time configuration and the `$filesize` is automatically populated by the command used in the previous step.
@@ -213,5 +213,16 @@ Working FDT set to 0
 ...
 ```
 
+<!-- ## Troubleshooting
+
+If the firmware does not boot, run through the procedure again, but this time run the following commands for step 7:
+
+```
+mtd erase firmware 
+mtd write.dontskipff firmware $loadaddr 0x0 $filesize
+```
+
+Erase takes ~5 minutes.
+This will take a few minutes but should resolve any firmware flashing issues. -->
 
 <GiscusDocComment />
