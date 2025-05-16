@@ -93,7 +93,7 @@ To install the package manager, enter the following commands:
 
 ```Shell
 opkg update
-opkg install python-pip
+opkg install python3-pip
 ```
 
 To install using PIP, enter the following command:
