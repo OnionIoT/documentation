@@ -164,24 +164,38 @@ sf probe
 Then write the firmware image by running this command **as-is**: 
 
 ```
-sf update $loadaddr 0x050000 $filesize
+sf update $loadaddr firmware $filesize
 ```
 
-<!-- ```
-mtd write.dontskipff firmware $loadaddr 0x0 $filesize
-``` -->
+:::note
 
-The `$loadaddr` variable is set by the bootloader compile-time configuration and the `$filesize` is automatically populated by the command used in the previous step.
+The `$loadaddr` variable is set by the bootloader compile-time configuration, `firmware` is the name of the partition that is being written, and the `$filesize` variable is automatically populated by the command used in the previous step.
 
-This will take about 40 seconds, again depending on the size of the firmware image. **The Omega2 module has now been flashed with the selected firmware image.**
+:::
+
+Writing the firmware image to the flash will will take about 30-45 seconds, depending on the size of the firmware image. **The Omega2 module has now been flashed with the selected firmware image.**
 
 ## Step 8: Boot into the Firmware
 
-Boot into the newly flashed firmware by rebooting the device or running the `boot` command.
+Boot into the newly flashed firmware by running:
+
+```
+boot
+``` 
+
+:::info
+
+Other options for booting into Linux:
+- Reboot the device by running `reset` in the u-boot prompt
+- Toggle the power to the device
+
+:::
+
+## Step 9: Confirm booting!
 
 If the process was successful, the boot log will look like the following:
 
-<!-- TODO: update boot log with upstreamed bootloader version? -->
+<!-- TODO: update boot log with upstreamed bootloader version -->
 
 ```
 U-Boot SPL 2025.04-ga92da3b468ea (Apr 23 2025 - 19:14:37 +0000)

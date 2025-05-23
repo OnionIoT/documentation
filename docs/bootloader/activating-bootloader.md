@@ -4,6 +4,8 @@ title: Activating the Bootloader Command Line
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
+<!-- TODO: rename command line to prompt? check with u-boot documentations -->
+
 The bootloader is configured to automatically boot into the Linux operating system. This feature is aptly called autoboot. 
 
 However, autoboot can be stopped so the device remains in the bootloader and opens the bootloader command line. This gives the user access to low level system tools to change settings, flash new firwmare, and more.
@@ -30,9 +32,19 @@ That's ok, just power off the device and try again.
 
 ## How to use the Bootloader Command line
 
+The bootloader prompt offers low level access to the hardware, making it a powerful tool.
+
+Some basics:
+- Run the `boot` command to boot into the Linux operating system
+- Run the `reset` command to reboot the device
+
+To learn more about the bootloader prompt:
+
 1. Try running the `help` command to see the available utilities
 2. See the u-boot documentation on the [command line](https://docs.u-boot.org/en/latest/usage/cmdline.html) and the [available utilities](https://docs.u-boot.org/en/latest/usage/index.html#shell-commands)
-3. See the article on [flashing firwmare using the bootloader](./flashing-firmware-over-ethernet) in this documentation
+
+Other things you can do with the bootloader:
+- [Flashing firwmare over ethernet using the bootloader](./flashing-firmware-over-ethernet)
 
 <!-- TODO: add links to new guides as they become available -->
 
