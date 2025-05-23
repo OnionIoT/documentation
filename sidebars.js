@@ -159,6 +159,7 @@ const sidebars = {
         'bootloader/activating-bootloader',
         'bootloader/flashing-firmware-over-ethernet',
         'bootloader/upgrading-bootloader',
+        'bootloader/stop-autoboot-with-keyboard-input',
       ],
     },
     'feedback',

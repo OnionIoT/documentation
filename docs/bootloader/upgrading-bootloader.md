@@ -14,7 +14,6 @@ This guide applies to any Omega2 that is **already running the modern bootloader
 
 <BootloaderUpgradeWarning/>
 
-<!-- TODO: add a section on how to tell if you're running the new bootloader -->
 
 ## Step 1: Gather Requirements
 
@@ -45,6 +44,9 @@ import ComputerSetupTftpTools from './_computer-setup-tftp-tools.mdx'
 <ComputerSetupTftpTools/>
 
 ## Step 3: Download the Bootloader Binary
+
+<!-- TODO: update this with real filename -->
+
 Download **`u-boot-with-spl.bin`** from `http://repo.onioniot.com/omega2/bootloader/v2025.04/` and place it in a new, empty folder—this is where you will run the TFTP server.
 
 > **Why only one binary?**  The new bootloader auto‑detects flash and RAM, so **`u-boot-with-spl.bin` works on every Omega2 SKU**.
@@ -65,6 +67,16 @@ import StopAutobootInstructions from './_stop-autoboot-instructions.mdx'
 import StopAutobootOutcome from './_stop-autoboot-outcome.mdx'
 
 <StopAutobootOutcome/>
+
+:::caution
+
+If the bootloader looks like this screenshot: 
+
+![previous omega2 bootloader boot menu](./assets/old-bootloader-menu.png)
+
+Then the device is running the old bootloader. See instead the [article on Upgrading the Old Bootloader](/bootloader/upgrading-old-bootloader)
+
+:::
 
 ## Step 6: Transfer the Bootloader Image to the Omega2
 
