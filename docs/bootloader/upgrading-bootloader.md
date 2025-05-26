@@ -84,8 +84,10 @@ Copy the new bootloader image from the host computer to the Omega2 RAM.
 
 First set the `bootfile` environment variable to the bootloader image filename on the host computer from Step 3:
 
+<!-- TODO: change bootloader image filename to a default value -->
+
 ```
-env set bootfile <FIRMWARE IMAGE FILENAME>
+env set bootfile <BOOTLOADER IMAGE FILENAME>
 ```
 
 Then start the file transfer over TFTP:
@@ -127,7 +129,13 @@ Now write the new bootloader to the flash:
 sf update $loadaddr u-boot $filesize
 ```
 
-The write will take less than 5 seconds. A success message confirms the write.
+The write will take less than 5 seconds. A success message confirms the write:
+
+```
+=> sf update $loadaddr u-boot $filesize
+device 0 offset 0x0, size 0x2fa59
+195161 bytes written, 0 bytes skipped in 2.485s, speed 80323 B/s
+```
 
 ## Step 9: Reboot and Confirm
 
@@ -143,7 +151,7 @@ U-Boot 2025.04 (May 10 2025 – 12:34:56)
 ```
 
 ## What’s next?
-- [Activating the Bootloader Command Line](/bootloader/activating-bootloader-command-line)
-- [Flashing Firmware over Ethernet](/bootloader/flashing-firmware-ethernet)
+- [Activating the Bootloader Command Line](/bootloader/activating-bootloader)
+- [Flashing Firmware over Ethernet](/bootloader/flashing-firmware-over-ethernet)
 
 <GiscusDocComment />
