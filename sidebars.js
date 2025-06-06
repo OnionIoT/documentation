@@ -150,13 +150,18 @@ const sidebars = {
         'firmware/how-onion-builds-firmware',
       ],
     },
-    /*{
+    {
       type: 'category',
       label: 'Bootloader',
       items: [
         'bootloader/overview',
+        'bootloader/upgrading-old-bootloader',
+        'bootloader/activating-bootloader',
+        'bootloader/flashing-firmware-over-ethernet',
+        'bootloader/upgrading-bootloader',
+        'bootloader/stop-autoboot-with-keyboard-input',
       ],
-    },*/
+    },
     'feedback',
   ],
   guides: [
