@@ -9,7 +9,7 @@ Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy
 
 | Method | Link to Guide | Typical Transfer Time* |
 |--------|---------------|------------------------|
-| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-ethernet) | ~10 s |
+| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-over-ethernet) | ~10 s |
 | **Serial (YMODEM)** | *you’re here* | **~10–15 min** |
 
 \*Measured with a 7 MB firmware image. Time varies with image size and link quality.
@@ -102,6 +102,20 @@ Save the chosen image in an easy-to-find folder and **note its exact filename**.
 
 Power-cycle the Omega2 while watching the serial console and press the reset button (GPIO 38) to interrupt autoboot.
 
+<Tabs>
+  <TabItem value="mac" label="Minicom (macOS & Linux)" default>
+
+Follow the instructions in the [Serial Command Line quickstart](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) to find the serial device name.
+
+Use Minicom to connect to the Omega2 command line through serial:
+
+```
+minicom -D <SERIAL-DEVICE-NAME> 115200
+```
+
+  </TabItem>
+</Tabs>
+
 import StopAutobootInstructions from './_stop-autoboot-instructions.mdx'
 
 <StopAutobootInstructions/>
@@ -127,6 +141,11 @@ U-Boot will display:
 
 ## Step 6: Transfer the Firmware Image (YMODEM)
 
+<Tabs>
+  <TabItem value="mac" label="Minicom (macOS & Linux)" default>
+
+Start transfer of the file:
+
 1. In **Minicom**, press **Meta-Z**, then **S** to open the **Send File** dialog.  
 2. Navigate with **Space** (to enter directories) until you highlight the firmware image.  
 3. Press **Space** to mark the file, then **Enter** to start the transfer.
@@ -150,6 +169,9 @@ When finished U-Boot reports:
 ## Total Size      = 0x006d0329 = 7144233 Bytes
 ## Start Addr      = 0x81800000
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Step 7: Write the Firmware Image to Flash
 
