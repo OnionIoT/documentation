@@ -19,6 +19,8 @@ It provides many benefits over the previously available and much older bootloade
 
 ## Guides
 
+These guides cover the Omega2’s new U-Boot bootloader. From here on we simply call it U-Boot. 
+
 See the guides in this section:
 
 - [Upgrading an Omega2 module running the previous bootloader to the new bootloader](./upgrading-old-bootloader)
