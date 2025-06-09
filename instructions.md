@@ -65,7 +65,7 @@ import FlashInstructions from '@site/docs/snippets/_common-flash-instructions.md
 4. Tabs for Variant Instructions
 ─────────────────────────
 • Use tabs when a task differs across OSes or scenarios.  
-• Import components:  
+• Import components (this is mandatory if using Tabs):  
 ```jsx
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -84,6 +84,8 @@ Linux commands
   </TabItem>
 </Tabs>
 ```  
+• Avoid using numbered lists in Tabs if possible
+• Any un-numbered lists must have an extra newline at the end to be properly detected 
 
 ─────────────────────────
 5. Articles with Procedeures
@@ -120,6 +122,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 <GiscusDocComment />
 ```
 
+No need to add horizontal dividers `---` between steps. Step headings should use spaces, not `&nbsp;` characters.
 
 ─────────────────────────
 6. Workflow You Must Follow
@@ -135,6 +138,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 **Step 2 – Write after approval**  
  • Expand the outline per Sections 2–4.  
  • Ask whenever any fact or path is uncertain.  
+ • *If the user requests changes to the draft,* revise **only** the specified parts; leave the rest intact, and continue to follow the baseline formatting checklist as well as the rest of these prompts
 
 **Step 3 – Self-review**  
  • Confirm: plain English, minimal fluff, correct headings, command explanations, copy-paste-safe code, proper admonitions, root-relative links, snippet/tab usage, front matter, Giscus import/comment, quad-fence wrapping.

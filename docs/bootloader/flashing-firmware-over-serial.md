@@ -2,19 +2,19 @@
 title: Flashing Firmware over Serial
 ---
 import { GiscusDocComment } from '/src/components/GiscusComment';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy when your device **lacks Ethernet** or you’re recovering a bricked Omega2 that can’t boot into Linux.
 
-| Method   | Link to Guide | Typical Transfer Time* |
-|----------|---------------|------------------------|
-| Ethernet (TFTP) | [/bootloader/flash-firmware-ethernet](/bootloader/flash-firmware-ethernet) | ~10 s |
+| Method | Link to Guide | Typical Transfer Time* |
+|--------|---------------|------------------------|
+| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-ethernet) | ~10 s |
 | **Serial (YMODEM)** | *you’re here* | **~10–15 min** |
 
 \*Measured with a 7 MB firmware image. Time varies with image size and link quality.
 
----
-
-## Step&nbsp;1: Gather Requirements
+## Step 1: Gather Requirements
 
 - **Target device:** Omega2/2+ with  
   - Serial console access (UART0)  
@@ -22,62 +22,75 @@ Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy
 - **Host computer** with a USB-UART adapter  
 - **USB cable** for power & serial
 
----
+## Step 2: Host Computer Setup
 
-## Step&nbsp;2: Host Computer Setup
+First, ensure your computer has the necessary USB-serial drivers:
+
+import ComputerSetupSerialDrivers from './_computer-setup-serial-drivers.mdx'
+
+<ComputerSetupSerialDrivers/>
 
 <Tabs>
   <TabItem value="mac" label="macOS" default>
 
-1. **Install utilities**
+Before installing the flashing utilities, install the **Homebrew** package manager if it isn’t already present. Follow the instructions on the [Homebrew website](https://brew.sh) for details.
 
-   ```bash
-   brew install lrzsz minicom
-   ```
+With Homebrew ready, install `lrzsz` (YMODEM tools) and `minicom`:
 
-2. **Configure Minicom**
+```bash
+brew install lrzsz minicom
+```
 
-   ```bash
-   minicom -s
-   ```
+Next, open Minicom’s configuration menu:
 
-   In *Serial port setup*  
-   - **Bps/Par/Bits:** `115200 8N1`  
-   - **Hardware Flow Control:** **No**  
-   - **Software Flow Control:** **No**
+```bash
+minicom -s
+```
+
+In the *Serial port setup* menu, set:  
+- **Bps/Par/Bits** to `115200 8N1`  
+- **Hardware Flow Control** to `No`
+- **Software Flow Control** to `No`
+
+
+:::tip
+See the [Getting Started with Minicom Guide](https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) for more information on using Minicom.
+:::
 
   </TabItem>
   <TabItem value="linux" label="Linux (Ubuntu)">
 
-1. **Install utilities**
+Update your package lists and install the required utilities:
 
-   ```bash
-   sudo apt update
-   sudo apt install lrzsz minicom
-   ```
+```bash
+sudo apt update
+sudo apt install lrzsz minicom
+```
 
-2. **Configure Minicom**
+Configure Minicom:
 
-   ```bash
-   sudo minicom -s
-   ```
+```bash
+sudo minicom -s
+```
 
-   In *Serial port setup*  
-   - **Bps/Par/Bits:** `115200 8N1`  
-   - **Hardware Flow Control:** **No**  
-   - **Software Flow Control:** **No**
+In the *Serial port setup* menu, set:  
+- **Bps/Par/Bits** to `115200 8N1`  
+- **Hardware Flow Control** to `No`
+- **Software Flow Control** to `No`
+
+:::tip
+See the [Getting Started with Minicom Guide](https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) for more information on using Minicom.
+:::
 
   </TabItem>
   <TabItem value="windows" label="Windows">
 
-*Coming soon*
+Guidance for Windows is **coming soon**. Meanwhile, you can use a terminal application such as **Tera Term** or **PuTTY** that supports YMODEM transfers, together with the appropriate USB-serial drivers.
 
   </TabItem>
 </Tabs>
 
----
-
-## Step&nbsp;3: Download the Firmware Image
+## Step 3: Download the Firmware Image
 
 import InstallingFirmwareSelectImage from '../firmware/_installing-firmware-select-image.mdx'
 
@@ -85,9 +98,7 @@ import InstallingFirmwareSelectImage from '../firmware/_installing-firmware-sele
 
 Save the chosen image in an easy-to-find folder and **note its exact filename**.
 
----
-
-## Step&nbsp;4: Activate the Bootloader Command Line
+## Step 4: Activate the Bootloader Command Line
 
 Power-cycle the Omega2 while watching the serial console and press the reset button (GPIO 38) to interrupt autoboot.
 
@@ -99,11 +110,9 @@ import StopAutobootOutcome from './_stop-autoboot-outcome.mdx'
 
 <StopAutobootOutcome/>
 
----
+## Step 5: Prepare for Serial Transfer
 
-## Step&nbsp;5: Prepare for Serial Transfer
-
-In the U-Boot prompt, switch both sides to **115200 bps** and start the YMODEM receiver:
+At the U-Boot prompt set the baud rate and launch the YMODEM receiver:
 
 ```bash
 setenv baudrate 115200
@@ -114,15 +123,12 @@ U-Boot will display:
 
 ```
 ## Ready for binary (ymodem) download to 0x81800000 at 115200 bps...
-C
 ```
 
----
-
-## Step&nbsp;6: Transfer the Firmware Image (YMODEM)
+## Step 6: Transfer the Firmware Image (YMODEM)
 
 1. In **Minicom**, press **Meta-Z**, then **S** to open the **Send File** dialog.  
-2. Navigate with **space** (to enter directories) until you highlight the firmware image.  
+2. Navigate with **Space** (to enter directories) until you highlight the firmware image.  
 3. Press **Space** to mark the file, then **Enter** to start the transfer.
 
 During the upload you’ll see a progress bar similar to:
@@ -135,9 +141,7 @@ During the upload you’ll see a progress bar similar to:
 ```
 
 :::note
-
-If the transfer is interrupted, simply rerun `loady $loadaddr $baudrate` and restart the Minicom upload.
-
+If the transfer is interrupted, rerun `loady $loadaddr $baudrate` and restart the Minicom upload.
 :::
 
 When finished U-Boot reports:
@@ -147,38 +151,30 @@ When finished U-Boot reports:
 ## Start Addr      = 0x81800000
 ```
 
----
-
-## Step&nbsp;7: Write the Firmware Image to Flash
+## Step 7: Write the Firmware Image to Flash
 
 ```bash
 sf probe
 sf update $loadaddr firmware $filesize
 ```
 
-Writing takes **30–45 s**. Your Omega2 now contains the new firmware.
+Writing takes **30–45 s**.
 
----
-
-## Step&nbsp;8: Boot into the Firmware
+## Step 8: Boot into the Firmware
 
 ```bash
 boot
 ```
 
-Other options:
+Alternative options:
 
-- `reset` at the U-Boot prompt  
+- Run `reset` at the U-Boot prompt  
 - Power-cycle the device
 
----
-
-## Step&nbsp;9: Confirm Booting
+## Step 9: Confirm Booting
 
 import BootLogSample from './_bootloader-boot-log-sample.mdx'
 
 <BootLogSample/>
-
-Look for the firmware version string to verify the update succeeded.
 
 <GiscusDocComment />
