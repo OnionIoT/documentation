@@ -9,7 +9,7 @@ Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy
 
 | Method | Link to Guide | Typical Transfer Time* |
 |--------|---------------|------------------------|
-| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-over-ethernet) | ~10 seconds |
+| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flashing-firmware-over-ethernet) | ~10 seconds |
 | **Serial (YMODEM)** | *you’re here* | **~10–15 minutes** |
 
 \*Measured with a 7 MB firmware image. Time varies with image size and link quality.
