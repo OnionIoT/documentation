@@ -1,0 +1,16 @@
+<!-- File: _computer-setup-tftp-tools.mdx -->
+
+The host computer needs a **TFTP server** to transfer files to the Omega2 during bootloader or firmware upgrades.
+
+There are many TFTP implementations; this documentation uses the **Node.js** *`tftp`* package because it runs on macOS, Linux, and Windows.
+
+1. Verify that **Node.js** and **npm** are installed.  
+   If they are not, follow the [official installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+
+2. Install the package globally:
+
+```bash
+npm install -g tftp
+```
+
+After installation you will have an `ntftp` command in your **PATH**; you will use it later in this guide to launch a TFTP server from the directory that contains the bootloader binary.
