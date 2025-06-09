@@ -9,8 +9,8 @@ Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy
 
 | Method | Link to Guide | Typical Transfer Time* |
 |--------|---------------|------------------------|
-| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-over-ethernet) | ~10 s |
-| **Serial (YMODEM)** | *you’re here* | **~10–15 min** |
+| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flash-firmware-over-ethernet) | ~10 seconds |
+| **Serial (YMODEM)** | *you’re here* | **~10–15 minutes** |
 
 \*Measured with a 7 MB firmware image. Time varies with image size and link quality.
 
@@ -85,7 +85,27 @@ See the [Getting Started with Minicom Guide](https://wiki.emacinc.com/wiki/Getti
   </TabItem>
   <TabItem value="windows" label="Windows">
 
-Guidance for Windows is **coming soon**. Meanwhile, you can use a terminal application such as **Tera Term** or **PuTTY** that supports YMODEM transfers, together with the appropriate USB-serial drivers.
+Install **Tera Term** (v 4.107 or newer) to provide both a serial console and YMODEM support:
+
+- Download the installer from the official [Tera Term release page](https://osdn.net/projects/ttssh2/releases/).  
+- Run the installer and accept the default options.
+
+Identify the **COM port** used by the Omega2 device with Serial Port Access:
+
+- Make sure the Omega2 device is plugged in
+- Open *Device Manager → Ports (COM & LPT)* and note the COM number (for example, `COM7`). *See the "Find the serial device" section in [step 2 of the connecting to serial command line article](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) for more details.*
+
+Configure the serial connection:
+
+1. *File → New connection* → **Serial** → select your COM port.  
+2. *Setup → Serial port* → set  
+   - **Baud rate** `115200`  
+   - **Data** `8 bit`  
+   - **Parity** `none`  
+   - **Stop** `1 bit`  
+   - **Flow control** `none`
+
+Save the settings with *Setup → Save setup* so they load automatically next time.
 
   </TabItem>
 </Tabs>
@@ -105,7 +125,7 @@ Power-cycle the Omega2 while watching the serial console and press the reset but
 <Tabs>
   <TabItem value="mac" label="Minicom (macOS & Linux)" default>
 
-Follow the instructions in the [Serial Command Line quickstart](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) to find the serial device name.
+Make sure the Omega2 device is plugged in to the host computer. Follow the instructions in the "Check for the serial device" section in [step 2 of the connecting to serial command line article](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) to find the serial device name.
 
 Use Minicom to connect to the Omega2 command line through serial:
 
@@ -114,11 +134,20 @@ minicom -D <SERIAL-DEVICE-NAME> 115200
 ```
 
   </TabItem>
+  <TabItem value="windows" label="Tera Term (Windows)">
+
+Open the Tera Term serial session you configured in **Step 2** to connect to the serial command line.
+
+  </TabItem>
 </Tabs>
 
-import StopAutobootInstructions from './_stop-autoboot-instructions.mdx'
+Power on the device **and** press the SW Reset button at the same time. 
 
-<StopAutobootInstructions/>
+:::info
+
+The Reset button on the Omega2 Eval Boards and Omega2 Docks is connected to the active-high FW_RST/GPIO38 pin. Pressing the reset button sends a digital-high signal to the FW_RST/GPIO38 pin.
+
+:::
 
 import StopAutobootOutcome from './_stop-autoboot-outcome.mdx'
 
@@ -171,6 +200,21 @@ When finished U-Boot reports:
 ```
 
   </TabItem>
+  <TabItem value="windows" label="Tera Term (Windows)">
+
+With the Omega2 waiting, start the transfer from Tera Term:
+
+- Choose *File → Transfer → YMODEM → Send*.  
+- Select the firmware image you downloaded in **Step 3** and click **Open**.
+
+A progress window will display sector and kilobyte counts; a 7 MB image typically finishes in **≈ 10–15 minutes** at 115 200 bps.
+
+When the dialog closes, U-Boot should print the `## Total Size = …` line, confirming a successful upload.  
+
+If the transfer fails, rerun `loady $loadaddr $baudrate` on the Omega and repeat the *YMODEM → Send* operation in Tera Term.
+
+  </TabItem>
+  
 </Tabs>
 
 ## Step 7: Write the Firmware Image to Flash
@@ -180,7 +224,7 @@ sf probe
 sf update $loadaddr firmware $filesize
 ```
 
-Writing takes **30–45 s**.
+Writing takes **30-45 seconds**.
 
 ## Step 8: Boot into the Firmware
 

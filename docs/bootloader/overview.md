@@ -6,7 +6,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The bootloader is the very first program an embedded device will run when it powers up. It will do basic hardware initialization and move on to load the operating system. It can also be used to customize boot behaviour, flash new versions of the firmware/operating system, and more.
 
-A bootloader based on the latest release of u-boot is now available for the Omega2 family of modules. 
+A bootloader based on a **modern release of u-boot** is now available for the Omega2 family of modules. 
 
 ## Better by Miles
 
@@ -30,7 +30,8 @@ See the guides in this section:
 - Current supported u-boot version: v2025.04 
 <!-- - TODO: update to use u-boot-version variable above -->
 <!-- - TODO: link to u-boot/u-boot repo and omega2 support -->
-<!-- - TODO: link to OnionIoT/u-boot repo -->
+- **Compiled binaries can be found at: http://repo.onioniot.com/omega2/bootloader/v2025.04/**
+<!-- - TODO: update to use u-boot-version variable above -->
 - Compiled u-boot fits into existing 192kB u-boot partition on the Omega2 devices
     - First boots into u-boot SPL (Secondary Program Loader) that loads a compressed version of the full u-boot 
 
