@@ -30,6 +30,12 @@ If the serial command line shows a menu like the one below, **the device is runn
 
 ![previous omega2 bootloader boot menu](./assets/old-bootloader-menu.png)
 
+:::note
+
+See the [Legacy Onion Documentation](https://docs.onion.io/omega2-docs/the-bootloader.html) for more information on the Legacy bootloader.
+
+:::
+
 #### New Bootloader
 
 If the serial command line prints messages mentioning U-Boot, U-Boot SPL and version numbers like 2025.04 or greater, then the device is already running the new bootloader. **No need to take any further action!**
