@@ -193,51 +193,9 @@ Other options for booting into Linux:
 
 ## Step 9: Confirm booting!
 
-If the process was successful, the boot log will look like the following:
+import BootLogSample from './_bootloader-boot-log-sample.mdx'
 
-<!-- TODO: update boot log with upstreamed bootloader version -->
-
-```
-U-Boot SPL 2025.04-ga92da3b468ea (Apr 23 2025 - 19:14:37 +0000)
-Trying to boot from NOR
-
-
-U-Boot 2025.04-ga92da3b468ea (Apr 23 2025 - 19:14:37 +0000)
-
-CPU:   MediaTek MT7688A ver:1 eco:2
-Boot:  DDR2, SPI-NOR 3-Byte Addr, CPU clock from XTAL
-Clock: CPU: 580MHz, Bus: 193MHz, XTAL: 40MHz
-Model: Onion Omega2+
-DRAM:  128 MiB
-Core:  52 devices, 13 uclasses, devicetree: separate
-Loading Environment from SPIFlash... SF: Detected w25q256 with page size 256 Bytes, erase size 4 KiBB
-OK
-In:    uartlite@c00
-Out:   uartlite@c00
-Err:   uartlite@c00
-Initializing MT7688 GPIO system.
-Net:   eth0: eth@10110000
-SF: Detected w25q256 with page size 256 Bytes, erase size 4 KiB, total 32 MiB
-Reading 4194304 byte(s) at offset 0x00000000
-## Booting kernel from Legacy Image at 81800000 ...
-   Image Name:   MIPS OpenWrt Linux-5.15.150
-   Image Type:   MIPS Linux Kernel Image (lzma compressed)
-   Data Size:    2348656 Bytes = 2.2 MiB
-   Load Address: 80000000
-   Entry Point:  80000000
-   Verifying Checksum ... OK
-Working FDT set to 0
-   Uncompressing Kernel Image to 80000000
-[    0.000000] Linux version 5.15.150 (builder@buildhost) (mipsel-openwrt-linux-musl-gcc (OpenWrt GC4
-[    0.000000] Board has DDR2
-[    0.000000] Analog PMU set to hw control
-[    0.000000] Digital PMU set to hw control
-[    0.000000] SoC Type: MediaTek MT7688 ver:1 eco:2
-[    0.000000] printk: bootconsole [early0] enabled
-[    0.000000] CPU0 revision is: 00019655 (MIPS 24KEc)
-[    0.000000] MIPS: machine is Onion Omega2+
-...
-```
+<BootLogSample/>
 
 <!-- ## Troubleshooting
 
