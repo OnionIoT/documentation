@@ -4,17 +4,20 @@ title: Stop Autoboot with a Keyboard Key
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-By default, the Omega2’s bootloader (U-Boot 2025.04-…) launches Linux automatically a fraction of a second after power-on. This can be interrupted with the reset button (GPIO38) to start the bootloader command line. However, GPIO38 is not always accessible.
+By default, the Omega2’s bootloader (U-Boot 2025.04-…) launches Linux automatically a fraction of a second after power-on. This can be interrupted with the reset button (GPIO38) to start the bootloader command line. However, GPIO38 is not always accessible on custom designs.
 
 Changing two U-Boot environment variables lets you **press a key on the serial console to stop the countdown and drop to the bootloader prompt**, giving you time to flash firmware, tweak settings, or recover a bricked device.
 
 ### Gather the requirements:
 
 - **Omega2 module** running the *new* **U-Boot v2025.04** bootloader (or newer) with access to:
-  - serial command line on **UART0**
+  - serial command line on **UART0** with USB-to-Serial chip
   - **reset button** (GPIO38)
+  - Note: Access to all of the above is provided on the Omega2 Eval Boards
 - **Host computer**
 - **USB cable** to connect to the Omega
+
+
 
 ## Step 1: Activate the Bootloader Command Line
 

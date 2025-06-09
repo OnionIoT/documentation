@@ -10,6 +10,8 @@ The bootloader is configured to automatically boot into the Linux operating syst
 
 However, autoboot can be stopped so the device remains in the bootloader and opens the bootloader command line. This gives the user access to low level system tools to change settings, flash new firwmare, and more.
 
+*Access to the Omega's serial command line is required to use the bootloader.*
+
 ## How to Activate the Bootloader Command Line
 
 **By default, the reset button (connected to the FW_RST/GPIO38 pin) controls the autoboot behaviour.** If the reset is asserted, autoboot will be stopped.
@@ -44,7 +46,8 @@ To learn more about the bootloader prompt:
 2. See the u-boot documentation on the [command line](https://docs.u-boot.org/en/latest/usage/cmdline.html) and the [available utilities](https://docs.u-boot.org/en/latest/usage/index.html#shell-commands)
 
 Other things you can do with the bootloader:
-- [Flashing firwmare over ethernet using the bootloader](./flashing-firmware-over-ethernet)
+- [Using the bootloader to flash new firmware over ethernet](/bootloader/flashing-firmware-over-ethernet)
+- [Using the bootloader to flash new firmware over serial](/bootloader/flashing-firmware-over-serial)
 
 <!-- TODO: add links to new guides as they become available -->
 

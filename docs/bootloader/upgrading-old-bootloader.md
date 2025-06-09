@@ -72,6 +72,7 @@ Gather the requirements:
     - serial command line
     - ethernet port
     - reset button (GPIO38)
+    - Note: Access to all of the above is provided on the Omega2 Eval Boards
 - A host computer
 - Ethernet Cable
 - USB cable to connect to the Omega
@@ -94,18 +95,9 @@ import ComputerSetupEthernetStaticIp from './_computer-setup-ethernet-static-ip.
 
 ### Step 3: Download the New Bootloader Binary
 
-<!-- TODO: update this section when bootloader binaries are uploaded if necessary -->
+import BootloaderDownloadUbootImage from './_bootloader-download-uboot-image.mdx'
 
-Download the bootloader binary that will be flashed to the target device.
-
-In a web browser, navigate to http://repo.onioniot.com/omega2/bootloader/v2025.04
-
-Next, find the bootloader binary for the target device:
-
-- The bootloader filename for the Omega2 (OM-O2) and Omega2S (OM-O2S) starts with `onion_omega2_`
-- The bootloader filename for the Omega2**+** (OM-O2**P**) or Omega2S**+** (OM-O2S**P**) starts with `onion_omega2p_`
-
-Download the corresponding bootloader binary for the target device.
+<BootloaderDownloadUbootImage />
 
 ### Step 4: Activate Web Recovery Mode
 
@@ -131,7 +123,8 @@ HTTP server is up and running.
 
 ### Step 5: Flash the New Bootloader
 
-Open a browser on the host computer and navigate to `192.168.8.8/uboot.html`. It will display a page like this:
+Open a browser on the host computer and navigate to http://192.168.8.8/uboot.html.
+It will display a page like this:
 
 ![old bootloader web recovery in browser](./assets/old-bootloader-web-recovery.png)
 
@@ -148,56 +141,16 @@ When you’re ready, press the **Update!** button. The serial command line will 
 
 The update will take about 15 seconds, the device will restart when the update is complete. 
 
-The Omega will boot normally if everything went according to plan. The boot logs will look something like this:
+import BootLogSample from './_bootloader-boot-log-sample.mdx'
 
-<!-- TODO: update boot log with upstreamed bootloader version? -->
-
-```
-U-Boot SPL 2025.04-ga92da3b468ea (Apr 23 2025 - 19:14:37 +0000)
-Trying to boot from NOR
-
-
-U-Boot 2025.04-ga92da3b468ea (Apr 23 2025 - 19:14:37 +0000)
-
-CPU:   MediaTek MT7688A ver:1 eco:2
-Boot:  DDR2, SPI-NOR 3-Byte Addr, CPU clock from XTAL
-Clock: CPU: 580MHz, Bus: 193MHz, XTAL: 40MHz
-Model: Onion Omega2+
-DRAM:  128 MiB
-Core:  52 devices, 13 uclasses, devicetree: separate
-Loading Environment from SPIFlash... SF: Detected w25q256 with page size 256 Bytes, erase size 4 KiBB
-OK
-In:    uartlite@c00
-Out:   uartlite@c00
-Err:   uartlite@c00
-Initializing MT7688 GPIO system.
-Net:   eth0: eth@10110000
-SF: Detected w25q256 with page size 256 Bytes, erase size 4 KiB, total 32 MiB
-Reading 4194304 byte(s) at offset 0x00000000
-## Booting kernel from Legacy Image at 81800000 ...
-   Image Name:   MIPS OpenWrt Linux-5.15.150
-   Image Type:   MIPS Linux Kernel Image (lzma compressed)
-   Data Size:    2348656 Bytes = 2.2 MiB
-   Load Address: 80000000
-   Entry Point:  80000000
-   Verifying Checksum ... OK
-Working FDT set to 0
-   Uncompressing Kernel Image to 80000000
-[    0.000000] Linux version 5.15.150 (builder@buildhost) (mipsel-openwrt-linux-musl-gcc (OpenWrt GC4
-[    0.000000] Board has DDR2
-[    0.000000] Analog PMU set to hw control
-[    0.000000] Digital PMU set to hw control
-[    0.000000] SoC Type: MediaTek MT7688 ver:1 eco:2
-[    0.000000] printk: bootconsole [early0] enabled
-[    0.000000] CPU0 revision is: 00019655 (MIPS 24KEc)
-[    0.000000] MIPS: machine is Onion Omega2+
-```
+<BootLogSample/>
 
 ## What's Next?
 
 Now that the new bootloader is installed on the device, see the rest of the guides in this section:
-- [How to activate the bootloader command line](./activating-bootloader.md)
-- [How to flash firmware using the bootloader and ethernet](./flashing-firmware-over-ethernet.md)
+- [How to activate the bootloader command line](./activating-bootloader)
+- [How to flash firmware using the bootloader and ethernet](./flashing-firmware-over-ethernet)
+- [How to flash firmware using the bootloader and serial](./flashing-firmware-over-serial)
 
 <!-- TODO: add more guides as they become available -->
 

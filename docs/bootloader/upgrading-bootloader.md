@@ -22,6 +22,7 @@ Gather the requirements:
     - serial command line
     - ethernet port
     - reset button (GPIO38)
+    - Note: Access to all of the above is provided on the Omega2 Eval Boards
 - A host computer
 - Ethernet Cable
 - USB cable to connect to the Omega
@@ -45,11 +46,9 @@ import ComputerSetupTftpTools from './_computer-setup-tftp-tools.mdx'
 
 ## Step 3: Download the Bootloader Binary
 
-<!-- TODO: update this with real filename -->
+import BootloaderDownloadUbootImage from './_bootloader-download-uboot-image.mdx'
 
-Download **`u-boot-with-spl.bin`** from `http://repo.onioniot.com/omega2/bootloader/v2025.04/` and place it in a new, empty folder—this is where you will run the TFTP server.
-
-> **Why only one binary?**  The new bootloader auto‑detects flash and RAM, so **`u-boot-with-spl.bin` works on every Omega2 SKU**.
+<BootloaderDownloadUbootImage />
 
 ## Step 4: Start the TFTP Server
 In the download folder run:
@@ -149,6 +148,12 @@ Watch the boot log. The first line should now show the new build date, for examp
 ```
 U-Boot 2025.04 (May 10 2025 – 12:34:56)
 ```
+
+<!-- TODO: update this date above when new bootloader is available -->
+
+import BootLogSample from './_bootloader-boot-log-sample.mdx'
+
+<BootLogSample/>
 
 ## What’s next?
 - [Activating the Bootloader Command Line](/bootloader/activating-bootloader)
