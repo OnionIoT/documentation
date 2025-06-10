@@ -17,6 +17,12 @@ It provides many benefits over the much older legacy bootloader:
 - End-users can customize U-Boot behaviour without rebuilding
 - Based on an active, maintainable, and extendable code base
 
+## How is it Different from the older legacy Bootloader?
+
+- The U-Boot bootloader is more developer-focused -> relies on command line tools 
+- Does not feature web-based firmware recovery like the legacy bootloader
+- Does not support USB devices by default - U-Boot is compressed and loaded by the U-Boot SPL (Secondary Program Loader) in order to fit in the 192kb u-boot partition on the Omega2 and be compatible with the existing Omega2 firmware
+
 ## Guides
 
 These guides cover the Omega2’s new U-Boot bootloader. From here on we simply call it U-Boot. 
