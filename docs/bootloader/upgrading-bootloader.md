@@ -109,6 +109,16 @@ sf probe
 ```
 
 Clear the existing environment variables:
+
+:::danger
+
+Keep in mind that clearing the environment variables in the `u-boot-env` partition will **permanently remove** any customizations made to the U-Boot environment variables. <br/>
+When the new U-Boot runs for the first time, it will write the **default environment variables** to the `u-boot-env` partition. 
+
+Skip this command to retain any environment variable customizations. However, take care since incorrect values **can make your device unbootable**. 
+
+:::
+
 ```
 sf erase u-boot-env 0x10000 
 ```

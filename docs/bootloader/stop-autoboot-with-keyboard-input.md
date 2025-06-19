@@ -33,7 +33,11 @@ You should now see the bootloader prompt:
 
 ```
 U-Boot 2025.04-...
-=>
+...
+Detected board variant OMEGA2+: mtdparts="spi0.0:192k(u-boot),64k(u-boot-env),64k(factory),32448k(fi"
+Reset button pressed - entering shell ...
+Net:   eth0: eth@10110000
+=> 
 ```
 
 ## Step 2: Set a Boot Delay
@@ -54,16 +58,16 @@ A longer delay gives you more time to type but slows every boot.
 Select the character (or short string) that will cancel autoboot during the delay.
 
 ```bash
-env set bootstopkey 1
+env set bootstopkey a
 ```
 
-With the example above, pressing **`1`** during the 2-second countdown halts the boot process.  
+With the example above, pressing **`a`** during the 2-second countdown halts the boot process.  
 You can use any printable character (`a–z`, `0–9`, etc.) or a short word such as `debug`.
 
 ## Step 4: Save the Environment
 
 :::warning
-`saveenv` writes the environment to flash. Incorrect values **can make your device unbootable**. Double-check the commands before saving.
+The `saveenv` command writes the environment to flash. Incorrect values **can make your device unbootable**. Double-check the commands before saving.
 :::
 
 ```bash
@@ -80,21 +84,24 @@ Reboot the Omega from the bootloader:
 reset
 ```
 
-As soon as the countdown banner appears, **tap `1`** a few times.  
+As soon as the countdown banner appears, **tap `a`** a few times.  
 Successful output looks like this:
 
 ```
-Hit any key to stop autoboot:  1
+...
+Detected board variant OMEGA2+: mtdparts="spi0.0:192k(u-boot),64k(u-boot-env),64k(factory),32448k(fi"
+Net:   eth0: eth@10110000
+Autoboot in 2 seconds
 =>
 ```
 
 :::tip
-`bootdelay 1` gives the fastest usable workflow—short wait, still easy to hit the key.
+Setting `bootdelay` to `1` gives the fastest usable workflow — short wait, but still easy to hit the key.
 :::
 
 ## Additional Notes & Troubleshooting
 
-* **Reset button still works** – holding it forces the bootloader prompt but only *after* the full `bootdelay` elapses.  
+* **Reset button still works** - holding it forces the bootloader prompt but only *after* the full `bootdelay` elapses.  
 * **Disable the feature** by setting `bootdelay 0` and saving:  
   ```bash
   env set bootdelay 0
