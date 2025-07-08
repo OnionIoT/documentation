@@ -67,6 +67,7 @@ const sidebars = {
         'quickstart/setup-wifi',
         'quickstart/hello-world-demo',
         'quickstart/reference-material',
+        'quickstart/connecting-with-ssh',
       ],
     },
     {

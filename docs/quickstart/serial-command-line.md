@@ -12,13 +12,35 @@ Now, we'll dicscuss how to connect to the Omega's command line over USB.
 
 The Serial Command Line terminal interface is ideal for configuration and debugging during early development. The serial command line is always accessible if the device is on. There is no need to rely on a network connection, like there is with SSH connections. For Omega devices in production environments or with stable network connections, SSH is a valid alternative to securely access the command line through the local network.
 
+:::tip
+
+See the [Connecting with SSH article](/quickstart/connecting-with-ssh) for information on using SSH to access the Omega command line.
+
+:::
+
+## Hardware Compatibility
+
 The Omega’s Serial Command Line interface is accessible on UART0. On hardware with an on-board USB-to-Serial chip - like the Omega2 Eval Boards - the serial command line can be accessed over USB. The USB-to-Serial chip translates the UART serial terminal signals into USB signals that your computer can understand and vice versa.
 
 :::caution
 
-Keep in mind the serial command line can only be accessed on hardware with a USB-to-Serial chip. This includes the Omega2 Eval Boards, Omega2 Pro, Omega2 LTE, Omega2 Dash, Omega2S Development Kit, Expansion Dock, and Mini Dock
+Keep in mind the serial command line can only be accessed on hardware with a USB-to-Serial chip. 
 
 :::
+
+Devices that feature a USB-to-Serial chip include: 
+
+- Omega2 Eval Board (OM-O2P-EVAL)
+- Omega2S Eval Board (OM-O2SP-EVAL)
+- Omega2 Pro (OM-O2PRO)
+- Omega2 LTE (OM-O2LTE-NA, OM-O2LTE-G)
+- Omega2 Dash (OM-O2DASH)
+- Omega2S Development Kit (OM2S-DK-EM, OM2S-DK-SD)
+- Expansion Dock (OM-D-EXP)
+- Mini Dock (OM-D-MIN)
+
+Onion hardware not listed above does not feature a USB-to-Serial chip and cannot be used to access the Serial Command line.
+
 
 ## Step 1: Install USB-to-Serial driver on your computer
 
@@ -224,5 +246,16 @@ For information on how to use the screen utility, please see this [tutorial](htt
 
  </TabItem>
 </Tabs>
+
+## Additional Information
+
+The default credentials for Omega2 devices are:
+
+```
+username: root
+password: onioneer
+```
+
+This is not necessary when using the serial command line, but is good to know.
 
 <GiscusDocComment />

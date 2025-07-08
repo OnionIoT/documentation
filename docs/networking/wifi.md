@@ -94,7 +94,7 @@ See the [OpenWRT wireless](https://openwrt.org/docs/guide-user/network/wifi/basi
 
 The Station (STA) mode allows you to connect the Omega2 to an existing wireless network as a client. 
 
-*The wireless interface used for Station mode is also called the wireless client interface.**
+*The wireless interface used for Station mode is also called the wireless client interface.*
 
 ### Default behaviour
 
