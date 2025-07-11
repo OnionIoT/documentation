@@ -67,7 +67,7 @@ What's new:
 
 What's no longer included:
 
-- Avahi Daemon is not included, so the Omega will not announce or be available at its `omega-abcd.local` name on the local network
+- Avahi Daemon was not included before version `23.05.3-20250709.bin`, so when running firmware with a lower builder number, the Omega will not announce or be available at its `omega-xxxx.local` name on the local network
 - No more `wifisetup` utility. All WiFi configuration done through UCI. 
 - No more `oupgrade` utility. Firmware updates must be done using `sysupgrade` in Linux or through the bootloader
 - The OnionOS/Onion Console Web UI is not included
