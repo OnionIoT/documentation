@@ -77,6 +77,7 @@ What's no longer included:
   - No special support for the Omega2 Dash TFT display is currently available. However, users can enable display support by building custom firmware, see [this thread on the Onion Community](https://community.onion.io/topic/5096/how-do-we-get-the-23-05-firmware-for-the-dash/2) for more information.
 - Utilities for the I2C-based Omega2 expansions are not included in the firmware by default
   - Command line utilities that control the OLED, PWM, and Relay Expansion available as packages for the new firmware and can be installed by running `opkg update; opkg install oled-exp relay-exp pwm-exp`
+  - Please see the [legacy documentation](https://docs.onion.io/) for more information on the Omega2 Expansion products
 
 
 <GiscusDocComment />
