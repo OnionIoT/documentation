@@ -59,3 +59,27 @@ div[class^='announcementBar_'] {
   cursor: pointer;
   border: 0;
 }
+
+/* Hide doc side panels on the /home landing doc */
+html.docs-doc-id-home [class^='docSidebarContainer'],
+html.docs-doc-id-home [class*=' docSidebarContainer'],
+html.docs-doc-id-home [class^='theme-doc-toc'],
+html.docs-doc-id-home [class*=' theme-doc-toc'] {
+  display: none;
+}
+
+html.docs-doc-id-home [class^='docPage'] {
+  display: block;
+}
+
+html.docs-doc-id-home [class^='docMainContainer'],
+html.docs-doc-id-home [class*=' docMainContainer'] {
+  max-width: 100%;
+  flex: 1 1 auto;
+  padding: 0 0 2rem;
+}
+
+html.docs-doc-id-home [class^='docItemCol'],
+html.docs-doc-id-home [class*=' docItemCol'] {
+  max-width: 100%;
+}

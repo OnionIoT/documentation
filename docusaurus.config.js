@@ -32,7 +32,7 @@ const globalVariables = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Onion Omega2 Documentation',
+  title: 'Onion Docs',
   tagline: 'Everything you need to know',
   favicon: 'img/favicon.ico',
 
@@ -70,7 +70,7 @@ const config = {
       ({
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
-          sidebarPath: require.resolve('./sidebars.js'),
+          // sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo: done!
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -90,7 +90,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/onion-badge.png',
       navbar: {
-        title: 'Onion Omega2 Documentation',
+        title: 'Onion Docs',
         logo: {
           alt: 'Onion Badge',
           src: 'img/onion-badge.png',
@@ -102,15 +102,30 @@ const config = {
             type: 'doc',
             sidebarId: 'docsSidebar',
             position: 'right',
-            docId: 'introduction/intro',
-            label: 'Docs',
+            docId: 'home',
+            label: 'Home',
           },
           {
-            type: 'docSidebar',
+            type: 'doc',
+            sidebarId: 'docsSidebar',
             position: 'right',
-            sidebarId: 'guides',
-            label: 'Guides',
+            docId: 'introduction/intro',
+            docsPluginId: 'omega2-docs',
+            label: 'Omega2',
           },
+          {
+            type: 'doc',
+            sidebarId: 'docsSidebar',
+            position: 'right',
+            docId: 'home',
+            label: 'Omega4',
+          },
+          // {
+          //   type: 'docSidebar',
+          //   position: 'right',
+          //   sidebarId: 'guides',
+          //   label: 'Guides',
+          // },
         //   {to: '/blog', label: 'Blog', position: 'left'},
         //   {
         //     href: 'https://github.com/facebook/docusaurus',
@@ -119,10 +134,10 @@ const config = {
         //   },
         ],
       },
-      announcementBar: {
-        id: 'announcementBar-1', // Increment on change
-        content: `<strong>⚠️This documentation is for firmware based on OpenWRT 23.05 only!⚠️</strong> For information on firmware v0.3.4 and earlier, visit our <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">legacy documentation site.</a>`
-      },
+      // announcementBar: {
+      //   id: 'announcementBar-1', // Increment on change
+      //   content: `<strong>⚠️This documentation is for firmware based on OpenWRT 23.05 only!⚠️</strong> For information on firmware v0.3.4 and earlier, visit our <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">legacy documentation site.</a>`
+      // },
       footer: {
         style: 'dark',
         links: [
@@ -215,13 +230,35 @@ const config = {
     }),
 
   plugins: [
+        // Omega2 Docs
     [
-      '@docusaurus/plugin-google-gtag',
+      '@docusaurus/plugin-content-docs',
       {
-        trackingID: 'G-NT5DN7NR5L',
-        anonymizeIP: true,
+        id: 'omega2-docs',
+        path: 'omega2-docs',
+        routeBasePath: 'omega2-docs',          // /omega2-docs/*
+        sidebarPath: require.resolve('./sidebars.omega2.js'),
+
+        // Per-product versioning
+        // (default is true if versions.json exists in that folder)
+        lastVersion: 'current',
+        includeCurrentVersion: true,
+        // Optionally: versions config
+        versions: {
+          current: {
+            label: 'Next',
+          },
+        },
       },
     ],
+    // [
+    //   '@docusaurus/plugin-google-gtag',
+    //   {
+    //     trackingID: 'G-NT5DN7NR5L',
+    //     anonymizeIP: true,
+    //   },
+    // ],
+    
   ],
 };
 
