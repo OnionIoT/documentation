@@ -116,36 +116,12 @@ const config = {
           {
             type: 'doc',
             sidebarId: 'docsSidebar',
-            docsPluginId: 'omega2-legacy',
-            docId: 'Get-Started/intro',
-            position: 'right',
-            label: 'Omega2 Legacy',
-          },
-          {
-            type: 'doc',
-            sidebarId: 'docsSidebar',
             position: 'right',
             docId: 'home',
             label: 'Omega4',
           },
-          // {
-          //   type: 'docSidebar',
-          //   position: 'right',
-          //   sidebarId: 'guides',
-          //   label: 'Guides',
-          // },
-        //   {to: '/blog', label: 'Blog', position: 'left'},
-        //   {
-        //     href: 'https://github.com/facebook/docusaurus',
-        //     label: 'GitHub',
-        //     position: 'right',
-        //   },
         ],
       },
-      // announcementBar: {
-      //   id: 'announcementBar-1', // Increment on change
-      //   content: `<strong>⚠️This documentation is for firmware based on OpenWRT 23.05 only!⚠️</strong> For information on firmware v0.3.4 and earlier, visit our <a target="_blank" rel="noopener noreferrer" href="https://docs.onion.io">legacy documentation site.</a>`
-      // },
       footer: {
         style: 'dark',
         links: [
@@ -246,12 +222,9 @@ const config = {
         path: 'omega2-docs',
         routeBasePath: 'omega2-docs',          // /omega2-docs/*
         sidebarPath: require.resolve('./sidebars.omega2.js'),
-
-        // Per-product versioning
-        // (default is true if versions.json exists in that folder)
+        sidebarCollapsed: false,
         lastVersion: 'current',
         includeCurrentVersion: true,
-        // Optionally: versions config
         versions: {
           current: {
             label: 'Next',
@@ -266,6 +239,7 @@ const config = {
         path: 'omega2-legacy',
         routeBasePath: 'omega2-legacy',
         sidebarPath: require.resolve('./sidebars.omega2.legacy.js'),
+        sidebarCollapsed: false,
         lastVersion: 'current',
         includeCurrentVersion: true,
         versions: {
@@ -274,15 +248,7 @@ const config = {
           },
         },
       },
-    ],
-    // [
-    //   '@docusaurus/plugin-google-gtag',
-    //   {
-    //     trackingID: 'G-NT5DN7NR5L',
-    //     anonymizeIP: true,
-    //   },
-    // ],
-    
+    ],   
   ],
 };
 

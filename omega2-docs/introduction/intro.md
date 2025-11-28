@@ -3,6 +3,14 @@ slug: /
 title: Introduction to Omega2
 ---
 
+:::info Firmware Version Notice
+
+**This documentation is for firmware based on OpenWRT 23.05 only!**
+
+For information on firmware v0.3.4 and earlier, visit our [legacy documentation site](/omega2-legacy/).
+
+:::
+
 ## What is the Omega2
 
 The Omega2 family of modules is a platform for building IoT products, hubs, and devices. The WiFi-enabled Linux computer modules are designed to be drop-in solutions for IoT applications.

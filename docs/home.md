@@ -9,14 +9,6 @@ hide_table_of_contents: true
 
 import ProductSelector from '@site/src/components/ProductSelector';
 
-<!-- <div className="hero hero--primary">
-  <div className="container">
-    <h1>Build with Onion Hardware</h1>
-    <p className="hero__subtitle">Pick your platform, prep the firmware, and start prototyping faster.</p>
-  </div>
-</div> -->
-
-
 :::info Welcome
 Welcome to the central hub for Onion hardware documentation. Use this page to jump into the right product docs, find compliance references, and keep track of the latest firmware guidance.
 :::
@@ -26,20 +18,6 @@ Welcome to the central hub for Onion hardware documentation. Use this page to ju
 ## Choose a Platfrom
 
 <ProductSelector products={[
-  {
-    name: 'Omega2 Family (OpenWrt 23.05)',
-    description: 'Latest documentation for the Omega2/2S modules and dev boards',
-    highlights: [
-      'Product overviews, pinouts, and electrical specs',
-      'Quickstart, networking, and package workflows',
-      'Bootloader recovery plus firmware build guides'
-    ],
-    badge: 'Stable Release',
-    status: 'Firmware 23.05.3 - Updated August 7, 2024',
-    image: { src: '/img/Omega2-Family.jpg', alt: 'Omega2 Family modules' },
-    action: { label: 'Enter Omega2 Docs', to: '/omega2-docs/' },
-    secondaryAction: { label: 'Jump to hardware overview', to: '/omega2-docs/product-overview/omega2' }
-  },
   {
     name: 'Omega2 Legacy (OpenWrt 18.06)',
     description: 'Archive of the original Omega2 documentation covering firmware v0.3.4 and older builds.',
@@ -53,6 +31,20 @@ Welcome to the central hub for Onion hardware documentation. Use this page to ju
     image: { src: '/img/Omega2-Family.jpg', alt: 'Omega2 legacy modules' },
     action: { label: 'Open Legacy Docs', to: '/omega2-legacy/' },
     secondaryAction: { label: 'Start with quickstart', to: '/omega2-legacy/' }
+  },
+  {
+    name: 'Omega2 Family (OpenWrt 23.05)',
+    description: 'Latest documentation for the Omega2/2S modules and dev boards',
+    highlights: [
+      'Product overviews, pinouts, and electrical specs',
+      'Quickstart, networking, and package workflows',
+      'Bootloader recovery plus firmware build guides'
+    ],
+    badge: 'Stable Release',
+    status: 'Firmware 23.05.3 - Updated August 7, 2024',
+    image: { src: '/img/Omega2-Family.jpg', alt: 'Omega2 Family modules' },
+    action: { label: 'Enter Omega2 Docs', to: '/omega2-docs/' },
+    secondaryAction: { label: 'Jump to hardware overview', to: '/omega2-docs/product-overview/omega2' }
   },
   {
     name: 'Omega4 Family  (OpenWrt 24.09)',
