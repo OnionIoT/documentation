@@ -10,7 +10,7 @@ As a part of our efforts to add expansion support to node.js, we have added cont
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![Omega+OLED Expansion](http:https://i.imgur.com/tqcRlgG.jpg)
+![Omega+OLED Expansion](https://i.imgur.com/tqcRlgG.jpg)
 
 The module is a wrapper around the OLED C library. The library's documentation can be found [here](https://docs.onion.io/omega2-docs/oled-expansion-c-library.html), many of the node functions follow the same input-output structure as the C library.
 
@@ -30,13 +30,13 @@ The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical 
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/4JsaahS.png)
+![imgur](https://i.imgur.com/4JsaahS.png)
 
 Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/8DIiN2n.png)
+![imgur](https://i.imgur.com/8DIiN2n.png)
 
 So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
 
@@ -282,7 +282,7 @@ The memory mode affects how the cursor is automatically advanced when the displa
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/sU0WyZY.png)
+![imgur](https://i.imgur.com/sU0WyZY.png)
 
 After each write, the column cursor advances horizontally to the right along the page, once the end of the page is reached, the page cursor is advanced onto the next page.
 
@@ -290,7 +290,7 @@ After each write, the column cursor advances horizontally to the right along the
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/Dv1smND.png)
+![imgur](https://i.imgur.com/Dv1smND.png)
 
 After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column.
 
@@ -298,7 +298,7 @@ After each write, the page cursor advances vertically downward through the pages
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/oW4giq6.png)
+![imgur](https://i.imgur.com/oW4giq6.png)
 
 The column cursor advances horizontally to the right along each page, once the end of the page is reached, the column cursor wraps around to column 0 and the page cursor remains the same.
 
@@ -486,7 +486,7 @@ The `byte` argument holds the eight bits that will be written to the screen. The
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/8DIiN2n.png)
+![imgur](https://i.imgur.com/8DIiN2n.png)
 
 After the byte is set, the cursor will automatically move to the next page column.
 
@@ -496,7 +496,7 @@ Draw the following pattern:
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/lxs1q8J.png)
+![imgur](https://i.imgur.com/lxs1q8J.png)
 
 ``` javascript
 oledExp.writeByte(0x3f);

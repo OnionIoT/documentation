@@ -252,11 +252,11 @@ The OLED Screen can also be used to display images. The Console can be used to c
 
 The Console OLED App can be used to create OLED Expansion compatible image files. Navigate to the Image tab of the OLED App:
 
-![OLED Console App Image Tab](http:https://i.imgur.com/FPCVp8x.png)
+![OLED Console App Image Tab](https://i.imgur.com/FPCVp8x.png)
 
 Once an image has been selected, a button and form will appear that allow you to save the OLED image file to your Omega:
 
-![OLED Console App Loaded Image](http:https://i.imgur.com/xKx5KHa.png)
+![OLED Console App Loaded Image](https://i.imgur.com/xKx5KHa.png)
 
 After the image name and location are selected, click the **Save to Omega** button.
 

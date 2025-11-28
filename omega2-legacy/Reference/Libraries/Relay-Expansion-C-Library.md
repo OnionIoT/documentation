@@ -10,7 +10,7 @@ The Onion Relay Expansion library, `libonionrelayexp` is a dynamic C library tha
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![Relay Expansion](http:https://i.imgur.com/iPswHOC.jpg)
+![Relay Expansion](https://i.imgur.com/iPswHOC.jpg)
 
 The library can be used in C and C++ programs.
 

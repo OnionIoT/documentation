@@ -11,7 +11,7 @@ The Onion PWM Node Module, node-pwm-exp is a wrapper around the `libonionpwmexp`
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/aNoYCZc.png)
+![imgur](https://i.imgur.com/aNoYCZc.png)
 
 
 ### Programming Flow {#pwm-node-programming-flow}

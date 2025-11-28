@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Omega + Arduino Dock can be used to control Neopixels, with the Omega sending the commands and colour codes, and the Arduino Dock acting as a communication channel.
 
-![Omega+Arduino Dock w/ Neopixel Array](http:https://i.imgur.com/l5oVLdi.jpg)
+![Omega+Arduino Dock w/ Neopixel Array](https://i.imgur.com/l5oVLdi.jpg)
 
 The Onion Arduino Dock Neopixel C & C++ library, `libonionneopixel` provides functions to interact with the Neopixels. Also available is a module for use in Python called `neopixel` that is part of the `OmegaArduinoDock` package.
 
@@ -808,6 +808,6 @@ Example code that uses the `OnionNeopixel` Python class can be found for [downlo
 
 This is a Python program that shows a single colour on an entire Neopixel strip or array. It slowly loops between seven different colours, with 25 intermediate steps between the colour changes, creating a smooth transition effect.
 
-![slowColourChange Gif](http:https://i.imgur.com/QFxAq9M.gif)
+![slowColourChange Gif](https://i.imgur.com/QFxAq9M.gif)
 
 <GiscusDocComment />

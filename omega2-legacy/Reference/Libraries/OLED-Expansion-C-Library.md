@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Onion OLED Expansion library, `libonionoledexp` is a dynamic C library that provides functions to setup and perform various actions on the OLED display: writing text, displaying images, and adjusting various settings.
 
-![Omega+OLED Expansion](http:https://i.imgur.com/tqcRlgG.jpg)
+![Omega+OLED Expansion](https://i.imgur.com/tqcRlgG.jpg)
 
 The library can be used in C and C++ programs.
 
@@ -35,13 +35,13 @@ The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical 
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/4JsaahS.png)
+![imgur](https://i.imgur.com/4JsaahS.png)
 
 Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![imgur](http:https://i.imgur.com/8DIiN2n.png)
+![imgur](https://i.imgur.com/8DIiN2n.png)
 
 So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
 
@@ -336,21 +336,21 @@ The memory mode affects how the cursor is automatically advanced when the displa
 
 #### Horizontal Addressing Mode
 
-![Horizontal Addressing](http:https://i.imgur.com/sU0WyZY.png)
+![Horizontal Addressing](https://i.imgur.com/sU0WyZY.png)
 
 After each write, the column cursor advances horizontally to the right along the page, once the end of the page is reached, the page cursor is advanced onto the next page.
 
 
 #### Vertical Addressing Mode
 
-![Vertical Addressing](http:https://i.imgur.com/Dv1smND.png)
+![Vertical Addressing](https://i.imgur.com/Dv1smND.png)
 
 After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column
 
 
 #### Page Addressing Mode
 
-![Page Addressing](http:https://i.imgur.com/oW4giq6.png)
+![Page Addressing](https://i.imgur.com/oW4giq6.png)
 
 The column cursor advances horizontally to the right along each page, once the end of the page is reached, the column cursor wraps around to column 0 and the page cursor remains the same.
 
@@ -592,7 +592,7 @@ int oledWriteByte (int byte);
 
 The `byte` argument holds the eight bits that will be written to the screen. The Least Significant Bit (LSB) in the byte corresponds to the top-most pixel in the column, the Most Significant Bit (MSB) corresponds to the bottom-most pixel in the column.
 
-![Page detail](http:https://i.imgur.com/8DIiN2n.png)
+![Page detail](https://i.imgur.com/8DIiN2n.png)
 
 After the byte is set, the cursor will automatically move to the next page column.
 
@@ -601,7 +601,7 @@ After the byte is set, the cursor will automatically move to the next page colum
 
 Draw the following pattern:
 
-![Page detail](http:https://i.imgur.com/lxs1q8J.png)
+![Page detail](https://i.imgur.com/lxs1q8J.png)
 
 ``` c
 int status;
@@ -702,11 +702,11 @@ The functions that interact with images are:
 
 The Console OLED App can be used to create OLED Expansion compatible image files. Navigate to the Image tab of the OLED App:
 
-![OLED Console App Image Tab](http:https://i.imgur.com/FPCVp8x.png)
+![OLED Console App Image Tab](https://i.imgur.com/FPCVp8x.png)
 
 Once an image has been selected, a button and form will appear that allow you to save the OLED image file to your Omega:
 
-![OLED Console App Loaded Image](http:https://i.imgur.com/xKx5KHa.png)
+![OLED Console App Loaded Image](https://i.imgur.com/xKx5KHa.png)
 
 After the image name and location are selected, click the Save to Omega button.
 
@@ -846,7 +846,7 @@ int status;
 status = oledScroll (0, OLED_EXP_SCROLL_SPEED_5_FRAMES, 0, OLED_EXP_CHAR_ROWS-1);
 ```
 
-![left scroll](http:https://i.imgur.com/nytY4Xw.gif)
+![left scroll](https://i.imgur.com/nytY4Xw.gif)
 
 
 Quickly scroll the bottom half of the screen to the right:
@@ -930,7 +930,7 @@ status = oledScrollDiagonal (	1,
 			);
 ```
 
-![diagonal-right scroll](http:https://i.imgur.com/9JcoKEj.gif)
+![diagonal-right scroll](https://i.imgur.com/9JcoKEj.gif)
 
 
 Scroll the entire screen to the left, but only the bottom half upwards:

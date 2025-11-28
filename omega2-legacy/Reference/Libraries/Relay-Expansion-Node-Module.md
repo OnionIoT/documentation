@@ -10,7 +10,7 @@ The Onion Relay Node Module, node-relay-exp is a wrapper around the `libonionrel
 
 <!-- TODO: IMAGE reupload this to github -->
 
-![Relay Expansion](http:https://i.imgur.com/iPswHOC.jpg)
+![Relay Expansion](https://i.imgur.com/iPswHOC.jpg)
 
 The same library is available for use in C and Python programs.
 

@@ -199,7 +199,7 @@ It is also possible to create PWM signals where the pulse is delayed by some tim
 
 The following image shows a 20% duty cycle signal with a 10% delay:
 
-![Delay](http:https://i.imgur.com/zvyaWdF.png)
+![Delay](https://i.imgur.com/zvyaWdF.png)
 
 For the first 10% of the cycle, the signal is low. Then it will be high for the next 20% of the cycle, and low for the remaining 70% of the cycle.
 

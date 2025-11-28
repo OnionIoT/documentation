@@ -19,6 +19,7 @@ CHILD_PATTERN = re.compile(r"```{r\s+child\s*=\s*['\"]([^'\"]+)['\"]}\s*```", re
 FRONT_MATTER_PATTERN = re.compile(r'^---\s*\n(.*?)\n---\s*\n?', re.DOTALL)
 HEADING_PATTERN = re.compile(r'^\s*#{1,6}\s*(.+?)\s*$', re.MULTILINE)
 GISCUS_IMPORT = "import { GiscusDocComment } from '/src/components/GiscusComment';"
+BROKEN_PROTOCOL_PATTERN = re.compile(r'\bhttps?:https://', re.IGNORECASE)
 
 
 def normalize_newlines(text: str) -> str:
@@ -73,6 +74,11 @@ def strip_handlebars(text: str) -> str:
     return '\n'.join(cleaned_lines)
 
 
+def fix_broken_url_protocols(text: str) -> str:
+    """Collapse legacy URLs that accidentally include two protocols."""
+    return BROKEN_PROTOCOL_PATTERN.sub('https://', text)
+
+
 def format_title_line(title: str) -> str:
     return f'title: {json.dumps(title)}'
 
@@ -112,6 +118,7 @@ def render_markdown(path: Path, inline: bool, cache: dict[tuple[Path, bool], str
     body = body.lstrip('\n')
     body = replace_child_blocks(body, path, cache)
     body = strip_handlebars(body)
+    body = fix_broken_url_protocols(body)
     body = body.strip()
 
     if inline:

@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion Library](./PWM-Expansion-C-Library). Using this module, you will be able to control the PWM Expansion from within your Python program.
 
-![PWM Expansion Photo](http:https://i.imgur.com/aNoYCZc.png)
+![PWM Expansion Photo](https://i.imgur.com/aNoYCZc.png)
 
 
 ### Programming Flow
