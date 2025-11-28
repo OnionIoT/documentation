@@ -1,0 +1,44 @@
+---
+title: "Installing Apps"
+---
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+## Installing Additional Apps {#installing-apps}
+
+<!-- deprecated -->
+
+> **Important Note:** As of firmware v0.2.1, **the Console was deprecated** and replaced by OnionOS, a new web-based, graphical user interface for the Omega2 family. Learn more about [OnionOS on the Onion blog](https://onion.io/2bt-onion-os/). 
+> This article will remain in the documentation to serve as reference for the deprecated Console.
+
+
+The Console comes with pre-installed apps that can be used alongside various expansions, like the OLED Expansion Control app.
+These apps are available immediately and don't require an installation.
+
+In an effort to minimize the amount of space taken up by the Console, the Editor, Terminal, and Webcam apps are **not** installed by default and require installation by the user.
+
+Click the icon of the app and you'll be greeted with an install page:
+![install-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-the-console-install-page.png)
+
+Click the install button and wait for the installation to complete.
+
+![installing-app](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-the-console-installing.png)
+
+Once the app is installed, you'll be notified.
+
+![installed-app](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-the-console-installed.png)
+
+Refresh the page and your app will be available for use.
+
+![app-ready](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-the-console-app-ready.png)
+
+
+| App Name | Average Install Time |
+|--------|--------------|
+| Editor | 1-2 Minutes |
+| Terminal | 3-4 Minutes |
+| Webcam | 1-2 Minutes |
+
+*These values are subject to your download speeds*
+
+<GiscusDocComment />

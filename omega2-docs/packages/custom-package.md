@@ -47,7 +47,7 @@ custom-feed/
 ### Working with Package Feeds
 A Package Feed can be considered an input to the OpenWRT SDK or build system. It must be added to the feed configuration and then initialized before packages from the feed can be compiled.
 
-For information on how to work with Package feeds with Onion’s OpenWRT SDK wrapper, see the article on how to [Compile a Package](/packages/compile-package).
+For information on how to work with Package feeds with Onion’s OpenWRT SDK wrapper, see the article on how to [Compile a Package](/omega2-docs/packages/compile-package).
 
 ## The Structure of the Package Source
 

@@ -111,7 +111,7 @@ This enables the support of more use cases, like enabling the use of modern Node
 
 When working with the OpenWRT build system, SDK, and Image Builder, we use wrappers, scripts, and patches. This is more maintainable and portable than having our own forks for these systems.
 
-See the [How firmware is built](/firmware/how-to-build-firmware) article for more details.
+See the [How firmware is built](/omega2-docs/firmware/how-to-build-firmware) article for more details.
 
 ## Core tenets of the new firmware philosophy
 

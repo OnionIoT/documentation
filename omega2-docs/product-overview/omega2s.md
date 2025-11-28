@@ -101,10 +101,10 @@ Omega2S has dedicated pins for:
 
 Please refer to the following articles to learn more about Omega2S' GPIO's, multiplexing GPIO functionality, as well as the behavior and requirements of Special pins.
 
-- [Pinouts](/hardware-interfaces/pinouts)
-- [GPIO](/hardware-interfaces/gpio)
-- [Pin multiplexing](/hardware-interfaces/pin-multiplexing)
-- [Special pins](/hardware-interfaces/special-pins)
+- [Pinouts](/omega2-docs/hardware-interfaces/pinouts)
+- [GPIO](/omega2-docs/hardware-interfaces/gpio)
+- [Pin multiplexing](/omega2-docs/hardware-interfaces/pin-multiplexing)
+- [Special pins](/omega2-docs/hardware-interfaces/special-pins)
 
 ### WiFi Antenna
 
@@ -112,7 +112,7 @@ The Omgea2S supports 2.4 GHz IEEE 802.11 b/g/n WiFi with a maximum 150 Mbps PHY 
 
 There is no built-in antenna on the module. An antenna can be connected to the Antenna (ANT) pin or the u.FL connector.
 
-For more information on the WiFi antenna, please see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
+For more information on the WiFi antenna, please see the [Antenna and uFL connector article](/omega2-docs/hardware-interfaces/wifi-antenna).
 
 ### Mechanical Drawing
 

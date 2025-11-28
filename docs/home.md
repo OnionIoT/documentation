@@ -41,6 +41,20 @@ Welcome to the central hub for Onion hardware documentation built on OpenWrt 23.
     secondaryAction: { label: 'Jump to hardware overview', to: '/omega2-docs/product-overview/omega2' }
   },
   {
+    name: 'Omega2 Legacy (OpenWrt 18.06)',
+    description: 'Archive of the original Omega2 documentation covering firmware v0.3.4 and older builds.',
+    highlights: [
+      'Legacy quickstart, console, and cloud guides',
+      'Historical dock and expansion references',
+      'Older package feeds and networking workflows'
+    ],
+    badge: 'Archive',
+    status: 'Reference for firmware 0.3.x and earlier',
+    image: { src: '/img/Omega2-Family.jpg', alt: 'Omega2 legacy modules' },
+    action: { label: 'Open Legacy Docs', to: '/omega2-legacy/' },
+    secondaryAction: { label: 'Start with quickstart', to: '/omega2-legacy/' }
+  },
+  {
     name: 'Omega4 Family  (OpenWrt 24.09)',
     description: 'Documentation for the forthcoming Omega4 platform is being authored.',
     highlights: [

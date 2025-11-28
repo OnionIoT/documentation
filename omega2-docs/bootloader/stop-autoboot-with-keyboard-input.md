@@ -115,8 +115,8 @@ Setting `bootdelay` to `1` gives the fastest usable workflow — short wait, but
 
 ## What’s Next?
 
-* [Flashing Firmware over Ethernet](/bootloader/flashing-firmware-over-ethernet)  
-* [Updating the Bootloader](/bootloader/upgrading-old-bootloader)  
-* [Bootloader Reference Overview](/bootloader/overview)
+* [Flashing Firmware over Ethernet](/omega2-docs/bootloader/flashing-firmware-over-ethernet)  
+* [Updating the Bootloader](/omega2-docs/bootloader/upgrading-old-bootloader)  
+* [Bootloader Reference Overview](/omega2-docs/bootloader/overview)
 
 <GiscusDocComment />

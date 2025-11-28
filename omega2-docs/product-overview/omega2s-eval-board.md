@@ -21,7 +21,7 @@ Resources for working the with Omega2S Eval Board
 
 A quickstart guide and an accompanying video is available to help get users up and running with the Omega2S Eval Board.
 
-[See the Quickstart Guide](/quickstart/intro)
+[See the Quickstart Guide](/omega2-docs/quickstart/intro)
 
 ### Hardware Design
 
@@ -44,7 +44,7 @@ The Omega2S Eval Board design is open source and can be found in the [OnionIoT/O
 | **G.** USB Type-A Host Port | |
 
 
-Included on the Omega2S Eval Board is a soldered-down [Onion Omega2S+ module (OM-O2SP)](/product-overview/omega2s).
+Included on the Omega2S Eval Board is a soldered-down [Onion Omega2S+ module (OM-O2SP)](/omega2-docs/product-overview/omega2s).
 
 ### Pins
 

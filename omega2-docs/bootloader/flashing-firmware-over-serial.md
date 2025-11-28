@@ -9,7 +9,7 @@ Flashing firmware through the bootloader’s **YMODEM serial transfer** is handy
 
 | Method | Link to Guide | Typical Transfer Time* |
 |--------|---------------|------------------------|
-| Ethernet (TFTP) | [Flash Firmware over Ethernet](/bootloader/flashing-firmware-over-ethernet) | ~10 seconds |
+| Ethernet (TFTP) | [Flash Firmware over Ethernet](/omega2-docs/bootloader/flashing-firmware-over-ethernet) | ~10 seconds |
 | **Serial (YMODEM)** | *you’re here* | **~10–15 minutes** |
 
 \*Measured with a 7 MB firmware image. Time varies with image size and link quality.
@@ -93,7 +93,7 @@ Install **Tera Term** (v 4.107 or newer) to provide both a serial console and YM
 Identify the **COM port** used by the Omega2 device with Serial Port Access:
 
 - Make sure the Omega2 device is plugged in
-- Open *Device Manager → Ports (COM & LPT)* and note the COM number (for example, `COM7`). *See the "Find the serial device" section in [step 2 of the connecting to serial command line article](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) for more details.*
+- Open *Device Manager → Ports (COM & LPT)* and note the COM number (for example, `COM7`). *See the "Find the serial device" section in [step 2 of the connecting to serial command line article](/omega2-docs/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) for more details.*
 
 Configure the serial connection:
 
@@ -125,7 +125,7 @@ Power-cycle the Omega2 while watching the serial console and press the reset but
 <Tabs>
   <TabItem value="mac" label="Minicom (macOS & Linux)" default>
 
-Make sure the Omega2 device is plugged in to the host computer. Follow the instructions in the "Check for the serial device" section in [step 2 of the connecting to serial command line article](/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) to find the serial device name.
+Make sure the Omega2 device is plugged in to the host computer. Follow the instructions in the "Check for the serial device" section in [step 2 of the connecting to serial command line article](/omega2-docs/quickstart/serial-command-line#step-2-connect-to-the-omegas-command-line) to find the serial device name.
 
 Use Minicom to connect to the Omega2 command line through serial:
 

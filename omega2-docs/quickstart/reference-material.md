@@ -12,13 +12,13 @@ Onion has several articles to help you get started with your Omega2 development 
 
 The Omega2 supports several programming languages, so you can program in your language of choice. These include C/C++, Python, Node.js, Shell Scripts, Rust, GoLang, HTML, PHP, Ruby, and Perl.
 
-For further information, please see the article on [Supported Programming Languages](/software/supported-languages).
+For further information, please see the article on [Supported Programming Languages](/omega2-docs/software/supported-languages).
 
 ### Hardware interfaces
 
 The Omega2 offers several hardware interfaces including a USB 2.0 host, an Ethernet port, SDIO/eMMC interface, GPIOs for external circuits, hardware PWM channels, UARTs for serial communication, a built-in SPI controller, an I2C interface, a WiFi antenna, and a u.FL Connector.
 
-For further information, please see the [Pinouts article](/hardware-interfaces/pinouts), which provides pinout diagrams and a list of supported hardware interfaces for the Omega2 variants. From here, you can access detailed information about each hardware interface.
+For further information, please see the [Pinouts article](/omega2-docs/hardware-interfaces/pinouts), which provides pinout diagrams and a list of supported hardware interfaces for the Omega2 variants. From here, you can access detailed information about each hardware interface.
 
 ## Docks & Expansions
 

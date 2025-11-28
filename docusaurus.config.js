@@ -116,6 +116,14 @@ const config = {
           {
             type: 'doc',
             sidebarId: 'docsSidebar',
+            docsPluginId: 'omega2-legacy',
+            docId: 'Get-Started/intro',
+            position: 'right',
+            label: 'Omega2 Legacy',
+          },
+          {
+            type: 'doc',
+            sidebarId: 'docsSidebar',
             position: 'right',
             docId: 'home',
             label: 'Omega4',
@@ -150,7 +158,7 @@ const config = {
               },
               {
                 label: 'Guides',
-                to: '/guides/intro',
+                to: '/omega2-docs/guides/intro',
               },
               {
                 label: 'Feedback and Suggestions',
@@ -247,6 +255,22 @@ const config = {
         versions: {
           current: {
             label: 'Next',
+          },
+        },
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'omega2-legacy',
+        path: 'omega2-legacy',
+        routeBasePath: 'omega2-legacy',
+        sidebarPath: require.resolve('./sidebars.omega2.legacy.js'),
+        lastVersion: 'current',
+        includeCurrentVersion: true,
+        versions: {
+          current: {
+            label: 'Legacy',
           },
         },
       },

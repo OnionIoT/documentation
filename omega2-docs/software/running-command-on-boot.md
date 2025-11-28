@@ -87,7 +87,7 @@ Group uart1 - uart [gpio]
 
 :::note
 
-See the [Pin Multiplexing article](/hardware-interfaces/pin-multiplexing) in the Hardware Interfaces chapter for more information. 
+See the [Pin Multiplexing article](/omega2-docs/hardware-interfaces/pin-multiplexing) in the Hardware Interfaces chapter for more information. 
 
 :::
 

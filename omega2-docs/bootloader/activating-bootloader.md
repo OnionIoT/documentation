@@ -46,8 +46,8 @@ To learn more about the bootloader prompt:
 2. See the u-boot documentation on the [command line](https://docs.u-boot.org/en/latest/usage/cmdline.html) and the [available utilities](https://docs.u-boot.org/en/latest/usage/index.html#shell-commands)
 
 Other things you can do with the bootloader:
-- [Using the bootloader to flash new firmware over ethernet](/bootloader/flashing-firmware-over-ethernet)
-- [Using the bootloader to flash new firmware over serial](/bootloader/flashing-firmware-over-serial)
+- [Using the bootloader to flash new firmware over ethernet](/omega2-docs/bootloader/flashing-firmware-over-ethernet)
+- [Using the bootloader to flash new firmware over serial](/omega2-docs/bootloader/flashing-firmware-over-serial)
 
 <!-- TODO: add links to new guides as they become available -->
 

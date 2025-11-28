@@ -35,7 +35,7 @@ Onion's OpenWRT SDK wrapper is the recommended method to build packages for Omeg
 
 :::note
 
-Onion recommends compiling packages using OpenWRT SDK. Firmware images can be created with the OpenWRT Image Builder, but this is a different tool. For further information on building firmware images, see the article [How Onion Firmware is Built](/firmware/how-onion-builds-firmware).
+Onion recommends compiling packages using OpenWRT SDK. Firmware images can be created with the OpenWRT Image Builder, but this is a different tool. For further information on building firmware images, see the article [How Onion Firmware is Built](/omega2-docs/firmware/how-onion-builds-firmware).
 
 :::
 

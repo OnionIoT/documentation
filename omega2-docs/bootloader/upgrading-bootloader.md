@@ -73,7 +73,7 @@ If the bootloader looks like this screenshot:
 
 ![previous omega2 bootloader boot menu](./assets/old-bootloader-menu.png)
 
-Then the device is running the old bootloader. See instead the [article on Upgrading the Old Bootloader](/bootloader/upgrading-old-bootloader)
+Then the device is running the old bootloader. See instead the [article on Upgrading the Old Bootloader](/omega2-docs/bootloader/upgrading-old-bootloader)
 
 :::
 
@@ -166,7 +166,7 @@ import BootLogSample from './_bootloader-boot-log-sample.mdx'
 <BootLogSample/>
 
 ## What’s next?
-- [Activating the Bootloader Command Line](/bootloader/activating-bootloader)
-- [Flashing Firmware over Ethernet](/bootloader/flashing-firmware-over-ethernet)
+- [Activating the Bootloader Command Line](/omega2-docs/bootloader/activating-bootloader)
+- [Flashing Firmware over Ethernet](/omega2-docs/bootloader/flashing-firmware-over-ethernet)
 
 <GiscusDocComment />

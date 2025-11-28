@@ -8,7 +8,7 @@ We want to connect the Omega to a local WiFi network, so that it has internet ac
 
 :::info 
 
-**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/quickstart/serial-command-line) for details.
+**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/omega2-docs/quickstart/serial-command-line) for details.
 
 :::
 
@@ -94,7 +94,7 @@ If the `apcli0` network interface has been assigned an IP address, the Omega is 
 
 :::info More Info
 
-For more information on WiFi networking and configuration, please see the article [WiFi networking](/networking/wifi).
+For more information on WiFi networking and configuration, please see the article [WiFi networking](/omega2-docs/networking/wifi).
 
 :::
 

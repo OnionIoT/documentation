@@ -14,7 +14,7 @@ The Serial Command Line terminal interface is ideal for configuration and debugg
 
 :::tip
 
-See the [Connecting with SSH article](/quickstart/connecting-with-ssh) for information on using SSH to access the Omega command line.
+See the [Connecting with SSH article](/omega2-docs/quickstart/connecting-with-ssh) for information on using SSH to access the Omega command line.
 
 :::
 

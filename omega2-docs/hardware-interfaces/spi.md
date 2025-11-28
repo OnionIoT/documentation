@@ -84,7 +84,7 @@ Unlike hardware SPI, which uses a dedicated controller to handle communication, 
 #### Enabling a Software SPI Bus
 A software SPI bus can be enabled on the Omega2 by installing a **Device Tree Overlay** package. This allows developers to define which GPIOs should function as SPI signals when creating the Device Tree Overlay package.
 
-For installation instructions and configuration details, see the [Software SPI Bus article in the Device Tree Overlay chapter](/device-tree-overlay/software-spi).
+For installation instructions and configuration details, see the [Software SPI Bus article in the Device Tree Overlay chapter](/omega2-docs/device-tree-overlay/software-spi).
 
 
 ## Software
@@ -106,6 +106,6 @@ The `python3-spidev` module provides a series of functions that implement SPI co
 
 For installation and usage instructions see: [https://github.com/OnionIoT/python-spidev#python-spidev](https://github.com/OnionIoT/python-spidev#python-spidev).
 
-**Follow along with the [Using SPI with Python guide](/guides/hardware-interfaces/using-spi-with-python) to quickly get started using the Python spidev module to communicate with SPI devices on the Omega2.**
+**Follow along with the [Using SPI with Python guide](/omega2-docs/guides/hardware-interfaces/using-spi-with-python) to quickly get started using the Python spidev module to communicate with SPI devices on the Omega2.**
 
 <GiscusDocComment />

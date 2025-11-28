@@ -41,7 +41,7 @@ Using a custom build system to create a customized version of the SDK and Image 
 Some examples include making changes to:
 
 - Support FPU emulation in the kernel to build and use modern Node.js.
-- Make setting changes in the kernel configuration, such as enabling the `/dev/mem` device used for [pin multiplexing](/hardware-interfaces/pin-multiplexing).
+- Make setting changes in the kernel configuration, such as enabling the `/dev/mem` device used for [pin multiplexing](/omega2-docs/hardware-interfaces/pin-multiplexing).
 - Building additional kernel modules that are not part of the Linux kernel.
 - The freedom to add patches created by yourself and other developers to try out changes quickly and efficiently.
 

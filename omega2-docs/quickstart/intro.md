@@ -8,7 +8,7 @@ This quickstart guide covers the quickest way to get up and running with an Omeg
 
 ### Upgrading from v0.3.4 firmware
 
-For devices running the Omega2 firmware v0.3.4, please see the instructions found in the [Installing the New Firmware](/firmware/installing-firmware) article and then return to this article.
+For devices running the Omega2 firmware v0.3.4, please see the instructions found in the [Installing the New Firmware](/omega2-docs/firmware/installing-firmware) article and then return to this article.
 
 > To get started with a device running the v0.3.4 firmware, please see the [first time setup article in our legacy documentation](https://docs.onion.io/omega2-docs/first-time-setup.html). **Note the legacy first time setup will not work with the new firmware!**
 

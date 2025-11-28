@@ -13,7 +13,7 @@ In general, a user programmable LED can:
 
 :::info 
 
-**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/quickstart/serial-command-line) for details.
+**The commands in this article need be run on the Omega.** Check out the previous article on [connecting to the Omega's Serial Command Line](/omega2-docs/quickstart/serial-command-line) for details.
 
 :::
 

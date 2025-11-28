@@ -33,7 +33,7 @@ Make sure **both devices are on the same LAN segment**—either through the same
 
 ### Finding the Omega’s IP Address
 
-Follow the steps in the [Find the Omega’s IP Address](/networking/find-ip-address) guide.
+Follow the steps in the [Find the Omega’s IP Address](/omega2-docs/networking/find-ip-address) guide.
 
 ### Finding the Omega’s Hostname
 

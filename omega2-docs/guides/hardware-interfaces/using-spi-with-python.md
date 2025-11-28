@@ -10,7 +10,7 @@ This guide will help you quickly get started using the Python `spidev` module to
 
 :::tip
 
-If you haven't already, see the [quickstart guide](/quickstart/intro) for more information on setting up your Omega2.
+If you haven't already, see the [quickstart guide](/omega2-docs/quickstart/intro) for more information on setting up your Omega2.
 
 :::
 
@@ -22,7 +22,7 @@ All commands listed in the guide should be run directly on the Omega2.
 
 :::info
 
-For a deeper dive into the Omega2's SPI functionality, see the [SPI article in the Hardware Interfaces chapter](/hardware-interfaces/spi.md).
+For a deeper dive into the Omega2's SPI functionality, see the [SPI article in the Hardware Interfaces chapter](/omega2-docs/hardware-interfaces/spi.md).
 
 :::
 
@@ -83,7 +83,7 @@ After installation, the software SPI bus will be accessible at `/dev/spidev1.0`.
 
 :::tip
 
-Each package predefines the GPIOs that function as SPI signals. For more details, see the [Software SPI Bus article in the Device Tree Overlay chapter](/device-tree-overlay/software-spi).
+Each package predefines the GPIOs that function as SPI signals. For more details, see the [Software SPI Bus article in the Device Tree Overlay chapter](/omega2-docs/device-tree-overlay/software-spi).
 
 :::
 

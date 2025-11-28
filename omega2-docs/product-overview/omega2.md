@@ -71,10 +71,10 @@ Omega2 has dedicated pins for:
 
 Please refer to the following articles to learn more about Omega2's GPIO's, multiplexing GPIO functionality, as well as the behavior and requirements of Special pins.
 
-- [Pinouts](/hardware-interfaces/pinouts)
-- [GPIO](/hardware-interfaces/gpio)
-- [Pin multiplexing](/hardware-interfaces/pin-multiplexing)
-- [Special pins](/hardware-interfaces/special-pins)
+- [Pinouts](/omega2-docs/hardware-interfaces/pinouts)
+- [GPIO](/omega2-docs/hardware-interfaces/gpio)
+- [Pin multiplexing](/omega2-docs/hardware-interfaces/pin-multiplexing)
+- [Special pins](/omega2-docs/hardware-interfaces/special-pins)
 
 ### Omega2 System Status LED
 
@@ -112,7 +112,7 @@ The MicroSD card slot is only available on the Omega2+ variant (OM-O2P). It is n
 
 The Omega2/2+ WiFi antenna is an on-board ceramic surface-mount chip antenna. The WiFi signal can travel up to 100m (300ft) line-of-sight outdoors.
 
-For more information on the WiFi antenna, see the [Antenna and uFL connector article](/hardware-interfaces/wifi-antenna).
+For more information on the WiFi antenna, see the [Antenna and uFL connector article](/omega2-docs/hardware-interfaces/wifi-antenna).
 
 ### Mechanical Drawing
 
