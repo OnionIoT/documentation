@@ -113,15 +113,16 @@ const config = {
             docsPluginId: 'omega2-docs',
             label: 'Omega2',
           },
-          {
-            type: 'doc',
-            sidebarId: 'docsSidebar',
-            position: 'right',
-            docId: 'home',
-            label: 'Omega4',
-          },
-        ],
+      {
+        type: 'doc',
+        sidebarId: 'docsSidebar',
+        position: 'right',
+        docId: 'overview',
+        label: 'Omega4',
+        docsPluginId: 'omega4-docs',
       },
+    ],
+  },
       footer: {
         style: 'dark',
         links: [
@@ -249,6 +250,23 @@ const config = {
         },
       },
     ],   
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'omega4-docs',
+        path: 'omega4-docs',
+        routeBasePath: 'omega4',
+        sidebarPath: require.resolve('./sidebars.omega4.js'),
+        sidebarCollapsed: false,
+        lastVersion: 'current',
+        includeCurrentVersion: true,
+        versions: {
+          current: {
+            label: 'Preview',
+          },
+        },
+      },
+    ],
   ],
 };
 

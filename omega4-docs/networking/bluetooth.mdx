@@ -1,0 +1,134 @@
+---
+title: Bluetooth
+slug: /networking/bluetooth
+description: Complete guide for enabling and configuring the built-in Bluetooth controller on Omega4 devices, including installation, pairing, and troubleshooting.
+---
+
+
+
+# Bluetooth Bring-Up & Usage Guide
+
+Omega4 includes Bluetooth 5.0 (AIC8800D80) with BLE and Classic support in central and peripheral roles. Use it for:
+- BLE sensor or beacon gateways that forward data over Wi-Fi or Ethernet.
+- Device setup/provisioning flows with a companion mobile app.
+- Low-power accessories like keyboards, barcode scanners, or remote controls.
+
+These instructions describe how to enable and exercise the built in Bluetooth controller on Omega4 devices.
+
+## 1. Prerequisites
+
+1. **Firmware & driver**  
+   - Ensure the `kmod-aic8800d-sdio` kernel module is built into the image (included since FW v0.0.2).  
+   - Confirm the controller enumerates as `hci0` under `/sys/class/bluetooth/`.
+
+2. **Networking**  
+   - The steps below download packages from the standard OpenWrt feeds. Make sure the Omega4 has WAN access (or mirror the packages locally).
+
+## 2. Install User-Space Bluetooth Stack
+
+```sh
+opkg update
+opkg install \
+    bluez-daemon \
+    bluez-utils \
+    bluez-utils-extra \
+    bluez-tools
+```
+
+This pulls in `bluetoothd`, CLI helpers (`bluetoothctl`, `hciconfig`, etc.), and required libraries (`dbus`, `glib2`, `libreadline`, …).
+
+## 3. Verify the Controller
+
+1. List controllers:
+   ```sh
+   ls /sys/class/bluetooth
+   # Expect: hci0
+   ```
+2. Inspect capabilities:
+   ```sh
+   hciconfig -a
+   ```
+   Confirm `Type: Primary  Bus: SDIO`, `UP RUNNING`, and matching BD_ADDR.
+
+If the interface shows `DOWN`, bring it up:
+```sh
+hciconfig hci0 up
+```
+
+## 4. Start the Bluetooth Daemon
+
+The init script is shipped as `/etc/init.d/bluetoothd`.
+
+```sh
+/etc/init.d/bluetoothd start      # start once
+/etc/init.d/bluetoothd enable     # optional: autostart on boot
+```
+
+Verify the daemon:
+```sh
+pgrep -af bluetoothd     # expect /usr/bin/bluetoothd -n
+```
+
+## 5. Basic Adapter Configuration
+
+Use `bluetoothctl`:
+
+```sh
+bluetoothctl
+[bluetooth]# show              # confirm Powered: yes, Roles: central/peripheral
+[bluetooth]# power on          # redundant if already powered
+[bluetooth]# pairable on
+[bluetooth]# discoverable on   # optional, makes Omega4 visible
+```
+
+To exit the shell press `Ctrl+D` or type `quit`.
+
+## 6. Scanning & Pairing
+
+1. Start a timed scan (no persistent shell needed):
+   ```sh
+   bluetoothctl --timeout 15 scan on
+   ```
+   Expected log snippet:
+   ```
+   Controller 88:1E:59:05:02:87 Discovering: yes
+   [NEW] Device 68:27:37:52:F0:E5 [TV] Samsung 7 Series (55)
+   ```
+
+2. Pair & trust a device (example MAC):
+   ```sh
+   bluetoothctl
+   [bluetooth]# scan on
+   [bluetooth]# pair 68:27:37:52:F0:E5
+   [bluetooth]# trust 68:27:37:52:F0:E5
+   [bluetooth]# connect 68:27:37:52:F0:E5
+   ```
+
+3. For audio profiles (A2DP), install PulseAudio/pipewire helpers as needed. For HID devices, pairing is usually sufficient.
+
+## 7. Troubleshooting Tips
+
+| Symptom | Checks |
+| --- | --- |
+| `hciconfig` shows `DOWN` | `hciconfig hci0 up`; inspect `dmesg | grep aic_btsdio`. |
+| `bluetoothctl` lacks permissions | Ensure `bluetoothd` is running; restart via `/etc/init.d/bluetoothd restart`. |
+| No devices found when scanning | Verify antennas/power, ensure `Discoverable: yes`; watch `logread -f` for SDIO errors. |
+| Packages missing | Re-run `opkg update`; confirm the target feed (`targets/rockchip/cortexa7`) is reachable or mirror the `.ipk` files. |
+
+## 8. Useful Commands Summary
+
+```sh
+# Service control
+/etc/init.d/bluetoothd {start|stop|restart|enable|disable}
+
+# Adapter status
+hciconfig -a
+bluetoothctl show
+
+# Scanning
+bluetoothctl --timeout 15 scan on
+
+# Logs
+logread -f | grep -i bluetooth
+dmesg | grep -i aic_btsdio
+```

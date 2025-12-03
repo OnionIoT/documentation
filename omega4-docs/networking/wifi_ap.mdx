@@ -1,0 +1,70 @@
+---
+title: Wi-Fi Access Point
+slug: /networking/wifi-ap
+description: Configure the Omega4 radio as a WPA2 access point that bridges into LAN and reuses the board hostname as the SSID.
+---
+
+# Wi-Fi Access Point
+
+Use these steps to turn the Omega4 into a WPA2 access point that bridges traffic into the existing `lan` network and advertises the board hostname as the SSID.
+
+
+## 1. Capture the hostname (SSID seed)
+```bash
+cat /proc/sys/kernel/hostname
+```
+Copy the value (for example, `Omega-A7FE`). It will become the SSID.
+
+## 2. Configure the radio for AP mode on LAN
+Convert `radio0` into an AP, bridge it to `lan`, and set the WPA2 key:
+```bash
+uci set wireless.radio0.disabled='0'
+uci set wireless.default_radio0.mode='ap'
+uci set wireless.default_radio0.network='lan'
+uci set wireless.default_radio0.ssid="$(cat /proc/sys/kernel/hostname)"
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key='12345678'   # replace with your PSK
+```
+
+## 3. Force an 802.11n/HT20 channel
+Current `wpad` builds do not handle 802.11ax HE options, so keep the radio on 2.4 GHz HT20:
+```bash
+uci set wireless.radio0.he='0'
+uci set wireless.radio0.htmode='HT20'
+uci set wireless.radio0.channel='1'   # choose any valid 2.4 GHz channel
+```
+
+### Optional: switch to 5 GHz AP
+The same radio can serve a 5 GHz AP (one band at a time). Pick a non-DFS channel to avoid radar waits and keep HE disabled:
+```bash
+uci set wireless.radio0.band='5g'
+uci set wireless.radio0.channel='36'   # choose a legal channel for your country
+uci set wireless.radio0.htmode='VHT80' # fall back to VHT40 if 80 MHz is unstable
+uci set wireless.radio0.he='0'
+uci set wireless.radio0.country='US'   # replace with your two-letter country code
+```
+Commit and `wifi reload` after switching bands; the SSID, key, and LAN bridge stay the same.
+
+:::info
+
+If `logread` shows hostapd errors like `unknown configuration item 'ieee80211ac'`, the installed `wpad` build is missing 802.11ac support. Fix by installing a full build (for example `wpad-basic`/`wpad-openssl`) or drop the channel width to `HT40`/`HT20` on 5 GHz to avoid VHT options.
+
+:::
+
+## 4. Apply and start Wi-Fi
+```bash
+uci commit wireless
+wifi reload            # rebuilds hostapd config and restarts the radio
+ifconfig phy0-ap0 up   # only if the interface stays DOWN after reload
+```
+
+## 5. Validate the AP
+- `wifi status` reports `radio0` `up` with your chosen `channel`/`htmode` and interface `phy0-ap0`.
+- `iwinfo phy0-ap0 info` shows `Mode: Master`, the expected SSID, and the same channel/width.
+- `ifconfig phy0-ap0` lists the interface as `UP ... RUNNING`.
+- `brctl show` lists `phy0-ap0` as a port on `br-lan`.
+- `logread | grep hostapd` ends with `phy0-ap0: AP-ENABLED`.
+
+Clients can now join SSID `<hostname>` (for example, `Omega-A7FE`) using the configured WPA2 key. Traffic will be bridged onto `br-lan`, so ensure the LAN side is serving DHCP or static addressing as needed.
+
+> Tested on Omega-A7FE: `wifi status` shows `radio0` up with SSID `Omega-A7FE`, `phy0-ap0` is on `br-lan`, and hostapd reports `AP-ENABLED`.

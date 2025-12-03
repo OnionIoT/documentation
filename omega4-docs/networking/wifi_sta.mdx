@@ -1,0 +1,54 @@
+---
+title: Wi-Fi Client (STA)
+slug: /networking/wifi-sta
+description: Join an existing Wi‑Fi network with the Omega4 radio in station mode and verify the connection on the CLI.
+---
+
+# Wi-Fi Client (STA)
+
+Use these steps to connect the Omega4 to an existing Wi‑Fi network as a station (client).
+
+## 1. Prep the network interface
+The default image already includes a `wwan` interface. If it is missing, create it:
+```bash
+uci set network.wwan=interface
+uci set network.wwan.proto='dhcp'
+uci commit network
+```
+
+## 2. Configure station mode
+Set the radio to STA mode, disable HE/AX, and point the interface at your SSID:
+```bash
+uci set wireless.radio0.disabled='0'
+uci set wireless.radio0.he='0'
+uci set wireless.radio0.band='5g'        # use '2g' if your AP is 2.4 GHz only
+uci set wireless.radio0.channel='36'     # or leave unset for auto
+uci set wireless.radio0.htmode='HT40'    # stay on HT if your wpad lacks 11ac
+uci set wireless.radio0.country='US'     # replace with your country code
+
+uci set wireless.default_radio0.mode='sta'
+uci set wireless.default_radio0.network='wwan'
+uci set wireless.default_radio0.ssid='YOUR_SSID'
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key='YOUR_PSK'   # 8–63 characters
+
+uci commit wireless
+wifi reload
+```
+
+## 3. Verify the link
+Check that the interface comes up and that `wwan` gets an address:
+```bash
+wifi status                          # look for ifname like phy0-sta0 and mode sta
+ubus call network.interface.wwan status
+ifconfig phy0-sta0                   # UP and RUNNING once associated
+```
+When connected, `ubus ... status` shows `up: true` and lists an IPv4/IPv6 address under `\"ipv4-address\"`/`\"ipv6-address\"`.
+
+## 4. Troubleshooting
+- Log review: `logread | grep -i wpa_supplicant` and `logread | grep -i cfg80211`.
+- Wrong key/SSID: re-run the `uci set wireless.default_radio0.*` lines, `uci commit wireless`, then `wifi reload`.
+- 11ac config errors: if `logread` reports unknown `ieee80211ac`/`vht_*` options, your `wpad` build lacks 11ac; keep `htmode` at `HT20/HT40` or install a full `wpad` build.
+- One role at a time: enabling STA mode disables the AP interface on this single radio; switch back to AP by restoring `mode='ap'` and `network='lan'`.
+
+> Tested on Omega-2D29: `wifi status` reports interface `phy0-sta0` in `mode: sta` targeting SSID `TestNet`; `ubus call network.interface.wwan status` shows the interface available (no AP in range during test).

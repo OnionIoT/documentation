@@ -1,0 +1,63 @@
+---
+title: Overview
+slug: /
+description: Draft overview of the Omega4 platform with preliminary specs, an indicative block diagram, and links to the first setup and design resources.
+---
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+The Omega4 family is Onion's next Linux module line, aimed at higher performance and easier productization than the Omega2.
+<!-- This page collects the updated hardware facts, an indicative block diagram, and the links you will need to start evaluating the platform with the EVB. -->
+
+:::info Draft content
+Omega4 is under active development. Use this page as a working outline and confirm final values with release notes before committing them to a design.
+:::
+
+## Platform highlights
+
+- RV1103B ARM Cortex-A7 SoC tuned for OpenWrt 24.09 on the Omega4 builds.
+- Onboard 256 MB DDR and 256 MB SPI NAND for faster bring-up and image swaps.
+- AIC8800D80 Wi-Fi/BLE combo for dual-band connectivity on-module.
+- EVB with USB-C power, console access, Ethernet, and castellated/pin headers for rapid testing.
+
+## Hardware specs
+
+| Area | Details |
+| --- | --- |
+| CPU | RV1103B ARM Cortex-A7 application SoC. |
+| Memory | Onboard 256 MB DDR. |
+| Storage | 256 MB SPI NAND. |
+| Wireless | AIC8800D80 Wi-Fi/BLE combo radio. |
+| I/O | GPIO, UART (console + secondary), SPI, I2C, PWM, USB, Ethernet MAC/PHY (per dev board). |
+| Power | 5 V input on the EVB; 3.3 V primary rail on module. Peak consumption ~1 W; typical with Wi-Fi AP load ~350 mW. |
+| OS baseline | OpenWrt 24.09 with Onion feed; SDK and factory images forthcoming. |
+
+## Hardware support status (preview)
+
+Feature readiness will evolve as preview firmware drops. Track the first image that enables each block before basing designs or tests on it.
+
+| Feature | Support | First FW with support |
+| --- | --- | --- |
+| WiFi 2.4GHz/5GHz| ✅ | v0.0.2 |
+| BT 5.0| ✅ | v0.0.2 |
+| Ethernet | ✅ | v0.0.2 |
+| PWM | - | - |
+| I2C | - | - |
+| SPI | - | - |
+| UART | - | - |
+| USB host | - | - |
+| USB client | - | - |
+| MIPI CSI | - | - |
+| USB host | - | - |
+
+
+
+<!-- ## Where to go next
+
+- Start evaluating with the [EVB quickstart](/omega4/getting-started).
+- Review [hardware overview](/omega4/hardware/overview) before laying out carrier boards.
+- Track firmware and images in the [software section](/omega4/software).
+- Browse [resources and downloads](/omega4/resources/downloads) for datasheets, drawings, and images as they publish.
+- Check the [FAQ](/omega4/faq) for known issues and current limitations. -->
+
+<GiscusDocComment />

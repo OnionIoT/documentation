@@ -47,17 +47,17 @@ Welcome to the central hub for Onion hardware documentation. Use this page to ju
     secondaryAction: { label: 'Jump to hardware overview', to: '/omega2-docs/product-overview/omega2' }
   },
   {
-    name: 'Omega4 Family  (OpenWrt 24.09)',
-    description: 'Documentation for the forthcoming Omega4 platform is being authored.',
+    name: 'Omega4 Family (OpenWrt 24.09)',
+    description: 'Preview documentation for the Omega4 platform, focused on bring-up and design planning.',
     highlights: [
-      'Focus on the next-generation Linux module lineup',
-      'Migrating projects from Omega2 to Omega4',
-      'Launch content will include quickstarts and hardware guides'
+      'Next-generation Linux module lineup',
+      'Early quickstart, hardware overview, and design guidance',
+      'Migration notes for Omega2 users'
     ],
     badge: 'Preview',
-    status: 'Subscribe for updates as soon as drafts publish',
-    comingSoon: true,
-    secondaryAction: { label: 'Contact Onion', href: 'https://onion.io/contact', newTab: true }
+    status: 'Draft docs available; hardware and firmware still in flux',
+    action: { label: 'Open Omega4 Docs', to: '/omega4/' },
+    secondaryAction: { label: 'Dev kit quickstart', to: '/omega4/getting-started' }
   },
 ]} />
 

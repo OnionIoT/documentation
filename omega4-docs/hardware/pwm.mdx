@@ -1,0 +1,87 @@
+---
+title: PWM Guide
+slug: /hardware/pwm
+description: Configure and use the PWM controller on the Omega4 EVB
+---
+
+# PWM Guide
+
+This guide covers the single PWM channel exposed on the EVB header.
+
+- **Channel**: `pwmchip0` / `pwm0` (SoC node `pwm0_4ch_1`)
+- **Pin**: `GPIO1_B7` (module pin 90, EVB header pin 34)
+- **Function mux**: `pwm0_ch1_m2`
+- **Driver**: `rockchip,rv1103b-pwm` (rockchip-pwm in-kernel)
+
+## 1. Prerequisites
+- Firmware with the `rockchip-pwm` driver enabled and the `pwm0_4ch_1` node set to `okay` using the `pwm0_ch1_m2` pin group. Check with `ls /sys/class/pwm`; you should see `pwmchip0`. If the directory is missing, install `kmod-rockchip-pwm` (if available) or rebuild with the driver and DTS change.
+- `omega4-pinmux` package (preinstalled on Omega4 images from this tree).
+- Optional: scope or logic analyzer on PB7 (EVB pin 34) to confirm waveforms.
+
+## 2. Set the pin mux (PB7 → PWM)
+```sh
+# Set PB7 to PWM if it is still configured as a GPIO
+omega4-pinmux gpio1_b7 pwm0_ch1_m2
+omega4-pinmux gpio1_b7   # verify it now reports pwm0_ch1_m2
+```
+
+## 3. One-shot configuration (50 kHz, 25% duty)
+```sh
+# Ensure the channel is available
+ls /sys/class/pwm/pwmchip0
+
+# Re-export and configure
+echo 0 > /sys/class/pwm/pwmchip0/unexport 2>/dev/null
+echo 0 > /sys/class/pwm/pwmchip0/export
+echo 20000 > /sys/class/pwm/pwmchip0/pwm0/period      # 20,000 ns -> 50 kHz
+echo 5000  > /sys/class/pwm/pwmchip0/pwm0/duty_cycle  # 5,000 ns -> 25% duty
+echo 1     > /sys/class/pwm/pwmchip0/pwm0/enable
+# Read back
+cat /sys/class/pwm/pwmchip0/pwm0/period \
+    /sys/class/pwm/pwmchip0/pwm0/duty_cycle \
+    /sys/class/pwm/pwmchip0/pwm0/enable
+```
+
+## 4. Adjusting frequency and duty
+- `period` is in nanoseconds. `frequency = 1e9 / period`.
+- `duty_cycle` is in nanoseconds and must be `< period`.
+- Update `period`, then `duty_cycle`, then re-`enable` if you change polarity.
+
+Examples:
+```sh
+# 10 kHz, 60% duty
+echo 100000 > /sys/class/pwm/pwmchip0/pwm0/period
+echo 60000  > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+# Disable/enable to apply cleanly if already running
+echo 0 > /sys/class/pwm/pwmchip0/pwm0/enable
+echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+```
+
+## 5. Polarity
+Polarity is controlled via `/sys/class/pwm/pwmchip0/pwm0/polarity` (`normal`/`inversed`).
+If you change polarity while running, disable then re-enable to avoid glitches.
+
+## 6. Disable
+```sh
+echo 0 > /sys/class/pwm/pwmchip0/pwm0/enable
+```
+
+## 7. Verification on hardware
+Read back the configured values:
+```sh
+cat /sys/class/pwm/pwmchip0/pwm0/period \
+    /sys/class/pwm/pwmchip0/pwm0/duty_cycle \
+    /sys/class/pwm/pwmchip0/pwm0/enable
+```
+With a scope on PB7 (EVB pin 34) you should see ~50 kHz with ~25% duty (adjust as needed).
+
+## 8. Troubleshooting
+- `/sys/class/pwm` is empty: the PWM driver or DTS enablement is missing. Install `kmod-rockchip-pwm` if available, or rebuild with `CONFIG_PWM_ROCKCHIP=y`/`m` and `pwm0_4ch_1` set to `okay`.
+- PB7 still reports `gpio`: rerun `omega4-pinmux gpio1_b7 pwm0_ch1_m2` to force the mux, then retry exporting.
+- `No such file` when writing period/duty: confirm `pwmchip0` exists and that `export` succeeded.
+
+## 9. Using other pins/channels
+Additional PWM instances exist in the SoC. To use another channel:
+- Check available mux options in `target/linux/rockchip/dts/rv1103b-pinctrl.dtsi` (search `pwmXmY` groups).
+- Point the desired `pwm*_4ch_*` node in the board DTS to the matching pinctrl group and set `status = "okay";`.
+- Rebuild and flash, then use the corresponding `pwmchipN` in sysfs.
