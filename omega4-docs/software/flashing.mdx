@@ -1,0 +1,57 @@
+---
+title: Flashing Firmware
+slug: /software/flashing
+description: Enter recovery flashing mode on Omega4 and write factory images to all partitions using upgrade_tool.
+---
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+Use this procedure when you need to reflash an Omega4 completely (bootloader, kernel, and rootfs). It assumes you have the official image set for your hardware revision and a host machine with `upgrade_tool` available.
+
+:::warning Risk of data loss
+This flow rewrites all partitions. Back up any calibration or custom data first and double-check that the offsets below match the release notes for your image set.
+:::
+
+## Before you start
+
+- A serial console connected so you can watch boot messages.
+- The BOOT button reachable on your board.
+
+## Step 1: Enter flashing mode
+
+1. Hold the **BOOT** button while powering on the Omega4.
+2. Watch the serial console; you should see:
+
+   ```
+   RKUART
+   ```
+
+   This confirms the device is ready to accept images.
+
+## Step 2: Flash the firmware
+
+Run the commands below from the directory containing your images. Always load `download.bin` after each time you enter flashing mode, even if you only plan to rewrite one partition.
+
+```bash
+./upgrade_tool db download.bin
+./upgrade_tool wl 0x0    0x200   env.img
+./upgrade_tool wl 0xa00  0x800   uboot.img
+./upgrade_tool wl 0x1200 0x4000  boot.img
+./upgrade_tool wl 0x5200 -1 rootfs.img
+./upgrade_tool rd
+```
+
+- Offsets and sizes are in LBAs (512-byte blocks) and match the table below; confirm against the release notes for your board and adjust if the layout changes.
+- You can flash partitions individually, but `download.bin` must be loaded every session.
+
+## Partition Info:
+| NO | LBA        | Size       | Name    | Size (MB) |
+|----|------------|------------|---------|------------|
+| 01 | 0x00000000 | 0x00000200 | env     | 0.25       |
+| 02 | 0x00000200 | 0x00000800 | idblock | 1          |
+| 03 | 0x00000a00 | 0x00000800 | uboot   | 1          |
+| 04 | 0x00001200 | 0x00004000 | boot    | 8          |
+| 05 | 0x00005200 | 0x0007ae00 | ubi     | 245.75     |
+
+
+<GiscusDocComment />

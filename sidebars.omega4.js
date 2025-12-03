@@ -6,6 +6,14 @@ const sidebars = {
     'overview',
     {
       type: 'category',
+      label: 'Software',
+      items: [
+        'software/flashing',
+      ],
+    },
+    
+    {
+      type: 'category',
       label: 'Networking',
       items: [
         'networking/wifi_ap',
