@@ -4,7 +4,7 @@ title: "Connecting to the Omega"
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-## Connecting to the Omega {connecting-to-the-omega}
+## Connecting to the Omega {#connecting-to-the-omega}
 
 Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start building and inventing.
 
@@ -15,14 +15,14 @@ There are two ways to connect to the Omega's command prompt:
 Both methods will work fine and each has their advantages. We recommend using SSH since it allows you to wirelessly control any Omega that's connected to your WiFi network.
 
 
- //TO DO: add background on the command prompt
+<!-- TODO: add background on the command prompt -->
 
 
 ### Connecting with SSH
 
 SSH actually stands for Secure Shell, it's a network protocol that creates a secure channel for communication between two devices on the same network. It can be used to secure many different types of communication, but we will be using it to login to the Omega's command prompt for now.
 
-//TO DO: add stylized picture of the Omega2 and a laptop connected to a wifi network
+<!-- TODO: add stylized picture of the Omega2 and a laptop connected to a wifi network -->
 
 #### The Good & Bad of SSH
 
@@ -137,7 +137,7 @@ ls ~/.ssh/id\_rsa.pub
 
 If this file exists, skip ahead to Step 3.
 
-// TO DO: add screenshot of terminal showing file exists
+<!-- TODO: add screenshot of terminal showing file exists -->
 
 **Step 2:**
 
@@ -183,11 +183,11 @@ Instructions for Windows will be added soon. Use the macOS workflow as a referen
 
 The Omega&#39;s command prompt can also be accessed with a USB cable, as long as your Omega is docked in either an Expansion Dock or a Mini Dock. What&#39;s happening behind the scenes is that the Omega is using it&#39;s UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
 
-// TO DO: stylized picture of an Omega2 on an Expansion Dock connected to a laptop with a cable
+<!-- TODO: stylized picture of an Omega2 on an Expansion Dock connected to a laptop with a cable -->
 
 Generally, we recommend using SSH to access the Omega&#39;s command line, but the serial terminal does have its advantages. For instance, the serial terminal will always be available as long as the Omega is powered on and does not depend on network connectivity. Additionally, when using the serial terminal, you will see messages such as this one:
 
-// TO DO: insert screenshot of kernel message from command line
+<!-- TODO: insert screenshot of kernel message from command line -->
 
 This is an example of a message coming from the kernel. These messages can be listed out at any time using the `dmesg` command, so they can be seen when using SSH as well.
 
@@ -197,6 +197,6 @@ Note that the Expansion Dock and Mini Dock are the only docks that have USB-to-S
 
 We&#39;ll first identify the specific USB connection that we need to use to talk to the Omega, and then setting up the communication.
 
-// TO DO: insert the instructions for connecting, rip from the starting guides
+<!-- TODO: insert the instructions for connecting, rip from the starting guides -->
 
 <GiscusDocComment />

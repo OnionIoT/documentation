@@ -86,7 +86,7 @@ To use the newly deployed Package Repo on an Omega2 device, follow these steps
 
 #### Step 3.1: Add the New Package Repository to OPKG Configuration
 To inform OPKG about the new package repo, it must be added to the `/etc/opkg/customfeeds.conf` feed configuration file. 
-Add a new line with your repository URL. Replace <your_repo_url> with the URL of your S3 bucket (including any optional subdirectory where your packages are stored):
+Add a new line with your repository URL. Replace `<your_repo_url>` with the URL of your S3 bucket (including any optional subdirectory where your packages are stored):
 ```
 src/gz custom_packages http://<your_repo_url>
 ```

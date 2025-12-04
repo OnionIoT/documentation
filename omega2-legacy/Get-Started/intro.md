@@ -3,6 +3,8 @@ title: "What is the Omega?"
 slug: /
 ---
 
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
 
 
 

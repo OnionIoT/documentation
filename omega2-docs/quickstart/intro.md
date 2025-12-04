@@ -24,7 +24,6 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 <div className="video-container">
   <LiteYouTubeEmbed
-    // cSpell:ignore Yhyx Sksg
     id="L4LP01gOgPM"
     params="autoplay=1&autohide=1&showinfo=0&rel=0"
     title="Omega2 Eval Board Quickstart Guide"

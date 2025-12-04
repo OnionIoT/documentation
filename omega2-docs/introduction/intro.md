@@ -52,7 +52,7 @@ We want to learn from our customers what information is important to them.
 
 - We appreciate your participation through article comments. Each article has a comment section at the bottom of the article.
 - We encourage you to create an issue on GitHub.
-- See the [Feedback and Suggestions](./feedback) section for more details.
+- See the [Feedback and Suggestions](/omega2-docs/introduction/feedback) section for more details.
 
 We strive to keep open channels of communication with our customers and allow them an opportunity to provide feedback and share their insights. Our open communication policy also includes our product development plans and documentation decisions.
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import Giscus from "@giscus/react";
 import { useColorMode } from '@docusaurus/theme-common';
-import { useDoc } from '@docusaurus/theme-common/internal';
-import { useBlogPost } from '@docusaurus/theme-common/internal';
-import { useLocation } from 'react-router-dom';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
+import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
+import { useLocation } from '@docusaurus/router';
 
 const GiscusParams = {
   repo: "OnionIoT/documentation",
@@ -24,16 +24,14 @@ export function GiscusDocComment() {
   const { colorMode } = useColorMode();
   const { frontMatter } = useDoc();
   const location = useLocation();
-  // Extract the path from the location, because frontmatter.slug might not be defined.
-  // The path is used to disambiguate between pages with the same title (e.g. 'Modules').
-  const path = location;
-//   const path = location.pathname.replace('/developers/weaviate', '');
+  const path = location?.pathname ?? '';
+  const title = frontMatter?.title ?? 'Doc comment';
+  const term = `${title} (${path})`;
 
   return (
     <Giscus
       {...GiscusParams}
-    //   term={`Doc comment on ${frontMatter.title} (${path})`}
-      term="Welcome to comments"
+      term={term}
       theme={colorMode}
     />
   );
@@ -42,11 +40,12 @@ export function GiscusDocComment() {
 export function GiscusBlogPostComment() {
   const { colorMode } = useColorMode();
   const { frontMatter } = useBlogPost();
+  const title = frontMatter?.title ?? 'Blog comment';
 
   return (
     <Giscus
       {...GiscusParams}
-      term={'Blog comment on ' + frontMatter.title}
+      term={`Blog comment on ${title}`}
       theme={colorMode}
     />
   );
