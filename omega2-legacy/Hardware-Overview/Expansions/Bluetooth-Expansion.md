@@ -39,7 +39,7 @@ The LED will be solid blue when the antenna is in use.
 We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-BLE.PDF) of the dimensions and geometry of the Bluetooth Expansion.
 --->
 
-### Using the Bluetooth Expansion
+### Using the Bluetooth Expansion {#using-bluetooth-expansion}
 
 // give an example of when connecting to bluetooth devices would be useful
 

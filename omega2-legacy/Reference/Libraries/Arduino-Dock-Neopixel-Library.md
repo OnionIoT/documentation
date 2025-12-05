@@ -19,7 +19,7 @@ The Onion Arduino Dock Neopixel C & C++ library, `libonionneopixel` provides fun
 
 <!-- Programming Flow -->
 
-### Programming Flow
+### Programming Flow {#Programming-Flow}
 
 The first action that must be performed is always the initialization of the Arduino Dock for controlling Neopixels. This entails setting which Arduino Dock pin will be used as data output, setting the number of Neopixels, and running the initalization function.
 
@@ -332,7 +332,7 @@ status = npixel->SetBuffer(buffer, length);
 
 <!-- The C++ Library Class Functions: Show Queued Colour Changes -->
 
-##### Show All Queued Colour Changes
+##### Show All Queued Colour Changes {#the-c-c-library_the-c-library_class-functions_show-all-queued-colour-changes}
 
 This class function will send a command to the Arduino Dock to display all queued colour and/or brightness changes on the physical Neopixels:
 ``` c++
@@ -562,7 +562,7 @@ status = neopixelSetBuffer(buffer, length);
 
 <!-- The C Library Class Functions: Show Queued Colour Changes -->
 
-##### Show All Queued Colour Changes
+##### Show All Queued Colour Changes {#the-c-c-library_the-c-library_library-functions_show-all-queued-colour-changes}
 
 This function will send a command to the Arduino Dock to display all queued colour changes on the physical Neopixels:
 ``` c
@@ -785,7 +785,7 @@ status = npixel.setBuffer(buf)
 
 <!-- The Python Class Functions: Show Queued Colour Changes -->
 
-#### Show All Queued Colour Changes
+#### Show All Queued Colour Changes {#the-python-module_the-python-class_show-all-queued-colour-changes}
 
 This function will send a command to the Arduino Dock to display all queued colour changes on the physical Neopixels:
 ``` python

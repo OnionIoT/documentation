@@ -24,10 +24,10 @@ When the Omega's OS is built, the header files for libraries that are not regula
 This includes libraries such as:
 
 * libugpio
-* [libonioni2c](#i2c-c-library)
-* [libonionpwmexp](#pwm-expansion-c-library)
-* [libonionoledexp](#oled-expansion-c-library)
-* [libonionrelayexp](#relay-expansion-c-library)
+* [libonioni2c](/omega2-legacy/Reference/Libraries/I2C-C-Library#i2c-c-library)
+* [libonionpwmexp](/omega2-legacy/Reference/Libraries/PWM-Expansion-C-Library#pwm-expansion-c-library)
+* [libonionoledexp](/omega2-legacy/Reference/Libraries/OLED-Expansion-C-Library#oled-expansion-c-library)
+* [libonionrelayexp](/omega2-legacy/Reference/Libraries/Relay-Expansion-C-Library#relay-expansion-c-library)
 * libuci
 * libubus
 * libjson-c
@@ -41,13 +41,13 @@ This includes libraries such as:
 
 It is possible to overcome to two above-mentioned limitations by using the **LEDE build system on your computer to cross-compile** your program for the Omega.
 
-See the article on [Cross Compilation](#cross-compiling) for more details and instructions.
+See the article on [Cross Compilation](/omega2-legacy/Doing-Stuff/Advanced/Cross-Compile#cross-compiling) for more details and instructions.
 
 
 
 ### Installing the Compiler
 
-The `gcc` compiler takes up quite a bit of space, so the first order of business is to configure the Omega to [boot from external storage](#boot-from-external-storage).
+The `gcc` compiler takes up quite a bit of space, so the first order of business is to configure the Omega to [boot from external storage](/omega2-legacy/Doing-Stuff/Advanced/Boot-from-External-Storage#boot-from-external-storage).
 
 The packages we need are not included in the Onion package repositories, so we'll need to update the repositories that the `opkg` utility checks. Open up `/etc/opkg/distfeeds.conf` and uncomment the following lines:
 
@@ -61,7 +61,7 @@ and
 src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
 ```
 
->For more info on the package repos the Omega uses, take a look at our [article on using `opkg`](#using-opkg-switch-to-lede-repos)
+>For more info on the package repos the Omega uses, take a look at our [article on using `opkg`](/omega2-legacy/Doing-Stuff/Installing-Software/Using-opkg#using-opkg-switch-to-lede-repos)
 
 Once that's done, we can proceed to install `gcc` and the `make` utility:
 
@@ -121,7 +121,7 @@ Awesome! You've just compiled your very first C program on the Omega!
 
 #### A Example Program
 
-Take a look at our [`c-example` repo on GitHub](https://github.com/OnionIoT/c-example/) to find a C program and Makefile that can be compiled on your Omega. Connect to your Omega, [install `git`](#installing-and-using-git), clone the `c-example` repo, and run `make` to compile your very own C program.
+Take a look at our [`c-example` repo on GitHub](https://github.com/OnionIoT/c-example/) to find a C program and Makefile that can be compiled on your Omega. Connect to your Omega, [install `git`](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-Git#installing-and-using-git), clone the `c-example` repo, and run `make` to compile your very own C program.
 
 The output of the compilation will be an executable binary called `gpioRead`. The program will read and print the input value on a user-specified GPIO pin once a second for 20 seconds. Run it with `./gpioRead`!
 

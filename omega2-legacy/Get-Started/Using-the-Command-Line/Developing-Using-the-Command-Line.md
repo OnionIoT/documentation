@@ -22,7 +22,7 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 
 In order to develop programs on the command-line, you'll need access to a terminal so either SSH into the Omega's command-line, or connect serially.
 
->To learn more on how to connect to the Omega's command-line you can read our comprehensive [guide to connecting to the Omega](#connecting-to-the-omega-terminal).
+>To learn more on how to connect to the Omega's command-line you can read our comprehensive [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal).
 
 
 

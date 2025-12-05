@@ -15,7 +15,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The Relay Expansion allows you to control two relay modules. Relays are basically electronically operated switches, enabling the Omega's low power circuits to control other, potentially high power circuits.
 
->You can learn more about the technical specifications of the Relay expansion in our [Relay Expansion hardware overview](#relay-expansion)
+>You can learn more about the technical specifications of the Relay expansion in our [Relay Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/Relay-Expansion#relay-expansion)
 
 ### Example Circuit
 
@@ -280,7 +280,7 @@ relay-exp -a 0x24 all 1
 
 The C library and Python module will allow you to control the Relay Expansion with your own programs. See the guides below for more details:
 
-* [Relay Expansion C Library](#relay-expansion-c-library)
-* [Relay Expansion Python Module](#relay-expansion-python-module)
+* [Relay Expansion C Library](/omega2-legacy/Reference/Libraries/Relay-Expansion-C-Library#relay-expansion-c-library)
+* [Relay Expansion Python Module](/omega2-legacy/Reference/Libraries/Relay-Expansion-Python-Module#relay-expansion-python-module)
 
 <GiscusDocComment />

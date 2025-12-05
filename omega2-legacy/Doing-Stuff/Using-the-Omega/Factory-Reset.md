@@ -50,9 +50,9 @@ These commands will:
 
 * Revert the firmware to a clean slate
 * Ensure all storage operations are complete
-* [Reboot the Omega](#rebooting) for the changes to take effect
+* [Reboot the Omega](/omega2-legacy/Doing-Stuff/Using-the-Omega/Reboot#rebooting) for the changes to take effect
 
-It will work the same no matter how you have connected to the Omega's command line, whether it was by [SSH](#connecting-to-the-omega-terminal-ssh), via [Serial](#connecting-to-the-omega-terminal-serial), or using the [Terminal App](#developing-using-the-console-terminal-app) on the Console.
+It will work the same no matter how you have connected to the Omega's command line, whether it was by [SSH](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh), via [Serial](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial), or using the [Terminal App](/omega2-legacy/Get-Started/Using-the-Console/Developing-using-the-console#developing-using-the-console-terminal-app) on the Console.
 
 
 

@@ -4,7 +4,7 @@ title: "Using the OLED Expansion"
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-## Using the OLED Expansion {#using-oled-expansion}
+## Using the OLED Expansion {#using-the-oled-expansion}
 
 The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and white) OLED display for your Omega. With a resolution of 128×64, it is very handy for displaying text, drawing images, and even animation!
 
@@ -14,7 +14,7 @@ Also available are a C library and a Python module that allow you to develop you
 
 ![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
->You can learn more about the technical specifications of the OLED expansion in our [OLED Expansion hardware overview](#oled-expansion)
+>You can learn more about the technical specifications of the OLED expansion in our [OLED Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/OLED-Expansion#oled-expansion)
 
 ### Command Usage
 
@@ -265,7 +265,7 @@ After the image name and location are selected, click the **Save to Omega** butt
 
 The OLED image files store the image data as 1024 bytes represented in hexadecimal. Each byte represents eight vertical pixels, with the first 128 bytes representing the columns in Page 0, the following 128 bytes representing the columns in Page 1, and so on.
 
-If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](#oled-expansion) for details on how the display is addressed.
+If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](/omega2-legacy/Hardware-Overview/Expansions/OLED-Expansion#oled-expansion) for details on how the display is addressed.
 <!-- DONE: change this link to the OLED Hardware article -->
 
 #### Displaying Images from a File
@@ -304,6 +304,6 @@ SPACE, !, ", #, $, %, &, ', (, )
 
 The C library and Python module will give you the flexibility to use the OLED Expansion however you want in your own programs.
 
-For more information, see [our guide to using the OLED Expansion C Library](#oled-expansion-c-library), or [our guide to using the OLED Expansion Python Module](#oled-expansion-python-module).
+For more information, see [our guide to using the OLED Expansion C Library](/omega2-legacy/Reference/Libraries/OLED-Expansion-C-Library#oled-expansion-c-library), or [our guide to using the OLED Expansion Python Module](/omega2-legacy/Reference/Libraries/OLED-Expansion-Python-Module#oled-expansion-python-module).
 
 <GiscusDocComment />

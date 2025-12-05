@@ -15,9 +15,9 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The PWM Expansion allows you to generate up to 16 different Pulse Width Modulated (PWM) signals to control anything from Servo Motors (servos), DC Motor speed, LED brightness, etc.
 
->You can learn more about the technical specifications of the PWM expansion in our [PWM Expansion hardware overview](#pwm-expansion)
+>You can learn more about the technical specifications of the PWM expansion in our [PWM Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/PWM-Expansion#pwm-expansion)
 
-### Pulse Width Modulation
+### Pulse Width Modulation {#pwm-signals}
 
 PWM is a technique to control power output from a circuit. Here's an analogy to explain how this works. Let's say you're watering some delicate flowers in a garden. You have a very simple hose that can only be in either of the following states:
 
@@ -253,7 +253,7 @@ pwm-exp -p <CHANNEL> <PULSE WIDTH> <TOTAL PERIOD>
 
 The C library and Python module will allow you to control the PWM Expansion with your own programs. See the guides below for more details:
 
-* [PWM Expansion C Library](#pwm-expansion-c-library)
-* [PWM Expansion Python Module](#pwm-expansion-python-module)
+* [PWM Expansion C Library](/omega2-legacy/Reference/Libraries/PWM-Expansion-C-Library#pwm-expansion-c-library)
+* [PWM Expansion Python Module](/omega2-legacy/Reference/Libraries/PWM-Expansion-Python-Module#pwm-expansion-python-module)
 
 <GiscusDocComment />

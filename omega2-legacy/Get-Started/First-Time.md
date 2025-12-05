@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
-> If you experience issues at any point in the process, try checking our [Troublshooting guide](#first-time-troubleshooting).
+> If you experience issues at any point in the process, try checking our [Troublshooting guide](/omega2-legacy/Get-Started/Troubleshooting#first-time-troubleshooting).
 
 
 <!-- Second sentence above is awkward -->
@@ -31,7 +31,7 @@ It covers all of the steps that are listed below!
 
 <!-- LED at Boot text -->
 
-> This guide assumes you have an Omega and a Dock. If you didn't purchase a Dock, follow our guide on [powering the Omega with no Dock](#hardware-prep-no-dock).
+> This guide assumes you have an Omega and a Dock. If you didn't purchase a Dock, follow our guide on [powering the Omega with no Dock](/omega2-legacy/Get-Started/First-Time-Components/Hardware-Prep-No-Dock#hardware-prep-no-dock).
 
 
 **Unpack**
@@ -174,12 +174,12 @@ At the end of the installation process, the Omega will automatically reboot. It 
 
 **All Done!**
 
-Start using your fresh Omega, check out the [Using the Omega section](#doing-stuff) for ideas on what the Omega can do!
+Start using your fresh Omega, check out the Using the Omega guides for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
 
 ### The Setup Wizard Didn't Work!
 
-If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Setup using the Command Line guide](#first-time-setup-command-line) or see the  [Troubleshooting guide](#first-time-troubleshooting).
+If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Setup using the Command Line guide](/omega2-legacy/Get-Started/First-Time-Command-Line#first-time-setup-command-line) or see the  [Troubleshooting guide](/omega2-legacy/Get-Started/Troubleshooting#first-time-troubleshooting).
 
 <GiscusDocComment />

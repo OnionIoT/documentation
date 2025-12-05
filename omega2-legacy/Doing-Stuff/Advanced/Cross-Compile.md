@@ -10,7 +10,7 @@ Cross compilation just means compiling an executable meant for a platform that's
 
 The OpenWRT build system is at the core of our cross compilation efforts; it will build to toolchain which we will then use to cross compile our C or C++ code for the Omega.
 
-> In the article on [using a C compiler on the Omega](#c-compiler-on-omega), it is mentioned that a limitation of compiling on the Omega is that the compiled programs are limited to using only the C standard libraries since only those header files are included on the Omega's filesystem as a space-saving measure.<br />
+> In the article on [using a C compiler on the Omega](/omega2-legacy/Doing-Stuff/Advanced/C-Compiler-on-Omega#c-compiler-on-omega), it is mentioned that a limitation of compiling on the Omega is that the compiled programs are limited to using only the C standard libraries since only those header files are included on the Omega's filesystem as a space-saving measure.<br />
 > The main advantage to cross compiling as opposed to compiling a program directly on your Omega is two-fold:<br />
 > your program will be able to use libraries other than the implemented by other OpenWRT software packages, and,<br />
 > the compilation will likely be much quicker on your computer in the cross compilation environment than on the Omega.
@@ -204,6 +204,6 @@ root@b6b5a4128ee3:~/c-cross-compile-example# file gpioRead
 gpioRead: ELF 32-bit LSB executable, MIPS, MIPS32 rel2 version 1, dynamically linked, interpreter /lib/ld-musl-mipsel-sf.so.1, not stripped
 ```
 
-Success! We've cross compiled a program for the Omega! [Transfer the file to your Omega](#transferring-files), use `chmod +x gpioRead` to give it executable permissions, and run it with `./gpioRead`.
+Success! We've cross compiled a program for the Omega! [Transfer the file to your Omega](/omega2-legacy/Doing-Stuff/Transferring-Files#transferring-files), use `chmod +x gpioRead` to give it executable permissions, and run it with `./gpioRead`.
 
 <GiscusDocComment />

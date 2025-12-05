@@ -9,7 +9,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <!-- // Show how to install the console through the setup-wizard, or through the command line -->
 The Console can be installed through the Setup Wizard, or through the command line.
-Follow this [guide](#first-time-setup) on setting up your Omega, if you have not already done so.
+Follow this [guide](/omega2-legacy/Get-Started/First-Time#first-time-setup) on setting up your Omega, if you have not already done so.
 
 ### Installing Using the Setup Wizard
 
@@ -38,7 +38,7 @@ password: onioneer
 
 The Console can be installed using the Omega's command line.
 
->For information on how to access the Omega's command line, follow this [guide to connecting to the Omega's Terminal](#connecting-to-the-omega-terminal)
+>For information on how to access the Omega's command line, follow this [guide to connecting to the Omega's Terminal](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal)
 
 
 >You'll need to be connected to the internet in order to install the Console. If you've followed the Setup Wizard, you will be all good to go.
@@ -55,7 +55,7 @@ console-install-tool
 This will perform the entire Console installation sequence for you.
 
 
-Now you'll be able to [access the Omega's Console using your browser](#access-the-console)!
+Now you'll be able to [access the Omega's Console using your browser](/omega2-legacy/Get-Started/Using-the-Console/Accessing-the-Console#accessing-the-console)!
 
 
 #### Behind the Scenes
@@ -71,7 +71,7 @@ opkg update
 opkg install onion-console-base
 ```
 
-> You can learn more about `opkg` in our [guide to opkg](#using-opkg).
+> You can learn more about `opkg` in our [guide to opkg](/omega2-legacy/Doing-Stuff/Installing-Software/Using-opkg#using-opkg).
 
 After the installation is complete, the `rpcd` service needs to be restarted so the Console can have access to the system. The tool will restart the `rpcd` service with the following command:
 

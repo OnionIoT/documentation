@@ -71,7 +71,7 @@ pivot-overlay moves the `/overlay` part to the external storage device, allowing
 You will need:
 
 * A USB drive or MicroSD card with however much memory you need
-    * Only the Omega2+ can use MicroSD cards. Read our [MicroSD card guide](#using-a-microsd-card) for full details.
+    * Only the Omega2+ can use MicroSD cards. Read our [MicroSD card guide](/omega2-legacy/Doing-Stuff/Using-MicroSD#using-a-microsd-card) for full details.
 * A Dock with a USB host port if using a USB drive
 * Firmware >= 0.1.9 b149
 

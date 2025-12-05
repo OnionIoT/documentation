@@ -93,7 +93,7 @@ Your Omega's AP will then become available, allowing connections from other devi
 
 **Continue the Setup Process**
 
-If this is your first time powering on the Omega, you can now follow the rest of the setup steps as if you had the Omega connected to a Dock. See our guide on [using the browser-based Setup Wizard](#first-time-setup-wizard) or the [Command Line setup guide](#first-time-setup-command-line-steps) for info on how to complete your Omega's setup.
+If this is your first time powering on the Omega, you can now follow the rest of the setup steps as if you had the Omega connected to a Dock. See our guide on [using the browser-based Setup Wizard](/omega2-legacy/Get-Started/First-Time#first-time-setup-wizard) or the [Command Line setup guide](/omega2-legacy/Get-Started/First-Time-Command-Line#first-time-setup-command-line-steps) for info on how to complete your Omega's setup.
 
 If you opt for the command line setup, you will only be able to connect to the Omega via SSH. Connecting via serial is possible only if you have a USB-to-UART serial converter.
 

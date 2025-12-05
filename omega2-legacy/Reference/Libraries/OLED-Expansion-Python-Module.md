@@ -26,7 +26,7 @@ After the initialization, the other functions can be used to ajdust various scre
 
 
 
-### Understanding the Display
+### Understanding the Display {#programming-flow_understanding-the-display}
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
@@ -239,7 +239,7 @@ status = oledExp.setDisplayMode(0)
 
 <!-- Python: Set Brightness -->
 
-### Set the Display Brightness - setBrightness() {#oled-py-set-brightnes}
+### Set the Display Brightness - setBrightness() {#oled-py-set-brightness}
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 ``` python

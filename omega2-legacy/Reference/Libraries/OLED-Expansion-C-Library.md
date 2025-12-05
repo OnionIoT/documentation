@@ -21,7 +21,7 @@ This library is also available as a [module for use in Python](./OLED-Expansion-
 
 <!-- Programming Flow -->
 
-### Programming Flow
+### Programming Flow {#Programming-Flow}
 
 After each power-cycle, the chip that controls the OLED Expansion must be programmed with an initialization sequence to setup the display and enable it to receive additional commands.
 
@@ -29,7 +29,7 @@ After the initialization, the other functions can be used to ajdust various scre
 
 
 
-### Understanding the Display
+### Understanding the Display {#programming-flow_understanding-the-display}
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
@@ -124,8 +124,8 @@ An error message will be printed that will give more information on the reason b
 | Function | Prototype |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | [Initialization Function](#oled-c-init-function) | `int oledDriverInit ()` |
-| [Turn the Screen On and Off](#oled-c-display-power) | `int oledSetDisplayPower (int bPowerOn)` |
-| [Invert Display Colours](#oled-c-display-mode) | `int oledSetDisplayMode (int bInvert)` |
+| [Turn the Screen On and Off](#oled-c-set-display-power) | `int oledSetDisplayPower (int bPowerOn)` |
+| [Invert Display Colours](#oled-c-set-display-mode) | `int oledSetDisplayMode (int bInvert)` |
 | [Set the Display Brightness](#oled-c-set-brightness) | `int oledSetBrightness (int brightness)` |
 | [Dim the Display](#oled-c-set-dim) | `int oledSetDim (int dim)` |
 | [Set Memory Mode](#oled-c-set-memory-mode) | `int oledSetMemoryMode (int mode)` |
@@ -182,7 +182,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Screen on/off -->
 
-### Turn the Screen On and Off  - int oledSetDisplayPower (int) {#oled-c-display-power}
+### Turn the Screen On and Off  - int oledSetDisplayPower (int) {#oled-c-set-display-power}
 
 The screen can be turned on and off while still preserving the displayed contents:
 
@@ -218,7 +218,7 @@ status = oledSetDisplayPower(1);
 
 <!-- Invert Display Colours -->
 
-### Invert Display Colours - int oledSetDisplayMode (int) {#oled-c-display-mode}
+### Invert Display Colours - int oledSetDisplayMode (int) {#oled-c-set-display-mode}
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 

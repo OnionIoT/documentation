@@ -33,7 +33,7 @@ Visit the OnionIoT/Omega2-Pro GitHub repo: https://github.com/OnionIoT/Omega2-Pr
 | **E.** Power management           | **K.** Chip antenna   |
 | **F.** Micro USB (power & serial) |                       |
 
-The Omega2 Pro is based around the [Omega2S+ module](#omega2s), it is the centerpiece of the Omega2 Pro, providing the CPU, 128MB RAM memory & WiFi radio.
+The Omega2 Pro is based around the [Omega2S+ module](/omega2-legacy/Hardware-Overview/Devices/Omega2S#omega2s), it is the centerpiece of the Omega2 Pro, providing the CPU, 128MB RAM memory & WiFi radio.
 
 | Omega2 Pro Specs  | |
 | :-------------: | :-------------:  |
@@ -72,7 +72,7 @@ The pinout diagram below shows the Expansion Header's connections and the possib
 
 By default, the Serial, SPI, and I2C pins implement these communication protocols and cannot be used as GPIOs. Similarly, the I2S and PWM pins are set to GPIO mode by default.
 
-> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](#using-gpios-multiplexing) of our article on the Omega's GPIOs.
+> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios-multiplexing) of our article on the Omega's GPIOs.
 
 
 ### LiPo Battery Support
@@ -92,7 +92,7 @@ Learn more about controlling the full-color LED: https://onion.io/omega2-pro-get
 Node-RED is a flow-based, visual programming tool that runs in the browser. It comes packaged as an OnionOS App on the Omega2 Pro and can be easily accessed through OnionOS in any browser.
 
 
-Learn more about installing and using Node-Red on the Omega2 Pro by following [this guide](#node-red-article).
+Learn more about installing and using Node-Red on the Omega2 Pro by following [this guide](/omega2-legacy/Doing-Stuff/Installing-Software/node-red#node-red-article).
 
 <!-- operating system -->
 
@@ -113,7 +113,7 @@ The Omega's amber System Status LED provides a visual indication of the Omega's 
 | Booting/Updating | Blinking     |
 | Up and running   | On           |
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
+The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](/omega2-legacy/Doing-Stuff/The-Omega-LED#the-omega-led)
 
 
 ### The Blue WiFi Status LED {#omega2pro-hw-wifi-led}
@@ -141,7 +141,7 @@ The Micro-USB Port takes in 5V, and the Dock comes equipped with a voltage regul
 
 The USB-to-Serial chip allows for a serial connection between the Omega and a computer using the USB-C port. You can connect a USB-C to USB cord from the Omega to your computer, open a terminal, and connect to the Omega via a COM port as opposed to SSH.
 
->For more information on the Omega's Serial connection read our [guide to connecting to the Omega](#connecting-to-the-omega-terminal-serial)
+>For more information on the Omega's Serial connection read our [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial)
 
 
 <!-- Power Switch -->
@@ -170,7 +170,7 @@ Pressing and **holding** the reset button for **10 seconds then releasing** will
 
 Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
-See the [Factory Reset documentation article](#factory-reset) for more details.
+See the [Factory Reset documentation article](/omega2-legacy/Doing-Stuff/Using-the-Omega/Factory-Reset#factory-reset) for more details.
 
 
 <!-- USB Port -->

@@ -552,6 +552,15 @@ Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Tod
 oledExp.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
+### Display Images from a File {#oled-node-read-lcd-file}
+
+Render a pre-generated `.lcd` image by loading it directly from the Omega's filesystem:
+``` javascript
+oledExp.readLcdFile('/root/images/onion-logo.lcd');
+```
+
+The file must be a 1-bit 128x64 image encoded in the `.lcd` format used by the `oled-exp` tooling. Pair this helper with the `oled-exp -i` command to convert bitmaps on the Omega, then call `readLcdFile` to display them from Node.js.
+
 ### Scrolling the Display Contents {#oled-node-scrolling}
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 

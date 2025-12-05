@@ -244,7 +244,7 @@ buffer[3] 	= 0xff;
 status 		= i2c_writeBuffer(0, 0x30, 0x54, buffer, 4);
 ```
 
-### Directly Write to Address - int i2c_writeBytes (int, int, int, int, int) {#i2c-c-write-direct}
+### Directly Write to Address - int i2c_writeBytes (int, int, int, int, int) {#i2c-c-write-bytes}
 
 The `i2c_writeBytes` function will write a specified number of bytes from an integer variable to an address on an I2C device. Sometimes it's a little quicker to pass in an integer rather than create a buffer like the `i2c_writeBuffer` function above requires. Note that the Least Significant Byte (LSB) of the integer will be written first and that the maximum number of bytes is 4 (since an int holds 32 bits on the Omega).
 

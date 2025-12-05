@@ -142,9 +142,9 @@ i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 
 Some of our Expansions use I2C to communicate with the Omega. To learn more about how to work with them, take a look at the guides below:
 
-* [Relay Expansion](#using-relay-expansion)
-* [PWM Expansion](#using-pwm-expansion)
-* [OLED Expansion](#using-oled-expansion)
+* [Relay Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-Relay-Expansion#using-relay-expansion)
+* [PWM Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-PWM-Expansion#using-pwm-expansion)
+* [OLED Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-OLED-Expansion#using-the-oled-expansion)
 
 ### More Resources
 
@@ -155,7 +155,7 @@ Some of our Expansions use I2C to communicate with the Omega. To learn more abou
 
 #### I2C using Python
 
-We've developed an I2C Python module that you can import into your apps. For all the details, see the [I2C Python Module](#i2c-python-module).
+We've developed an I2C Python module that you can import into your apps. For all the details, see the [I2C Python Module](/omega2-legacy/Reference/Libraries/I2C-Python-Module#i2c-python-module).
 
 ##### Example - Controlling an I2C LCD Display
 
@@ -231,7 +231,7 @@ For more details, see [David's blog post](http://davidstein.cz/onion-omega-firei
 
 #### I2C using C & C++
 
-We have also developed an I2C library for C and C++. For all the details, see the [I2C C Library](#i2c-c-library)
+We have also developed an I2C library for C and C++. For all the details, see the [I2C C Library](/omega2-legacy/Reference/Libraries/I2C-C-Library#i2c-c-library)
 
 <!-- // introduce that onion has developed an I2C library for C and C++
 // link to reference article on onion i2c c lib -->

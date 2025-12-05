@@ -10,7 +10,7 @@ The ADC (Analog-to-Digital Converter) Expansion allows the user to read and inte
 
 With the ADC Expansion, a whole world of analog sensors is now open to you and your Omega projects.
 
->You can learn more about the technical specifications of the ADC Expansion in our [ADC Expansion hardware overview](#adc-expansion)
+>You can learn more about the technical specifications of the ADC Expansion in our [ADC Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/ADC-Expansion#adc-expansion)
 
 ### The Channels
 

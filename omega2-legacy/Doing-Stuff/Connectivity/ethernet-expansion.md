@@ -11,17 +11,17 @@ The Ethernet Expansion is a piece of hardware that adds a standard RJ45 ethernet
 
 <!-- // TODO: photo: a photo of the Expansion -->
 
->You can learn more about the technical specifications of the Ethernet Expansion in our [Ethernet Expansion hardware overview](#ethernet-expansion)
+>You can learn more about the technical specifications of the Ethernet Expansion in our [Ethernet Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/Ethernet-Expansion#ethernet-expansion)
 
 ### Learn More about the Omega's Ethernet Port
 
-See the [documentation article](#the-ethernet-port) on the Omega's ethernet port and its modes of operation to learn more. 
+See the [documentation article](/omega2-legacy/Doing-Stuff/Connectivity/ethernet-port#the-ethernet-port) on the Omega's ethernet port and its modes of operation to learn more. 
 
 ### Going Further with the Ethernet Expansion
 
-If you don't have a router and need to supply a wireless network and internet connectivity to devices, the Ethernet Expansion can transform the Omega into a very effective router. For more on that you can read our [tutorial on transforming your Omega into a router](#omega-router)
+If you don't have a router and need to supply a wireless network and internet connectivity to devices, the Ethernet Expansion can transform the Omega into a very effective router. For more on that you can read our [tutorial on transforming your Omega into a router](/omega2-legacy/Doing-Stuff/The-Omega-and-Networking/Omega-Router#omega-router)
 
 
-You can use the Ethernet Expansion and the Omega to provide a wired connection to a laptop or a computer. This is known as an Ethernet Bridge, and you can learn more about it in our [tutorial on creating an Ethernet Bridge using the Omega](#ethernet-bridge)
+You can use the Ethernet Expansion and the Omega to provide a wired connection to a laptop or a computer. This is known as an Ethernet Bridge, and you can learn more about it in our [tutorial on creating an Ethernet Bridge using the Omega](/omega2-legacy/Doing-Stuff/The-Omega-and-Networking/Ethernet-Bridge#ethernet-bridge)
 
 <GiscusDocComment />

@@ -10,7 +10,7 @@ Like all computers, the Omega can be restarted by rebooting. You may want to res
 
 ### Using a Command
 
-Unsurprisingly, running the `reboot` command on the Omega's command line will cause your Omega to perform a reboot. It will work the same no matter how you have connected to the Omega's command line, whether it was by [SSH](#connecting-to-the-omega-terminal-ssh), via [Serial](#connecting-to-the-omega-terminal-serial), or using the [Terminal App](#developing-using-the-console-terminal-app) on the Console.
+Unsurprisingly, running the `reboot` command on the Omega's command line will cause your Omega to perform a reboot. It will work the same no matter how you have connected to the Omega's command line, whether it was by [SSH](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh), via [Serial](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial), or using the [Terminal App](/omega2-legacy/Get-Started/Using-the-Console/Developing-using-the-console#developing-using-the-console-terminal-app) on the Console.
 
 
 ### With the Reset button

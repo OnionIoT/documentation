@@ -9,7 +9,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 Updating your Omega is really easy and can be done in a number of ways. You can use our built in upgrade tool `oupgrade` for a streamlined approach to updating your Omega.
 
->For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
+>For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](/omega2-legacy/Get-Started/Using-the-Command-Line/Updating-the-Omega#updating-the-omega)
 
 This guide will show you how to manually install a firmware of your choice. This firmware can be one of the builds published by Onion or a custom firmware image.
 
@@ -71,7 +71,7 @@ Take note of the name of the firmware you just downloaded for the next step. In 
 
 If your Omega no longer has enough room to download the Firmware, you can download the firmware onto a USB Storage Device and work from that USB's directory on your Omega.
 
->For more on using a USB storage device on your Omega, check out our [guide to using a USB storage device on your Omega](#usb-storage)
+>For more on using a USB storage device on your Omega, check out our [guide to using a USB storage device on your Omega](/omega2-legacy/Doing-Stuff/USB/USB-Storage#usb-storage)
 
 
 ### Step 2: Upgrading your Omega to the Downloaded Firmware

@@ -74,6 +74,6 @@ The switch changes the I2C address of the ADC chip on the ADC Expansion. That wa
 
 ### Using the ADC Expansion
 
-Read our [guide to using the ADC Expansion](#using-adc-expansion) to learn how to read analog voltages from the command line.
+Read our [guide to using the ADC Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-ADC-Expansion#using-adc-expansion) to learn how to read analog voltages from the command line.
 
 <GiscusDocComment />

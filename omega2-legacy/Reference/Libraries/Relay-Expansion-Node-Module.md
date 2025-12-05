@@ -22,7 +22,7 @@ After each power-cycle, the chip that controls the Relay Expansion must be progr
 
 
 
-### I2C Device Address {#reference-shared-i2c-device-address}
+### I2C Device Address {#relay-node-i2c-device-address}
 The Relay Expansion is the only expansion that has a configurable I2C device address. This was done so that up to eight Relay Expansions can be stacked on a single Omega, giving the user the ability to control 16 relay modules independently.
 
 The base device address is 0x20, the dip switches control the offset added to the base address:

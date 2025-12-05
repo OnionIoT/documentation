@@ -13,7 +13,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The PWM Expansion allows you to generate up to 16 different Pulse Width Modulated (PWM) signals to control anything from Servo Motors (servos), DC Motor speed, LED brightness, etc.
 
-This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x5a`. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
+This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x5a`. If you're curious, check out the [article on I2C](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices).
 
 ### The Hardware
 
@@ -133,6 +133,6 @@ Some of the things you can do with the PWM Expansion are as follows:
 * Robotics
 * LED light shows
 
-Read our [guide to using the PWM Expansion](#using-pwm-expansion) to learn how to control it using software.
+Read our [guide to using the PWM Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-PWM-Expansion#using-pwm-expansion) to learn how to control it using software.
 
 <GiscusDocComment />

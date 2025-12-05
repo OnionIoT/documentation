@@ -54,7 +54,7 @@ The pinout diagram below shows the Expansion Header's connections and the possib
 
 By default, the Serial, SPI, and I2C pins implement these communication protocols and cannot be used as GPIOs. Similarly, the I2S and PWM pins are set to GPIO mode by default.
 
-> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](#using-gpios-multiplexing) of our article on the Omega's GPIOs.
+> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios-multiplexing) of our article on the Omega's GPIOs.
 
 
 
@@ -73,7 +73,7 @@ The Micro-USB Port takes in 5V, and the Dock comes equipped with a voltage regul
 
 The USB-to-Serial chip allows for a serial connection between the Omega and a computer using the USB-C port. You can connect a USB-C to USB cord from the Omega to your computer, open a terminal, and connect to the Omega via a COM port as opposed to SSH.
 
->For more information on the Omega's Serial connection read our [guide to connecting to the Omega](#connecting-to-the-omega-terminal-serial)
+>For more information on the Omega's Serial connection read our [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial)
 
 
 <!-- USB-to-Serial -->
@@ -102,7 +102,7 @@ Pressing and **holding** the reset button for **10 seconds then releasing** will
 
 Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
-See the [Factory Reset documentation article](#factory-reset) for more details.
+See the [Factory Reset documentation article](/omega2-legacy/Doing-Stuff/Using-the-Omega/Factory-Reset#factory-reset) for more details.
 
 
 <!-- USB Port -->
@@ -137,7 +137,7 @@ The Expansion Dock makes it incredibly easy to use your Omega. It let's you easi
 #### Controlling the GPIOs
 
 <!-- [//]: # (mention how the GPIOs can be controlled and provide link to the gpio article) -->
-The GPIOs on the dock can be controlled using a number of tools we've included in the Omega firmware. You find more on how you can control the Omega's GPIOs in the article on [using the Omega's GPIOS](#using-gpios)
+The GPIOs on the dock can be controlled using a number of tools we've included in the Omega firmware. You find more on how you can control the Omega's GPIOs in the article on [using the Omega's GPIOS](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios)
 
 #### Controlling the RGB LED
 

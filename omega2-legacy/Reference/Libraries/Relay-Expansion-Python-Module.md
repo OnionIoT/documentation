@@ -6,7 +6,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 ## Relay Expansion Python Module {#relay-expansion-python-module}
 
-The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expansion Library](#relay-expansion-c-library). Using this module, you will be able to control the Relay Expansion from within your Python program.
+The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expansion Library](/omega2-legacy/Reference/Libraries/Relay-Expansion-C-Library#relay-expansion-c-library). Using this module, you will be able to control the Relay Expansion from within your Python program.
 
 <!-- TODO: IMAGE reupload this to github -->
 
@@ -19,7 +19,7 @@ After each power-cycle, the chip that controls the Relay Expansion must be progr
 
 
 
-### I2C Device Address {#reference-shared-i2c-device-address}
+### I2C Device Address {#i2c-device-address}
 The Relay Expansion is the only expansion that has a configurable I2C device address. This was done so that up to eight Relay Expansions can be stacked on a single Omega, giving the user the ability to control 16 relay modules independently.
 
 The base device address is 0x20, the dip switches control the offset added to the base address:
@@ -91,7 +91,7 @@ Example code that uses the `relayExp` module can be [found here](https://github.
 
 <!-- Python: The Channels -->
 
-#### The Channels
+#### The Channels {#the-python-module_the-channels}
 
 The Relay Expansion has two channels, the image below describes how they are enumerated:
 

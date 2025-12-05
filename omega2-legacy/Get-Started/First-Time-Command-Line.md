@@ -18,7 +18,7 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 1. Connecting to its command line terminal.
 1. Configuring it to join your WiFi network and then do some updates.
 
-> If you experience issues at any point in the process, try checking our [Troublshooting guide](#first-time-troubleshooting).
+> If you experience issues at any point in the process, try checking our [Troublshooting guide](/omega2-legacy/Get-Started/Troubleshooting#first-time-troubleshooting).
 
 <!-- Prepare the Hardware -->
 
@@ -28,7 +28,7 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 
 <!-- LED at Boot text -->
 
-> This guide assumes you have an Omega and a Dock. If you didn't purchase a Dock, follow our guide on [powering the Omega with no Dock](#hardware-prep-no-dock).
+> This guide assumes you have an Omega and a Dock. If you didn't purchase a Dock, follow our guide on [powering the Omega with no Dock](/omega2-legacy/Get-Started/First-Time-Components/Hardware-Prep-No-Dock#hardware-prep-no-dock).
 
 
 **Unpack**
@@ -121,9 +121,9 @@ The Omega hosts it's own WiFi network access point. Lets connect your computer t
 
 We'll use SSH to connect to the Omega's command line.
 
-To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega with SSH](#connecting-to-the-omega-terminal-ssh).
+To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega with SSH](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh).
 
-> It's also possible to access the Omega's command line via serial. Learn more by reading [this guide](#connecting-to-the-omega-terminal-serial). Note that you may need to install some drivers for your computer to detect USB-to-Serial devices.
+> It's also possible to access the Omega's command line via serial. Learn more by reading [this guide](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial). Note that you may need to install some drivers for your computer to detect USB-to-Serial devices.
 
 #### Provision the Omega's WiFi
 
@@ -180,9 +180,9 @@ Enter your password, and hit enter. Your Omega's network adapter will restart an
 Since the network adapter is restarting, the Omega's AP will go down and be inaccessible during this period, but it will come back up in roughly 30 seconds.
 
 
-> For more on the Omega's wireless capabilities, see [our guide to the Omega and Wireless](#the-omega-and-wireless-connectivity).
+> For more on the Omega's wireless capabilities, see [our guide to the Omega and Wireless](/omega2-legacy/Doing-Stuff/Connectivity/The-Omega-and-Wireless#the-omega-and-wireless-connectivity).
 >
->To learn more about configuring the Omega's WiFi connection, see [our guide to using the command line to connect to WiFi](#connecting-to-wifi-networks-command-line).
+>To learn more about configuring the Omega's WiFi connection, see [our guide to using the command line to connect to WiFi](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-WiFi-Networks#connecting-to-wifi-networks-command-line).
 
 
 ### Update the Omega's Firmware
@@ -202,7 +202,7 @@ At the end of the installation process, the Omega will automatically reboot. It 
 
 **Now you're all done!**
 
-Start using your fresh Omega and check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
+Start using your fresh Omega and check out the Using the Omega guides for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
 
@@ -217,11 +217,11 @@ uci set onion.console.install=2
 uci commit onion
 ```
 
-On the Omega's next reboot, the Console will be installed automatically. Check out our series on [Using the Console](#accessing-the-console) for more on how to use the Console.
+On the Omega's next reboot, the Console will be installed automatically. Check out our series on [Using the Console](/omega2-legacy/Get-Started/Using-the-Console/Accessing-the-Console#accessing-the-console) for more on how to use the Console.
 
 
 ### This Didn't Work!
 
-Try checking our [Troubleshooting guide](#first-time-troubleshooting) or posting on the [Onion Community](http://community.onion.io).
+Try checking our [Troubleshooting guide](/omega2-legacy/Get-Started/Troubleshooting#first-time-troubleshooting) or posting on the [Onion Community](http://community.onion.io).
 
 <GiscusDocComment />

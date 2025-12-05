@@ -67,7 +67,7 @@ The Micro-USB Port takes in 5V, and the Dock comes equipped with a voltage regul
 
 There is no USB-to-Serial Chip on the Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 
-You can still connect to your Omega's terminal with SSH, you can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega-terminal-ssh).
+You can still connect to your Omega's terminal with SSH, you can learn how to do that in this [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh).
 
 
 <!-- Reset Button -->
@@ -86,7 +86,7 @@ Pressing and **holding** the reset button for **10 seconds then releasing** will
 
 Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
-See the [Factory Reset documentation article](#factory-reset) for more details.
+See the [Factory Reset documentation article](/omega2-legacy/Doing-Stuff/Using-the-Omega/Factory-Reset#factory-reset) for more details.
 
 
 <!-- TODO: IMAGE breadboard dock drawing, recheck link and uncomment section when finished

@@ -14,7 +14,7 @@ The One-Wire protocol is a bus-based protocol that, as the name implies, uses js
 
 ### The One-Wire Protocol
 
-One Wire is similar to [the I2C protocol](#communicating-with-i2c-devices) (which is coincidentally sometimes called TWI - Two Wire Interface). One Wire has a lower data transmission rate than I2C but it makes up for it with a longer range.
+One Wire is similar to [the I2C protocol](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices) (which is coincidentally sometimes called TWI - Two Wire Interface). One Wire has a lower data transmission rate than I2C but it makes up for it with a longer range.
 
 It follows a master-slave architecture with each bus allowing for one master, in this case the Omega, and many slave devices. Every device type has its own unique single-byte (8 bit) identifier, eg. `0x8f`. Each device in turn has its own unique 8-byte (64-bit) serial number that includes a byte to describe the device type, known as the **family code**, as the Least Significant Byte (LSB).
 
@@ -26,7 +26,7 @@ One Wire is also referred to as **1W, 1-Wire, W1** etc.
 
 ### The Omega & One-Wire
 
-Interacting with One-Wire devices with the Omega is slightly different from [I2C](#communicating-with-i2c-devices), [SPI](#communicating-with-spi-devices), and [Serial](#uart1) devices, but you'll see that it's not a big deal. Since there is no dedicated hardware One-Wire controller on the Omega, your One-Wire device can be connected to any GPIO. We will then register a One-Wire master in Linux associated with the selected GPIO that will allow us to communicate with the One-Wire slave devices.
+Interacting with One-Wire devices with the Omega is slightly different from [I2C](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices), [SPI](/omega2-legacy/Doing-Stuff/Peripherals/spi#communicating-with-spi-devices), and [Serial](/omega2-legacy/Doing-Stuff/Peripherals/uart1#uart1) devices, but you'll see that it's not a big deal. Since there is no dedicated hardware One-Wire controller on the Omega, your One-Wire device can be connected to any GPIO. We will then register a One-Wire master in Linux associated with the selected GPIO that will allow us to communicate with the One-Wire slave devices.
 
 **Note that you need to be on firmware b151 or higher!**
 
@@ -50,7 +50,7 @@ Make the following connections to your Omega:
 | GND  | GND              |
 | Data | GPIO19           |
 
-> Note that making these connections is very easy if you have a [Expansion](#expansion-dock), [Power](#power-dock), or [Arduino](#arduino-dock-2) Dock since they all expose the Omega's GPIOs.
+> Note that making these connections is very easy if you have a [Expansion](/omega2-legacy/Hardware-Overview/Docks/Expansion-Dock#expansion-dock), [Power](/omega2-legacy/Hardware-Overview/Docks/Power-Dock#power-dock), or [Arduino](/omega2-legacy/Hardware-Overview/Docks/Arduino-Dock-2#arduino-dock-2) Dock since they all expose the Omega's GPIOs.
 
 Most GPIOs will work, but for now, let's use GPIO19. Some One-Wire devices will require a **pull-up resistor** on the Data line. For example, the popular DS18B20 temperature sensor, requires a 4.7 kΩ pull-up resistor on the Data line to operate properly. Some One-Wire devices have built-in pull-up resistors or can require different resistance values, check the datasheet of your device to be sure!
 

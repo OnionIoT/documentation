@@ -41,7 +41,7 @@ After you have connected everything, power on the Omega.
 
 The next step is to disable the WiFi client connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
->We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](#connecting-to-the-omega-terminal)
+>We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal)
 <!-- batch2: expand on this comment - explain why serial is beneficial in this scenario -->
 
 To do this, you will use the `uci` command to change the wireless of your Omega.
@@ -53,7 +53,7 @@ Enter the following command to disable the WiFi client interface, also known as 
 uci set wireless.sta.disabled=1
 ```
 
-> If your Omega is running a firmware older than v0.2.0, the command will instead be `uci set wireless.@wifi-iface[0].ApCliEnable=0`. We strongly recommend [upgrading to the latest firmware](#using-the-omega-updating)!
+> If your Omega is running a firmware older than v0.2.0, the command will instead be `uci set wireless.@wifi-iface[0].ApCliEnable=0`. We strongly recommend [upgrading to the latest firmware](/omega2-legacy/Get-Started/Using-the-Command-Line/Updating-the-Omega#updating-the-omega)!
 
 Then run the following command to save your changes:
 
@@ -143,7 +143,7 @@ Then restart the Omega's network interfaces:
 /etc/init.d/network restart
 ```
 
-We strongly recommend [upgrading to the latest firmware](#using-the-omega-updating)
+We strongly recommend [upgrading to the latest firmware](/omega2-legacy/Get-Started/Using-the-Command-Line/Updating-the-Omega#updating-the-omega)
 
 ### Step 4: Enabling Packet Routing
 

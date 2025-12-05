@@ -28,7 +28,7 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 
 In order to develop programs on the console you'll need the Terminal and Editor apps installed.
 
->To learn more on how to install apps you can read our brief [guide to installing apps](#installing-apps)
+>To learn more on how to install apps you can read our brief [guide to installing apps](/omega2-legacy/Get-Started/Using-the-Console/Installing-Apps#installing-apps)
 
 
 At this point you are now ready to develop code for your Omega from your browser!
@@ -38,7 +38,7 @@ At this point you are now ready to develop code for your Omega from your browser
 
 If you haven't already, install the Terminal app by opening it on the Console and clicking the Install button.
 
-> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
+> See our article on [Installing Console Apps](/omega2-legacy/Get-Started/Using-the-Console/Installing-Apps#installing-apps) for a walkthrough.
 
 Open the Terminal App and log in using your username and password. The defaults are:
 
@@ -108,7 +108,7 @@ A Unix Shell is an interpreter that reads commands from the command-line and exe
 
 If you haven't done so already, install the Editor app by opening it on the Console and clicking the Install button.
 
-> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
+> See our article on [Installing Console Apps](/omega2-legacy/Get-Started/Using-the-Console/Installing-Apps#installing-apps) for a walkthrough.
 
 Open the Editor app, navigate to the `/root` directory:
 
@@ -158,7 +158,7 @@ Your Console should look something like this now:
 
 ![developing-code-pic](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-2-editor-code.png)
 
-> The Editor can also be used to upload files from your computer directly to the Omega, see the [article on transferring files to the Omega](#upload-files-with-editor-app) for details.
+> The Editor can also be used to upload files from your computer directly to the Omega, see the [article on transferring files to the Omega](/omega2-legacy/Doing-Stuff/Transferring-Files#upload-files-with-editor-app) for details.
 
 You are now ready to convert text to morse code!
 

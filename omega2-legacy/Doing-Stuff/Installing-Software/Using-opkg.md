@@ -185,7 +185,7 @@ opkg install kmod-fs-hfs
 
 > Note that your Omega cannot install kernel modules from the default LEDE repos. `opkg` only allows installation of kernel modules compiled by the same machine that compiled the firmware. This is to ensure that all installed kernel modules are the exact same version as the device's kernel. It would be pretty disastrous to install a module that expects a different version of the overall kernel so `opkg` never lets it happen!
 
-For best results, make sure you're on the `latest` Omega firmware. Take a look at our guide on [updating the Omega](#updating-the-omega) for steps on how to install the `latest` firmware.
+For best results, make sure you're on the `latest` Omega firmware. Take a look at our guide on [updating the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Updating-the-Omega#updating-the-omega) for steps on how to install the `latest` firmware.
 
 
 ### You don't Have a Package I Want/Need!

@@ -17,7 +17,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 You can reach the Omega's Console in your browser by navigating to `http://omega-ABCD.local/`, where `ABCD` is your Omega's unique identifier.
 
-> If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](#omega-name)
+> If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](/omega2-legacy/Get-Started/Finding-the-Omega-Name#omega-name)
 
 Upon loading, you should see the console login page.
 ![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)

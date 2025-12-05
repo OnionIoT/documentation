@@ -14,7 +14,7 @@ The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and
 
 ![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
-This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x3c`. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
+This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x3c`. If you're curious, check out the [article on I2C](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices).
 
 <!-- // mention this expansion is controlled with i2c -->
 
@@ -82,7 +82,7 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 The OLED Expansion is incredibly useful because it gives you the ability to display information using your Omega. It can be used in your projects to display things like you twitter feed, stock prices, or even just information about your Omega (disk space, memory usage).
 
 
-For more on using the Omega Expansion you can check out our [guide to using the OLED Expansion](#using-oled-expansion).
+For more on using the Omega Expansion you can check out our [guide to using the OLED Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-OLED-Expansion#using-the-oled-expansion).
 
 <!-- // point them to the article on using the oled expansion -->
 <!-- // this article can be heavily based on the existing doc: https://wiki.onion.io/Tutorials/Expansions/Using-the-OLED-Expansion -->

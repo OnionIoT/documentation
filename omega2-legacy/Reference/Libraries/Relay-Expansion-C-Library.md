@@ -19,13 +19,13 @@ This library is also available as a [module for use in Python](./Relay-Expansion
 
 <!-- Programming Flow -->
 
-### Programming Flow
+### Programming Flow {#Programming-Flow}
 
 After each power-cycle, the chip that controls the Relay Expansion must be programmed with an initialization sequence. After the initialization, the relays can be turned on and off at will.
 
 
 
-### I2C Device Address {#reference-shared-i2c-device-address}
+### I2C Device Address {#i2c-device-address}
 The Relay Expansion is the only expansion that has a configurable I2C device address. This was done so that up to eight Relay Expansions can be stacked on a single Omega, giving the user the ability to control 16 relay modules independently.
 
 The base device address is 0x20, the dip switches control the offset added to the base address:
@@ -115,7 +115,7 @@ An error message will be printed that will give more information on the reason b
 
 <!-- Types -->
 
-#### Types
+#### Types {#the-c-library_types}
 
 This library has only one enumerated type defined and it is meant to easily define which relay module on the device is to be used.
 

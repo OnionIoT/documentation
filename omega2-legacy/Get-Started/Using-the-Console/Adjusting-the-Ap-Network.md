@@ -33,6 +33,6 @@ You can also enable or disable the access point with the checkbox located at the
 | AP Password | The password for accessing the Omega's Access Point |
 | IP Address | The Omega's IP Address on the Access Point |
 
-For more information on the Omega's WiFi and AP settings, check out this [guide to the Omega and Wireless Connectivity](#the-omega-and-wireless-connectivity).
+For more information on the Omega's WiFi and AP settings, check out this [guide to the Omega and Wireless Connectivity](/omega2-legacy/Doing-Stuff/Connectivity/The-Omega-and-Wireless#the-omega-and-wireless-connectivity).
 
 <GiscusDocComment />

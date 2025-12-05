@@ -25,7 +25,7 @@ Make sure your password has been typed in correctly, remember, WiFi passwords ar
 ### My Omega still won't connect to my WiFi Network and I've made sure my WiFi password is correct
 
 It's possible that the your WiFi network and the Omega's AP network are *colliding*.
-This happens if your WiFi network uses the same *IP address network prefix* as the Omega's AP, `192.168.3.0/24`. Follow our guide for [fixing IP address collisions](#fix-ip-addr-collisions).
+This happens if your WiFi network uses the same *IP address network prefix* as the Omega's AP, `192.168.3.0/24`. Follow our guide for [fixing IP address collisions](/omega2-legacy/Get-Started/IP-addr-collisions#fix-ip-addr-collisions).
 
 
 ### My Omega doesn't reboot after installing the update, it just turns off

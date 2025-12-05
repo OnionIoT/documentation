@@ -96,7 +96,7 @@ config global
 
 The `auto_mount` option controls automatic mounting of external storage. And the `anon_mount` option controls whether anonymous storage devices - meaning haven't been previously used with the Omega - should be mounted. 
 
-The configuration can be changed by directly editing the `/etc/config/fstab` config file, or [using UCI](#intro-to-uci).
+The configuration can be changed by directly editing the `/etc/config/fstab` config file, or [using UCI](/omega2-legacy/Doing-Stuff/Intro-to-UCI#intro-to-uci).
 
 ### Changing the default mount point {#usb-storage-changing-default-mount-point}
 

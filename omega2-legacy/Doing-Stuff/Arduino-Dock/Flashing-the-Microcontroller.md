@@ -19,7 +19,7 @@ You'll need to first make sure that your Omega has connected to internet.
 Then you'll want to ssh into the Omega's terminal in order to install the arduino dock package.
 
 
-> We've written a [guide to connecting to your Omega's terminal via SSH](#connecting-to-the-omega-terminal-ssh) in case you don't know how!
+> We've written a [guide to connecting to your Omega's terminal via SSH](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh) in case you don't know how!
 
 To install this package you'll need to use `opkg`. Enter the following commands on the command-line:
 
@@ -150,7 +150,7 @@ Hit the verify button to compile the sketch, once it's complete you will have to
 
 Copy this path and then transfer the file to your Omega.
 
-> For more information on transferring files to your Omega from your computer you can check out our [extensive guide to transferring files to your Omega](#transferring-files)
+> For more information on transferring files to your Omega from your computer you can check out our [extensive guide to transferring files to your Omega](/omega2-legacy/Doing-Stuff/Transferring-Files#transferring-files)
 
 Now that the hex file is on your Omega, you can flash it to the ATmega chip from the Omega's terminal:
 

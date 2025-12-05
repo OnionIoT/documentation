@@ -59,7 +59,7 @@ The Omega's amber System Status LED provides a visual indication of the Omega's 
 | Booting/Updating | Blinking     |
 | Up and running   | On           |
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
+The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](/omega2-legacy/Doing-Stuff/The-Omega-LED#the-omega-led)
 
 
 
@@ -73,7 +73,7 @@ The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion 
 
 ### MicroSD Card Slot
 
-The MircoSD card slot can be used to expand the Omega2+'s storage capacity to ridiculous levels. If 32MB is a problem for you, you can now hit it with a tactical warhead. To help you get started, there's a guide on [using a MicroSD card](#using-a-microsd-card).
+The MircoSD card slot can be used to expand the Omega2+'s storage capacity to ridiculous levels. If 32MB is a problem for you, you can now hit it with a tactical warhead. To help you get started, there's a guide on [using a MicroSD card](/omega2-legacy/Doing-Stuff/Using-MicroSD#using-a-microsd-card).
 
 The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
 

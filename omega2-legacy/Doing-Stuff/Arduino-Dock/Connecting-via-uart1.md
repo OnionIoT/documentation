@@ -24,7 +24,7 @@ One important thing to note is the baud rate, which is the rate at which the dat
 
 ### Flashing the ATmega to communicate with the Omega
 
-First we need to [flash the ATmega](#flash-arduino-dock-wirelessly) with a sketch that is programmed to communicate (read and/or write data) using serial communication on pins TX/RX .
+First we need to [flash the ATmega](/omega2-legacy/Doing-Stuff/Arduino-Dock/Flashing-the-Microcontroller#flash-arduino-dock-wirelessly) with a sketch that is programmed to communicate (read and/or write data) using serial communication on pins TX/RX .
 
 We will use the [Arduino serial library](https://www.arduino.cc/en/reference/serial) to send data back and forth. Here's a very simple example sketch that will make the ATmega continously send out "ATmega"
 
@@ -146,7 +146,7 @@ Serial.begin(9600);
 
 ### Using the Omega as a Serial Monitor
 
-A useful tool on the Arduino IDE is the Serial Monitor, which displays the output of any `Serial.print()` and `Serial.println()` statements in the code. We can use the Omega as the Serial Monitor by [connecting the the Omega's command line](#connecting-to-the-omega-terminal) and running `cat /dev/ttyS1` to observe the serial data.
+A useful tool on the Arduino IDE is the Serial Monitor, which displays the output of any `Serial.print()` and `Serial.println()` statements in the code. We can use the Omega as the Serial Monitor by [connecting the the Omega's command line](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal) and running `cat /dev/ttyS1` to observe the serial data.
 
 You can alternatively run `screen /dev/ttyS1 9600` to get an interactive (send and receive) Serial Monitor on the Omega.
 

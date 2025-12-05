@@ -76,7 +76,7 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 
 The Ethernet Expansion is a great tool to extend the networking capabilities of your Omega by providing another method of connecting to the internet.
 
-To learn more about using the Ethernet Expansion check out our guide to [using the Ethernet Expansion](#using-ethernet-expansion)
+To learn more about using the Ethernet Expansion check out our guide to [using the Ethernet Expansion](/omega2-legacy/Doing-Stuff/Connectivity/ethernet-expansion#using-ethernet-expansion)
 
 <!-- // introdocue and link to articles on -->
 <!-- //  - connecting to a wired networking -->

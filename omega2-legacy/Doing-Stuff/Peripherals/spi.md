@@ -56,7 +56,7 @@ The SPI pins on the Omega2 and Expansion Dock are shown below.
 
 To interact with SPI devices, we recommend using Python and the `spidev` module. The `spidev` module provides series of functions that implement SPI communication through the Linux device interface. It also provides an Omega2-specific `xfer3` function that implements a half-duplex write-then-read SPI transmission. 
 
-For more information on installing and using the `spidev` module, please see the instructions in our [`python-spidev` GitHub repo](https://github.com/OnionIoT/python-spidev). See the [Installing and Using Python article](#installing-and-using-python) for more details on using Python with the Omega2.
+For more information on installing and using the `spidev` module, please see the instructions in our [`python-spidev` GitHub repo](https://github.com/OnionIoT/python-spidev). See the [Installing and Using Python article](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-Python#installing-and-using-python) for more details on using Python with the Omega2.
 
 > Under the hood, the Python `spidev` module uses the spidev linux kernel driver in C
 
@@ -66,7 +66,7 @@ It's also possible to write C programs that make use of the spidev linux kernel 
 
 Useful resources:
 
-* Our documentation article about [Cross-compiling C programs](#cross-compiling)
+* Our documentation article about [Cross-compiling C programs](/omega2-legacy/Doing-Stuff/Advanced/Cross-Compile#cross-compiling)
 * General information about the [spidev linux kernel driver](https://www.kernel.org/doc/Documentation/spi/spidev)
 * A good example of the [spidev driver can be used in a C program](http://linux-sunxi.org/SPIdev#In_the_user_space)
 * For an idea on implementing a half-duplex write-then-read, see how [our `xfer3()` function from the Python spidev module was written](https://github.com/OnionIoT/python-spidev/blob/master/src/spidev_module.c#L575)

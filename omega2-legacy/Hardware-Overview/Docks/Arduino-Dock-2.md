@@ -50,7 +50,7 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 It follows the same layout as the Expansion Header found on the Expansion Dock and Power Dock.
 
->**Note**:If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+>**Note**:If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](/omega2-legacy/Hardware-Overview/Expansions/PWM-Expansion#pwm-expansion) article.
 
 <!-- expansion header pinout intro -->
 
@@ -63,7 +63,7 @@ The pinout diagram below shows the Expansion Header's connections and the possib
 
 By default, the Serial, SPI, and I2C pins implement these communication protocols and cannot be used as GPIOs. Similarly, the I2S and PWM pins are set to GPIO mode by default.
 
-> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](#using-gpios-multiplexing) of our article on the Omega's GPIOs.
+> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios-multiplexing) of our article on the Omega's GPIOs.
 
 
 
@@ -94,7 +94,7 @@ The MicroUSB Port receives 5V power and uses it directly to power the ATmega328P
 
 There is no USB-to-Serial Chip on the Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 
-You can still connect to your Omega's terminal with SSH, you can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega-terminal-ssh).
+You can still connect to your Omega's terminal with SSH, you can learn how to do that in this [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-ssh).
 
 
 
@@ -121,7 +121,7 @@ Pressing and **holding** the reset button for **10 seconds then releasing** will
 
 Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
-See the [Factory Reset documentation article](#factory-reset) for more details.
+See the [Factory Reset documentation article](/omega2-legacy/Doing-Stuff/Using-the-Omega/Factory-Reset#factory-reset) for more details.
 
 
 ### Micro-Controller Reset Button
@@ -172,7 +172,7 @@ The purposes of these connections are covered in the subsections below.
 
 The UART connection is used to provide two-way communication between the Omega and the ATmega MCU. The ATmega's serial port is connected to the Omega's **UART1** serial port.
 
-See the article on [Communicating with Serial Devices](#uart1) for more info.
+See the article on [Communicating with Serial Devices](/omega2-legacy/Doing-Stuff/Peripherals/uart1#uart1) for more info.
 
 #### I2C
 
@@ -183,13 +183,13 @@ The I2C connection provides I2C connectivity between the Omega and the ATmega. I
 
 This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read them thanks to the on-board logic level shifter.
 
-See the article on [Communicating with I2C Devices](#communicating-with-i2c-devices) for more info.
+See the article on [Communicating with I2C Devices](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices) for more info.
 
 #### SPI and Reset Connection
 
 <!-- [//]: # (these four pins are used by the Omega to reset and program the ATmega with sketches) -->
 
-The four SPI connections are used to upload the ATmega with sketches using your Omega. See the article on [Flashing the Arduino Dock's Microcontroller](#flash-arduino-dock-wirelessly) for more info.
+The four SPI connections are used to upload the ATmega with sketches using your Omega. See the article on [Flashing the Arduino Dock's Microcontroller](/omega2-legacy/Doing-Stuff/Arduino-Dock/Flashing-the-Microcontroller#flash-arduino-dock-wirelessly) for more info.
 
 The reset connection is used to reset the ATmega chip. This can be done using the reset button, or using the Omega's GPIO 19.
 
@@ -205,7 +205,7 @@ The Arduino Dock 2 is loaded with features that allow you to use your Omega with
 
 ### Programming the Arduino Micro-Controller
 
-Follow the steps in our [Flashing the Microcontroller](#flash-arduino-dock-wirelessly) to learn how to upload sketches (programs) to the Arduino micro-controller onboard the Arduino Dock.
+Follow the steps in our [Flashing the Microcontroller](/omega2-legacy/Doing-Stuff/Arduino-Dock/Flashing-the-Microcontroller#flash-arduino-dock-wirelessly) to learn how to upload sketches (programs) to the Arduino micro-controller onboard the Arduino Dock.
 
 <!-- [//]: # (create a separate article for this under Doing Stuff - should be included in the RESETTING article mentioned above (part of batch3)) -->
 <!-- [//]: # (two methods:) -->
@@ -216,13 +216,13 @@ Follow the steps in our [Flashing the Microcontroller](#flash-arduino-dock-wirel
 
 The easiest way to get the Arduino Dock MCU and Omega communicating is through serial. There are no fancy protocols, just data being sent back and forth. It's important to remember that the ATmega's serial is connected to UART1 on the Omega.
 
-Take a look at our [Communicating with Serial Devices article](#uart1) for ideas on how to get your Omega communicating with the Arduino Dock's microcontroller!
+Take a look at our [Communicating with Serial Devices article](/omega2-legacy/Doing-Stuff/Peripherals/uart1#uart1) for ideas on how to get your Omega communicating with the Arduino Dock's microcontroller!
 
 ### Communicating with I2C
 
 The Arduino Dock 2 connects the microcontroller's I2C lines to that of the Omega, effectively, adding the microcontroller as a slave to the Omega's I2C bus.
 
-Take a peek at our [Communicating with I2C Devices article](#communicating-with-i2c-devices) for more information on I2C and how the Omega can interact with I2C devices. On the microcontroller side, the [Wire Library](https://www.arduino.cc/en/Reference/Wire) can be used to facilitate I2C communication.
+Take a peek at our [Communicating with I2C Devices article](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices) for more information on I2C and how the Omega can interact with I2C devices. On the microcontroller side, the [Wire Library](https://www.arduino.cc/en/Reference/Wire) can be used to facilitate I2C communication.
 
 
 <!-- ### Resetting the Micro-Controller -->

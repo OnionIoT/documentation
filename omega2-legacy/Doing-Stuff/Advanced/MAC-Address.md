@@ -27,7 +27,7 @@ The `ra0` MAC address matches the MAC address that is printed on the device's sh
 
 The `iwpriv` command can be used to access the wireless driver parameters, among these parameters are the MAC addresses. 
 
-[Connect to the Omega's command line](#connecting-to-the-omega-terminal) and run the following command:
+[Connect to the Omega's command line](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal) and run the following command:
 
 ```
 iwpriv ra0 e2p

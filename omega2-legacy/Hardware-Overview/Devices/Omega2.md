@@ -58,7 +58,7 @@ The Omega's amber System Status LED provides a visual indication of the Omega's 
 | Booting/Updating | Blinking     |
 | Up and running   | On           |
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
+The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](/omega2-legacy/Doing-Stuff/The-Omega-LED#the-omega-led)
 
 
 

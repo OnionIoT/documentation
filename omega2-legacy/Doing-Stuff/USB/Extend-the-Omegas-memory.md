@@ -33,7 +33,7 @@ opkg install swap-utils block-mount
 
 Plug in a USB drive and make sure it's mounted. By default, the Omega will automatically mount any USB storage devices.
 
-> If you're curious about auto-mounting, see the [USB Storage tutorial](#usb-storage) for details.
+> If you're curious about auto-mounting, see the [USB Storage tutorial](/omega2-legacy/Doing-Stuff/USB/USB-Storage#usb-storage) for details.
 
 For the purposes of this tutorial, let's assume the USB device was mounted to `/tmp/mounts/USB-A1`.
 
@@ -163,7 +163,7 @@ block umount;block mount
 
 Now that we've told the Omega to automount the USB drive, we need to tell it to activate the Swap File when it starts up. There's a file called `/etc/rc.local` where you can put terminal commands that will be run automatically after every boot. This is perfect for what we're trying to do.
 
-> See the [running commands on boot](#running-a-command-on-boot) article for more info.
+> See the [running commands on boot](/omega2-legacy/Doing-Stuff/Automation/Running-a-command-on-boot#running-a-command-on-boot) article for more info.
 
 We need to add a snippet of code to tell the Omega to look for the `swap.page` file we created earlier and activate it. From our example, the USB drive would be mounted at `/mnt/sda1`. Add the following to your `/etc/rc.local` file, where `SWAP_FILE` is the full path where `swap.page` will be:
 

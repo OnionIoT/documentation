@@ -47,7 +47,7 @@ This presents a more graphical view of the volume and information regarding the 
 
 To play audio, we'll use the `aplay` utility. It is a command line program that uses the sound file header to automatically determine the sound file formats, the sampling rate, bit depth, etc. It can accept multiple sound files as arguments.
 
-[Transfer an audio file to your Omega](#transferring-files), let's use the `/tmp` directory to hold it. Then play the music by using the following command:
+[Transfer an audio file to your Omega](/omega2-legacy/Doing-Stuff/Transferring-Files#transferring-files), let's use the `/tmp` directory to hold it. Then play the music by using the following command:
 
 ```
 cd /tmp

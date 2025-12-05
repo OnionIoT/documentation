@@ -93,9 +93,9 @@ indicating that our change has indeed been applied.
 
 See these articles for more information on using the Omega's pins:
 
-* [Using the Omega's GPIOs](#using-gpios)
-* [Communicating with I2C Devices](#communicating-with-i2c-devices)
-* [Communicating with Serial Devices article](#uart1)
-* [Communicating with SPI Devices](#communicating-with-spi-devices)
+* [Using the Omega's GPIOs](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios)
+* [Communicating with I2C Devices](/omega2-legacy/Doing-Stuff/Peripherals/i2c#communicating-with-i2c-devices)
+* [Communicating with Serial Devices article](/omega2-legacy/Doing-Stuff/Peripherals/uart1#uart1)
+* [Communicating with SPI Devices](/omega2-legacy/Doing-Stuff/Peripherals/spi#communicating-with-spi-devices)
 
 <GiscusDocComment />

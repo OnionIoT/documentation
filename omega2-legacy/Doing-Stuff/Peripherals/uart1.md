@@ -71,11 +71,11 @@ On the Expansion Dock and Power Dock, only `UART1` is broken out, shown below:
 
 ![uart-exp-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-exp-dock.jpg)
 
-On the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](#connecting-to-the-omega-terminal-serial) with a USB connection.
+On the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial) with a USB connection.
 
 ##### Mini Dock
 
-There are no GPIO headers on the Mini Dock so neither of the UARTs are available on the Mini Dock. However, just on like the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](#connecting-to-the-omega-terminal-serial) with a USB connection.
+There are no GPIO headers on the Mini Dock so neither of the UARTs are available on the Mini Dock. However, just on like the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial) with a USB connection.
 
 ##### Arduino Dock2
 
@@ -223,13 +223,13 @@ This big command essentially does the following:
 
 You can use Python and the `PySerial` module to communicate through serial ports, this includes UART1 and any USB-based serial devices. The method for installing `PySerial` depends on which Python version you're using.
 
->See our guide on [installing and using Python on the Omega](#installing-and-using-python) for more information on installing Python2.7 and Python3.6
+>See our guide on [installing and using Python on the Omega](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-Python#installing-and-using-python) for more information on installing Python2.7 and Python3.6
 
 #### Python2.7: Installing the PySerial Module
 
 You'll need to have `python` or `python-light` installed in order to continue. If you've installed the full version of Python you will already have PySerial.
 
->You can read our guide to [installing and using Python on the Omega](#installing-and-using-python) for more information.
+>You can read our guide to [installing and using Python on the Omega](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-Python#installing-and-using-python) for more information.
 
 First update `opkg`:
 
@@ -247,7 +247,7 @@ You'll now be able to use PySerial!
 
 #### Python3: Installing the PySerial Module 
 
-We'll be using Pip to install the PySerial Module. For more details on Python3 and Pip, see our guide on installing and using Python on the Omega](#installing-and-using-python).
+We'll be using Pip to install the PySerial Module. For more details on Python3 and Pip, see our guide on installing and using Python on the Omega](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-Python#installing-and-using-python).
 
 First, we'll need to install the Python3 version of Pip:
 

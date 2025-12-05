@@ -17,7 +17,7 @@ NodeJS is a scripting language that uses a JavaScript runtime, essentially, it i
 
 Installing NodeJS will take about **5.7 MB** of space on the Omega, so make sure you've got enough space before continuing.
 
-Connect to the [Omega's terminal](#connecting-to-the-omega-terminal) using either SSH or Serial.
+Connect to the [Omega's terminal](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal) using either SSH or Serial.
 
 Run the following commands on the terminal:
 
@@ -132,6 +132,6 @@ Node-RED is a flow-based, visual programming tool based on NodeJS that runs in t
 
 ![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-3-flow.png)
 
-Learn more about [installing and using Node-Red on the Omega2 Pro](#node-red-article).
+Learn more about [installing and using Node-Red on the Omega2 Pro](/omega2-legacy/Doing-Stuff/Installing-Software/node-red#node-red-article).
 
 <GiscusDocComment />

@@ -11,7 +11,7 @@ The Omega officially supports Blynk and the Blynk Library. You can now use the B
 
 ### Programming Flow {#blynk-programming-flow}
 
-The Blynk library for the Omega works with [NodeJS](#installing-and-using-nodejs), and uses virtual pins to send signals to the Omega. In the front end, you can connect pins to buttons, knobs and dials to suit your needs.
+The Blynk library for the Omega works with [NodeJS](/omega2-legacy/Doing-Stuff/Installing-Software/Installing-and-Using-NodeJS#installing-and-using-nodejs), and uses virtual pins to send signals to the Omega. In the front end, you can connect pins to buttons, knobs and dials to suit your needs.
 
 ### In the Blynk of an Eye {#blynk-context}
 
@@ -105,6 +105,6 @@ node test.js
 Press the button on you app and note the output on the screen.
 
 
-You can take this further by using the [OnOff module](#onoff-node-module) to control the Omega's GPIOs.
+You can take this further by using the [OnOff module](/omega2-legacy/Reference/Libraries/Onoff-Node-Module#onoff-node-module) to control the Omega's GPIOs.
 
 <GiscusDocComment />

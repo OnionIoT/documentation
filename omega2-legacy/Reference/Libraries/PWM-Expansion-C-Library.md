@@ -18,7 +18,7 @@ This library is also available as a [module for use in Python](./PWM-Expansion-P
 
 <!-- Programming Flow -->
 
-### Programming Flow
+### Programming Flow {#Programming-Flow}
 
 After each power-cycle, the chip that controls the PWM Expansion must be programmed with an initialization sequence to enable the on-board oscillator so that PWM signals can be generated.
 

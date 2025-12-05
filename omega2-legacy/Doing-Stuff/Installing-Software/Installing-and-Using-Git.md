@@ -13,7 +13,7 @@ Git is the version control system used by [GitHub](https://github.com/), the sup
 ### Installing Git
 
 <!-- steps on using opkg to install Git -->
-It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutorial on how OPKG works, check out [this guide to using opkg](#using-opkg)
+It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutorial on how OPKG works, check out [this guide to using opkg](/omega2-legacy/Doing-Stuff/Installing-Software/Using-opkg#using-opkg)
 
 1. First, make sure you have an internet connection
 

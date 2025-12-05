@@ -82,7 +82,7 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 
 You can use the GPS Expansion to create some cool geo-data projects with your Omega! For example, you can try your hand at creating a navigation system using the GPS Expansion with the OLED Expansion. Or for a simpler project, you can create a treasure hunt game that alerts the user when they're in the vicinity of an item for a children's party.
 
-You can learn more about this Expansion by reading our article on [how to use the GPS Expansion](#using-gps-expansion)
+You can learn more about this Expansion by reading our article on [how to use the GPS Expansion](/omega2-legacy/Doing-Stuff/Expansions/Using-the-GPS-Expansion#using-gps-expansion)
 
 <!-- // point them to the article on using the GPS Expansion -->
 <!-- // this article should include: -->

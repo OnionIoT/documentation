@@ -23,7 +23,7 @@ More commonly, you'll see the leading 0's being cut off resulting in a shorter I
 You may want to know your Omega's IP address if you don't have Apple's Bonjour Service to find the hostname `omega-ABCD.local`, or if you want to guarantee that there won't be a mix-up between hostnames (IP addresses are unique, hostnames are not).
 
 
-> Because IP addresses are specific to the network to which you are connected, the Omega has two main IP addresses: one for the wireless connection, and one for it's own Access Point. To learn more about the Omega's various connections you can read our [article on the Omega and Wireless](#the-omega-and-wireless-connectivity)
+> Because IP addresses are specific to the network to which you are connected, the Omega has two main IP addresses: one for the wireless connection, and one for it's own Access Point. To learn more about the Omega's various connections you can read our [article on the Omega and Wireless](/omega2-legacy/Doing-Stuff/Connectivity/The-Omega-and-Wireless#the-omega-and-wireless-connectivity)
 
 <!-- // some examples as to why you might want to know the ip address -->
 

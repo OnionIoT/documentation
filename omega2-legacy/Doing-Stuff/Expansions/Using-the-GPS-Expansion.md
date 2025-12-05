@@ -8,7 +8,7 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 
 The GPS expansion from Onion features a ublox neo GPS module, which allows seamless integration into your Omega projects. This Expansion outputs GPS data in the form of NMEA messages, which include all relevant information (latitude, longtitude, etc). We have prepared a package called `ogps` to handle the NMEA messages and offer up the relevant information to the user via `ubus` calls in the command-line.
 
->You can learn more about the technical specifications of the GPS expansion in our [GPS Expansion hardware overview](#gps-expansion)
+>You can learn more about the technical specifications of the GPS expansion in our [GPS Expansion hardware overview](/omega2-legacy/Hardware-Overview/Expansions/GPS-Expansion#gps-expansion)
 
 
 ### Reading the Raw Output of the GPS Expansion

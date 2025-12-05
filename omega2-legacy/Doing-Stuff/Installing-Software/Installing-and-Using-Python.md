@@ -87,7 +87,7 @@ opkg install <PACKAGE NAME>
 
 To install the desired package.
 
->For more on `opkg` you can check out our [guide to using opkg](#using-opkg)
+>For more on `opkg` you can check out our [guide to using opkg](/omega2-legacy/Doing-Stuff/Installing-Software/Using-opkg#using-opkg)
 
 For example, if you would like your script to make HTTP requests, you will need the `urllib3` package:
 
@@ -149,7 +149,7 @@ Collecting botocore<1.25.0,>=1.24.13 (from boto3)
 Could not install packages due to an EnvironmentError: [Errno 28] No space left on device
 ```
 
-This is due to pip using the /tmp directory for work by default.  The tmpfs /tmp directory is too small for very large packages.  This can be overridden with the TMPDIR environment variable.  It is recommended to [boot from external storage](#boot-from-external-storage).
+This is due to pip using the /tmp directory for work by default.  The tmpfs /tmp directory is too small for very large packages.  This can be overridden with the TMPDIR environment variable.  It is recommended to [boot from external storage](/omega2-legacy/Doing-Stuff/Advanced/Boot-from-External-Storage#boot-from-external-storage).
 
 ```
 mkdir /root/temp
@@ -295,10 +295,10 @@ During this time your Omega's LED will be blinking on and off.
 
 We've developed modules for controlling the Omega's GPIOs and several Expansions. Check out the documentation for the Modules for more details:
 
-* [Controlling the Omega's GPIOs](#gpio-python-module)
-* [Controlling the OLED Expansion](#oled-expansion-python-module)
-* [Controlling the PWM Expansion](#pwm-expansion-python-module)
-* [Controlling the Relay Expansion](#relay-expansion-python-module)
+* [Controlling the Omega's GPIOs](/omega2-legacy/Reference/Libraries/GPIO-Python-Module#gpio-python-module)
+* [Controlling the OLED Expansion](/omega2-legacy/Reference/Libraries/OLED-Expansion-Python-Module#oled-expansion-python-module)
+* [Controlling the PWM Expansion](/omega2-legacy/Reference/Libraries/PWM-Expansion-Python-Module#pwm-expansion-python-module)
+* [Controlling the Relay Expansion](/omega2-legacy/Reference/Libraries/Relay-Expansion-Python-Module#relay-expansion-python-module)
 
 
 ### Going Further

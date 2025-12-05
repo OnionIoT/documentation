@@ -43,7 +43,7 @@ Visit the OnionIoT/Omega2-Dash GitHub repo: https://github.com/OnionIoT/Omega2-D
 
 ### Features and Specifications
 
-> The Omega2 Dash is powered by the [Omega2S+ module](#omega2s), which provides the CPU, memory, storage, & WiFi radio.
+> The Omega2 Dash is powered by the [Omega2S+ module](/omega2-legacy/Hardware-Overview/Devices/Omega2S#omega2s), which provides the CPU, memory, storage, & WiFi radio.
 
 * 3.2" TFT **touchscreen display**  
     * 320x240 resolution  
@@ -90,7 +90,7 @@ The pinout diagram below shows the Expansion Header's connections and the possib
 
 By default, the Serial, SPI, and I2C pins implement these communication protocols and cannot be used as GPIOs. Similarly, the I2S and PWM pins are set to GPIO mode by default.
 
-> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](#using-gpios-multiplexing) of our article on the Omega's GPIOs.
+> To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](/omega2-legacy/Doing-Stuff/Using-GPIOs#using-gpios-multiplexing) of our article on the Omega's GPIOs.
 
 
 <!-- operating system -->
@@ -136,7 +136,7 @@ The Micro-USB Port takes in 5V, and the Dock comes equipped with a voltage regul
 
 The USB-to-Serial chip allows for a serial connection between the Omega and a computer using the USB-C port. You can connect a USB-C to USB cord from the Omega to your computer, open a terminal, and connect to the Omega via a COM port as opposed to SSH.
 
->For more information on the Omega's Serial connection read our [guide to connecting to the Omega](#connecting-to-the-omega-terminal-serial)
+>For more information on the Omega's Serial connection read our [guide to connecting to the Omega](/omega2-legacy/Get-Started/Using-the-Command-Line/Connecting-to-the-Omega-Terminal#connecting-to-the-omega-terminal-serial)
 
 
 <!-- Power Switch -->
@@ -165,7 +165,7 @@ Pressing and **holding** the reset button for **10 seconds then releasing** will
 
 Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
-See the [Factory Reset documentation article](#factory-reset) for more details.
+See the [Factory Reset documentation article](/omega2-legacy/Doing-Stuff/Using-the-Omega/Factory-Reset#factory-reset) for more details.
 
 
 <!-- USB Port -->

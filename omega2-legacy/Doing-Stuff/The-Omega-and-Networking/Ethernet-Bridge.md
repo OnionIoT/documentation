@@ -31,7 +31,7 @@ This tutorial will cover connecting to a WiFi network, configuring the Ethernet 
 
 ### Step 1: Connect Omega WiFi to the Internet
 
-To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](#first-time-setup) to learn more on how to set up your Omega.
+To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](/omega2-legacy/Get-Started/First-Time#first-time-setup) to learn more on how to set up your Omega.
 
 
 <!-- Step 2 -->

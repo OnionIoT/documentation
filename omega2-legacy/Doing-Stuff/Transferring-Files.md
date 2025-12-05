@@ -15,8 +15,8 @@ The Omega is incredibly powerful in that it is a full Linux computer. This means
 The Editor App in the Onion Console can be used to upload files directly to the Omega's filesystem.
 
 
->The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#console-series-installing-the-console) for more information.<br />
-> If you haven't installed the Editor app yet, check out our guide on [Installing Console Apps](#installing-apps)
+>The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](/omega2-legacy/Doing-Stuff/Using-the-Console/Installing-the-Console#console-series-installing-the-console) for more information.<br />
+> If you haven't installed the Editor app yet, check out our guide on [Installing Console Apps](/omega2-legacy/Get-Started/Using-the-Console/Installing-Apps#installing-apps)
 
 This works on all operating systems and is a great way to wirelessly upload code to your Omega.
 
@@ -69,7 +69,7 @@ Once downloaded, install the application and then run it.
 <!-- change it so the tutorial is about having the omega connected to a real wifi network -->
 <!-- have a note about how it would be different if connecting to the omega's ap -->
 
-Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](#first-time-setup).
+Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](/omega2-legacy/Get-Started/First-Time#first-time-setup).
 
 ![WinSCP Image 1](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-1.png)
 
