@@ -44,6 +44,48 @@ Run the commands below from the directory containing your images. Always load `d
 - Offsets and sizes are in LBAs (512-byte blocks) and match the table below; confirm against the release notes for your board and adjust if the layout changes.
 - You can flash partitions individually, but `download.bin` must be loaded every session.
 
+### UBI rootfs mount errors
+
+If the boot log shows a UBI attach failure similar to:
+
+```
+[    3.982794] ubi0 error: ubi_read_volume_table: bad attaching information, error 1
+[    3.991208] Volume attaching information dump:
+[    3.996177]  vol_id         0
+[    3.999491]  highest_lnum   59
+[    4.002901]  leb_count      60
+[    4.006311]  compat         0
+[    4.009624]  vol_type       3
+[    4.012937]  used_ebs       0
+[    4.016250]  last_data_size 0
+[    4.019561]  data_pad       0
+[    4.022875] Volume information dump:
+[    4.026867]  vol_id          0
+[    4.030277]  reserved_pebs   59
+[    4.033783]  alignment       1
+[    4.037194]  data_pad        0
+[    4.040603]  vol_type        3
+[    4.044014]  name_len        6
+[    4.047422]  usable_leb_size 126976
+[    4.051320]  used_ebs        59
+[    4.054826]  used_bytes      7491584
+[    4.058820]  last_eb_bytes   126976
+[    4.062715]  corrupted       0
+[    4.066124]  upd_marker      0
+[    4.069533]  skip_check      0
+[    4.072944]  name            rootfs
+[    4.077298] ubi0 error: ubi_attach_mtd_dev: failed to attach mtd4, error -22
+```
+
+Erase the UBI region before reflashing the rootfs to clear stale metadata:
+
+```bash
+./upgrade_tool db download.bin
+./upgrade_tool el 0x5200 0x80000
+```
+
+Then rerun the rootfs write command from the table above. This forces a clean UBI attach on the next boot.
+
 ## Partition Info:
 | NO | LBA        | Size       | Name    | Size (MB) |
 |----|------------|------------|---------|------------|
