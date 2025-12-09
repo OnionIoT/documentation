@@ -146,30 +146,34 @@ Test internet connectivity:
 ping -c 5 google.com
 ```
 
-## 7. GPIO Test — Toggle On-board LED
+## 7. Blink LED
 
-If your firmware exposes the LED via `/sys/class/leds`, prefer that path. On the current image no LED entries are present; the EVB ties the onboard LED to **GPIO0A2** (numeric GPIO **2**). Use the numeric value when working with `/sys/class/gpio`.
+The current EVB firmware exposes one LED class device called `sys`. LED **triggers** are kernel-driven patterns (heartbeat, timer, netdev, etc.). **Brightness** is direct, immediate control when triggers are set to `none`.
 
-Export the GPIO and set direction:
-
-```bash
-echo 2 > /sys/class/gpio/export
-echo out > /sys/class/gpio/gpio2/direction
-```
-
-Turn the LED on:
+List the LED and see available triggers (max brightness is `1` on this build):
 
 ```bash
-echo 1 > /sys/class/gpio/gpio2/value
+ls /sys/class/leds
+cat /sys/class/leds/sys/trigger    # [none] timer heartbeat default-on netdev mmc1 mmc2
+cat /sys/class/leds/sys/max_brightness
 ```
 
-Turn the LED off:
+Pick a trigger first if you want automatic behavior (example: heartbeat):
 
 ```bash
-echo 0 > /sys/class/gpio/gpio2/value
+LED=/sys/class/leds/sys
+echo heartbeat > $LED/trigger
 ```
 
-If the LED responds, GPIO functionality is verified. If your image uses the OpenWrt LED subsystem, adapt the test using `/sys/class/leds/`.
+For manual on/off control, clear the trigger and write brightness:
+
+```bash
+echo none > $LED/trigger
+echo 1 > $LED/brightness   # on
+echo 0 > $LED/brightness   # off
+```
+
+Seeing the LED blink (heartbeat) or toggle (manual) confirms the driver is working.
 
 ## 8. Firmware Releases
 

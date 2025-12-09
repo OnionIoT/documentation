@@ -57,7 +57,7 @@ Welcome to the central hub for Onion hardware documentation. Use this page to ju
     badge: 'Preview',
     status: 'Draft docs available; hardware and firmware still in flux',
     action: { label: 'Open Omega4 Docs', to: '/omega4/' },
-    secondaryAction: { label: 'Dev kit quickstart', to: '/omega4/' }
+    secondaryAction: { label: 'Dev kit quickstart', to: '/omega4/getting-started/' }
   },
 ]} />
 

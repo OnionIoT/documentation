@@ -1,0 +1,75 @@
+---
+title: SD Card
+slug: /hardware/sd-card
+description: "Use the Omega4 EVB MicroSD slot for removable storage: requirements, mounting, formatting, and safe removal."
+---
+
+# SD Card Guide
+
+The Omega4 EVB includes a push-push MicroSD slot wired to the SoC's SDMMC controller so you can add removable storage. The interface runs at 3.3 V and supports standard SDHC/SDXC cards; UHS-I cards run in backward-compatible modes. On the EVB the card appears as `/dev/mmcblk1` (partition `/dev/mmcblk1p1`).
+
+## 1. Requirements
+- Omega4 firmware with the SDMMC controller enabled. Images built from this tree already include the required drivers. If `/dev/mmcblk1` never appears, ensure the device tree keeps the SDMMC node enabled and install the MMC kernel modules (`kmod-mmc-core`, `kmod-mmc-rockchip` or the equivalent for your build).
+- A known-good MicroSD card (FAT32/exFAT/ext4 work; exFAT needs the `kmod-fs-exfat` package).
+- Optional packages for formatting: `opkg update && opkg install fdisk e2fsprogs kmod-fs-ext4 dosfstools`.
+
+## 2. Insert and verify detection
+1. Insert the MicroSD card until it clicks into the EVB slot.
+2. Confirm the controller and partition are detected (the SD card shows up as `mmcblk1` on the EVB):
+```sh
+dmesg | grep -i mmc
+cat /proc/partitions
+# optional if block-mount is installed: block info
+```
+
+## 3. Mount an existing partition
+Use `mount` to attach the filesystem manually. Adjust the partition name if your card has multiple partitions.
+```sh
+mkdir -p /mnt/sdcard
+mount -t auto /dev/mmcblk1p1 /mnt/sdcard
+df -h /mnt/sdcard
+```
+If the card is exFAT, you can skip filesystem probing (and the noisy f2fs warnings) by specifying the type explicitly:
+```sh
+mount -t exfat /dev/mmcblk1p1 /mnt/sdcard
+```
+If you see `unknown filesystem type`, install the matching filesystem package (for example `kmod-fs-ext4` + `e2fsprogs` for ext4, `kmod-fs-exfat` for exFAT).
+
+## 4. Format the card (optional, destructive)
+Only do this if you are sure you can erase the card.
+```sh
+opkg update
+opkg install fdisk e2fsprogs kmod-fs-ext4 dosfstools
+fdisk /dev/mmcblk1          # create a single primary partition (p1)
+mkfs.ext4 /dev/mmcblk1p1    # or mkfs.vfat /dev/mmcblk1p1 for FAT32
+```
+Remount the new filesystem:
+```sh
+mount /dev/mmcblk1p1 /mnt/sdcard
+```
+
+## 5. Auto-mount on boot
+Add an fstab entry so the card mounts to `/mnt/sdcard` at startup:
+```sh
+uci add fstab mount
+uci set fstab.@mount[-1].target='/mnt/sdcard'
+uci set fstab.@mount[-1].device='/dev/mmcblk1p1'
+uci set fstab.@mount[-1].fstype='ext4'   # change if you formatted differently
+uci set fstab.@mount[-1].enabled='1'
+uci commit fstab
+/etc/init.d/fstab restart
+```
+Reboot or run `mount /mnt/sdcard` to verify the entry works.
+
+## 6. Safe removal
+Always flush and unmount before ejecting to avoid corruption:
+```sh
+sync
+umount /mnt/sdcard
+```
+Then press the card inward to release it from the push-push slot.
+
+## 7. Troubleshooting
+- `/dev/mmcblk0` missing: reseat the card, check `dmesg | grep -i mmc` for power or tuning errors, and confirm the SDMMC node is `okay` in the DTS.
+- Mount errors about filesystem type: install the matching filesystem kernel module/tools or reformat to a supported type (ext4/FAT32 are safe defaults).
+- Intermittent I/O errors: test with a different card, ensure solid 5 V supply to the EVB, and avoid very high-draw peripherals on the same rail.

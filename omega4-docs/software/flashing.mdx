@@ -6,7 +6,7 @@ description: Enter recovery flashing mode on Omega4 and write factory images to 
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Use this procedure when you need to reflash an Omega4 completely (bootloader, kernel, and rootfs). It assumes you have the official image set for your hardware revision and a host machine with `upgrade_tool` available.
+Use this procedure when you need to reflash an Omega4 completely (bootloader, kernel, and rootfs). It assumes you have the official image set for your hardware revision and a host machine with `upgrade_tool` available. Official firmware builds are published at https://github.com/OnionIoT/openwrt-omega4/releases.
 
 :::warning Risk of data loss
 This flow rewrites all partitions. Back up any calibration or custom data first and double-check that the offsets below match the release notes for your image set.

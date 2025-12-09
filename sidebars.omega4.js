@@ -26,6 +26,7 @@ const sidebars = {
       type: 'category',
       label: 'Hardware Interfaces',
       items: [
+        'hardware/sd-card',
         'hardware/pwm',
       ],
     },
