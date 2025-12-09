@@ -4,6 +4,7 @@
 const sidebars = {
   docsSidebar: [
     'overview',
+    'getting-started',
     {
       type: 'category',
       label: 'Software',
