@@ -13,7 +13,7 @@ Omega4 includes Bluetooth 5.0 (AIC8800D80) with BLE and Classic support in centr
 - Device setup/provisioning flows with a companion mobile app.
 - Low-power accessories like keyboards, barcode scanners, or remote controls.
 
-These instructions describe how to enable and exercise the built in Bluetooth controller on Omega4 devices.
+This guide covers enabling and exercising the built-in Bluetooth controller on Omega4 devices.
 
 ## 1. Prerequisites
 
@@ -69,7 +69,21 @@ Verify the daemon:
 pgrep -af bluetoothd     # expect /usr/bin/bluetoothd -n
 ```
 
-## 5. Basic Adapter Configuration
+## 5. Match the Bluetooth Name to the Linux Hostname
+
+Align the advertised name with the system hostname so the device shows up consistently in scans.
+
+```sh
+HOSTNAME=$(uci get system.@system[0].hostname)  # example Omega-1CC0
+bluetoothctl system-alias "$HOSTNAME"
+bluetoothctl show | grep -i alias               # confirm Alias: Omega-1CC0
+```
+
+Notes:
+- `bluetoothctl show` will still list `Name: BlueZ 5.xx`; that field comes from the controller/driver and is not changed by the alias.
+- The alias is what peers see in scans/advertising. It is persisted by `bluetoothd`. If you change the system hostname later, rerun the `bluetoothctl system-alias` command to keep them in sync.
+
+## 6. Basic Adapter Configuration
 
 Use `bluetoothctl`:
 
@@ -83,7 +97,7 @@ bluetoothctl
 
 To exit the shell press `Ctrl+D` or type `quit`.
 
-## 6. Scanning & Pairing
+## 7. Scanning & Pairing
 
 1. Start a timed scan (no persistent shell needed):
    ```sh
@@ -92,7 +106,7 @@ To exit the shell press `Ctrl+D` or type `quit`.
    Expected log snippet:
    ```
    Controller 88:1E:59:05:02:87 Discovering: yes
-   [NEW] Device 68:27:37:52:F0:E5 [TV] Samsung 7 Series (55)
+   [NEW] Device 68:27:37:52:F0:E5 Laptop-Dev
    ```
 
 2. Pair & trust a device (example MAC):
@@ -104,9 +118,9 @@ To exit the shell press `Ctrl+D` or type `quit`.
    [bluetooth]# connect 68:27:37:52:F0:E5
    ```
 
-3. For audio profiles (A2DP), install PulseAudio/pipewire helpers as needed. For HID devices, pairing is usually sufficient.
+3. When pairing a computer, you can keep it simple: use the built-in profiles (e.g., RFCOMM for serial-like links).
 
-## 7. Troubleshooting Tips
+## 8. Troubleshooting Tips
 
 | Symptom | Checks |
 | --- | --- |
@@ -115,7 +129,39 @@ To exit the shell press `Ctrl+D` or type `quit`.
 | No devices found when scanning | Verify antennas/power, ensure `Discoverable: yes`; watch `logread -f` for SDIO errors. |
 | Packages missing | Re-run `opkg update`; confirm the target feed (`targets/rockchip/cortexa7`) is reachable or mirror the `.ipk` files. |
 
-## 8. Useful Commands Summary
+## 9. Send Serial Data from a Host to Omega4
+
+Use the Serial Port Profile (RFCOMM) to push simple serial-style data from a laptop to the Omega4.
+
+1. Pair/trust the host (see steps above), ensure `bluetoothd` is running, and note the Omega4 BD_ADDR, e.g. `88:1E:59:05:02:87`.
+2. On the Omega4, expose the Serial Port Profile and start a listener on channel 1:
+   ```sh
+   sdptool add SP                     # advertise Serial Port
+   rfcomm watch hci0 1 sh -c 'cat > /tmp/bt_serial_in'
+   ```
+   Keep this running; it writes any received bytes into `/tmp/bt_serial_in`.
+3. On the host Linux machine, create/bind an RFCOMM link to channel 1:
+   - If the `rfcomm` tool is available:
+     ```sh
+     sudo rfcomm connect 0 88:1E:59:05:02:87 1
+     echo "hello omega" > /dev/rfcomm0
+     ```
+   - If `rfcomm` is missing on newer BlueZ builds, either install the compat package (e.g., `sudo apt-get install bluez-compat`) or use `socat` without creating `/dev/rfcomm0`:
+     ```sh
+     printf "hello omega\n" | socat - "rfcomm-connect:88:1E:59:05:02:87,channel=1"
+     ```
+4. Back on the Omega4, confirm the data arrived:
+   ```sh
+   tail -f /tmp/bt_serial_in
+   ```
+
+Notes:
+- If multiple connections are expected, pick a different channel number per service.
+- Replace the `cat > /tmp/bt_serial_in` handler with your own app (e.g., `python3 -u recv.py` or `socat` to forward into another serial port).
+- Stop the RFCOMM listener with `Ctrl+C` when finished.
+- Host side: install `bluez-compat` to regain the `rfcomm` CLI, or install `socat` if using the `rfcomm-connect:` method above.
+
+## 10. Useful Commands Summary
 
 ```sh
 # Service control
