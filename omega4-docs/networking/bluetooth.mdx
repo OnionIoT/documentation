@@ -1,19 +1,19 @@
 ---
 title: Bluetooth
 slug: /networking/bluetooth
-description: Complete guide for enabling and configuring the built-in Bluetooth controller on Omega4 devices, including installation, pairing, and troubleshooting.
+description: "Bring up the Omega4 Bluetooth controller with a BLE-only workflow: install, scan, pair, advertise, and troubleshoot."
 ---
 
 
 
 # Bluetooth Bring-Up & Usage Guide
 
-Omega4 includes Bluetooth 5.0 (AIC8800D80) with BLE and Classic support in central and peripheral roles. Use it for:
+Omega4 includes Bluetooth 5.0 (AIC8800D80) with BLE in central and peripheral roles. This page is BLE-only—examples focus on scanning, pairing, GATT, and advertising for sensors and provisioning flows.
+
+Use BLE for:
 - BLE sensor or beacon gateways that forward data over Wi-Fi or Ethernet.
 - Device setup/provisioning flows with a companion mobile app.
 - Low-power accessories like keyboards, barcode scanners, or remote controls.
-
-This guide covers enabling and exercising the built-in Bluetooth controller on Omega4 devices.
 
 ## 1. Prerequisites
 
@@ -69,7 +69,9 @@ Verify the daemon:
 pgrep -af bluetoothd     # expect /usr/bin/bluetoothd -n
 ```
 
-## 5. Match the Bluetooth Name to the Linux Hostname
+> BLE advertising and user-space GATT services require the `-E` flag on `bluetoothd`. The init script already starts `bluetoothd` with `-E`; keep it running for advertising and custom GATT services.
+
+## 5. Set the Bluetooth Name
 
 Align the advertised name with the system hostname so the device shows up consistently in scans.
 
@@ -83,42 +85,44 @@ Notes:
 - `bluetoothctl show` will still list `Name: BlueZ 5.xx`; that field comes from the controller/driver and is not changed by the alias.
 - The alias is what peers see in scans/advertising. It is persisted by `bluetoothd`. If you change the system hostname later, rerun the `bluetoothctl system-alias` command to keep them in sync.
 
-## 6. Basic Adapter Configuration
+## 6. BLE Central Workflow (Omega4 -> BLE peripheral)
 
-Use `bluetoothctl`:
+Scan, pair, and exercise a BLE peripheral using `bluetoothctl`:
+
+```sh
+bluetoothctl --timeout 12 scan le         # scan for LE devices only
+```
+
+Then open the shell for GATT operations:
+```sh
+bluetoothctl
+[bluetooth]# scan le                      # optional interactive scan
+[bluetooth]# pair 90:09:5B:D6:3C:F7       # sample MAC
+[bluetooth]# trust 90:09:5B:D6:3C:F7
+[bluetooth]# connect 90:09:5B:D6:3C:F7
+[bluetooth]# menu gatt
+[bluetooth]# list-attributes              # browse services/characteristics
+[bluetooth]# select-attribute /org/bluez/hci0/dev_90_09_5B_D6_3C_F7/service0025/char0028
+[bluetooth]# read                         # read selected characteristic
+[bluetooth]# notify on                    # subscribe if characteristic supports it
+```
+
+Exit `menu gatt` with `back`, then `quit` to leave `bluetoothctl`. Use `disconnect` if you want to release the link without closing the shell.
+
+## 7. BLE Peripheral Workflow (Omega4 advertises)
+
+With `bluetoothd -E` already running from init, open `bluetoothctl` to advertise:
 
 ```sh
 bluetoothctl
-[bluetooth]# show              # confirm Powered: yes, Roles: central/peripheral
-[bluetooth]# power on          # redundant if already powered
+[bluetooth]# power on
 [bluetooth]# pairable on
-[bluetooth]# discoverable on   # optional, makes Omega4 visible
+[bluetooth]# discoverable on
+[bluetooth]# advertise on                 # start connectable advertisement
+[bluetooth]# show | grep -E 'Alias|Address'  # sanity check
 ```
 
-To exit the shell press `Ctrl+D` or type `quit`.
-
-## 7. Scanning & Pairing
-
-1. Start a timed scan (no persistent shell needed):
-   ```sh
-   bluetoothctl --timeout 15 scan on
-   ```
-   Expected log snippet:
-   ```
-   Controller 88:1E:59:05:02:87 Discovering: yes
-   [NEW] Device 68:27:37:52:F0:E5 Laptop-Dev
-   ```
-
-2. Pair & trust a device (example MAC):
-   ```sh
-   bluetoothctl
-   [bluetooth]# scan on
-   [bluetooth]# pair 68:27:37:52:F0:E5
-   [bluetooth]# trust 68:27:37:52:F0:E5
-   [bluetooth]# connect 68:27:37:52:F0:E5
-   ```
-
-3. When pairing a computer, you can keep it simple: use the built-in profiles (e.g., RFCOMM for serial-like links).
+The `advertise on` command uses a simple connectable advertisement (sufficient for provisioning and generic BLE client connections). Stop advertising with `advertise off`. For a custom GATT service (e.g., Wi-Fi setup), follow the [Bluetooth GATT Wi-Fi Provisioning](./bluetooth-gatt-provisioning) guide; the running `bluetoothd -E` from init is sufficient.
 
 ## 8. Troubleshooting Tips
 
@@ -126,42 +130,12 @@ To exit the shell press `Ctrl+D` or type `quit`.
 | --- | --- |
 | `hciconfig` shows `DOWN` | `hciconfig hci0 up`; inspect `dmesg | grep aic_btsdio`. |
 | `bluetoothctl` lacks permissions | Ensure `bluetoothd` is running; restart via `/etc/init.d/bluetoothd restart`. |
-| No devices found when scanning | Verify antennas/power, ensure `Discoverable: yes`; watch `logread -f` for SDIO errors. |
+| No BLE devices found when scanning | Use `bluetoothctl --timeout 12 scan le`; keep the peripheral awake; watch `logread -f` for SDIO errors. |
+| Advertising command fails | Make sure `bluetoothd` is running with `-E`; rerun `bluetoothctl advertise on`. |
+| Notifications never arrive | In `menu gatt`, select the characteristic and run `notify on`; ensure the peripheral allows notifications and does not require a CCC write on another handle. |
 | Packages missing | Re-run `opkg update`; confirm the target feed (`targets/rockchip/cortexa7`) is reachable or mirror the `.ipk` files. |
 
-## 9. Send Serial Data from a Host to Omega4
-
-Use the Serial Port Profile (RFCOMM) to push simple serial-style data from a laptop to the Omega4.
-
-1. Pair/trust the host (see steps above), ensure `bluetoothd` is running, and note the Omega4 BD_ADDR, e.g. `88:1E:59:05:02:87`.
-2. On the Omega4, expose the Serial Port Profile and start a listener on channel 1:
-   ```sh
-   sdptool add SP                     # advertise Serial Port
-   rfcomm watch hci0 1 sh -c 'cat > /tmp/bt_serial_in'
-   ```
-   Keep this running; it writes any received bytes into `/tmp/bt_serial_in`.
-3. On the host Linux machine, create/bind an RFCOMM link to channel 1:
-   - If the `rfcomm` tool is available:
-     ```sh
-     sudo rfcomm connect 0 88:1E:59:05:02:87 1
-     echo "hello omega" > /dev/rfcomm0
-     ```
-   - If `rfcomm` is missing on newer BlueZ builds, either install the compat package (e.g., `sudo apt-get install bluez-compat`) or use `socat` without creating `/dev/rfcomm0`:
-     ```sh
-     printf "hello omega\n" | socat - "rfcomm-connect:88:1E:59:05:02:87,channel=1"
-     ```
-4. Back on the Omega4, confirm the data arrived:
-   ```sh
-   tail -f /tmp/bt_serial_in
-   ```
-
-Notes:
-- If multiple connections are expected, pick a different channel number per service.
-- Replace the `cat > /tmp/bt_serial_in` handler with your own app (e.g., `python3 -u recv.py` or `socat` to forward into another serial port).
-- Stop the RFCOMM listener with `Ctrl+C` when finished.
-- Host side: install `bluez-compat` to regain the `rfcomm` CLI, or install `socat` if using the `rfcomm-connect:` method above.
-
-## 10. Useful Commands Summary
+## 9. Useful Commands Summary
 
 ```sh
 # Service control
@@ -172,7 +146,7 @@ hciconfig -a
 bluetoothctl show
 
 # Scanning
-bluetoothctl --timeout 15 scan on
+bluetoothctl --timeout 12 scan le
 
 # Logs
 logread -f | grep -i bluetooth

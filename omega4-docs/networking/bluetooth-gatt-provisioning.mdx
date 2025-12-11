@@ -1,0 +1,465 @@
+---
+title: Bluetooth GATT Wi-Fi Provisioning
+slug: /networking/bluetooth-gatt-provisioning
+description: Expose a BLE GATT service on the Omega4 that accepts Wi-Fi credentials and applies them to the STA interface.
+---
+
+# Bluetooth GATT Wi-Fi Provisioning
+
+Use this guide after pairing and connecting over Bluetooth. It creates a small GATT service that accepts an SSID and PSK, writes them into the `wireless` config, and reloads Wi-Fi so the Omega4 joins the network.
+
+## 1. Prerequisites
+- Complete the scan/pair/trust/connect steps in the [Bluetooth guide](./bluetooth) so your phone or laptop is a trusted device.
+- Packages:
+  ```sh
+  opkg update
+  opkg install \
+      bluez-daemon bluez-utils bluez-utils-extra \
+      python3 python3-dbus-fast
+  ```
+- Use the same hostname/alias you paired with; that's the name you'll see from the client.
+
+## 2. Start `bluetoothd` (experimental enabled)
+The init script already runs `bluetoothd -E`. Restart and verify:
+```sh
+/etc/init.d/bluetoothd restart
+bluetoothctl show | grep -E 'Powered|Alias'
+```
+What `-E` does: it enables BlueZ experimental features, notably user-space LE advertising and custom GATT services. Without `-E`, advertising via `bluetoothctl` and the provisioning service below won't work.
+If you want to see the running command: `pgrep -af bluetoothd`.
+
+## 3. Save the Wi-Fi provisioning GATT service
+Copy the script below to `/root/ble_wifi_provision.py` and make it executable. It exposes:
+- Service UUID `7b9c0000-3c1b-4f52-9e1a-1d5f0e9c1000`
+- Characteristics:
+  - `...1001` (Write): SSID
+  - `...1002` (Write): PSK
+  - `...1003` (Read/Notify): status (`idle`, `missing-ssid-or-psk`, `applying`, `applied`, `apply-failed`)
+  - `...1004` (Write): apply trigger
+  - `...1005` (Read): Wi-Fi scan results (top networks, SSID + RSSI + channel)
+
+```sh
+cat <<'EOF' > /root/ble_wifi_provision.py
+#!/usr/bin/env python3
+import asyncio
+import re
+import socket
+import subprocess
+
+from dbus_fast import Variant
+from dbus_fast.aio import MessageBus
+from dbus_fast.constants import BusType, PropertyAccess
+from dbus_fast.service import ServiceInterface, dbus_property, method
+
+BLUEZ_SERVICE_NAME = "org.bluez"
+OM_IFACE = "org.freedesktop.DBus.ObjectManager"
+GATT_MANAGER_IFACE = "org.bluez.GattManager1"
+GATT_SERVICE_IFACE = "org.bluez.GattService1"
+GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
+
+SERVICE_UUID = "7b9c0000-3c1b-4f52-9e1a-1d5f0e9c1000"
+SSID_UUID = "7b9c0001-3c1b-4f52-9e1a-1d5f0e9c1000"
+PSK_UUID = "7b9c0002-3c1b-4f52-9e1a-1d5f0e9c1000"
+STATUS_UUID = "7b9c0003-3c1b-4f52-9e1a-1d5f0e9c1000"
+APPLY_UUID = "7b9c0004-3c1b-4f52-9e1a-1d5f0e9c1000"
+SCAN_UUID = "7b9c0005-3c1b-4f52-9e1a-1d5f0e9c1000"
+
+
+def encode_string(value: str) -> list[int]:
+    data = value.encode("utf-8")
+    return list(data if data else b"\x00")
+
+
+def scan_wifi() -> str:
+    """Best-effort scan; returns up to five networks as 'SSID | -dBm | chN'."""
+    try:
+        result = subprocess.run(
+            ["iwinfo", "phy0", "scan"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=8,
+        )
+    except Exception:
+        return "scan-error"
+
+    if result.returncode != 0:
+        return "scan-error"
+
+    entries = []
+    ssid = ""
+    signal = ""
+    channel = ""
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("Cell "):
+            if ssid or signal:
+                entries.append(
+                    f"{ssid or '<hidden>'} | {signal or '? dBm'} | ch{channel or '?'}"
+                )
+            ssid = ""
+            signal = ""
+            channel = ""
+            continue
+        if line.startswith("ESSID:"):
+            ssid_match = re.search(r'ESSID: "(.*)"', line)
+            ssid = ssid_match.group(1) if ssid_match else ""
+        elif line.startswith("Signal:"):
+            sig_match = re.search(r"Signal: (-?\\d+ dBm)", line)
+            signal = sig_match.group(1) if sig_match else ""
+        elif line.startswith("Channel:"):
+            chan_match = re.search(r"Channel: (\\d+)", line)
+            channel = chan_match.group(1) if chan_match else ""
+
+    if ssid or signal:
+        entries.append(
+            f"{ssid or '<hidden>'} | {signal or '? dBm'} | ch{channel or '?'}"
+        )
+
+    entries = [e for e in entries if e][:5]
+    return "\\n".join(entries) if entries else "no-networks"
+
+
+class GattService(ServiceInterface):
+    """Minimal org.bluez.GattService1 implementation."""
+
+    def __init__(self, uuid: str, primary: bool, path: str):
+        super().__init__(GATT_SERVICE_IFACE)
+        self._uuid = uuid
+        self._primary = primary
+        self._includes: list[str] = []
+        self.path = path
+        self.characteristics: list[GattCharacteristic] = []
+
+    def add_characteristic(self, characteristic: "GattCharacteristic"):
+        self.characteristics.append(characteristic)
+
+    @dbus_property(access=PropertyAccess.READ)
+    def UUID(self) -> "s":
+        return self._uuid
+
+    @dbus_property(access=PropertyAccess.READ)
+    def Primary(self) -> "b":
+        return self._primary
+
+    @dbus_property(access=PropertyAccess.READ)
+    def Includes(self) -> "ao":
+        return self._includes
+
+    def get_managed_objects_fragment(self):
+        fragment = {
+            self.path: {
+                GATT_SERVICE_IFACE: {
+                    "UUID": Variant("s", self._uuid),
+                    "Primary": Variant("b", self._primary),
+                    "Includes": Variant("ao", self._includes),
+                }
+            }
+        }
+        for ch in self.characteristics:
+            fragment.update(ch.get_managed_objects_fragment())
+        return fragment
+
+
+class GattCharacteristic(ServiceInterface):
+    """Minimal org.bluez.GattCharacteristic1 implementation."""
+
+    def __init__(self, uuid: str, flags: list[str], path: str, service_path: str):
+        super().__init__(GATT_CHRC_IFACE)
+        self._uuid = uuid
+        self._flags = flags
+        self.path = path
+        self._service_path = service_path
+
+    @dbus_property(access=PropertyAccess.READ)
+    def UUID(self) -> "s":
+        return self._uuid
+
+    @dbus_property(access=PropertyAccess.READ)
+    def Service(self) -> "o":
+        return self._service_path
+
+    @dbus_property(access=PropertyAccess.READ)
+    def Flags(self) -> "as":
+        return self._flags
+
+    def get_managed_objects_fragment(self):
+        return {
+            self.path: {
+                GATT_CHRC_IFACE: {
+                    "UUID": Variant("s", self._uuid),
+                    "Service": Variant("o", self._service_path),
+                    "Flags": Variant("as", self._flags),
+                }
+            }
+        }
+
+
+class Application(ServiceInterface):
+    """
+    org.freedesktop.DBus.ObjectManager implementation.
+    BlueZ calls GetManagedObjects() here to discover the GATT hierarchy.
+    """
+
+    def __init__(self, path: str, services: list[GattService]):
+        super().__init__(OM_IFACE)
+        self.path = path
+        self.services = services
+
+    @method()
+    def GetManagedObjects(self) -> "a{oa{sa{sv}}}":
+        managed: dict[str, dict[str, dict[str, Variant]]] = {}
+        for svc in self.services:
+            managed.update(svc.get_managed_objects_fragment())
+        print("GetManagedObjects called")
+        return managed
+
+
+class WiFiProvisionService(GattService):
+    def __init__(self, path: str):
+        super().__init__(SERVICE_UUID, True, path)
+        self.ssid = ""
+        self.psk = ""
+        self.status = "idle"
+
+        self.status_char = StatusCharacteristic(
+            STATUS_UUID, ["read", "notify"], f"{path}/status", path, self
+        )
+
+        self.add_characteristic(SSIDCharacteristic(SSID_UUID, ["write"], f"{path}/ssid", path, self))
+        self.add_characteristic(PSKCharacteristic(PSK_UUID, ["write"], f"{path}/psk", path, self))
+        self.add_characteristic(self.status_char)
+        self.add_characteristic(ApplyCharacteristic(APPLY_UUID, ["write"], f"{path}/apply", path, self))
+        self.add_characteristic(WiFiScanCharacteristic(SCAN_UUID, ["read"], f"{path}/scan", path, self))
+
+    def set_status(self, status: str):
+        self.status = status
+        self.status_char.notify()
+
+
+class SSIDCharacteristic(GattCharacteristic):
+    def __init__(self, uuid, flags, path, service_path, service: WiFiProvisionService):
+        super().__init__(uuid, flags, path, service_path)
+        self.service = service
+
+    @method()
+    def WriteValue(self, value: "ay", options: "a{sv}") -> "nothing":
+        self.service.ssid = bytes(value).decode("utf-8").strip()
+        self.service.set_status("idle")
+        print("SSID written:", self.service.ssid)
+
+
+class PSKCharacteristic(GattCharacteristic):
+    def __init__(self, uuid, flags, path, service_path, service: WiFiProvisionService):
+        super().__init__(uuid, flags, path, service_path)
+        self.service = service
+
+    @method()
+    def WriteValue(self, value: "ay", options: "a{sv}") -> "nothing":
+        self.service.psk = bytes(value).decode("utf-8").strip()
+        self.service.set_status("idle")
+        print("PSK written (len):", len(self.service.psk))
+
+
+class StatusCharacteristic(GattCharacteristic):
+    def __init__(self, uuid, flags, path, service_path, service: WiFiProvisionService):
+        super().__init__(uuid, flags, path, service_path)
+        self.service = service
+        self._notifying = False
+
+    def _value(self) -> list[int]:
+        return encode_string(self.service.status)
+
+    @method()
+    def ReadValue(self, options: "a{sv}") -> "ay":
+        return self._value()
+
+    def notify(self):
+        if not self._notifying:
+            return
+        self.emit_properties_changed({"Value": Variant("ay", self._value())}, [])
+
+    @method()
+    def StartNotify(self):
+        if self._notifying:
+            return
+        self._notifying = True
+        self.notify()
+
+    @method()
+    def StopNotify(self):
+        self._notifying = False
+
+
+class ApplyCharacteristic(GattCharacteristic):
+    def __init__(self, uuid, flags, path, service_path, service: WiFiProvisionService):
+        super().__init__(uuid, flags, path, service_path)
+        self.service = service
+
+    @method()
+    def WriteValue(self, value: "ay", options: "a{sv}") -> "nothing":
+        if not self.service.ssid or not self.service.psk:
+            self.service.set_status("missing-ssid-or-psk")
+            return
+
+        self.service.set_status("applying")
+        cmds = [
+            ["uci", "set", "wireless.radio0.disabled=0"],
+            ["uci", "set", "wireless.radio0.band=2g"],
+            ["uci", "set", "wireless.radio0.he=0"],
+            ["uci", "set", "wireless.radio0.htmode=HT40"],
+            ["uci", "set", "wireless.default_radio0.mode=sta"],
+            ["uci", "set", "wireless.default_radio0.network=wwan"],
+            ["uci", "set", "wireless.default_radio0.encryption=psk2"],
+            ["uci", "set", f"wireless.default_radio0.ssid={self.service.ssid}"],
+            ["uci", "set", f"wireless.default_radio0.key={self.service.psk}"],
+            ["uci", "commit", "wireless"],
+            ["wifi", "reload"],
+        ]
+
+        failed = False
+        for cmd in cmds:
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if result.returncode != 0:
+                print("Command failed:", cmd, result.stderr.decode("utf-8"))
+                failed = True
+                break
+
+        if failed:
+            self.service.set_status("apply-failed")
+        else:
+            self.service.set_status("applied")
+
+
+class WiFiScanCharacteristic(GattCharacteristic):
+    def __init__(self, uuid, flags, path, service_path, service: WiFiProvisionService):
+        super().__init__(uuid, flags, path, service_path)
+        self.service = service
+
+    @method()
+    def ReadValue(self, options: "a{sv}") -> "ay":
+        summary = scan_wifi()
+        return encode_string(summary)
+
+
+async def find_adapter_with_gatt_manager(bus: MessageBus):
+    """Find an adapter that exposes org.bluez.GattManager1."""
+    introspection = await bus.introspect(BLUEZ_SERVICE_NAME, "/")
+    obj = bus.get_proxy_object(BLUEZ_SERVICE_NAME, "/", introspection)
+    om = obj.get_interface(OM_IFACE)
+    managed = await om.call_get_managed_objects()
+
+    for path, ifaces in managed.items():
+        if GATT_MANAGER_IFACE in ifaces:
+            return path
+
+    return None
+
+
+async def main():
+    bus = await MessageBus(bus_type=BusType.SYSTEM).connect()
+
+    app_path = "/com/omega4/wifi"
+    svc_path = f"{app_path}/service0"
+
+    wifi_service = WiFiProvisionService(svc_path)
+    app_iface = Application(app_path, [wifi_service])
+
+    # Export DBus objects before registering with BlueZ.
+    bus.export(app_path, app_iface)
+    bus.export(svc_path, wifi_service)
+    for ch in wifi_service.characteristics:
+        bus.export(ch.path, ch)
+
+    adapter_path = await find_adapter_with_gatt_manager(bus)
+    if adapter_path is None:
+        print("No adapter with GattManager1 found. Is bluetoothd running with -E ?")
+        return
+
+    print("Using adapter:", adapter_path)
+
+    adapter_introspect = await bus.introspect(BLUEZ_SERVICE_NAME, adapter_path)
+    adapter_obj = bus.get_proxy_object(
+        BLUEZ_SERVICE_NAME, adapter_path, adapter_introspect
+    )
+    gatt_manager = adapter_obj.get_interface(GATT_MANAGER_IFACE)
+
+    try:
+        await gatt_manager.call_register_application(app_path, {})
+        print("GATT application registered as", socket.gethostname())
+    except Exception as e:
+        print("Failed to register application:", e)
+        return
+
+    print("GATT Wi-Fi provisioning service running. Press Ctrl+C to quit.")
+    try:
+        while True:
+            await asyncio.sleep(60)
+    except asyncio.CancelledError:
+        pass
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        pass
+EOF
+
+chmod +x /root/ble_wifi_provision.py
+```
+
+> The script applies a 2.4 GHz STA profile (`band=2g`, `htmode=HT40`, network `wwan`). Adjust the `uci` lines in `ApplyCharacteristic` if your deployment needs different Wi-Fi parameters.
+
+## 4. Start the provisioning service
+Run the script after pairing/trusting your provisioning device:
+```sh
+python3 /root/ble_wifi_provision.py
+```
+You should see `GATT Wi-Fi provisioning service running. Press Ctrl+C to quit.` and the client can connect to the paired Omega4 to access the service.
+
+While the script is running, put the adapter in a connectable advertising state (Omega4):
+```sh
+bluetoothctl -- power on
+bluetoothctl -- pairable on
+bluetoothctl -- discoverable on
+bluetoothctl -- advertise on
+```
+Turn advertising off when finished:
+```sh
+bluetoothctl -- advertise off
+```
+
+## 5. Client flow
+From your phone or laptop BLE app (nRF Connect, LightBlue, or a custom app):
+1. Connect to the Omega4 and discover the service UUID `7b9c0000-3c1b-4f52-9e1a-1d5f0e9c1000`.
+2. Write the SSID to characteristic `...1001`.
+3. Write the PSK to characteristic `...1002`.
+4. Read/subscribe to status `...1003` (optional, shows `idle`/`applied`/errors).
+5. (Optional) Read `...1005` to get a quick scan of nearby Wi-Fi networks; choose one to provision.
+6. Write anything (single byte is fine) to `...1004` to trigger apply.
+7. Watch status change to `applied`, then reconnect over IP once `wwan` acquires an address.
+
+### Example from a Linux host
+```sh
+bluetoothctl
+[bluetooth]# menu scan
+[bluetooth]# transport le               # restrict scan to LE
+[bluetooth]# back
+[bluetooth]# scan on                    # find the Omega4 MAC
+[bluetooth]# connect 88:1E:59:05:02:77
+[bluetooth]# trust 88:1E:59:05:02:77
+[bluetooth]# menu gatt
+[bluetooth]# select-attribute /org/bluez/hci0/dev_88_1E_59_05_02_77/service008c/char008d
+[bluetooth]# write 4d 79 53 53 49 44 00 request     # "MySSID" (+ null terminator, write-request)
+[bluetooth]# select-attribute /org/bluez/hci0/dev_88_1E_59_05_02_77/service008c/char008f
+[bluetooth]# write 4d 79 50 40 73 73 77 30 72 64 00 request  # "MyP@ssw0rd"
+[bluetooth]# select-attribute /org/bluez/hci0/dev_88_1E_59_05_02_77/service008c/char0091
+[bluetooth]# notify on                                # watch status updates
+[bluetooth]# select-attribute /org/bluez/hci0/dev_88_1E_59_05_02_77/service008c/char0094
+[bluetooth]# write 00                                 # trigger apply (any byte works)
+```
+If you need to convert text to hex quickly: `printf 'MySSID\\0' | od -An -t x1` (use the spaced bytes with `write ... request`).
+The attribute paths will differ; use `list-attributes` inside `menu gatt` to locate the SSID/PSK/status/apply characteristics for your session.
+
+Stop the script with `Ctrl+C` when provisioning is complete or once you no longer want to advertise the setup service.

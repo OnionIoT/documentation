@@ -20,6 +20,7 @@ const sidebars = {
         'networking/wifi_ap',
         'networking/wifi_sta',
         'networking/bluetooth',
+        'networking/bluetooth-gatt-provisioning',
       ],
     },
     {
