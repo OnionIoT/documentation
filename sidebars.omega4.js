@@ -27,6 +27,7 @@ const sidebars = {
       type: 'category',
       label: 'Hardware Interfaces',
       items: [
+        'hardware/spi-nand-flash',
         'hardware/sd-card',
         'hardware/pwm',
       ],

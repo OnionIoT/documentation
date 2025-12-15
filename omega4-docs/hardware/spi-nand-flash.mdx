@@ -1,0 +1,73 @@
+---
+title: SPI-NAND Flash Endurance
+slug: /hardware/spi-nand-flash
+description: Endurance notes for Omega4 SPI-NAND compared with Omega2 NOR and common eMMC.
+---
+
+# Omega4 SPI-NAND Flash Endurance
+
+Omega4 uses Winbond SPI-NAND (SLC process) with an expected **~60k program/erase (P/E) cycles** per block. For context:
+
+| Platform | Flash type | Example vendor | Typical P/E cycles | Notes |
+| --- | --- | --- | --- | --- |
+| Omega2 | SPI NOR | Winbond | ~100k | Typical vendor-rated minimum; higher endurance, single-bit cells. |
+| Omega4 | SPI NAND (SLC) | Winbond | ~60k | Typical vendor-rated minimum (conservative for SLC SPI-NAND); managed by UBI/MTD. |
+| Generic eMMC | Stacked MLC/TLC/QLC | Varies | Few hundred–~3k | Lower endurance; controller wear-levels. |
+
+Key takeaways:
+- Omega4 SPI-NAND endurance is lower than Omega2 NOR but still far higher than typical eMMC in MLC/TLC/QLC modes.
+- Expect endurance to vary with workload, block wear-leveling efficiency, bad-block management, and temperature.
+- Minimize frequent small writes (logs, counters) or redirect them to RAM/tmpfs where possible.
+
+## How UBI extends SPI-NAND life on Omega4
+
+- **Wear-leveling across the volume:** UBI abstracts eraseblocks and spreads writes evenly, reducing hot spots that would otherwise burn out specific blocks at ~60k P/E.
+- **Bad-block handling:** UBI tracks factory-bad blocks and retires new bad blocks dynamically, keeping data off weak areas.
+- **Rotating metadata locations:** Metadata and mapping tables are updated in rotating eraseblocks; logical volumes are decoupled from fixed physical locations.
+- **Garbage collection and refresh:** Free space is compacted and blocks are refreshed as they are moved during GC and block migration (not aggressive, timer-based scrubbing like SSDs).
+
+Practical tips for UBI volumes:
+- Keep enough free space (10–20%) so UBI has room to rotate blocks.
+- Mount log-heavy paths on `tmpfs` or use `logrotate` to limit churn.
+- Avoid frequent small sync writes; batch updates when possible.
+
+## Free space and effective P/E cycles
+
+Available free eraseblocks directly affect how well UBI can spread writes:
+- More free space = more candidate blocks to rotate through, lowering wear on any single block.
+- Low free space forces UBI to reuse a small set of blocks, increasing write amplification and shrinking effective P/E headroom.
+- Rule of thumb: keeping ~10–20% free in the UBI volume materially improves effective life; more helps heavy log/write workloads.
+- Illustration: with 20% free space on a 256 MB SLC SPI-NAND and writes concentrated on 25% of logical data, UBI can still rotate those writes across the full pool, yielding the earlier illustrative ~240k effective cycles—provided write amplification stays low.
+
+## OpenWrt overlay and wear reduction
+
+OpenWrt boots with an overlay filesystem (typically `overlayfs` on top of UBI). This helps endurance by:
+- **Redirecting new/changed files to the upper layer** instead of rewriting the read-only squashfs, reducing write amplification.
+- **Allowing tmpfs mounts for volatile paths** (`/tmp`, often `/var`) so logs and runtime state stay in RAM and never hit flash.
+- **Supporting extroot/aux storage** so heavy writes can be moved to removable media when needed.
+
+To keep wear low:
+- Keep `/tmp` and other volatile paths on tmpfs (default on Omega images).
+- Avoid large, frequent writes under `/overlay`; store rotating logs in `/tmp` or remote syslog.
+- Leave headroom in the UBI volume so the overlay’s eraseblocks can be rotated.
+
+## How eMMC achieves endurance
+
+eMMC has an internal controller that hides raw flash. Typical MLC/TLC/QLC parts start with lower native endurance (hundreds to a few thousand P/E), then rely on firmware:
+- **Static + dynamic wear-leveling:** Spreads writes across the entire device, even rarely used regions.
+- **Over-provisioning:** Keeps spare blocks to replace worn ones and to reduce write amplification.
+- **Bad-block remapping and ECC:** Controller retires failing blocks and uses strong ECC to extend usable life.
+- **Write caching and FTL policies:** The Flash Translation Layer coalesces writes and minimizes random-write penalties, at the cost of unpredictable mapping.
+
+Because the controller is opaque, endurance varies by vendor and workload; heavy random writes can still exhaust the smaller P/E budget much faster than SLC SPI-NAND under UBI.
+
+## SPI-NAND + UBI vs NOR vs eMMC: quick comparison
+
+| Aspect | SPI-NAND (SLC) with UBI | SPI NOR | eMMC (MLC/TLC/QLC) |
+| --- | --- | --- | --- |
+| Native P/E cycles | ~60k per block (typical vendor-rated minimum; some SLC parts quote higher) | ~100k per block (typical vendor-rated minimum) | Few hundred–~3k per block |
+| Wear-leveling control | Exposed via UBI policies; tunable by filesystem layout and free space | Typically minimal; hot-sector wear can occur but high native endurance makes it negligible in most embedded Linux use | Opaque; controller-managed |
+| Bad-block handling | Visible to UBI; blocks retired in software | Rare; managed in software/filesystem | Hidden; remapped internally |
+| Write pattern sensitivity | Better tolerance for random writes; benefits from batching | Generally tolerant; avoid hammering the same sector | Random writes increase write amplification; controller-dependent |
+| Predictability | More transparent; logs can indicate aging | Highly predictable due to simple mapping | Less transparent; health stats vary by vendor |
+| Effective P/E with wear-leveling (illustrative example) | If ~25% of blocks carry most writes and UBI can spread them across the full device, ~60k native could translate into ~240k effective cycles on that hot data set; actual results depend on free space, workload, and write amplification | With 100k native, modest spreading keeps practical limits near native; log-structured filesystems help avoid single-block hotspots | With ~3k native and good controller WL/OP, a hot 25% region might reach ~12k effective cycles; heavy random writes and limited over-provisioning can reduce this significantly |
