@@ -4,6 +4,8 @@ slug: /networking/wifi-ap
 description: Configure the Omega4 radio as a WPA2 access point that bridges into LAN and reuses the board hostname as the SSID.
 ---
 
+import WifiHtmodeNote from '../snippets/wifi-htmode.mdx';
+
 # Wi-Fi Access Point
 
 Use these steps to turn the Omega4 into a WPA2 access point that bridges traffic into the existing `lan` network and advertises the board hostname as the SSID.
@@ -26,11 +28,13 @@ uci set wireless.default_radio0.encryption='psk2'
 uci set wireless.default_radio0.key='12345678'   # replace with your PSK
 ```
 
-## 3. Force an 802.11n/HT20 channel
-Current `wpad` builds do not handle 802.11ax HE options, so keep the radio on 2.4 GHz HT20:
+<WifiHtmodeNote />
+
+## 3. Force an 802.11n/HT40 channel
+Current `wpad` builds do not handle 802.11ax HE options, so keep the radio on 2.4 GHz HT40:
 ```bash
 uci set wireless.radio0.he='0'
-uci set wireless.radio0.htmode='HT20'
+uci set wireless.radio0.htmode='HT40'
 uci set wireless.radio0.channel='1'   # choose any valid 2.4 GHz channel
 ```
 
@@ -39,7 +43,7 @@ The same radio can serve a 5 GHz AP (one band at a time). Pick a non-DFS channel
 ```bash
 uci set wireless.radio0.band='5g'
 uci set wireless.radio0.channel='36'   # choose a legal channel for your country
-uci set wireless.radio0.htmode='VHT80' # fall back to VHT40 if 80 MHz is unstable
+uci set wireless.radio0.htmode='VHT40' # try VHT80 if you have clean spectrum and it’s stable
 uci set wireless.radio0.he='0'
 uci set wireless.radio0.country='US'   # replace with your two-letter country code
 ```

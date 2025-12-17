@@ -1,0 +1,11 @@
+:::info About `htmode` (channel width)
+In OpenWrt, `htmode` sets the Wi‑Fi “PHY mode” and channel width. The suffix (`20`/`40`/`80`) is the channel width in MHz:
+
+- `HT20` / `HT40`: 802.11n (High Throughput).
+- `VHT20` / `VHT40` / `VHT80`: 802.11ac (Very High Throughput, 5 GHz).
+- `HE20` / `HE40` / `HE80`: 802.11ax (High Efficiency) if your `wpad`/`hostapd` build supports it.
+
+Wider channels can increase the negotiated link rate, but they also use more spectrum and are more sensitive to interference. On crowded 2.4 GHz networks, `HT20` is often more stable (and sometimes faster in real throughput) than `HT40`.
+
+Omega4 note: the Wi‑Fi module is connected over **SDIO 2.0**, which supports up to **400 Mbps** on the bus. Even if the link rate shows higher values (for example on `VHT80`), real throughput will be limited by the SDIO link and protocol overhead.
+:::

@@ -4,6 +4,8 @@ slug: /networking/wifi-sta
 description: Join an existing Wi‑Fi network with the Omega4 radio in station mode and verify the connection on the CLI.
 ---
 
+import WifiHtmodeNote from '../snippets/wifi-htmode.mdx';
+
 # Wi-Fi Client (STA)
 
 Use these steps to connect the Omega4 to an existing Wi‑Fi network as a station (client).
@@ -17,6 +19,8 @@ uci commit network
 ```
 
 Pick one of the following band-specific setups. Both start from the same clean `wireless` config; skip the section that does not apply to your AP.
+
+<WifiHtmodeNote />
 
 ## 2. Configure for 2.4 GHz
 Station settings tuned for 2.4 GHz networks:
@@ -45,7 +49,7 @@ uci set wireless.radio0.disabled='0'
 uci set wireless.radio0.he='0'
 uci set wireless.radio0.band='5g'
 uci set wireless.radio0.channel='36'     # prefer non-DFS channels (36/40/44/48) to avoid radar vacates
-uci set wireless.radio0.htmode='VHT80'   # drop to VHT40/HT40 if your wpad build lacks 11ac
+uci set wireless.radio0.htmode='VHT40'   # drop to HT40 if your wpad build lacks 11ac
 uci set wireless.radio0.country='US'     # replace with your country code
 
 uci set wireless.default_radio0.mode='sta'
