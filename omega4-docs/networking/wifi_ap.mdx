@@ -1,14 +1,14 @@
 ---
 title: Wi-Fi Access Point
 slug: /networking/wifi-ap
-description: Configure the Omega4 radio as a WPA2 access point that bridges into LAN and reuses the board hostname as the SSID.
+description: Configure the Omega4 radio as a WPA2 access point on a dedicated wlan network and reuse the board hostname as the SSID.
 ---
 
 import WifiHtmodeNote from '../snippets/wifi-htmode.mdx';
 
 # Wi-Fi Access Point
 
-Use these steps to turn the Omega4 into a WPA2 access point that bridges traffic into the existing `lan` network and advertises the board hostname as the SSID.
+Use these steps to turn the Omega4 into a WPA2 access point on a dedicated `wlan` network and advertise the board hostname as the SSID.
 
 
 ## 1. Capture the hostname (SSID seed)
@@ -17,25 +17,56 @@ cat /proc/sys/kernel/hostname
 ```
 Copy the value (for example, `Omega-A7FE`). It will become the SSID.
 
-## 2. Configure the radio for AP mode on LAN
-Convert `radio0` into an AP, bridge it to `lan`, and set the WPA2 key:
+## 2. Configure the radio for AP mode on `wlan`
+Convert `radio0` into an AP, attach it to network `wlan`, and set the WPA2 key:
 ```bash
 uci set wireless.radio0.disabled='0'
 uci set wireless.default_radio0.mode='ap'
-uci set wireless.default_radio0.network='lan'
+uci set wireless.default_radio0.disabled='0'
+uci set wireless.default_radio0.network='wlan'
 uci set wireless.default_radio0.ssid="$(cat /proc/sys/kernel/hostname)"
 uci set wireless.default_radio0.encryption='psk2'
 uci set wireless.default_radio0.key='12345678'   # replace with your PSK
+uci commit wireless
+```
+
+## 3. Set the device IP to `192.168.4.1`
+If you want the Omega4 to act as a standalone AP with a known management address, create a `wlan` interface and set it to `192.168.4.1/24`:
+```bash
+uci set network.wlan=interface
+uci set network.wlan.proto='static'
+uci set network.wlan.ipaddr='192.168.4.1'
+uci set network.wlan.netmask='255.255.255.0'
+uci commit network
+/etc/init.d/network restart
+```
+
+:::caution
+Changing the management subnet can disconnect your current SSH session. If you are connected over Ethernet and your PC is on a different subnet, you will need to reconfigure your PC to `192.168.4.x` (or reconnect over Wi‑Fi after DHCP is enabled below).
+:::
+
+## 4. Enable the DHCP server
+Serve client addresses on `wlan` (and therefore on Wi‑Fi, since it is attached to network `wlan`) using `dnsmasq`:
+```bash
+uci set dhcp.wlan=dhcp
+uci set dhcp.wlan.interface='wlan'
+uci set dhcp.wlan.ignore='0'
+uci set dhcp.wlan.start='100'
+uci set dhcp.wlan.limit='150'
+uci set dhcp.wlan.leasetime='12h'
+uci commit dhcp
+/etc/init.d/dnsmasq restart
 ```
 
 <WifiHtmodeNote />
 
-## 3. Force an 802.11n/HT40 channel
+## 5. Force an 802.11n/HT40 channel
 Current `wpad` builds do not handle 802.11ax HE options, so keep the radio on 2.4 GHz HT40:
 ```bash
 uci set wireless.radio0.he='0'
 uci set wireless.radio0.htmode='HT40'
 uci set wireless.radio0.channel='1'   # choose any valid 2.4 GHz channel
+uci commit wireless
 ```
 
 ### Optional: switch to 5 GHz AP
@@ -46,8 +77,9 @@ uci set wireless.radio0.channel='36'   # choose a legal channel for your country
 uci set wireless.radio0.htmode='VHT40' # try VHT80 if you have clean spectrum and it’s stable
 uci set wireless.radio0.he='0'
 uci set wireless.radio0.country='US'   # replace with your two-letter country code
+uci commit wireless
 ```
-Commit and `wifi reload` after switching bands; the SSID, key, and LAN bridge stay the same.
+Run `wifi reload` after switching bands; the SSID, key, and `wlan` network stay the same.
 
 :::info
 
@@ -55,20 +87,33 @@ If `logread` shows hostapd errors like `unknown configuration item 'ieee80211ac'
 
 :::
 
-## 4. Apply and start Wi-Fi
+## 6. Apply and start Wi-Fi
 ```bash
-uci commit wireless
 wifi reload            # rebuilds hostapd config and restarts the radio
 ifconfig phy0-ap0 up   # only if the interface stays DOWN after reload
 ```
 
-## 5. Validate the AP
+## 7. Validate the AP
 - `wifi status` reports `radio0` `up` with your chosen `channel`/`htmode` and interface `phy0-ap0`.
+- `ubus call network.interface.wlan status` shows `up: true` and `192.168.4.1` under `ipv4-address`.
 - `iwinfo phy0-ap0 info` shows `Mode: Master`, the expected SSID, and the same channel/width.
 - `ifconfig phy0-ap0` lists the interface as `UP ... RUNNING`.
-- `brctl show` lists `phy0-ap0` as a port on `br-lan`.
 - `logread | grep hostapd` ends with `phy0-ap0: AP-ENABLED`.
 
-Clients can now join SSID `<hostname>` (for example, `Omega-A7FE`) using the configured WPA2 key. Traffic will be bridged onto `br-lan`, so ensure the LAN side is serving DHCP or static addressing as needed.
+## 8. Troubleshooting (AP interface not up)
+If `phy0-ap0` never appears or stays `DOWN` after `wifi reload`:
+```bash
+wifi status
+logread | grep -E "hostapd|wpad|netifd|cfg80211"
+uci show wireless.radio0
+uci show wireless.default_radio0
+uci show network.wlan
+```
+Common causes:
+- Missing AP support: ensure a `wpad`/`hostapd` package is installed (otherwise `wifi reload` cannot start the AP).
+- Single radio: if STA mode is enabled, the AP interface may be disabled; set `wireless.default_radio0.mode='ap'` and reload.
+- Bad channel/regdomain: set `wireless.radio0.country` to your country code and try a different channel, then `wifi reload`.
 
-> Tested on Omega-A7FE: `wifi status` shows `radio0` up with SSID `Omega-A7FE`, `phy0-ap0` is on `br-lan`, and hostapd reports `AP-ENABLED`.
+Clients can now join SSID `<hostname>` (for example, `Omega-A7FE`) using the configured WPA2 key. Traffic will be on network `wlan`, so ensure `wlan` is configured with DHCP or static addressing as needed.
+
+> Tested on Omega-A7FE: `wifi status` shows `radio0` up with SSID `Omega-A7FE`, `phy0-ap0` is up in AP mode, and hostapd reports `AP-ENABLED`.

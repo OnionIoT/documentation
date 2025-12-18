@@ -18,11 +18,21 @@ uci set network.wwan.proto='dhcp'
 uci commit network
 ```
 
-Pick one of the following band-specific setups. Both start from the same clean `wireless` config; skip the section that does not apply to your AP.
-
 <WifiHtmodeNote />
 
-## 2. Configure for 2.4 GHz
+## 2. Scan for networks (optional)
+If you are not sure which SSID to join (or which encryption mode it uses), do a quick scan first.
+
+In STA mode, bring up the STA interface first so it exists, then scan using the interface name from `wifi status`:
+```bash
+iwinfo radio0 scan 
+```
+
+To scan 5 GHz networks, the radio must be set to `band='5g'` (see the 5 GHz config below). Switching bands will interrupt any existing Wi‑Fi link because this is a single radio.
+
+Pick one of the following band-specific setups. Both start from the same clean `wireless` config; skip the section that does not apply to your AP.
+
+## 3. Configure for 2.4 GHz
 Station settings tuned for 2.4 GHz networks:
 ```bash
 uci set wireless.radio0.disabled='0'
@@ -42,7 +52,7 @@ uci commit wireless
 wifi reload
 ```
 
-## 3. Configure for 5 GHz
+## 4. Configure for 5 GHz
 Station settings tuned for 5 GHz networks:
 ```bash
 uci set wireless.radio0.disabled='0'
@@ -62,19 +72,19 @@ uci commit wireless
 wifi reload
 ```
 
-## 4. Verify the link
+## 5. Verify the link
 Check that the interface comes up and that `wwan` gets an address:
 ```bash
 wifi status                          # look for ifname like phy0-sta0 and mode sta
 ubus call network.interface.wwan status
-ifconfig phy0-sta0                   # UP and RUNNING once associated
+ifconfig phy0-sta0                   # UP and RUNNING once associated (use the ifname from wifi status)
 ```
 When connected, `ubus ... status` shows `up: true` and lists an IPv4/IPv6 address under `\"ipv4-address\"`/`\"ipv6-address\"`.
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 - Log review: `logread | grep -i wpa_supplicant` and `logread | grep -i cfg80211`.
 - Wrong key/SSID: re-run the `uci set wireless.default_radio0.*` lines, `uci commit wireless`, then `wifi reload`.
 - 11ac config errors: if `logread` reports unknown `ieee80211ac`/`vht_*` options, your `wpad` build lacks 11ac; keep `htmode` at `HT20/HT40` or install a full `wpad` build.
-- One role at a time: enabling STA mode disables the AP interface on this single radio; switch back to AP by restoring `mode='ap'` and `network='lan'`.
+- One role at a time: enabling STA mode disables the AP interface on this single radio; switch back to AP by restoring `mode='ap'` and your AP network (for example `network='wlan'`).
 
 > Tested on Omega-2D29: `wifi status` reports interface `phy0-sta0` in `mode: sta` targeting SSID `TestNet`; `ubus call network.interface.wwan status` shows the interface available (no AP in range during test).
