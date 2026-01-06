@@ -45,7 +45,16 @@ uci commit network
 Changing the management subnet can disconnect your current SSH session. If you are connected over Ethernet and your PC is on a different subnet, you will need to reconfigure your PC to `192.168.4.x` (or reconnect over Wi‑Fi after DHCP is enabled below).
 :::
 
-## 4. Enable the DHCP server
+## 4. Add `wlan` to the LAN firewall zone
+Let Wi‑Fi clients reach LAN services and any upstream WAN by adding the new `wlan` interface to the existing `lan` zone:
+```bash
+uci add_list firewall.lan.network='wlan'
+uci commit firewall
+/etc/init.d/firewall restart
+```
+Check with `uci show firewall.lan.network` if you want to confirm the interface list (duplicates are harmless but you can dedupe by editing the UCI list).
+
+## 5. Enable the DHCP server
 Serve client addresses on `wlan` (and therefore on Wi‑Fi, since it is attached to network `wlan`) using `dnsmasq`:
 ```bash
 uci set dhcp.wlan=dhcp
@@ -60,7 +69,7 @@ uci commit dhcp
 
 <WifiHtmodeNote />
 
-## 5. Force an 802.11n/HT40 channel
+## 6. Force an 802.11n/HT40 channel
 Current `wpad` builds do not handle 802.11ax HE options, so keep the radio on 2.4 GHz HT40:
 ```bash
 uci set wireless.radio0.he='0'
@@ -87,20 +96,20 @@ If `logread` shows hostapd errors like `unknown configuration item 'ieee80211ac'
 
 :::
 
-## 6. Apply and start Wi-Fi
+## 7. Apply and start Wi-Fi
 ```bash
 wifi reload            # rebuilds hostapd config and restarts the radio
 ifconfig phy0-ap0 up   # only if the interface stays DOWN after reload
 ```
 
-## 7. Validate the AP
+## 8. Validate the AP
 - `wifi status` reports `radio0` `up` with your chosen `channel`/`htmode` and interface `phy0-ap0`.
 - `ubus call network.interface.wlan status` shows `up: true` and `192.168.4.1` under `ipv4-address`.
 - `iwinfo phy0-ap0 info` shows `Mode: Master`, the expected SSID, and the same channel/width.
 - `ifconfig phy0-ap0` lists the interface as `UP ... RUNNING`.
 - `logread | grep hostapd` ends with `phy0-ap0: AP-ENABLED`.
 
-## 8. Troubleshooting (AP interface not up)
+## 9. Troubleshooting (AP interface not up)
 If `phy0-ap0` never appears or stays `DOWN` after `wifi reload`:
 ```bash
 wifi status
