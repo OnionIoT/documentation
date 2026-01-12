@@ -81,7 +81,29 @@ ifconfig phy0-sta0                   # UP and RUNNING once associated (use the i
 ```
 When connected, `ubus ... status` shows `up: true` and lists an IPv4/IPv6 address under `\"ipv4-address\"`/`\"ipv6-address\"`.
 
-## 6. Troubleshooting
+## 6. Allow SSH access over STA (optional)
+By default, inbound SSH from the STA network may be blocked by the firewall. If you want to SSH into the Omega4 over its STA connection, pick one approach:
+
+**Option A: Trust the STA network (adds `wwan` to LAN zone)**
+```bash
+uci add_list firewall.lan.network='wwan'
+uci commit firewall
+/etc/init.d/firewall restart
+```
+
+**Option B: Allow SSH on the STA firewall zone only**
+```bash
+uci add firewall rule
+uci set firewall.@rule[-1].name='Allow-SSH-STA'
+uci set firewall.@rule[-1].src='wwan'
+uci set firewall.@rule[-1].proto='tcp'
+uci set firewall.@rule[-1].dest_port='22'
+uci set firewall.@rule[-1].target='ACCEPT'
+uci commit firewall
+/etc/init.d/firewall restart
+```
+
+## 7. Troubleshooting
 - Log review: `logread | grep -i wpa_supplicant` and `logread | grep -i cfg80211`.
 - Wrong key/SSID: re-run the `uci set wireless.default_radio0.*` lines, `uci commit wireless`, then `wifi reload`.
 - 11ac config errors: if `logread` reports unknown `ieee80211ac`/`vht_*` options, your `wpad` build lacks 11ac; keep `htmode` at `HT20/HT40` or install a full `wpad` build.
