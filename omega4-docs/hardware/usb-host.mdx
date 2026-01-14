@@ -1,0 +1,72 @@
+---
+title: USB Host
+slug: /hardware/usb-host
+description: Use USB in host mode on the Omega4, including verification and common workflows.
+---
+
+# USB Host Guide
+
+:::note Omega4 EVB USB-C
+The Omega4 EVB has a single USB-C port that can be configured as **Host** or **Device (Gadget)**. Omega4 official firmware defaults to **USB host** mode. The port supports USB 2.0 only.
+:::
+
+## 1. Verify host mode
+
+```sh
+cat /sys/class/usb_role/20b00000.usb-role-switch/role
+cat /sys/devices/platform/20e10000.usb2-phy/otg_mode
+```
+
+Expected values are `host` and `host`.
+
+## 2. List connected devices
+
+```sh
+lsusb
+dmesg | tail -n 50
+```
+
+You should see enumeration logs when you plug in a device.
+
+## 3. Common use cases
+
+### 3.1 USB storage
+```sh
+blkid
+ls /dev/sd*
+```
+Mount (example):
+```sh
+mkdir -p /mnt/usb
+mount /dev/sda1 /mnt/usb
+```
+
+### 3.2 USB serial adapters
+```sh
+ls /dev/ttyUSB* /dev/ttyACM* 2>/dev/null
+```
+Use `screen`, `minicom`, or `picocom` to connect as needed.
+
+### 3.3 USB Ethernet adapters
+```sh
+ip link
+```
+Bring the interface up and configure DHCP or a static address.
+
+## 4. Switch back to host mode (if changed)
+
+If the port was switched to device mode for gadget testing, force host mode:
+```sh
+echo host > /sys/class/usb_role/20b00000.usb-role-switch/role
+echo host > /sys/devices/platform/20e10000.usb2-phy/otg_mode
+```
+
+## 5. Power notes
+
+- The Omega4 EVB provides 5 V on the USB-A host port, but high-draw peripherals (spinning disks, Wi-Fi dongles) may need a powered hub.
+- If devices enumerate and immediately drop, check the 5 V rail and use shorter cables.
+
+## 6. Troubleshooting
+
+- No devices show up: verify host mode, confirm the USB 2.0 Host support is enabled in your firmware, and check `dmesg`.
+- Enumeration errors: try a different cable or a powered hub.

@@ -30,6 +30,8 @@ const sidebars = {
         'hardware/spi-nand-flash',
         'hardware/sd-card',
         'hardware/pwm',
+        'hardware/usb-host',
+        'hardware/usb-device-gadget',
       ],
     },
   ],

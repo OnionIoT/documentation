@@ -1,0 +1,261 @@
+---
+title: USB Device (Gadget)
+slug: /hardware/usb-device-gadget
+description: Use USB in device/gadget mode on the Omega4 (RV1103B), including single and composite gadgets.
+---
+
+# USB Device (Gadget) Guide
+
+This guide shows how to put the Omega4 into USB **device (gadget)** mode, enable individual gadget functions, and combine multiple functions into a composite gadget.
+
+## 1. Prerequisites
+
+### 1.1 Switch to device mode
+```sh
+echo device > /sys/class/usb_role/20b00000.usb-role-switch/role
+echo peripheral > /sys/devices/platform/20e10000.usb2-phy/otg_mode
+```
+
+### 1.2 Mount configfs
+```sh
+mkdir -p /sys/kernel/config
+mount -t configfs none /sys/kernel/config
+```
+
+### 1.3 Unbind any existing gadget
+```sh
+G=/sys/kernel/config/usb_gadget/g1
+[ -e $G/UDC ] && echo "" > $G/UDC || true
+```
+
+:::note Omega4 EVB note
+On the Omega4 EVB, VBUS detect is not wired. Device attach is forced in the DTS:
+```
+&u2phy_otg { rockchip,force-vbus-valid; };
+```
+This keeps VBUS valid asserted even without a hardware detect pin.
+:::
+
+## 2. Enabled gadget functions
+
+- ACM (`CONFIG_USB_CONFIGFS_ACM`)
+- serial (`CONFIG_USB_CONFIGFS_SERIAL`)
+- mass storage (`CONFIG_USB_CONFIGFS_MASS_STORAGE`)
+- ECM / ECM-subset / EEM (`CONFIG_USB_CONFIGFS_ECM`, `CONFIG_USB_CONFIGFS_ECM_SUBSET`, `CONFIG_USB_CONFIGFS_EEM`)
+- NCM (`CONFIG_USB_CONFIGFS_NCM`)
+- RNDIS (`CONFIG_USB_CONFIGFS_RNDIS`)
+- OBEX (`CONFIG_USB_CONFIGFS_OBEX`)
+- FunctionFS (`CONFIG_USB_CONFIGFS_F_FS`)
+- HID (`CONFIG_USB_CONFIGFS_F_HID`)
+- UAC1/UAC2 (`CONFIG_USB_CONFIGFS_F_UAC1`, `CONFIG_USB_CONFIGFS_F_UAC2`)
+- UVC (`CONFIG_USB_CONFIGFS_F_UVC`)
+
+## 3. Function glossary (shorthand)
+
+- **ACM**: CDC Abstract Control Model (USB serial, host sees `/dev/ttyACM*`).
+- **serial**: Legacy USB serial (`g_serial`, host sees `/dev/ttyUSB*`).
+- **mass storage**: USB Mass Storage (block device, host sees `/dev/sdX`).
+- **ECM**: CDC Ethernet Control Model (Linux/macOS).
+- **ECM-subset**: Reduced ECM variant (Linux-only).
+- **EEM**: CDC Ethernet Emulation Model (Linux-only, less common).
+- **NCM**: CDC Network Control Model (faster CDC Ethernet on many hosts).
+- **RNDIS**: Microsoft Remote NDIS (Windows Ethernet).
+- **OBEX**: Object Exchange (file transfer over USB).
+- **FunctionFS**: User-space USB function endpoints.
+- **HID**: Human Interface Device (keyboard/mouse/gamepad).
+- **UAC1/UAC2**: USB Audio Class v1/v2.
+- **UVC**: USB Video Class (webcam).
+
+## 4. Base gadget skeleton (run once per boot)
+
+Run this once before adding any functions:
+```sh
+G=/sys/kernel/config/usb_gadget/g1
+UDC=20b00000.usb
+
+mkdir -p $G
+echo 0x1d6b > $G/idVendor
+echo 0x0104 > $G/idProduct
+echo 0x0100 > $G/bcdDevice
+echo 0x0200 > $G/bcdUSB
+
+mkdir -p $G/strings/0x409
+echo Omega4 > $G/strings/0x409/manufacturer
+echo Omega4 USB Gadget > $G/strings/0x409/product
+echo 0123456789ABCDEF > $G/strings/0x409/serialnumber
+
+mkdir -p $G/configs/c.1/strings/0x409
+echo "Config 1" > $G/configs/c.1/strings/0x409/configuration
+echo 250 > $G/configs/c.1/MaxPower
+```
+
+## 5. Auto-initialize device mode with an init.d script
+
+Use an init script to force device mode, mount configfs, and create the base gadget on boot.
+
+1) Create `/etc/init.d/usb-gadget`:
+```sh
+cat <<'EOF' > /etc/init.d/usb-gadget
+#!/bin/sh /etc/rc.common
+
+START=90
+STOP=10
+
+G=/sys/kernel/config/usb_gadget/g1
+UDC=20b00000.usb
+
+start() {
+  echo device > /sys/class/usb_role/20b00000.usb-role-switch/role
+  echo peripheral > /sys/devices/platform/20e10000.usb2-phy/otg_mode
+
+  mkdir -p /sys/kernel/config
+  mount -t configfs none /sys/kernel/config 2>/dev/null || true
+
+  [ -e $G/UDC ] && echo "" > $G/UDC || true
+
+  mkdir -p $G
+  echo 0x1d6b > $G/idVendor
+  echo 0x0104 > $G/idProduct
+  echo 0x0100 > $G/bcdDevice
+  echo 0x0200 > $G/bcdUSB
+
+  mkdir -p $G/strings/0x409
+  echo Omega4 > $G/strings/0x409/manufacturer
+  echo Omega4 USB Gadget > $G/strings/0x409/product
+  echo 0123456789ABCDEF > $G/strings/0x409/serialnumber
+
+  mkdir -p $G/configs/c.1/strings/0x409
+  echo "Config 1" > $G/configs/c.1/strings/0x409/configuration
+  echo 250 > $G/configs/c.1/MaxPower
+}
+
+stop() {
+  [ -e $G/UDC ] && echo "" > $G/UDC || true
+}
+EOF
+```
+
+2) Enable and start it:
+```sh
+chmod +x /etc/init.d/usb-gadget
+/etc/init.d/usb-gadget enable
+/etc/init.d/usb-gadget start
+```
+
+This initializes the base gadget at boot. Add your chosen function setup (for example ACM or ECM) to the `start()` section or call a separate script from there.
+
+## 6. Individual modes
+
+### 6.1 Mass storage (MSD)
+Expose a block device to the host for quick file exchange or imaging workflows.
+```sh
+IMG=/tmp/usb.img
+dd if=/dev/zero of=$IMG bs=1M count=64
+
+mkdir -p $G/functions/mass_storage.0
+echo $IMG > $G/functions/mass_storage.0/lun.0/file
+echo 1 > $G/functions/mass_storage.0/lun.0/removable
+
+ln -s $G/functions/mass_storage.0 $G/configs/c.1/
+echo $UDC > $G/UDC
+```
+Host should see a new block device. Format/mount on host. Do not mount the same image on the DUT at the same time.
+
+### 6.2 USB ACM serial (ttyACM)
+Provide a USB serial console for shell access without extra adapters.
+```sh
+mkdir -p $G/functions/acm.usb0
+ln -s $G/functions/acm.usb0 $G/configs/c.1/
+echo $UDC > $G/UDC
+```
+Host should see `/dev/ttyACM0`.
+
+To get a login on the DUT side, you need a getty (not always installed by default). If `agetty` is available:
+```sh
+/sbin/agetty -L 115200 ttyGS0 vt100
+```
+If `agetty` is missing, install `util-linux-agetty` (or enable busybox getty).
+
+### 6.3 USB Ethernet (ECM, Linux/macOS)
+Create a direct USB network link to a Linux/macOS host.
+
+:::note Host compatibility
+There is no single USB Ethernet mode that works on every OS out of the box. ECM is the safest choice for Linux/macOS, while Windows typically expects RNDIS. For broad compatibility, expose both ECM and RNDIS in a composite gadget so each host can pick the supported function.
+:::
+
+```sh
+mkdir -p $G/functions/ecm.usb0
+echo 02:12:34:56:78:9a > $G/functions/ecm.usb0/host_addr
+echo 02:12:34:56:78:9b > $G/functions/ecm.usb0/dev_addr
+ln -s $G/functions/ecm.usb0 $G/configs/c.1/
+echo $UDC > $G/UDC
+```
+Bring up on DUT:
+```sh
+ip link set usb0 up
+ip addr add 192.168.10.1/24 dev usb0
+```
+On host, configure `192.168.10.2/24` on the new USB interface.
+
+### 6.4 USB Ethernet (RNDIS, Windows)
+Create a USB network link for Windows hosts using RNDIS.
+```sh
+mkdir -p $G/functions/rndis.usb0
+echo 02:12:34:56:78:9a > $G/functions/rndis.usb0/host_addr
+echo 02:12:34:56:78:9b > $G/functions/rndis.usb0/dev_addr
+ln -s $G/functions/rndis.usb0 $G/configs/c.1/
+echo $UDC > $G/UDC
+```
+Windows should enumerate an RNDIS device (driver may be required).
+
+### 6.5 USB Ethernet (NCM)
+Use NCM when your host supports it for higher throughput than ECM.
+```sh
+mkdir -p $G/functions/ncm.usb0
+echo 02:12:34:56:78:9a > $G/functions/ncm.usb0/host_addr
+echo 02:12:34:56:78:9b > $G/functions/ncm.usb0/dev_addr
+ln -s $G/functions/ncm.usb0 $G/configs/c.1/
+echo $UDC > $G/UDC
+```
+Use NCM if your host supports it (many Linux systems do).
+
+## 7. Multiple functions at the same time (composite gadget)
+
+Example: **Mass storage + ECM + ACM**
+```sh
+# Storage
+IMG=/tmp/usb.img
+dd if=/dev/zero of=$IMG bs=1M count=64
+mkdir -p $G/functions/mass_storage.0
+echo $IMG > $G/functions/mass_storage.0/lun.0/file
+echo 1 > $G/functions/mass_storage.0/lun.0/removable
+
+# ACM
+mkdir -p $G/functions/acm.usb0
+
+# ECM
+mkdir -p $G/functions/ecm.usb0
+echo 02:12:34:56:78:9a > $G/functions/ecm.usb0/host_addr
+echo 02:12:34:56:78:9b > $G/functions/ecm.usb0/dev_addr
+
+# Link all
+ln -s $G/functions/mass_storage.0 $G/configs/c.1/
+ln -s $G/functions/acm.usb0 $G/configs/c.1/
+ln -s $G/functions/ecm.usb0 $G/configs/c.1/
+
+echo $UDC > $G/UDC
+```
+
+You can mix other functions similarly as long as the kernel has them enabled.
+
+## 8. Cleanup / unbind
+```sh
+echo "" > $G/UDC
+```
+Remove symlinks and function directories if you need to rebuild the gadget.
+
+## 9. Quick status checks
+```sh
+cat /sys/class/udc/20b00000.usb/state
+cat /sys/kernel/debug/usb/20b00000.usb/link_state
+```
