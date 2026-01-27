@@ -1,12 +1,12 @@
 ---
 title: Flashing Firmware
 slug: /software/flashing
-description: Enter recovery flashing mode on Omega4 and write factory images to all partitions using upgrade_tool.
+description: Enter recovery flashing mode on Omega4 and write factory images to all partitions using rkdeveloptool.
 ---
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
-Use this procedure when you need to reflash an Omega4 completely (bootloader, kernel, and rootfs). It assumes you have the official image set for your hardware revision and a host machine with `upgrade_tool` available. Official firmware builds are published at https://github.com/OnionIoT/openwrt-omega4/releases.
+Use this procedure when you need to reflash an Omega4 completely (bootloader, kernel, and rootfs). It assumes you have the official image set for your hardware revision and a host machine with `rkdeveloptool` available. The tool is published at https://github.com/rockchip-linux/rkdeveloptool and official firmware builds are published at https://github.com/OnionIoT/openwrt-omega4/releases.
 
 :::warning Risk of data loss
 This flow rewrites all partitions. Back up any calibration or custom data first and double-check that the offsets below match the release notes for your image set.
@@ -33,12 +33,12 @@ This flow rewrites all partitions. Back up any calibration or custom data first 
 Run the commands below from the directory containing your images. Always load `download.bin` after each time you enter flashing mode, even if you only plan to rewrite one partition.
 
 ```bash
-./upgrade_tool db download.bin
-./upgrade_tool wl 0x0    0x200   env.img
-./upgrade_tool wl 0xa00  0x800   uboot.img
-./upgrade_tool wl 0x1200 0x4000  boot.img
-./upgrade_tool wl 0x5200 -1 rootfs.img
-./upgrade_tool rd
+rkdeveloptool db download.bin
+rkdeveloptool wl 0x0    env.img
+rkdeveloptool wl 0xa00  uboot.img
+rkdeveloptool wl 0x1200 boot.img
+rkdeveloptool wl 0x5200 -1 rootfs.img
+rkdeveloptool rd
 ```
 
 - Offsets and sizes are in LBAs (512-byte blocks) and match the table below; confirm against the release notes for your board and adjust if the layout changes.
@@ -77,14 +77,14 @@ If the boot log shows a UBI attach failure similar to:
 [    4.077298] ubi0 error: ubi_attach_mtd_dev: failed to attach mtd4, error -22
 ```
 
-Erase the UBI region before reflashing the rootfs to clear stale metadata:
+Erase the flash before reflashing the rootfs to clear stale metadata:
 
 ```bash
-./upgrade_tool db download.bin
-./upgrade_tool el 0x5200 0x80000
+rkdeveloptool db download.bin
+rkdeveloptool ef
 ```
 
-Then rerun the rootfs write command from the table above. This forces a clean UBI attach on the next boot.
+Then rerun the flashing commands from the table above. This forces a clean UBI attach on the next boot.
 
 ## Partition Info:
 | NO | LBA        | Size       | Name    | Size (MB) |

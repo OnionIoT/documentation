@@ -1,0 +1,169 @@
+---
+title: Camera (CSI)
+slug: /hardware/camera-csi
+description: Capture frames from the Omega4 camera pipeline using V4L2.
+---
+
+# Camera (CSI) Guide
+
+This guide shows how to use the Omega4 (RV1103B) camera pipeline on OpenWrt, which nodes to use, and the most important controls for bring-up and debug. The source of truth is your OpenWrt build and kernel packages.
+
+## 1. Quick start (capture a single frame)
+
+1) Find your sensor sub-device and main capture node:
+```sh
+v4l2-ctl --list-devices
+media-ctl -p
+```
+
+2) Disable the sensor test pattern (use real scene):
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
+```
+
+3) Set exposure and gain (tune for your lighting):
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c exposure=900
+v4l2-ctl -d /dev/v4l-subdevX -c analogue_gain=4096
+```
+
+4) Capture a single NV12 frame from the main capture node:
+```sh
+v4l2-ctl -d /dev/videoY --set-fmt-video=width=2304,height=1296,pixelformat=NV12
+v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
+  --stream-to=/tmp/nv12_2304x1296.raw
+```
+
+5) Convert on your host with ffmpeg:
+```sh
+ffmpeg -y -f rawvideo -pixel_format nv12 -video_size 2304x1296 \
+  -i /path/to/nv12_2304x1296.raw -frames:v 1 /path/to/nv12_2304x1296.png
+```
+
+If you only want the luma plane (Y-only debug):
+```sh
+ffmpeg -y -f rawvideo -pixel_format gray -video_size 2304x1296 \
+  -i /path/to/nv12_2304x1296.raw -frames:v 1 /path/to/nv12_2304x1296_y.png
+```
+
+## 2. Topology (what is what)
+
+Typical pipeline:
+
+`Sensor -> CSI2 DPHY -> MIPI CSI2 host -> RKCIF -> RKISP -> /dev/videoY`
+
+Device nodes of interest (common layout):
+- `/dev/media0`: rkcif media graph (sensor + CSI receiver side)
+- `/dev/media1`: rkisp mainpath media graph (ISP output side)
+- `/dev/v4l-subdevX`: sensor sub-device (controls live here)
+- `/dev/videoY`: rkisp mainpath capture (use this for raw frame dumps)
+
+Discover your exact node IDs with:
+```sh
+v4l2-ctl --list-devices
+media-ctl -p
+```
+
+## 3. Formats: NV12 vs NM12 (and friends)
+
+`/dev/videoY` often advertises:
+- `NV12`: standard linear Y + interleaved UV (4:2:0). Best for portability.
+- `NV21`: standard linear Y + interleaved VU (4:2:0).
+- `NV16`/`NV61`: standard linear 4:2:2 variants.
+- `NM12`/`NM21`: Rockchip-specific layouts for internal accelerators.
+
+Recommendation:
+- Use `NV12` for validation and host-side inspection with ffmpeg.
+
+List formats:
+```sh
+v4l2-ctl -d /dev/videoY --list-formats-ext
+```
+
+## 4. Important controls (sensor sub-device)
+
+List controls and current values:
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -l
+v4l2-ctl -d /dev/v4l-subdevX --all
+```
+
+Common controls and what they do:
+
+- `test_pattern`: generates a synthetic pattern to validate the pipeline.
+- `exposure`: integration time; increase to brighten the image.
+- `analogue_gain`: sensor gain; increase after exposure for fine tuning.
+- `vertical_blanking`: affects frame timing and max exposure.
+- `horizontal_blanking`: often fixed/read-only for a mode.
+- `horizontal_flip` / `vertical_flip`: mirror/flip the image.
+- `link_frequency` / `pixel_rate`: read-only timing values.
+
+## 5. Capture recipes
+
+### 5.1 640x480 NV12 (fast debug)
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
+v4l2-ctl -d /dev/v4l-subdevX -c exposure=400 -c analogue_gain=1024
+
+v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=NV12
+v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
+  --stream-to=/tmp/nv12_640x480.raw
+```
+
+Host conversion:
+```sh
+ffmpeg -y -f rawvideo -pixel_format nv12 -video_size 640x480 \
+  -i /path/to/nv12_640x480.raw -frames:v 1 /path/to/nv12_640x480.png
+```
+
+### 5.2 Test pattern (pipeline validation)
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=2
+v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=NV12
+v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
+  --stream-to=/tmp/tp.raw
+```
+
+### 5.3 UYVY (packed 4:2:2)
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
+v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=UYVY
+v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
+  --stream-to=/tmp/uyvy_640x480.raw
+```
+
+Host conversion:
+```sh
+ffmpeg -y -f rawvideo -pixel_format uyvy422 -video_size 640x480 \
+  -i /path/to/uyvy_640x480.raw -frames:v 1 /path/to/uyvy_640x480.png
+```
+
+## 6. Sanity checks (format/buffer integrity)
+
+Confirm negotiated format/strides:
+```sh
+v4l2-ctl -d /dev/videoY --get-fmt-video
+```
+
+Check file size matches format:
+- NV12 bytes = `width * height * 3 / 2`
+- UYVY bytes = `width * height * 2`
+
+Example:
+```sh
+wc -c /tmp/nv12_640x480.raw
+```
+
+## 7. Troubleshooting
+
+### "Only black-to-white gradient"
+Likely cause: test pattern still enabled.
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
+```
+
+### Image too dark / too bright
+- Increase `exposure` first, then `analogue_gain`.
+
+### "Green/pink blocks" or UV corruption
+This can indicate buffer layout or DMA issues. Confirm the negotiated format with `--get-fmt-video` and validate file sizes before deeper debugging.

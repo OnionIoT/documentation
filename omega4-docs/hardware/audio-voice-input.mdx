@@ -1,0 +1,120 @@
+---
+title: Audio & Voice Input
+slug: /hardware/audio-voice-input
+description: Record audio from the Omega4 onboard analog codec (acodec) mic input.
+---
+
+# Audio & Voice Input Guide
+
+This guide covers how to use the onboard RV1103B analog codec (acodec) to record from the Omega4 microphone input. The physical connection is **Mic In P/N**, which maps to the differential left ADC path (**DiffadcL**).
+
+## 1. Prerequisites
+
+- Firmware with audio enabled.
+- `alsa-utils` package.
+
+Install tools if needed:
+```sh
+opkg update
+opkg install alsa-utils
+```
+
+## 2. Quick start (record in 4 steps)
+
+### 2.1 Enable mic bias and select the ADC path
+```sh
+amixer -c 0 sset 'ADC Main MICBIAS' On
+amixer -c 0 sset 'ADC MICBIAS Voltage' VREFx0_975
+amixer -c 0 sset 'ADC Mode' DiffadcL
+amixer -c 0 sset 'ADC MIC Left' Work
+amixer -c 0 sset 'ADC MIC Right' Work
+```
+
+### 2.2 Apply safe gain defaults
+```sh
+amixer -c 0 sset 'ADC MIC Left Gain' 2
+amixer -c 0 sset 'ADC MIC Right Gain' 2
+amixer -c 0 sset 'ADC ALC Left' 24
+amixer -c 0 sset 'ADC ALC Right' 24
+amixer -c 0 sset 'ADC Digital Left' 195
+amixer -c 0 sset 'ADC Digital Right' 195
+```
+
+### 2.3 Record a mono WAV file
+```sh
+arecord -D hw:0,0 -f S16_LE -r 16000 -c 1 -d 5 /tmp/mic.wav
+```
+
+### 2.4 Copy the file to your host (optional)
+```sh
+scp root@<dut-ip>:/tmp/mic.wav .
+```
+
+## 3. Controls reference (acodec on card 0)
+
+List all controls:
+```sh
+amixer -c 0 scontrols
+```
+
+Key controls:
+
+- `ADC Main MICBIAS` (Off/On): enables mic bias (required for electret mics).
+- `ADC MICBIAS Voltage`: choose a bias voltage; `VREFx0_975` is the tested default.
+- `ADC Mode`: `DiffadcL` / `SingadcL` / `DiffadcR` / `SingadcR` / `SingadcLR` / `DiffadcLR`. For Mic In P/N on Omega4 use `DiffadcL` (mono).
+- `ADC MIC Left/Right` (Work/Mute): enable the ADC paths.
+- `ADC MIC Left Gain` / `ADC MIC Right Gain` (0..3): mic PGA gain.
+  - 0x01 -> 0 dB
+  - 0x02 -> 20 dB
+  - 0x03 -> 12 dB
+- `ADC ALC Left/Right` (0..31): analog ALC gain, from -9 dB (0) to +37.5 dB (31) in 1.5 dB steps. `24` (~+27 dB) is a balanced starting point.
+- `ADC Digital Left/Right` (0..255): digital gain. 0 dB is `0xc3` (195), which is the baseline used here.
+- `ADC HPF Cut-off`: high-pass filter control; leave default unless you need to remove DC or very low frequency noise.
+
+## 4. Gain tuning notes
+
+- If the signal is too low, increase ALC first (for example `24 -> 28`), then raise digital gain (for example `195 -> 210`).
+- If the signal clips (flat peaks), reduce ALC and/or digital gain.
+- Clipping was observed when ALC was very high with additional digital gain.
+
+## 5. Verification commands
+
+Capture 3 seconds at 16 kHz mono:
+```sh
+arecord -D hw:0,0 -f S16_LE -r 16000 -c 1 -d 3 /tmp/mic-test.wav
+```
+
+Check current mixer values:
+```sh
+amixer -c 0 sget 'ADC Main MICBIAS'
+amixer -c 0 sget 'ADC MICBIAS Voltage'
+amixer -c 0 sget 'ADC Mode'
+amixer -c 0 sget 'ADC MIC Left'
+amixer -c 0 sget 'ADC MIC Right'
+amixer -c 0 sget 'ADC MIC Left Gain'
+amixer -c 0 sget 'ADC MIC Right Gain'
+amixer -c 0 sget 'ADC ALC Left'
+amixer -c 0 sget 'ADC ALC Right'
+amixer -c 0 sget 'ADC Digital Left'
+amixer -c 0 sget 'ADC Digital Right'
+```
+
+## 6. Quick speech-to-text demo (cloud)
+
+Record audio and send it to a cloud STT API. Replace the API key placeholder before running.
+
+```sh
+API_KEY="YOUR_API_KEY"
+arecord -D hw:0,0 -f S16_LE -r 16000 -c 1 -d 5 /tmp/mic.wav
+
+curl -s https://api.openai.com/v1/audio/transcriptions \
+  -H "Authorization: Bearer $API_KEY" \
+  -F model=whisper-1 \
+  -F file=@/tmp/mic.wav
+```
+
+## 7. Troubleshooting
+
+- `arecord` shows no devices: confirm the audio codec and I2S/SAI interface are enabled in your firmware.
+- Audio is noisy or silent: verify the mic wiring, bias settings, and gain levels.
+- Playback fails: check that a speaker/amp is connected and `aplay -l` lists an output device.

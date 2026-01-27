@@ -1,0 +1,54 @@
+---
+title: SPI
+slug: /hardware/spi
+description: Use SPI devices on the Omega4 with spidev and spi-tools.
+---
+
+# SPI Guide
+
+Use this guide to verify SPI support, enumerate devices, and run a simple transfer with the Omega4.
+
+## 1. Prerequisites
+
+- Firmware with SPI enabled (Omega4 support starts at v0.0.7).
+- `spi-tools` package.
+
+Install tools if needed:
+```sh
+opkg update
+opkg install spi-tools
+```
+
+## 2. Find the SPI device
+
+List SPI character devices:
+```sh
+ls /dev/spidev*
+```
+
+If multiple buses are available, list kernel messages to identify the active controller:
+```sh
+dmesg | grep -i spi | tail -n 20
+```
+
+## 3. Quick transfer test
+
+`spidev_test` sends and receives data over an SPI device. Replace `<bus>` and `<cs>` with your device path:
+```sh
+spidev_test -D /dev/spidev<bus>.<cs> -s 1000000 -p "Omega4"
+```
+
+If your peripheral echoes data, you should see RX bytes printed in the output.
+
+## 4. Set SPI parameters (example)
+
+Adjust mode, speed, and word size as needed for your device:
+```sh
+spidev_test -D /dev/spidev<bus>.<cs> -s 5000000 -b 8 -m 0 -p "\x9f"
+```
+
+## 5. Troubleshooting
+
+- No `/dev/spidev*`: confirm the device tree enables the SPI controller and the `spidev` node for the EVB header.
+- Transfers fail: check wiring, chip select, and required SPI mode/clock.
+- Bus hangs: power-cycle the peripheral and retry with a lower speed.

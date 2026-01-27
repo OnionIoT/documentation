@@ -1,0 +1,59 @@
+---
+title: I2C
+slug: /hardware/i2c
+description: Scan, read, and write I2C devices on the Omega4.
+---
+
+# I2C Guide
+
+Use this guide to scan an I2C bus, detect devices, and perform basic reads/writes on the Omega4.
+
+## 1. Prerequisites
+
+- Firmware with I2C enabled (Omega4 support starts at v0.0.7).
+- `i2c-tools` package.
+
+Install tools if needed:
+```sh
+opkg update
+opkg install i2c-tools
+```
+
+## 2. Find the I2C bus
+
+List available I2C devices:
+```sh
+ls /dev/i2c-*
+```
+
+Check bus numbers and adapter names:
+```sh
+i2cdetect -l
+```
+
+## 3. Scan for devices
+
+Replace `<bus>` with your bus number:
+```sh
+i2cdetect -y <bus>
+```
+
+You should see 7-bit addresses for attached devices.
+
+## 4. Read/write quick tests
+
+Read a single register:
+```sh
+i2cget -y <bus> 0x50 0x00
+```
+
+Write a single register:
+```sh
+i2cset -y <bus> 0x50 0x00 0x01
+```
+
+## 5. Troubleshooting
+
+- No `/dev/i2c-*`: confirm the device tree enables the I2C controller and pinmux for the EVB header.
+- `Remote I/O error`: check wiring, device address, and pull-up resistors.
+- Bus hangs after a test: power-cycle the peripheral and retry the scan.

@@ -1,0 +1,202 @@
+---
+title: HPMCU (RISC-V Coprocessor)
+slug: /hardware/hpmcu
+description: Start, stop, and communicate with the Omega4 HPMCU from Linux.
+---
+
+# HPMCU (RISC-V Coprocessor) Guide
+
+The Omega4 (RV1103B) includes a small RISC-V core called the HPMCU. Linux runs on the ARM core, while the HPMCU runs its own firmware and can handle low-latency tasks. This guide focuses on using the HPMCU from Linux.
+
+## 1. Quick start
+
+Check the loader status and heartbeat (the heartbeat counter is stored in shared memory):
+```sh
+cat /sys/bus/platform/devices/*hpmcu-loader*/status
+cat /sys/bus/platform/devices/*hpmcu-loader*/heartbeat
+cat /sys/bus/platform/devices/*hpmcu-loader*/fw_id
+```
+
+Start or stop the HPMCU:
+```sh
+echo 1 > /sys/bus/platform/devices/*hpmcu-loader*/start
+echo 1 > /sys/bus/platform/devices/*hpmcu-loader*/stop
+```
+
+## 2. Switch firmware images
+
+Firmware files are located in `/lib/firmware/omega4/`. If multiple firmware images are installed, select one by name:
+```sh
+echo omega4/rv1103b-hpmcu-alt.bin > /sys/bus/platform/devices/*hpmcu-loader*/firmware
+echo 1 > /sys/bus/platform/devices/*hpmcu-loader*/stop
+echo 1 > /sys/bus/platform/devices/*hpmcu-loader*/start
+```
+
+## 3. Mailbox ping (ARM to HPMCU)
+
+The mailbox is a lightweight IPC path using 32-bit command and 32-bit data words. Linux sends a command/data pair to the HPMCU and waits for a response. The HPMCU firmware reads the mailbox registers, handles the command, then writes a response back.
+
+Send a mailbox ping and read the response:
+```sh
+echo 0x4f4d4355 0x1 > /sys/bus/platform/devices/hpmcu-mailbox/ping
+cat /sys/bus/platform/devices/hpmcu-mailbox/status
+```
+
+Input parameters:
+- `ping`: two hex values: `<command> <data>`. Example above uses command `0x4f4d4355` ("OMCU") and data `0x1`.
+- `status`: reports the last received command/data and a status code from the mailbox driver.
+
+The response should echo the command and data if the firmware is running.
+
+### 3.1 MCU mailbox handling example
+
+At a high level, the firmware polls (or handles an IRQ) for a new message, reads the command/data, then writes the response. The exact register names are specific to the RV1103B mailbox controller, but the logic looks like this:
+```c
+// Pseudocode - use your mailbox register definitions.
+if (mailbox_a2b_status()) {
+  uint32_t cmd = mailbox_a2b_cmd();
+  uint32_t data = mailbox_a2b_data();
+
+  // Echo ping (or add your own command handling).
+  mailbox_b2a_write(cmd, data);
+  mailbox_clear_a2b();
+}
+```
+
+For bring-up, a simple echo response is enough to validate that the HPMCU is running and the mailbox path is working.
+
+## 4. What to expect in logs
+
+Check kernel logs for loader and mailbox messages:
+```sh
+dmesg | grep -i hpmcu
+```
+
+You should see the firmware load/start sequence and a successful auto-ping from the mailbox driver.
+
+## 5. Shared memory between CPU and HPMCU
+
+For larger data, the ARM core and HPMCU can use a shared DDR region. This is typically a reserved memory window in the device tree so Linux does not allocate it.
+
+How it works at a high level:
+- **Linux (ARM)** maps the shared region (via a reserved-memory node) and writes data into it.
+- **HPMCU** reads/writes the same physical addresses directly.
+- **Cache maintenance** is required so both sides see up-to-date data.
+
+Example flow:
+1) ARM writes a buffer into the shared region and cleans/flushes caches.
+2) ARM notifies the HPMCU via mailbox (command + pointer/offset).
+3) HPMCU reads the buffer, processes it, and writes a response.
+4) HPMCU notifies ARM via mailbox. ARM invalidates caches before reading.
+
+Shared-memory access patterns are firmware-specific. Start with mailbox-only ping/response, then add a reserved region and cache maintenance when you need larger payloads.
+
+## 6. Create a custom HPMCU firmware image
+
+Use the loader firmware source as a reference, then create your own OpenWrt package that builds your HPMCU binary.
+
+### 5.1 Use the loader firmware as a reference
+```sh
+package/kernel/omega4-hpmcu-loader/firmware-src
+```
+
+### 5.2 Install the RISC-V toolchain
+
+Use a RISC-V64 toolchain. Prebuilt releases are available at `https://github.com/riscv-collab/riscv-gnu-toolchain/releases`. If you already have the toolchain installed, note its path and export it before building:
+```sh
+export PATH=/path/to/riscv64-toolchain/bin:$PATH
+```
+
+### 5.3 Create a new OpenWrt package
+
+Create a package folder, for example `package/kernel/omega4-hpmcu-fw-demo/`, with:
+- `Makefile` (OpenWrt package build/install)
+- `src/` (your firmware sources and linker script)
+
+Example package `Makefile` (top-level):
+```makefile
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=omega4-hpmcu-fw-demo
+PKG_VERSION:=1.0
+PKG_RELEASE:=1
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/omega4-hpmcu-fw-demo
+  SECTION:=kernel
+  CATEGORY:=Kernel modules
+  TITLE:=Omega4 HPMCU firmware (demo)
+endef
+
+define Build/Prepare
+	mkdir -p $(PKG_BUILD_DIR)
+	$(CP) ./src/* $(PKG_BUILD_DIR)/
+endef
+
+define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR)
+endef
+
+define Package/omega4-hpmcu-fw-demo/install
+	$(INSTALL_DIR) $(1)/lib/firmware/omega4
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/bare.bin \
+		$(1)/lib/firmware/omega4/rv1103b-hpmcu-bare.bin
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/alt.bin \
+		$(1)/lib/firmware/omega4/rv1103b-hpmcu-alt.bin
+endef
+
+$(eval $(call BuildPackage,omega4-hpmcu-fw-demo))
+```
+
+Example firmware `Makefile` (in `src/`):
+```makefile
+RISCV_TOOLCHAIN ?= /path/to/riscv-toolchain/bin
+RISCV_PREFIX ?= $(RISCV_TOOLCHAIN)/riscv-none-embed-
+
+CC := $(RISCV_PREFIX)gcc
+OBJCOPY := $(RISCV_PREFIX)objcopy
+
+SRCS := start_rv1103b_mcu.S mcu_heartbeat.c
+
+CFLAGS := -march=rv32im -mabi=ilp32 -mcmodel=medany -Os -nostdlib -nostartfiles \
+	-ffreestanding -I.
+LDFLAGS_COMMON := -Wl,-T,link.lds
+LDFLAGS_BARE := $(LDFLAGS_COMMON) -Wl,-Map=bare.map
+LDFLAGS_ALT := $(LDFLAGS_COMMON) -Wl,-Map=alt.map
+
+all: bare.elf bare.bin alt.elf alt.bin
+
+bare.elf: $(SRCS) link.lds
+	$(CC) $(CFLAGS) -DOMEGA4_FW_ID=0x42415245u $(LDFLAGS_BARE) -o $@ $(SRCS)
+
+bare.bin: bare.elf
+	$(OBJCOPY) -O binary $< $@
+
+alt.elf: $(SRCS) link.lds
+	$(CC) $(CFLAGS) -DOMEGA4_FW_ID=0x414C5430u $(LDFLAGS_ALT) -o $@ $(SRCS)
+
+alt.bin: alt.elf
+	$(OBJCOPY) -O binary $< $@
+
+clean:
+	rm -f bare.elf bare.bin bare.map alt.elf alt.bin alt.map
+```
+
+### 5.4 Build the package and flash
+
+From the OpenWrt tree:
+```sh
+make package/omega4-hpmcu-fw-demo/compile V=s
+```
+
+Rebuild the image and flash it, or install the generated package on the device. The firmware binary must land in `/lib/firmware/omega4/` on the target so the loader can pick it up.
+
+The firmware is linked to run from the reserved DDR region at `0x01000000`, so keep the linker script settings aligned with the reserved memory in the device tree.
+
+## 7. Troubleshooting
+
+- `status` shows `stopped`: start the HPMCU with the `start` attribute.
+- `heartbeat` does not increment: firmware may not be running or is missing.
+- Mailbox ping times out: confirm the mailbox driver is loaded and the firmware is running.
+- No sysfs nodes: verify the loader and mailbox kernel modules are installed/enabled.
