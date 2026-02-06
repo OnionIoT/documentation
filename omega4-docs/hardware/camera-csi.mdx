@@ -16,6 +16,18 @@ v4l2-ctl --list-devices
 media-ctl -p
 ```
 
+:::note Relevant packages
+Ensure the CSI pipeline packages are installed/enabled:
+- `phy-rockchip-csi2-dphy`: MIPI CSI-2 D-PHY bring-up and lane/clock config.
+- `phy-rockchip-mipi-rx`: MIPI RX PHY front-end for CSI-2 receive.
+- `video-rockchip-mipi-csi2`: CSI-2 host controller.
+- `video-rockchip-cif`: RKCIF capture interface.
+- `video-rockchip-isp`: RKISP image processing and main capture nodes.
+- `video-rockchip-rkisp1`: Legacy ISP1 driver (optional/compatibility).
+- `video-sc3336`: Sensor driver for the SC3336 camera module. Provides sensor controls
+  (exposure, gain, test pattern, etc.) and supplies mode timing to the CSI pipeline.
+:::
+
 2) Disable the sensor test pattern (use real scene):
 ```sh
 v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
