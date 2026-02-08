@@ -3,11 +3,24 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docsSidebar: [
-    'overview',
-    'getting-started',
+    {
+      type: 'doc',
+      id: 'overview',
+      label: '🔍 Overview',
+    },
+    {
+      type: 'doc',
+      id: 'getting-started',
+      label: '🚀 Getting Started',
+    },
+    {
+      type: 'doc',
+      id: 'hw-design-guide/omega4-hardware-design-guide',
+      label: '📐 Hardware Design Guide',
+    },
     {
       type: 'category',
-      label: 'Software',
+      label: '💾 Software',
       items: [
         'software/flashing',
       ],
@@ -15,7 +28,7 @@ const sidebars = {
     
     {
       type: 'category',
-      label: 'Networking',
+      label: '📶 Networking',
       items: [
         'networking/wifi_ap',
         'networking/wifi_sta',
@@ -25,7 +38,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Hardware Interfaces',
+      label: '🔌 Hardware Interfaces',
       items: [
         'hardware/spi-nand-flash',
         'hardware/sd-card',

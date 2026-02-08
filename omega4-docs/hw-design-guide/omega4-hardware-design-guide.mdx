@@ -1,0 +1,562 @@
+---
+title: Omega4 Hardware Design Guide
+slug: /hardware/design-guide
+description: Electrical and layout guidance for integrating the Omega4 module into a carrier board.
+---
+
+# Omega4 Hardware Design Guide
+
+This guide provides electrical and layout recommendations for integrating the Omega4 (OM-O4) module into a custom carrier board.
+
+## Download design libraries
+
+Download the package library files for your CAD tool:
+
+- Altium: `TBD`
+- KiCad: `TBD`
+
+
+
+
+
+## 1. Overview {#overview}
+
+## 1.1 Key Features
+
+
+
+
+### CPU
+
+| Item | Value |
+| --- | --- |
+| Chipset | RV1103B |
+| Architecture | Cortex-A7 + RISC-V |
+| Clock Speed | 1.2 GHz |
+
+### Memory
+
+| Item | Value |
+| --- | --- |
+| NAND Flash | 256 MB |
+| DDR3L DRAM | 256 MB |
+
+### WiFi and Bluetooth
+
+| Item | Value |
+| --- | --- |
+| Chipset | AIC8800D80 |
+| WiFi Protocol | IEEE 802.11a/b/g/n/ac/ax |
+| Band | 2.4 GHz / 5 GHz |
+| Data Rate | Up to 400 Mbps |
+| Channel Bandwidth | 20/40/80 MHz |
+| Operation Mode | AP, STA, AP+STA |
+| Encryption Mode | WEP/WPA/WPA2/WPA3-SAE Personal, MFP |
+| Bluetooth Protocol | BT5.3 |
+
+### Interfaces
+
+| Item | Value |
+| --- | --- |
+| Ethernet | 1 (10/100 Mbps) |
+| USB 2.0 Host (OTG) | 1 |
+| MIPI-CSI | 2-lane |
+| MIC | 1 |
+| Audio Line Out | 1 |
+| GPIO (Pin Multiplexing) | up to 36 |
+
+### Power Supply Requirements
+
+| Item | Value |
+| --- | --- |
+| DC Input | 5 V |
+| No-load Running Current | 100 ± 20 mA |
+| Peak Current Requirement | 1 A |
+
+### Operating Conditions
+
+| Item | Value |
+| --- | --- |
+| Operating Temperature | -20°C to 85°C |
+| Ambient Temperature | -10°C to 55°C |
+| Storage Temperature | -20°C to 80°C |
+| Operating Humidity | 10% to 95% RH (non-condensing) |
+| Storage Humidity | 5% to 95% RH (non-condensing) |
+
+### Physical Specifications
+
+| Item | Value |
+| --- | --- |
+| Dimensions | 34 x 20 x 2.8 mm |
+| Packaging | Surface mount |
+
+
+
+
+
+## 2. System Block Diagram {#system-block-diagram}
+
+
+<div style={{ textAlign: 'center' }}>
+  <img
+    src={require("./assets/system-block-diagram.png").default}
+    alt="System block diagram"
+    style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+## 3. Pin Definition {#pin-definition}
+
+## 3.1 Pin Assignment
+
+
+The table below lists the Omega4 module pins and their common alternate functions. In the I/O column, `I` indicates input, `O` indicates output, and `I/O` indicates bidirectional.
+
+<div style={{ textAlign: 'center' }}>
+  <img
+    src={require("./assets/Omega4-footprint-pin-order.png").default}
+    alt="Omega4 Pin Order"
+    style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+
+### Left (Pins 1-21)
+
+| No | Pin Name | I/O | Description |
+| --- | --- | --- | --- |
+| 1 | CAM_CLK0_OUT/<wbr />I2C0_SCL_M2/<wbr />UART2_TX_M2/<wbr />GPIO1_B5_d | I/O | MIPI_MCLK |
+| 2 | GND | I | GND |
+| 3 | GND | I | GND |
+| 4 | NC |  | NC |
+| 5 | VCC_1V8 | O | VCC_1V8, 1.8 V output (max 100 mA) |
+| 6 | GND | I | GND |
+| 7 | SDMMC0_DET/<wbr />GPIO1_A6_u | I/O | SDMMC_DET |
+| 8 | SDMMC0_D1/<wbr />UART1_RX_M1/<wbr />PWM2_CH1_M0/<wbr />GPIO1_A7_d | I/O | SDMMC_D1 |
+| 9 | SDMMC0_D0/<wbr />UART1_TX_M1/<wbr />PWM2_CH0_M0/<wbr />GPIO1_B0_d | I/O | SDMMC_D0 |
+| 10 | SDMMC0_CMD/<wbr />UART1_CTSN_M1/<wbr />GPIO1_B2_d | I/O | SDMMC_CMD |
+| 11 | SDMMC0_CLK/<wbr />UART1_RTSN_M1/<wbr />GPIO1_B1_d | I/O | SDMMC_CLK |
+| 12 | SDMMC0_D3/<wbr />UART0_RX_M2/<wbr />JTAG_TMS_M2/<wbr />PWM2_CH3_M0/<wbr />I2C0_SDA_M1/<wbr />GPIO1_B3_d | I/O | SDMMC_D3 |
+| 13 | SDMMC0_D2/<wbr />UART0_TX_M2/<wbr />JTAG_TCK_M2/<wbr />PWM2_CH2_M0/<wbr />I2C0_SCL_M1/<wbr />GPIO1_B4_d | I/O | SDMMC_D2 |
+| 14 | GND | I | GND |
+| 15 | USB_DM | I/O | USB_DM |
+| 16 | USB_DP | I/O | USB_DP |
+| 17 | GND | I | GND |
+| 18 | ACODEC_AVSS | I | ACODEC_AVSS |
+| 19 | ACODEC_LINEOUT | O | LINE_OUT |
+| 20 | GND | I | GND |
+| 21 | GND | I | GND |
+
+### Bottom (Pins 22-56)
+
+| No | Pin Name | I/O | Description |
+| --- | --- | --- | --- |
+| 22 | GND | I | GND |
+| 23 | 5 V input | I | 5 V main power input |
+| 24 | 5 V input | I | 5 V main power input |
+| 25 | GND | I | GND |
+| 26 | VCC_3V3 | O | VCC_3V3, 3.3 V output (max 100 mA) |
+| 27 | NC | / | NC |
+| 28 | VCC_RTC | I | VCC_RTC, input power < 3.63 V |
+| 29 | FSPI_D0 | I | FSPI_D0, boot key |
+| 30 | GND | I | GND |
+| 31 | ACODEC_MIC_N | I | AUD_MICIN |
+| 32 | ACODEC_MIC_P | I | AUD_MICIP |
+| 33 | ACODEC_MICBIAS |  | ACODEC_MICBIAS |
+| 34 | GND | I | GND |
+| 35 | PWM0_CH0_M0/<wbr />CPU_AVS/<wbr />GPIO0_A1_d | I/O | GPIO0_A1_d |
+| 36 | RTC_32K_CLKO/<wbr />CLK_32K/<wbr />CLK_24M_OUT/<wbr />GPIO0_A0_z | I/O | GPIO0_A0_z |
+| 37 | PWM0_CH3_M0/<wbr />GPIO0_A2_d | I/O | PWM0_CH3_M0/GPIO0_A2_d |
+| 38 | PWR_CTRL_M1/<wbr />GPIO0_A4_d | I/O | PWR_CTRL_M1/GPIO0_A4_d |
+| 39 | UART0_TX_M0/<wbr />PWM0_CH1_M0/<wbr />I2C0_SCL_M0/<wbr />JTAG_TCK_M0/<wbr />GPIO0_A5_d | I/O | SOC UART0_TX_M0 Debug |
+| 40 | UART0_RX_M0/<wbr />PWM0_CH2_M0/<wbr />I2C0_SDA_M0/<wbr />JTAG_TMS_M0/<wbr />GPIO0_A6_u | I/O | SOC UART0_RX_M0 Debug |
+| 41 | UART2_RTSN_M1/<wbr />SPI0_CS0n_M0/<wbr />PWM2_CH2_M1/<wbr />I2C3_SDA_M1/<wbr />SAI_SDO/<wbr />GPIO2_B2_d | I/O | UART2_RTSN_M1 |
+| 42 | UART2_CTSN_M1/<wbr />SPI0_MISO_M0/<wbr />PWM2_CH3_M1/<wbr />I2C3_SCL_M1/<wbr />GPIO2_B3_d | I/O | UART2_CTSN_M1 |
+| 43 | UART2_RX_M1/<wbr />SPI0_MOSI_M0/<wbr />PWM1_CH3_M1/<wbr />I2C4_SDA_M0/<wbr />SAI_LRCK/<wbr />PRELIGHT_TRIG/<wbr />GPIO2_B1_d | I/O | UART2_RX_M1 |
+| 44 | UART2_TX_M1/<wbr />SPI0_CLK_M0/<wbr />PWM0_CH3_M1/<wbr />I2C4_SCL_M0/<wbr />SAI_MCLK/<wbr />FLASH_TRIG/<wbr />GPIO2_B0_d | I/O | UART2_TX_M1 |
+| 45 | BT_UART_RX GPIOA4 | I/O | WiFi pin, BT_UART_RX GPIOA4 |
+| 46 | BT_UART_TX GPIOA5 | I/O | WiFi pin, BT_UART_TX GPIOA5 |
+| 47 | BT_UART_CTS GPIOA6 | I/O | WiFi pin, BT_UART_CTS GPIOA6 |
+| 48 | BT_UART_RTS GPIOA7 | I/O | WiFi pin, BT_UART_RTS GPIOA7 |
+| 49 | WIFI GPIOA8_UART_RX | I/O | WiFi pin, Debug_UART_RX |
+| 50 | WIFI GPIOA9_UART_TX | I/O | WiFi pin, Debug_UART_TX |
+| 51 | HST_WAK_WF GPIOB0 | I/O | WiFi pin, HST_WAK_WF GPIOB0 |
+| 52 | WF_WAK_HST GPIOB1 | I/O | WiFi pin, WF_WAK_HST GPIOB1 |
+| 53 | WIFI GPIOA3 PCM_DOUT | O | WiFi pin, GPIOA3 PCM_DOUT |
+| 54 | WIFI GPIOA1 PCM_CLK | O | WiFi pin, GPIOA1 PCM_CLK |
+| 55 | WIFI GPIOA0 PCM_FSYNC | O | WiFi pin, GPIOA0 PCM_FSYNC |
+| 56 | WIFI GPIOA2 PCM_DIN | I | WiFi pin, GPIOA2 PCM_DIN |
+
+### Top (Pins 57-91)
+
+| No | Pin Name | I/O | Description |
+| --- | --- | --- | --- |
+| 57 | GND | I | GND |
+| 58 | WIFI&BT 2.4G&5G ANT | / | WiFi/BT 2.4/5 GHz antenna |
+| 59 | GND | I | GND |
+| 60 | NC | / | NC |
+| 61 | UART1_RX_M2/<wbr />SPI0_CS1n_M0/<wbr />PWM2_CH1_M1/<wbr />I2C2_SDA_M1/<wbr />SAI_SCLK/<wbr />ETH_LED_SPD/<wbr />GPIO2_A7_d | I/O | GPIO2_A7_d |
+| 62 | UART1_TX_M2/<wbr />PWM2_CH0_M1/<wbr />I2C2_SCL_M1/<wbr />SAI_SDI/<wbr />ETH_LED_LINK/<wbr />GPIO2_A6_d | I/O | GPIO2_A6_d |
+| 63 | SARADC_IN0/<wbr />GPIO2_B4_z | I/O | SARADC_IN0/GPIO2_B4_z |
+| 64 | GND | I | GND |
+| 65 | FEPHY_TXP | O | FEPHY_TXP |
+| 66 | FEPHY_TXN | O | FEPHY_TXN |
+| 67 | GND | I | GND |
+| 68 | FEPHY_RXP | I | FEPHY_RXP |
+| 69 | FEPHY_RXN | I | FEPHY_RXN |
+| 70 | GND | I | GND |
+| 71 | MIPI_CSI_D3N/<wbr />GPI1_C1_u | I/O | MIPI_D3N |
+| 72 | MIPI_CSI_D3P/<wbr />GPI1_C2_u | I/O | MIPI_D3P |
+| 73 | GND | I | GND |
+| 74 | MIPI_CSI_CK1N/<wbr />GPI1_C3_u | I/O | MIPI_CLK1N |
+| 75 | MIPI_CSI_CK1P/<wbr />GPI1_C4_u | I/O | MIPI_CLK1P |
+| 76 | GND | I | GND |
+| 77 | MIPI_CSI_D2N/<wbr />GPI1_C5_u | I/O | MIPI_D2N |
+| 78 | MIPI_CSI_D2P/<wbr />GPI1_C6_u | I/O | MIPI_D2P |
+| 79 | GND | I | GND |
+| 80 | MIPI_CSI_D1N/<wbr />GPI1_D0_u | I/O | MIPI_D1N |
+| 81 | MIPI_CSI_D1P/<wbr />GPI1_D1_u | I/O | MIPI_D1P |
+| 82 | GND | I | GND |
+| 83 | MIPI_CSI_CK0N/<wbr />GPI1_D2_u | I/O | MIPI_CKN |
+| 84 | MIPI_CSI_CK0P/<wbr />GPI1_D3_u | I/O | MIPI_CKP |
+| 85 | GND | I | GND |
+| 86 | MIPI_CSI_D0N/<wbr />GPI1_D4_u | I/O | MIPI_D0N |
+| 87 | MIPI_CSI_D0P/<wbr />GPI1_D5_u | I/O | MIPI_D0P |
+| 88 | GND | I | GND |
+| 89 | PWM0_CH2_M2/<wbr />I2C4_SDA_M1/<wbr />UART2_CTSN_M2/<wbr />GPIO1_C0_d | I/O | MIPI_I2C_SDA |
+| 90 | PWM0_CH1_M2/<wbr />I2C4_SCL_M1/<wbr />UART2_RTSN_M2/<wbr />GPIO1_B7_d | I/O | MIPI_I2C_SCL |
+| 91 | CAM_CLK1_OUT/<wbr />I2C0_SDA_M2/<wbr />UART2_RX_M2/<wbr />GPIO1_B6_d | I/O | MIPI_RST |
+
+
+
+
+
+## 4. Schematic Design Guide {#schematic-design-guide}
+
+## 4.1 5 V Power Supply
+
+
+Provide a regulated 5 V supply to Omega4. PIN23 and PIN24 are the 5 V main power inputs; connect both pins to the 5 V rail.
+
+Place one 10 uF bulk capacitor and one 0.1 uF high-frequency decoupling capacitor close to the power pins, with a short, low-impedance return to ground.
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/5v-input-decoupling-capacitors.png").default}
+      alt="5 V input decoupling capacitors"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+## 4.2 3.3 V and 1.8 V Power Output
+
+
+Omega4 provides one 1.8 V output (PIN5) and one 3.3 V output (PIN26) for external peripherals. These rails are intended for light loads:
+
+- VCC_1V8 (PIN5): up to 100 mA
+- VCC_3V3 (PIN26): up to 100 mA
+
+Do not exceed 100 mA on either rail to avoid impacting the module's internal power rails. For higher-current devices, generate the required supplies on the carrier board.
+
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '16px',
+      flexWrap: 'wrap',
+    }}
+  >
+    <img
+      src={require("./assets/1v8-output-pin-vcc_1v8-pin5.png").default}
+      alt="1.8 V output (PIN5)"
+      style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+    />
+    <img
+      src={require("./assets/3v3-output-pin-vcc_3v3-pin26.png").default}
+      alt="3.3 V output (PIN26)"
+      style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+## 4.3 Pins That Affect System Boot
+
+
+PIN29 (`FSPI_D0`) is sampled during boot. If this pin is held low, the module enters MaskROM programming mode for recovery and firmware flashing.
+
+You can connect `FSPI_D0` to a momentary button (to ground) or expose it as a test point. Ensure the signal is not unintentionally pulled low during normal operation.
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/boot-mode-fspi_d0-maskrom-circuit.png").default}
+      alt="FSPI_D0 boot mode (MaskROM) circuit"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+Note: If your design does not require a button, reserve a test point instead. This simplifies factory test and field recovery.
+
+## 4.4 MIPI-CSI Pin Voltage
+
+
+The MIPI-CSI pins use 1.8 V logic. If you need to interface to 3.3 V devices, add level shifting.
+
+Use case: If your design uses Omega4's `MIPI_I2C` to control a 3.3 V I2C peripheral, add a bidirectional I2C level shifter. A reference circuit is shown below:
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/mipi-i2c-level-shifter-1v8-to-3v3.png").default}
+      alt="MIPI I2C level shifter (1.8 V to 3.3 V)"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+## 4.5 Ethernet Port
+
+
+Reference circuit: You can use an Ethernet jack with integrated magnetics, as shown below.
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/ethernet-port-reference-schematic-integrated-magnetics.png").default}
+      alt="Ethernet reference schematic (integrated magnetics)"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+
+
+## 4.6 Two-Antenna Design
+
+
+You can support two antenna configurations with a single carrier-board design:
+
+- Use case 1: Use the on-module U.FL connector to connect an external antenna.
+- Use case 2: Connect a chip antenna (or another RF connector) to PIN58 (`WL_ANT`).
+
+To support both use cases on a single PCB, add a 0-ohm resistor option tied to PIN58 (`WL_ANT`):
+
+- Use case 1: Use the Omega4 on-module U.FL connector; leave the 0-ohm resistor unpopulated.
+- Use case 2: Populate the 0-ohm resistor; connect the chip antenna (or other connector) to PIN58 (`WL_ANT`).
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/two-antenna-wl_ant-0r-selection.png").default}
+      alt="Two-antenna selection (0-ohm resistor option)"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+Note 1: Only one of PIN58 (`WL_ANT`) or the U.FL connector should be active in a design. If both are connected to antennae, transmit power will be split between the two.
+
+Note 2: In this dual-use design, the trace to PIN58 can detune the U.FL path. The longer the PIN58 trace, the more it may affect U.FL tuning. Place the 0-ohm resistor as close to PIN58 as possible. If you must guarantee no U.FL detuning, use a single-antenna layout.
+
+
+
+## 4.7 Extended Storage
+
+
+Omega4 exposes an SDIO interface and can support Micro SD, SD NAND flash, or eMMC as extended storage.
+
+Add pull-up resistors to the SDIO signals as required by your chosen storage device. A typical value is 10 kOhm.
+
+### 4.7.1 Micro SD Card
+
+
+Use the card-detect pin (`SD_DET`) to detect whether a card is inserted.
+
+By default, `SD_DET` is active-low: a low level indicates a card is inserted.
+
+Add a pull-up resistor to `SD_DET` (typically 10 kOhm).
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/microsd-reference-schematic-pullups-detect.png").default}
+      alt="Micro SD reference schematic (pull-ups and detect)"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+### 4.7.2 eMMC (TBD)
+
+
+
+
+### 4.7.3 SD NAND Flash (TBD)
+
+
+
+
+## 4.8 USB Hub (TBD)
+
+
+
+
+## 5. PCB Layout Design Guide {#pcb-layout-design-guide}
+
+## 5.1 Omega4 Footprint
+
+
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '16px',
+      flexWrap: 'wrap',
+    }}
+  >
+    <img
+      src={require("./assets/omega4-package-land-pattern-top-view.png").default}
+      alt="Omega4 package land pattern (top view)"
+      style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+    />
+    <img
+      src={require("./assets/Omega4-footprint-dimention.png").default}
+      alt="Omega4 package dimensions"
+      style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+## 5.2 Impedance of the PCB Line
+
+
+For best signal integrity, control the impedance of the following traces:
+
+**RF trace:** 50 ohm single-ended.
+
+Note: Add ground stitching vias along the RF trace to provide a solid return path.
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/rf-trace-50ohm-impedance-example.png").default}
+      alt="RF trace 50 ohm impedance example"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+**USB D+/D- pair:** 90 ohm differential.
+
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/usb-differential-90ohm-impedance-example.png").default}
+      alt="USB differential 90 ohm impedance example"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+## 5.3 Test Points
+
+If your carrier PCB has enough space, add test points for key rails and signals (power, debug UART, and boot straps). A 2.0 mm or 2.54 mm pitch is typical.
+
+
+## 6. Design Checklist {#design-checklist}
+
+Use this checklist to review a carrier-board design before PCB layout freeze.
+
+## 6.1 Power
+
+- 5 V input supply can support worst-case load (see `Peak Current Requirement` in Section 1.1), including any downstream peripherals powered from the carrier board.
+- Input decoupling is placed close to PIN23/PIN24 with a low-impedance ground return (Section 4.1).
+- VCC_1V8/VCC_3V3 loads stay within the limits in Section 4.2.
+- All external peripherals use the correct I/O voltage domain (1.8 V vs 3.3 V) and include level shifting where required (Section 4.4).
+
+## 6.2 Boot, Recovery, and Debug
+
+- `FSPI_D0` (PIN29) is accessible via a test point or button and is not inadvertently held low during normal boot (Section 4.3).
+- UART debug access is available (for example, expose UART0 TX/RX plus GND on a header or test points).
+- Key rails and reset/boot strap signals have test points for manufacturing and bring-up (Section 5.3).
+
+## 6.3 RF
+
+- Only one RF path is active: either the on-module U.FL connector or `WL_ANT` (PIN58) (Section 4.6).
+- RF trace impedance is controlled (50 ohm) and the RF keepout/grounding strategy is reviewed (Section 5.2 and Section 9.1).
+
+## 6.4 High-Speed Routing
+
+- USB D+/D- are routed as a 90 ohm differential pair with short stubs and good reference plane continuity (Section 5.2 and Section 9.2).
+- MIPI-CSI routing, connector placement, and return paths are reviewed (Section 9.4).
+- Ethernet routing and magnetics/jack selection are reviewed (Section 4.5 and Section 9.3).
+
+
+## 7. Power Design {#power-design}
+
+## 7.1 5 V Input (PIN23/PIN24)
+
+Omega4 is powered from a 5 V rail via PIN23 and PIN24. For robust operation:
+
+1. Size the 5 V regulator for the Omega4 peak current plus any carrier-board loads. Use the `Peak Current Requirement` from Section 1.1 as a baseline and add margin.
+2. Consider startup inrush from bulk capacitance on the 5 V rail. Ensure the regulator, connector, and protection components can tolerate the inrush profile.
+3. Place the recommended decoupling close to the pins (Section 4.1) and keep the ground return short and wide.
+
+## 7.2 On-Module 1.8 V and 3.3 V Outputs (PIN5/PIN26)
+
+The on-module VCC_1V8 and VCC_3V3 outputs are intended for light peripheral loads. Treat them as convenience rails, not primary power sources.
+
+1. Budget current early and keep peripheral loads within the limits described in Section 4.2.
+2. For sensors, level shifters, and pull-ups, prefer powering from the module outputs only when the current draw is small and well bounded.
+3. For higher-current peripherals (displays, actuators, high-power radios, etc.), generate dedicated rails on the carrier board.
+
+## 7.3 VCC_RTC (PIN28)
+
+PIN28 (`VCC_RTC`) is a separate power input with an upper limit shown in the pin table. If your design needs RTC/backup power, provide a suitable supply and verify the recommended connection and behavior against the module documentation.
+
+
+## 8. Bring-Up and Debug {#bring-up-and-debug}
+
+## 8.1 Recommended Bring-Up Header
+
+During early development, it is helpful to expose the following signals on an accessible header or test pads:
+
+- UART console TX/RX and GND (use the UART pins indicated for debug in the pin table).
+- `FSPI_D0` (PIN29) test point for MaskROM entry.
+- 5 V input and a ground test point for current measurement.
+
+## 8.2 First Power-On Procedure
+
+1. Power the carrier board from a current-limited bench supply at 5 V.
+2. Verify no shorts on the 5 V rail and check that the steady-state current is in a reasonable range relative to the `No-load Running Current` in Section 1.1 (peripheral load will increase this).
+3. Verify the module boots with `FSPI_D0` not asserted.
+4. If a UART console is available, capture the boot log for baseline reference.
+
+## 8.3 Recovery (MaskROM)
+
+If the module does not boot due to firmware or storage issues:
+
+1. Assert `FSPI_D0` (PIN29) low during boot to enter MaskROM programming mode (Section 4.3).
+2. Use your flashing/recovery toolchain to reprogram the module.
+3. Remove the assertion and reboot to return to normal boot.
+
+
+## 9. Interface Integration Notes {#interface-integration-notes}
+
+## 9.1 RF and Antenna
+
+1. Implement a single active RF path (U.FL or `WL_ANT`) as described in Section 4.6.
+2. Route RF with controlled impedance (50 ohm) and maintain a continuous reference plane.
+3. Keep the RF path short, avoid sharp corners, and avoid routing noisy digital lines near the RF trace.
+
+## 9.2 USB 2.0
+
+1. Route USB D+/D- as a 90 ohm differential pair and keep the pair length-matched.
+2. Minimize stubs and avoid via transitions where possible.
+3. Place ESD protection close to the external connector when USB is exposed off-board.
+
+## 9.3 Ethernet
+
+1. Follow the reference schematic guidance in Section 4.5 and choose a jack/magnetics solution appropriate to your mechanical constraints.
+2. Keep the differential pairs short and routed over a solid reference plane.
+3. Place ESD protection near the RJ45 connector if the port is externally accessible.
+
+## 9.4 MIPI-CSI
+
+1. Treat MIPI-CSI as high-speed: keep pairs short, route over a continuous reference plane, and avoid discontinuities.
+2. Verify the I/O voltage domain (1.8 V) for control lines and add level shifting when interfacing to 3.3 V peripherals (Section 4.4).
+3. Place the camera connector to minimize cable/trace length and reduce exposure to noise sources.
+
+## 9.5 Audio (Mic/Line Out)
+
+1. Keep audio traces away from high-speed interfaces and switching power nodes.
+2. Use appropriate AC coupling and filtering for microphones and line-level outputs based on the target codec/peripheral requirements.
+
+## 9.6 SDIO Extended Storage
+
+1. Add required pull-ups for SDIO lines (Section 4.7).
+2. Use `SD_DET` with a pull-up when supporting Micro SD card insertion detection (Section 4.7.1).
