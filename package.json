@@ -14,12 +14,12 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/plugin-client-redirects": "^3.9.2",
-    "@docusaurus/plugin-content-docs": "^3.9.2",
-    "@docusaurus/plugin-google-gtag": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-mermaid": "^3.9.2",
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/plugin-client-redirects": "^3.7.0",
+    "@docusaurus/plugin-content-docs": "^3.7.0",
+    "@docusaurus/plugin-google-gtag": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/theme-mermaid": "^3.7.0",
     "@giscus/react": "^2.4.0",
     "@mdx-js/react": "^3.0.1",
     "clsx": "^1.2.1",
@@ -29,7 +29,7 @@
     "react-lite-youtube-embed": "^2.2.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.3"
+    "@docusaurus/module-type-aliases": "3.7.0"
   },
   "browserslist": {
     "production": [
@@ -45,5 +45,12 @@
   },
   "engines": {
     "node": ">=16.14"
+  },
+  "overrides": {
+    "lodash-es": "4.17.23",
+    "chevrotain": "11.1.1",
+    "@chevrotain/gast": "11.1.1",
+    "@chevrotain/cst-dts-gen": "11.1.1",
+    "langium": "4.2.1"
   }
 }
