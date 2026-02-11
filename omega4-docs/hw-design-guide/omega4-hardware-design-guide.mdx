@@ -19,81 +19,6 @@ Download the package library files for your CAD tool:
 
 
 
-## 1. Overview {#overview}
-
-## 1.1 Key Features
-
-
-
-
-### CPU
-
-| Item | Value |
-| --- | --- |
-| Chipset | RV1103B |
-| Architecture | Cortex-A7 + RISC-V |
-| Clock Speed | 1.2 GHz |
-
-### Memory
-
-| Item | Value |
-| --- | --- |
-| NAND Flash | 256 MB |
-| DDR3L DRAM | 256 MB |
-
-### WiFi and Bluetooth
-
-| Item | Value |
-| --- | --- |
-| Chipset | AIC8800D80 |
-| WiFi Protocol | IEEE 802.11a/b/g/n/ac/ax |
-| Band | 2.4 GHz / 5 GHz |
-| Data Rate | Up to 400 Mbps |
-| Channel Bandwidth | 20/40/80 MHz |
-| Operation Mode | AP, STA, AP+STA |
-| Encryption Mode | WEP/WPA/WPA2/WPA3-SAE Personal, MFP |
-| Bluetooth Protocol | BT5.3 |
-
-### Interfaces
-
-| Item | Value |
-| --- | --- |
-| Ethernet | 1 (10/100 Mbps) |
-| USB 2.0 Host (OTG) | 1 |
-| MIPI-CSI | 2-lane |
-| MIC | 1 |
-| Audio Line Out | 1 |
-| GPIO (Pin Multiplexing) | up to 36 |
-
-### Power Supply Requirements
-
-| Item | Value |
-| --- | --- |
-| DC Input | 5 V |
-| No-load Running Current | 100 ± 20 mA |
-| Peak Current Requirement | 1 A |
-
-### Operating Conditions
-
-| Item | Value |
-| --- | --- |
-| Operating Temperature | -20°C to 85°C |
-| Ambient Temperature | -10°C to 55°C |
-| Storage Temperature | -20°C to 80°C |
-| Operating Humidity | 10% to 95% RH (non-condensing) |
-| Storage Humidity | 5% to 95% RH (non-condensing) |
-
-### Physical Specifications
-
-| Item | Value |
-| --- | --- |
-| Dimensions | 38 x 23.8 x 2.8 mm |
-| Packaging | Surface mount |
-
-
-
-
-
 ## 2. System Block Diagram {#system-block-diagram}
 
 
@@ -112,6 +37,10 @@ Download the package library files for your CAD tool:
 
 The table below lists the Omega4 module pins and their common alternate functions. In the I/O column, `I` indicates input, `O` indicates output, and `I/O` indicates bidirectional.
 
+:::note Signal levels
+All MIPI-related pins on Omega4 use **1.8 V** logic. Add level shifting if you need to interface to 3.3 V peripherals.
+:::
+
 <div style={{ textAlign: 'center' }}>
   <img
     src={require("./assets/Omega4-footprint-pin-order.png").default}
@@ -125,7 +54,7 @@ The table below lists the Omega4 module pins and their common alternate function
 
 | No | Pin Name | I/O | Description |
 | --- | --- | --- | --- |
-| 1 | CAM_CLK0_OUT/<wbr />I2C0_SCL_M2/<wbr />UART2_TX_M2/<wbr />GPIO1_B5_d | I/O | MIPI_MCLK |
+| 1 | CAM_CLK0_OUT/<wbr />I2C0_SCL_M2/<wbr />UART2_TX_M2/<wbr />GPIO1_B5_d | I/O | MIPI_MCLK (1.8 V) |
 | 2 | GND | I | GND |
 | 3 | GND | I | GND |
 | 4 | NC |  | NC |
@@ -205,33 +134,35 @@ The table below lists the Omega4 module pins and their common alternate function
 | 68 | FEPHY_RXP | I | FEPHY_RXP |
 | 69 | FEPHY_RXN | I | FEPHY_RXN |
 | 70 | GND | I | GND |
-| 71 | MIPI_CSI_D3N/<wbr />GPI1_C1_u | I/O | MIPI_D3N |
-| 72 | MIPI_CSI_D3P/<wbr />GPI1_C2_u | I/O | MIPI_D3P |
+| 71 | MIPI_CSI_D3N/<wbr />GPI1_C1_u | I/O | MIPI_D3N (1.8 V) |
+| 72 | MIPI_CSI_D3P/<wbr />GPI1_C2_u | I/O | MIPI_D3P (1.8 V) |
 | 73 | GND | I | GND |
-| 74 | MIPI_CSI_CK1N/<wbr />GPI1_C3_u | I/O | MIPI_CLK1N |
-| 75 | MIPI_CSI_CK1P/<wbr />GPI1_C4_u | I/O | MIPI_CLK1P |
+| 74 | MIPI_CSI_CK1N/<wbr />GPI1_C3_u | I/O | MIPI_CLK1N (1.8 V) |
+| 75 | MIPI_CSI_CK1P/<wbr />GPI1_C4_u | I/O | MIPI_CLK1P (1.8 V) |
 | 76 | GND | I | GND |
-| 77 | MIPI_CSI_D2N/<wbr />GPI1_C5_u | I/O | MIPI_D2N |
-| 78 | MIPI_CSI_D2P/<wbr />GPI1_C6_u | I/O | MIPI_D2P |
+| 77 | MIPI_CSI_D2N/<wbr />GPI1_C5_u | I/O | MIPI_D2N (1.8 V) |
+| 78 | MIPI_CSI_D2P/<wbr />GPI1_C6_u | I/O | MIPI_D2P (1.8 V) |
 | 79 | GND | I | GND |
-| 80 | MIPI_CSI_D1N/<wbr />GPI1_D0_u | I/O | MIPI_D1N |
-| 81 | MIPI_CSI_D1P/<wbr />GPI1_D1_u | I/O | MIPI_D1P |
+| 80 | MIPI_CSI_D1N/<wbr />GPI1_D0_u | I/O | MIPI_D1N (1.8 V) |
+| 81 | MIPI_CSI_D1P/<wbr />GPI1_D1_u | I/O | MIPI_D1P (1.8 V) |
 | 82 | GND | I | GND |
-| 83 | MIPI_CSI_CK0N/<wbr />GPI1_D2_u | I/O | MIPI_CKN |
-| 84 | MIPI_CSI_CK0P/<wbr />GPI1_D3_u | I/O | MIPI_CKP |
+| 83 | MIPI_CSI_CK0N/<wbr />GPI1_D2_u | I/O | MIPI_CKN (1.8 V) |
+| 84 | MIPI_CSI_CK0P/<wbr />GPI1_D3_u | I/O | MIPI_CKP (1.8 V) |
 | 85 | GND | I | GND |
-| 86 | MIPI_CSI_D0N/<wbr />GPI1_D4_u | I/O | MIPI_D0N |
-| 87 | MIPI_CSI_D0P/<wbr />GPI1_D5_u | I/O | MIPI_D0P |
+| 86 | MIPI_CSI_D0N/<wbr />GPI1_D4_u | I/O | MIPI_D0N (1.8 V) |
+| 87 | MIPI_CSI_D0P/<wbr />GPI1_D5_u | I/O | MIPI_D0P (1.8 V) |
 | 88 | GND | I | GND |
-| 89 | PWM0_CH2_M2/<wbr />I2C4_SDA_M1/<wbr />UART2_CTSN_M2/<wbr />GPIO1_C0_d | I/O | MIPI_I2C_SDA |
-| 90 | PWM0_CH1_M2/<wbr />I2C4_SCL_M1/<wbr />UART2_RTSN_M2/<wbr />GPIO1_B7_d | I/O | MIPI_I2C_SCL |
-| 91 | CAM_CLK1_OUT/<wbr />I2C0_SDA_M2/<wbr />UART2_RX_M2/<wbr />GPIO1_B6_d | I/O | MIPI_RST |
+| 89 | PWM0_CH2_M2/<wbr />I2C4_SDA_M1/<wbr />UART2_CTSN_M2/<wbr />GPIO1_C0_d | I/O | MIPI_I2C_SDA (1.8 V) |
+| 90 | PWM0_CH1_M2/<wbr />I2C4_SCL_M1/<wbr />UART2_RTSN_M2/<wbr />GPIO1_B7_d | I/O | MIPI_I2C_SCL (1.8 V) |
+| 91 | CAM_CLK1_OUT/<wbr />I2C0_SDA_M2/<wbr />UART2_RX_M2/<wbr />GPIO1_B6_d | I/O | MIPI_RST (1.8 V) |
 
 
 
 
 
-## 4. Schematic Design Guide {#schematic-design-guide}
+## 4. Hardware Integration Guide {#schematic-design-guide}
+
+### Power and Boot
 
 ## 4.1 5 V Power Supply
 
@@ -278,7 +209,41 @@ Do not exceed 100 mA on either rail to avoid impacting the module's internal pow
     />
   </div>
 
-## 4.3 Pins That Affect System Boot
+:::note
+For camera designs, see Section 4.7 for MIPI-CSI 1.8 V signaling and level-shifting guidance.
+:::
+
+## 4.3 RTC Power Input
+
+RV1103B integrates a dual-channel diode path from `VCC_3V3` and `VCC_RTC` (PIN28). The RTC module can automatically select the active power source. It is recommended to connect `VCC_RTC` (PIN28) to an external supply such as a coin cell or lithium battery.
+
+`VCC_RTC` requires a series resistor of **100 Ω or higher**.
+
+:::note
+The RTC input is rated to a maximum of **3.63 V**, so it cannot connect directly to a lithium battery (3.7 V to 4.2 V). Use a series resistor (for example **390 kΩ**) to drop the voltage before using it as `VCC_RTC`.
+:::
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '16px',
+    flexWrap: 'wrap',
+  }}
+>
+  <img
+    src={require("./assets/rtc-power-resistor-note.png").default}
+    alt="RTC power input resistor guidance"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+  <img
+    src={require("./assets/rtc-power-resistor-note-detail.png").default}
+    alt="RTC power input resistor guidance detail"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+## 4.4 Pins That Affect System Boot
 
 
 PIN29 (`FSPI_D0`) is sampled during boot. If this pin is held low, the module enters MaskROM programming mode for recovery and firmware flashing.
@@ -293,9 +258,69 @@ You can connect `FSPI_D0` to a momentary button (to ground) or expose it as a te
     />
   </div>
 
-Note: If your design does not require a button, reserve a test point instead. This simplifies factory test and field recovery.
+:::note
+If your design does not require a button, reserve a test point instead. This simplifies factory test and field recovery.
+:::
 
-## 4.4 MIPI-CSI Pin Voltage
+## 4.5 Debug UART
+
+The system default debug UART is RV1103B **UART0 M0** on **PIN39** (TX) and **PIN40** (RX). The Wi-Fi chip also provides a debug UART on **PIN49** and **PIN50**.
+
+:::note
+If the product does not require a UART header, reserve test points so it is easier to perform factory testing or issue commands during FCC/CE certification.
+:::
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '16px',
+    flexWrap: 'wrap',
+  }}
+>
+  <img
+    src={require("./assets/debug-uart-pins.png").default}
+    alt="Debug UART pin reference"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+  <img
+    src={require("./assets/debug-uart-pins-detail.png").default}
+    alt="Debug UART pin reference detail"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+## 4.6 Audio & MIC
+
+The built-in ACODEC of the RV1103B provides:
+- One line-out output on **PIN19**.
+- One differential MIC input on **PIN31** and **PIN32**.
+
+`ACODEC_AVSS` (**PIN18**) can be combined with Lineout to form a pseudo-differential signal. This can connect to the input of an external differential power amplifier (PA) for improved audio output.
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '16px',
+    flexWrap: 'wrap',
+  }}
+>
+  <img
+    src={require("./assets/audio-lineout-mic.png").default}
+    alt="Audio line-out and mic pin reference"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+  <img
+    src={require("./assets/audio-lineout-mic-detail.png").default}
+    alt="Audio line-out and mic pin reference detail"
+    style={{ maxWidth: '48%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+### High-Speed and RF
+
+## 4.7 MIPI-CSI Pin Voltage
 
 
 The MIPI-CSI pins use 1.8 V logic. If you need to interface to 3.3 V devices, add level shifting.
@@ -310,7 +335,7 @@ Use case: If your design uses Omega4's `MIPI_I2C` to control a 3.3 V I2C periphe
     />
   </div>
 
-## 4.5 Ethernet Port
+## 4.8 Ethernet Port
 
 
 Reference circuit: You can use an Ethernet jack with integrated magnetics, as shown below.
@@ -323,9 +348,7 @@ Reference circuit: You can use an Ethernet jack with integrated magnetics, as sh
     />
   </div>
 
-
-
-## 4.6 Two-Antenna Design
+## 4.9 Two-Antenna Design
 
 
 You can support two antenna configurations with a single carrier-board design:
@@ -349,16 +372,32 @@ Note 1: Only one of PIN58 (`WL_ANT`) or the U.FL connector should be active in a
 
 Note 2: In this dual-use design, the trace to PIN58 can detune the U.FL path. The longer the PIN58 trace, the more it may affect U.FL tuning. Place the 0-ohm resistor as close to PIN58 as possible. If you must guarantee no U.FL detuning, use a single-antenna layout.
 
+## 4.10 USB 2.0
 
+The USB port supports both Host and Device modes. During normal operation, the USB port defaults to **Device** mode. It can be switched to Host mode via software commands or the BOOT button.
 
-## 4.7 Extended Storage
+To improve signal integrity, place a **2.2 Ω** series resistor on both USB `DP` and `DM`.
+
+:::note
+If the product does not need the USB port, reserve test points so it is easier to upgrade Omega4 firmware.
+:::
+
+<div style={{ textAlign: 'center' }}>
+  <img
+    src={require("./assets/usb-dp-dm-series-resistors.png").default}
+    alt="USB DP/DM series resistor placement"
+    style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+  />
+</div>
+
+## 4.11 Extended Storage
 
 
 Omega4 exposes an SDIO interface and can support Micro SD, SD NAND flash, or eMMC as extended storage.
 
 Add pull-up resistors to the SDIO signals as required by your chosen storage device. A typical value is 10 kOhm.
 
-### 4.7.1 Micro SD Card
+### 4.11.1 Micro SD Card
 
 
 Use the card-detect pin (`SD_DET`) to detect whether a card is inserted.
@@ -366,6 +405,10 @@ Use the card-detect pin (`SD_DET`) to detect whether a card is inserted.
 By default, `SD_DET` is active-low: a low level indicates a card is inserted.
 
 Add a pull-up resistor to `SD_DET` (typically 10 kOhm).
+
+:::note
+`SD_DET` is active-low.
+:::
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -375,19 +418,32 @@ Add a pull-up resistor to `SD_DET` (typically 10 kOhm).
     />
   </div>
 
-### 4.7.2 eMMC (TBD)
+### 4.11.2 eMMC (TBD)
 
 
 
 
-### 4.7.3 SD NAND Flash (TBD)
+### 4.11.3 SD NAND Flash (TBD)
 
 
 
+## 4.12 Integration checklist
 
-## 4.8 USB Hub (TBD)
+Use this checklist to consolidate high-level integration requirements.
 
+### 4.12.1 High-speed and RF
 
+- MIPI-CSI: keep pairs short, match differential pairs, and keep intra-pair skew minimal.
+- MIPI control lines are 1.8 V; add level shifting for 3.3 V peripherals.
+- USB D+/D-: 90 ohm differential, short stubs, and ESD near the connector.
+- USB-C: use a standard CC configuration or controller for the product’s fixed role.
+- Ethernet: keep differential pairs short with a solid reference plane and add ESD if external.
+- RF: 50 ohm controlled impedance with an RF keepout near the antenna region.
+
+### 4.12.2 Analog and low-speed
+
+- Audio: keep traces away from switching nodes and use proper AC coupling/filtering.
+- SDIO: add required pull-ups; `SD_DET` is active-low with a pull-up.
 
 
 ## 5. PCB Layout Design Guide {#pcb-layout-design-guide}
@@ -422,7 +478,9 @@ For best signal integrity, control the impedance of the following traces:
 
 **RF trace:** 50 ohm single-ended.
 
-Note: Add ground stitching vias along the RF trace to provide a solid return path.
+:::note
+Add ground stitching vias along the RF trace to provide a solid return path.
+:::
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -456,52 +514,29 @@ Use this checklist to review a carrier-board design before PCB layout freeze.
 - 5 V input supply can support worst-case load (see `Peak Current Requirement` in Section 1.1), including any downstream peripherals powered from the carrier board.
 - Input decoupling is placed close to PIN23/PIN24 with a low-impedance ground return (Section 4.1).
 - VCC_1V8/VCC_3V3 loads stay within the limits in Section 4.2.
-- All external peripherals use the correct I/O voltage domain (1.8 V vs 3.3 V) and include level shifting where required (Section 4.4).
+- All external peripherals use the correct I/O voltage domain (1.8 V vs 3.3 V) and include level shifting where required (Section 4.7).
 
 ## 6.2 Boot, Recovery, and Debug
 
-- `FSPI_D0` (PIN29) is accessible via a test point or button and is not inadvertently held low during normal boot (Section 4.3).
+- `FSPI_D0` (PIN29) is accessible via a test point or button and is not inadvertently held low during normal boot (Section 4.4).
 - UART debug access is available (for example, expose UART0 TX/RX plus GND on a header or test points).
 - Key rails and reset/boot strap signals have test points for manufacturing and bring-up (Section 5.3).
 
 ## 6.3 RF
 
-- Only one RF path is active: either the on-module U.FL connector or `WL_ANT` (PIN58) (Section 4.6).
-- RF trace impedance is controlled (50 ohm) and the RF keepout/grounding strategy is reviewed (Section 5.2 and Section 9.1).
+- Only one RF path is active: either the on-module U.FL connector or `WL_ANT` (PIN58) (Section 4.9).
+- RF trace impedance is controlled (50 ohm) and the RF keepout/grounding strategy is reviewed (Section 5.2).
 
 ## 6.4 High-Speed Routing
 
-- USB D+/D- are routed as a 90 ohm differential pair with short stubs and good reference plane continuity (Section 5.2 and Section 9.2).
-- MIPI-CSI routing, connector placement, and return paths are reviewed (Section 9.4).
-- Ethernet routing and magnetics/jack selection are reviewed (Section 4.5 and Section 9.3).
+- USB D+/D- are routed as a 90 ohm differential pair with short stubs and good reference plane continuity (Section 4.10 and Section 5.2).
+- MIPI-CSI routing, connector placement, and return paths are reviewed (Section 4.7).
+- Ethernet routing and magnetics/jack selection are reviewed (Section 4.8).
 
 
-## 7. Power Design {#power-design}
+## 7. Bring-Up and Debug {#bring-up-and-debug}
 
-## 7.1 5 V Input (PIN23/PIN24)
-
-Omega4 is powered from a 5 V rail via PIN23 and PIN24. For robust operation:
-
-1. Size the 5 V regulator for the Omega4 peak current plus any carrier-board loads. Use the `Peak Current Requirement` from Section 1.1 as a baseline and add margin.
-2. Consider startup inrush from bulk capacitance on the 5 V rail. Ensure the regulator, connector, and protection components can tolerate the inrush profile.
-3. Place the recommended decoupling close to the pins (Section 4.1) and keep the ground return short and wide.
-
-## 7.2 On-Module 1.8 V and 3.3 V Outputs (PIN5/PIN26)
-
-The on-module VCC_1V8 and VCC_3V3 outputs are intended for light peripheral loads. Treat them as convenience rails, not primary power sources.
-
-1. Budget current early and keep peripheral loads within the limits described in Section 4.2.
-2. For sensors, level shifters, and pull-ups, prefer powering from the module outputs only when the current draw is small and well bounded.
-3. For higher-current peripherals (displays, actuators, high-power radios, etc.), generate dedicated rails on the carrier board.
-
-## 7.3 VCC_RTC (PIN28)
-
-PIN28 (`VCC_RTC`) is a separate power input with an upper limit shown in the pin table. If your design needs RTC/backup power, provide a suitable supply and verify the recommended connection and behavior against the module documentation.
-
-
-## 8. Bring-Up and Debug {#bring-up-and-debug}
-
-## 8.1 Recommended Bring-Up Header
+## 7.1 Recommended Bring-Up Header
 
 During early development, it is helpful to expose the following signals on an accessible header or test pads:
 
@@ -509,54 +544,17 @@ During early development, it is helpful to expose the following signals on an ac
 - `FSPI_D0` (PIN29) test point for MaskROM entry.
 - 5 V input and a ground test point for current measurement.
 
-## 8.2 First Power-On Procedure
+## 7.2 First Power-On Procedure
 
 1. Power the carrier board from a current-limited bench supply at 5 V.
 2. Verify no shorts on the 5 V rail and check that the steady-state current is in a reasonable range relative to the `No-load Running Current` in Section 1.1 (peripheral load will increase this).
 3. Verify the module boots with `FSPI_D0` not asserted.
 4. If a UART console is available, capture the boot log for baseline reference.
 
-## 8.3 Recovery (MaskROM)
+## 7.3 Recovery (MaskROM)
 
 If the module does not boot due to firmware or storage issues:
 
-1. Assert `FSPI_D0` (PIN29) low during boot to enter MaskROM programming mode (Section 4.3).
+1. Assert `FSPI_D0` (PIN29) low during boot to enter MaskROM programming mode (Section 4.4).
 2. Use your flashing/recovery toolchain to reprogram the module.
 3. Remove the assertion and reboot to return to normal boot.
-
-
-## 9. Interface Integration Notes {#interface-integration-notes}
-
-## 9.1 RF and Antenna
-
-1. Implement a single active RF path (U.FL or `WL_ANT`) as described in Section 4.6.
-2. Route RF with controlled impedance (50 ohm) and maintain a continuous reference plane.
-3. Keep the RF path short, avoid sharp corners, and avoid routing noisy digital lines near the RF trace.
-
-## 9.2 USB 2.0
-
-1. Route USB D+/D- as a 90 ohm differential pair and keep the pair length-matched.
-2. Minimize stubs and avoid via transitions where possible.
-3. Place ESD protection close to the external connector when USB is exposed off-board.
-
-## 9.3 Ethernet
-
-1. Follow the reference schematic guidance in Section 4.5 and choose a jack/magnetics solution appropriate to your mechanical constraints.
-2. Keep the differential pairs short and routed over a solid reference plane.
-3. Place ESD protection near the RJ45 connector if the port is externally accessible.
-
-## 9.4 MIPI-CSI
-
-1. Treat MIPI-CSI as high-speed: keep pairs short, route over a continuous reference plane, and avoid discontinuities.
-2. Verify the I/O voltage domain (1.8 V) for control lines and add level shifting when interfacing to 3.3 V peripherals (Section 4.4).
-3. Place the camera connector to minimize cable/trace length and reduce exposure to noise sources.
-
-## 9.5 Audio (Mic/Line Out)
-
-1. Keep audio traces away from high-speed interfaces and switching power nodes.
-2. Use appropriate AC coupling and filtering for microphones and line-level outputs based on the target codec/peripheral requirements.
-
-## 9.6 SDIO Extended Storage
-
-1. Add required pull-ups for SDIO lines (Section 4.7).
-2. Use `SD_DET` with a pull-up when supporting Micro SD card insertion detection (Section 4.7.1).

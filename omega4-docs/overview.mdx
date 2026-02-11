@@ -20,19 +20,75 @@ Omega4 is under active development. Use this page as a working outline and confi
 - AIC8800D80 Wi-Fi/BLE combo for dual-band connectivity on-module.
 - EVB with USB-C power, console access, Ethernet, and castellated/pin headers for rapid testing.
 
-## Hardware specs
+## Key features
 
-| Area | Details |
+### CPU
+
+| Item | Value |
 | --- | --- |
-| CPU | RV1103B ARM Cortex-A7 application SoC. |
-| Memory | Onboard 256 MB DDR. |
-| Storage | 256 MB SPI NAND. |
-| Wireless | AIC8800D80 Wi-Fi/BLE combo radio. |
-| I/O | Up to 36 GPIOs with UART, SPI, I2C, PWM, USB 2.0, 10/100 Ethernet MAC/PHY (per dev board), MIPI CSI-2 (2-lane), mic input, and audio line out. |
-| Power | 5 V input on the EVB; 3.3 V primary rail on module. Peak consumption ~1 W; typical with Wi-Fi AP load ~350 mW. |
-| OS baseline | OpenWrt 24.09 with Onion feed; SDK and factory images forthcoming. |
-| Form factor | 38 x 23.8 x 2.8 mm surface-mount module. |
-| Environmental | Operating: -20°C to 85°C; storage: -20°C to 80°C; humidity: 10% to 95% RH (non-condensing). |
+| Chipset | RV1103B |
+| Architecture | Cortex-A7 + RISC-V |
+| Clock Speed | 1.2 GHz |
+
+### Memory
+
+| Item | Value |
+| --- | --- |
+| NAND Flash | 256 MB |
+| DDR3L DRAM | 256 MB |
+
+### WiFi and Bluetooth
+
+| Item | Value |
+| --- | --- |
+| Chipset | AIC8800D80 |
+| WiFi Protocol | IEEE 802.11a/b/g/n/ac/ax |
+| Band | 2.4 GHz / 5 GHz |
+| Data Rate | Up to 400 Mbps |
+| Channel Bandwidth | 20/40/80 MHz |
+| Operation Mode | AP, STA, AP+STA |
+| Encryption Mode | WEP/WPA/WPA2/WPA3-SAE Personal, MFP |
+| Bluetooth Protocol | BT5.3 |
+
+### Interfaces
+
+| Item | Value |
+| --- | --- |
+| Ethernet | 1 (10/100 Mbps) |
+| USB 2.0 Host (OTG) | 1 |
+| MIPI-CSI | 2-lane |
+| MIC | 1 |
+| Audio Line Out | 1 |
+| GPIO (Pin Multiplexing) | up to 36 |
+
+### Power supply requirements
+
+| Item | Value |
+| --- | --- |
+| DC Input | 5 V |
+| No-load Running Current | 100 ± 20 mA |
+| Peak Current Requirement | 1 A |
+
+### Operating conditions
+
+| Item | Value |
+| --- | --- |
+| Operating Temperature | -20°C to 85°C |
+| Ambient Temperature | -10°C to 55°C |
+| Storage Temperature | -20°C to 80°C |
+| Operating Humidity | 10% to 95% RH (non-condensing) |
+| Storage Humidity | 5% to 95% RH (non-condensing) |
+
+### Physical specifications
+
+| Item | Value |
+| --- | --- |
+| Dimensions | 38 x 23.8 x 2.8 mm |
+| Packaging | Surface mount |
+
+### Software baseline
+
+OpenWrt 24.09 with Onion feed; SDK and factory images forthcoming.
 
 ## Hardware support status (preview)
 
