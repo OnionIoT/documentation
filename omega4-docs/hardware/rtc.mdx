@@ -1,0 +1,96 @@
+---
+title: RTC Guide
+slug: /hardware/rtc
+description: Verify and use the Omega4 RTC on OpenWrt, including NTP sync.
+---
+
+# RTC Guide
+
+The Omega4 has a hardware real-time clock (RTC) that keeps time when the main system is powered off (as long as RTC power is present). This guide shows how to verify the RTC, sync it with NTP, and troubleshoot common issues.
+
+## 1. Status
+
+- RTC hardware is enabled on this tree.
+- The system updates the RTC after NTP sync so time persists across reboots.
+
+NTP hotplug hook (runs once per boot when NTP reaches valid stratum):
+- `/etc/hotplug.d/ntp/90-rtc-sync`
+- Command: `hwclock -w -u -f /dev/rtc0`
+- Guard file: `/tmp/.rtc-synced-from-ntp`
+
+## 2. Runtime assumptions
+
+- `/dev/rtc0` exists.
+- `hwclock` is available at `/sbin/hwclock`.
+- NTP client triggers `/sbin/hotplug-call ntp` with `ACTION=stratum`.
+
+## 3. Verify RTC on target
+
+```sh
+dmesg | grep -i rockchip-rtc
+ls -l /dev/rtc*
+date -u
+hwclock -u -r -f /dev/rtc0
+```
+
+Expected:
+- `rockchip-rtc ... registered as rtc0`
+- Boot log often includes: `setting system clock to ... UTC`
+- `/dev/rtc0` present
+
+## 4. Manual RTC operations
+
+`hwclock` reads from or writes to the RTC device directly.
+
+Write system time to RTC:
+```sh
+hwclock -w -u -f /dev/rtc0
+```
+
+Load system time from RTC:
+```sh
+hwclock -s -u -f /dev/rtc0
+```
+
+## 5. NTP → RTC auto-sync behavior
+
+The hotplug hook writes the RTC once after NTP reaches valid stratum. This keeps the RTC aligned with accurate network time without repeatedly rewriting it.
+
+Manual trigger for testing:
+```sh
+rm -f /tmp/.rtc-synced-from-ntp
+ACTION=stratum /sbin/hotplug-call ntp
+logread | grep -F rtc-sync | tail -n 5
+```
+
+Expected log:
+- `rtc-sync: saved NTP-synced system time to /dev/rtc0`
+
+## 6. Power-cycle persistence test
+
+1) Set a known UTC time and write RTC:
+```sh
+date -u -s '2026-02-13 01:12:00'
+hwclock -w -u -f /dev/rtc0
+```
+
+2) Power cycle the device.
+
+3) After boot, verify:
+```sh
+dmesg | grep -i 'setting system clock'
+date -u
+hwclock -u -r -f /dev/rtc0
+```
+
+`date -u` and `hwclock` should match closely (seconds-level drift only).
+
+## 7. Troubleshooting
+
+- No `/dev/rtc0`:
+  - Check DTS has RTC enabled and the kernel probes `rockchip-rtc`.
+- RTC not updated after NTP:
+  - Ensure `/etc/hotplug.d/ntp/90-rtc-sync` exists and is readable.
+  - Remove `/tmp/.rtc-synced-from-ntp` and retrigger hotplug for test.
+- RTC and system differ after manual time experiments:
+  - Run `hwclock -s -u -f /dev/rtc0` (or rewrite RTC from system with `-w`).

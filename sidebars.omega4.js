@@ -45,6 +45,11 @@ const sidebars = {
         'hardware/i2c',
         'hardware/spi',
         'hardware/pwm',
+        {
+          type: 'doc',
+          id: 'hardware/rtc',
+          label: 'RTC',
+        },
         'hardware/hpmcu',
         'hardware/audio-voice-input',
         'hardware/camera-csi',
