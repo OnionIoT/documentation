@@ -338,56 +338,74 @@ Use case: If your design uses Omega4's `MIPI_I2C` to control a 3.3 V I2C periphe
 ## 4.8 Ethernet Port
 
 
-Reference circuit: You can use an Ethernet jack with integrated magnetics, as shown below.
+Reference circuit: You can use either an Ethernet jack with integrated magnetics or a standard Ethernet jack with external magnetics. The example below shows an implementation with external magnetics.
 
   <div style={{ textAlign: 'center' }}>
     <img
       src={require("./assets/ethernet-port-reference-schematic-integrated-magnetics.png").default}
-      alt="Ethernet reference schematic (integrated magnetics)"
+      alt="Ethernet reference schematic with external magnetics"
       style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
     />
   </div>
 
 ## 4.9 Antenna Design
 
-Choose one antenna path, and keep the option open to support either a U.FL connector or a chip antenna on the same PCB.
+The Omega4 EVB uses the **OA-W03 SMD ceramic antenna**. You can use an equivalent dual-band Wi-Fi antenna in your own design, as long as the RF layout, matching network, and validation are completed for the selected antenna. The OA-W03 is a compact 2.4 GHz / 5 GHz SMD ceramic antenna intended for Wi-Fi applications, with a small footprint and good radiation efficiency.
 
-Option A: Use the on-module U.FL connector for an external antenna.
+Connect the antenna feed to `WL_ANT` (PIN58) through the RF matching network.
 
-Option B: Route to a chip antenna (or another RF connector) on `WL_ANT` (PIN58).
+Reference: [OA-W03 datasheet](./assets/oa-w03-datasheet.pdf).
 
-To support both options on a single design, add a 0-ohm resistor tied to `WL_ANT`:
+### 4.9.1 OA-W03 Key Specifications
 
-- U.FL mode: leave the 0-ohm resistor unpopulated.
-- Chip-antenna mode: populate the 0-ohm resistor and route to the antenna footprint.
+| Parameter | Value |
+| --- | --- |
+| Frequency | 2400–2500 MHz / 5200–5800 MHz |
+| Impedance | 50 Ω |
+| Gain | ~2 dBi at 2.4 GHz, ~4.9 dBi at 5 GHz |
+| VSWR | < 2 |
+| Size | 3.2 x 1.6 x 1.0 mm |
+
+### 4.9.2 Layout Guidelines
+
+- Place the antenna at the edge of the PCB.
+- Keep a clearance area of approximately **6.2 x 4.6 mm** free of ground and routing.
+- Use a **50 Ω controlled-impedance** feed line.
+- Keep the feed trace short and straight.
+- Avoid placing a ground plane directly under the antenna.
 
   <div style={{ textAlign: 'center' }}>
     <img
-      src={require("./assets/two-antenna-wl_ant-0r-selection.png").default}
-      alt="Two-antenna selection (0-ohm resistor option)"
+      src={require("./assets/oa-w03-antenna-layout.png").default}
+      alt="OA-W03 antenna PCB layout reference"
       style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
     />
   </div>
-:::note
-Only one of `WL_ANT` or the U.FL connector should be active at a time. If both are connected, transmit power is split and performance drops.
-:::
 
-:::note
-In a dual-use design, the trace to `WL_ANT` can detune the U.FL path. Keep that trace short and place the 0-ohm resistor as close to `WL_ANT` as possible.
-:::
+### 4.9.3 Matching Network
 
-### 4.9.1 Antenna keepout area
+Include a π-type matching network near the antenna feed. Use the following values as a reference starting point:
 
-The antenna keepout area is a clearance zone around the antenna footprint where you avoid copper pours, high-speed traces, and noisy components. This helps reduce detuning and RF loss.
+| Position | Reference Value |
+| --- | --- |
+| Series | 1.5 pF / 0.75 pF / 0 Ω |
+| Shunt | 2 nH / NC |
 
-- Minimum required keepout: **6 x 6 mm**
-- Omega4 EVB reference keepout: **7 x 25 mm**
+Final component values must be tuned on the target PCB.
 
-Best practices:
-- Keep the antenna at the board edge with clear line-of-sight away from metal enclosures or large ground planes.
-- Avoid stitching vias, ground pours, or signal traces inside the keepout on all layers.
-- Maintain a continuous ground reference under the RF feed trace, then transition cleanly into the keepout zone.
-- Keep the RF feed trace short; gentle curves are fine, but avoid sharp bends and stubs.
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src={require("./assets/oa-w03-antenna-reference-schematic.png").default}
+      alt="OA-W03 antenna matching network reference schematic"
+      style={{ maxWidth: '70%', width: '100%', height: 'auto' }}
+    />
+  </div>
+
+### 4.9.4 Design Notes
+
+- Keep metal parts and components away from the antenna area.
+- Optimize the layout with the final enclosure in place.
+- Perform impedance tuning and RF validation during bring-up.
 
 ## 4.10 USB 2.0
 
