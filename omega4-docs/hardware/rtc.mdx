@@ -23,6 +23,7 @@ NTP hotplug hook (runs once per boot when NTP reaches valid stratum):
 - `/dev/rtc0` exists.
 - `hwclock` is available at `/sbin/hwclock`.
 - NTP client triggers `/sbin/hotplug-call ntp` with `ACTION=stratum`.
+- On the Omega4 EVB, the RTC backup battery holder uses a **CR1220** coin cell.
 
 ## 3. Verify RTC on target
 
