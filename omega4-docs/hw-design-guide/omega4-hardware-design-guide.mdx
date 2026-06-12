@@ -103,25 +103,25 @@ All MIPI-related pins on Omega4 use **1.8 V** logic. Add level shifting if you n
 | 42 | UART2_CTSN_M1/<wbr />SPI0_MISO_M0/<wbr />PWM2_CH3_M1/<wbr />I2C3_SCL_M1/<wbr />GPIO2_B3_d | I/O | UART2_CTSN_M1 |
 | 43 | UART2_RX_M1/<wbr />SPI0_MOSI_M0/<wbr />PWM1_CH3_M1/<wbr />I2C4_SDA_M0/<wbr />SAI_LRCK/<wbr />PRELIGHT_TRIG/<wbr />GPIO2_B1_d | I/O | UART2_RX_M1 |
 | 44 | UART2_TX_M1/<wbr />SPI0_CLK_M0/<wbr />PWM0_CH3_M1/<wbr />I2C4_SCL_M0/<wbr />SAI_MCLK/<wbr />FLASH_TRIG/<wbr />GPIO2_B0_d | I/O | UART2_TX_M1 |
-| 45 | BT_UART_RX GPIOA4 | I/O | WiFi pin, BT_UART_RX GPIOA4 |
-| 46 | BT_UART_TX GPIOA5 | I/O | WiFi pin, BT_UART_TX GPIOA5 |
-| 47 | BT_UART_CTS GPIOA6 | I/O | WiFi pin, BT_UART_CTS GPIOA6 |
-| 48 | BT_UART_RTS GPIOA7 | I/O | WiFi pin, BT_UART_RTS GPIOA7 |
-| 49 | WIFI GPIOA8_UART_RX | I/O | WiFi pin, Debug_UART_RX |
-| 50 | WIFI GPIOA9_UART_TX | I/O | WiFi pin, Debug_UART_TX |
-| 51 | HST_WAK_WF GPIOB0 | I/O | WiFi pin, HST_WAK_WF GPIOB0 |
-| 52 | WF_WAK_HST GPIOB1 | I/O | WiFi pin, WF_WAK_HST GPIOB1 |
-| 53 | WIFI GPIOA3 PCM_DOUT | O | WiFi pin, GPIOA3 PCM_DOUT |
-| 54 | WIFI GPIOA1 PCM_CLK | O | WiFi pin, GPIOA1 PCM_CLK |
-| 55 | WIFI GPIOA0 PCM_FSYNC | O | WiFi pin, GPIOA0 PCM_FSYNC |
-| 56 | WIFI GPIOA2 PCM_DIN | I | WiFi pin, GPIOA2 PCM_DIN |
+| 45 | BT_UART_RX (GPIOA4) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, BT_UART_RX |
+| 46 | BT_UART_TX (GPIOA5) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, BT_UART_TX |
+| 47 | BT_UART_CTS (GPIOA6) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, BT_UART_CTS |
+| 48 | BT_UART_RTS (GPIOA7) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, BT_UART_RTS |
+| 49 | WIFI Debug UART RX (GPIOA8) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, debug UART RX |
+| 50 | WIFI Debug UART TX (GPIOA9) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, debug UART TX |
+| 51 | HST_WAK_WF (GPIOB0) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, host wake Wi-Fi |
+| 52 | WF_WAK_HST (GPIOB1) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, Wi-Fi wake host |
+| 53 | PCM_DOUT (GPIOA3) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, PCM data output |
+| 54 | PCM_CLK (GPIOA1) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, PCM clock |
+| 55 | PCM_FSYNC (GPIOA0) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, PCM frame sync |
+| 56 | PCM_DIN (GPIOA2) | Wi-Fi/BT Dedicated | Wi-Fi/BT module pin, PCM data input |
 
 ### Top (Pins 57-91)
 
 | No | Pin Name | I/O | Description |
 | --- | --- | --- | --- |
 | 57 | GND | I | GND |
-| 58 | WIFI&BT 2.4G&5G ANT | / | WiFi/BT 2.4/5 GHz antenna |
+| 58 | Wi-Fi/BT Antenna | Wi-Fi/BT Dedicated | Wi-Fi/BT 2.4/5 GHz antenna |
 | 59 | GND | I | GND |
 | 60 | NC | / | NC |
 | 61 | UART1_RX_M2/<wbr />SPI0_CS1n_M0/<wbr />PWM2_CH1_M1/<wbr />I2C2_SDA_M1/<wbr />SAI_SCLK/<wbr />ETH_LED_SPD/<wbr />GPIO2_A7_d | I/O | GPIO2_A7_d |
@@ -155,6 +155,10 @@ All MIPI-related pins on Omega4 use **1.8 V** logic. Add level shifting if you n
 | 89 | PWM0_CH2_M2/<wbr />I2C4_SDA_M1/<wbr />UART2_CTSN_M2/<wbr />GPIO1_C0_d | I/O | MIPI_I2C_SDA (1.8 V) |
 | 90 | PWM0_CH1_M2/<wbr />I2C4_SCL_M1/<wbr />UART2_RTSN_M2/<wbr />GPIO1_B7_d | I/O | MIPI_I2C_SCL (1.8 V) |
 | 91 | CAM_CLK1_OUT/<wbr />I2C0_SDA_M2/<wbr />UART2_RX_M2/<wbr />GPIO1_B6_d | I/O | MIPI_RST (1.8 V) |
+
+:::note Wi-Fi/BT dedicated pins
+Pins marked `Wi-Fi/BT Dedicated` are connected to the Wi-Fi/Bluetooth module, not the main SoC. Although they are exposed on module pads, they are not accessible as system GPIO and should not be used as carrier-board GPIO signals.
+:::
 
 
 
