@@ -1,181 +1,277 @@
 ---
 title: Camera (CSI)
 slug: /hardware/camera-csi
-description: Capture frames from the Omega4 camera pipeline using V4L2.
+description: Capture still frames from the Omega4 camera using V4L2.
 ---
 
-# Camera (CSI) Guide
+# Camera (CSI)
 
-This guide shows how to use the Omega4 (RV1103B) camera pipeline on OpenWrt, which nodes to use, and the most important controls for bring-up and debug. The source of truth is your OpenWrt build and kernel packages.
+Omega4 supports camera capture through the RV1103B MIPI CSI-2, CIF, and ISP pipeline. On the Omega4 EVB camera path, the SC3336 sensor is processed by the Rockchip ISP and exposed as a V4L2 capture device, commonly `/dev/video7`.
 
-## 1. Quick start (capture a single frame)
+Use this page to capture still frames and validate the camera path. For H.264 recording and streaming, see [Video Encoder (VENC)](/omega4/hardware/video-encoder).
 
-1) Find your sensor sub-device and main capture node:
-```sh
-v4l2-ctl --list-devices
-media-ctl -p
+## Camera and Video Stack
+
+The Omega4 camera path is made of several hardware and software blocks. The camera sensor sends image data into the SoC over MIPI CSI-2, the ISP prepares usable frames, and applications consume those frames through V4L2.
+
+```text
+SC3336 camera sensor
+  -> MIPI CSI-2 receiver
+  -> Rockchip CIF bridge
+  -> Rockchip ISP
+  -> V4L2 capture node, commonly /dev/video7
 ```
 
-:::note Relevant packages
-Ensure the CSI pipeline packages are installed/enabled:
-- `phy-rockchip-csi2-dphy`: MIPI CSI-2 D-PHY bring-up and lane/clock config.
-- `phy-rockchip-mipi-rx`: MIPI RX PHY front-end for CSI-2 receive.
-- `video-rockchip-mipi-csi2`: CSI-2 host controller.
-- `video-rockchip-cif`: RKCIF capture interface.
-- `video-rockchip-isp`: RKISP image processing and main capture nodes.
-- `video-rockchip-rkisp1`: Legacy ISP1 driver (optional/compatibility).
-- `video-sc3336`: Sensor driver for the SC3336 camera module. Provides sensor controls
-  (exposure, gain, test pattern, etc.) and supplies mode timing to the CSI pipeline.
-:::
+From the V4L2 capture node, there are two common user workflows:
 
-2) Disable the sensor test pattern (use real scene):
+```text
+Still frame workflow:
+/dev/video7 -> v4l2-ctl or mfg-camera-test -> NV12 raw frame
+
+Video workflow:
+/dev/video7 -> omega4-vencd -> hardware VENC -> H.264 file or stream
+```
+
+The `rkaiq` service runs alongside the capture path. It applies automatic exposure, white balance, and ISP tuning in the background so captured frames look correct.
+
+```text
+rkaiq_3A_server -> sensor and ISP controls -> tuned camera output
+```
+
+The onboard video encoder converts camera frames to H.264 directly on the Omega4. It does not create PNG or JPEG still images; for PNG/JPEG output, use a host-side converter or install a target-side image conversion tool that includes those encoders.
+
+## Requirements
+
+Camera support is available in Omega4 firmware `v0.0.14` and newer.
+
+Useful packages and services:
+
+- `v4l-utils`: provides `v4l2-ctl` and `media-ctl`.
+- `mfg-test-tools`: provides `mfg-camera-test` for quick camera validation.
+- `rockchip-aiq`: provides the AIQ service that tunes exposure, white balance, color, and other ISP settings.
+- Camera kernel packages for the SC3336 sensor, CSI-2 receiver, CIF bridge, and Rockchip ISP.
+
+Start the AIQ service before judging image quality:
+
+```sh
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+pidof rkaiq_3A_server
+```
+
+Without AIQ, frames may still capture, but exposure, white balance, and color can look poor.
+
+## Check the Camera
+
+List the available media and video devices:
+
+```sh
+ls -l /dev/media* /dev/video* /dev/v4l-subdev* 2>/dev/null
+v4l2-ctl --list-devices
+```
+
+Inspect the camera media graph:
+
+```sh
+media-ctl -p -d /dev/media1
+```
+
+On the EVB camera path, the ISP capture node is commonly `/dev/video7`. If your image exposes a different node, use the node shown by `v4l2-ctl --list-devices` and `media-ctl -p` in the commands below.
+
+Run a quick functional test:
+
+```sh
+mfg-camera-test -v -d /dev/video7 -n 10
+```
+
+A passing test reports non-zero image data, useful variance, and changing frames.
+
+## Capture a Still Frame
+
+To create a PNG or JPEG still image, capture one raw NV12 frame on the Omega4, copy it to a host computer, then convert it with a full FFmpeg build. The default Omega4 `ffmpeg-custom` package is intended for H.264 transport/remuxing and does not include PNG or MJPEG/JPEG image encoders.
+
+Capture a 640x480 frame:
+
+```sh
+WIDTH=640
+HEIGHT=480
+SIZE=$((WIDTH * HEIGHT * 3 / 2))
+
+v4l2-ctl -d /dev/video7 \
+  --set-fmt-video=width=${WIDTH},height=${HEIGHT},pixelformat=NV12 \
+  --stream-mmap=4 \
+  --stream-skip=8 \
+  --stream-count=1 \
+  --stream-to=/tmp/frame-${WIDTH}x${HEIGHT}.nv12
+
+ls -lh /tmp/frame-${WIDTH}x${HEIGHT}.nv12
+wc -c /tmp/frame-${WIDTH}x${HEIGHT}.nv12
+echo "expected bytes: ${SIZE}"
+```
+
+Capture a full-resolution SC3336 frame:
+
+```sh
+WIDTH=2304
+HEIGHT=1296
+SIZE=$((WIDTH * HEIGHT * 3 / 2))
+
+v4l2-ctl -d /dev/video7 \
+  --set-fmt-video=width=${WIDTH},height=${HEIGHT},pixelformat=NV12 \
+  --stream-mmap=4 \
+  --stream-skip=8 \
+  --stream-count=1 \
+  --stream-to=/tmp/frame-${WIDTH}x${HEIGHT}.nv12
+
+ls -lh /tmp/frame-${WIDTH}x${HEIGHT}.nv12
+wc -c /tmp/frame-${WIDTH}x${HEIGHT}.nv12
+echo "expected bytes: ${SIZE}"
+```
+
+Copy the raw frame to your host:
+
+```sh
+scp root@<omega4-ip>:/tmp/frame-640x480.nv12 .
+```
+
+Convert the raw frame to PNG on the host:
+
+```sh
+ffmpeg -y \
+  -f rawvideo \
+  -pixel_format nv12 \
+  -video_size 640x480 \
+  -i frame-640x480.nv12 \
+  -frames:v 1 \
+  frame-640x480.png
+```
+
+Or convert it to JPEG on the host:
+
+```sh
+ffmpeg -y \
+  -f rawvideo \
+  -pixel_format nv12 \
+  -video_size 640x480 \
+  -i frame-640x480.nv12 \
+  -frames:v 1 \
+  -q:v 3 \
+  frame-640x480.jpg
+```
+
+Use a lower `-q:v` value for higher JPEG quality. Typical values are `2` to `5`.
+
+For a full-resolution frame, use `-video_size 2304x1296` and the matching raw filename.
+
+Optional target-side conversion is only possible if you install or build an FFmpeg package with the needed image encoders. Check the installed encoders with:
+
+```sh
+ffmpeg -hide_banner -encoders | grep -E ' png| mjpeg'
+```
+
+## Formats and Resolution
+
+List supported capture formats and sizes:
+
+```sh
+v4l2-ctl -d /dev/video7 --list-formats-ext
+```
+
+Recommended formats:
+
+- `NV12`: standard YUV 4:2:0 format. Use this for still capture and VENC input.
+- `NV21`: similar to NV12, with V and U swapped.
+- `UYVY`: packed YUV 4:2:2, useful for compatibility tests.
+- `NM12` and `NM21`: Rockchip-specific layouts used by some hardware-accelerated paths.
+
+Use `NV12` unless you have a specific reason to choose another format.
+
+Common sizes:
+
+- `640x480`: fast validation and low-bandwidth streaming.
+- `2304x1296`: full-resolution SC3336 still capture.
+
+## Sensor Controls
+
+Sensor controls are exposed on a V4L2 sub-device. Find the exact sub-device with:
+
+```sh
+v4l2-ctl --list-devices
+media-ctl -p -d /dev/media1
+```
+
+List controls:
+
+```sh
+v4l2-ctl -d /dev/v4l-subdevX -l
+```
+
+Useful controls include:
+
+- `test_pattern`: enables a synthetic sensor pattern for pipeline validation.
+- `exposure`: adjusts integration time.
+- `analogue_gain`: adjusts sensor gain.
+- `horizontal_flip` and `vertical_flip`: mirror or flip the image.
+
+Disable the test pattern for normal capture:
+
 ```sh
 v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
 ```
 
-3) Set exposure and gain (tune for your lighting):
+Manually tune exposure and gain if needed:
+
 ```sh
 v4l2-ctl -d /dev/v4l-subdevX -c exposure=900
 v4l2-ctl -d /dev/v4l-subdevX -c analogue_gain=4096
 ```
 
-4) Capture a single NV12 frame from the main capture node:
-```sh
-v4l2-ctl -d /dev/videoY --set-fmt-video=width=2304,height=1296,pixelformat=NV12
-v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
-  --stream-to=/tmp/nv12_2304x1296.raw
-```
+## Troubleshooting
 
-5) Convert on your host with ffmpeg:
-```sh
-ffmpeg -y -f rawvideo -pixel_format nv12 -video_size 2304x1296 \
-  -i /path/to/nv12_2304x1296.raw -frames:v 1 /path/to/nv12_2304x1296.png
-```
+### No `/dev/video7`
 
-If you only want the luma plane (Y-only debug):
-```sh
-ffmpeg -y -f rawvideo -pixel_format gray -video_size 2304x1296 \
-  -i /path/to/nv12_2304x1296.raw -frames:v 1 /path/to/nv12_2304x1296_y.png
-```
+The capture node can change between images. First list the available devices:
 
-## 2. Topology (what is what)
-
-Typical pipeline:
-
-`Sensor -> CSI2 DPHY -> MIPI CSI2 host -> RKCIF -> RKISP -> /dev/videoY`
-
-Device nodes of interest (common layout):
-- `/dev/media0`: rkcif media graph (sensor + CSI receiver side)
-- `/dev/media1`: rkisp mainpath media graph (ISP output side)
-- `/dev/v4l-subdevX`: sensor sub-device (controls live here)
-- `/dev/videoY`: rkisp mainpath capture (use this for raw frame dumps)
-
-Discover your exact node IDs with:
 ```sh
 v4l2-ctl --list-devices
-media-ctl -p
+media-ctl -p -d /dev/media1
 ```
 
-## 3. Formats: NV12 vs NM12 (and friends)
+If no camera or ISP node appears, check the driver logs:
 
-`/dev/videoY` often advertises:
-- `NV12`: standard linear Y + interleaved UV (4:2:0). Best for portability.
-- `NV21`: standard linear Y + interleaved VU (4:2:0).
-- `NV16`/`NV61`: standard linear 4:2:2 variants.
-- `NM12`/`NM21`: Rockchip-specific layouts for internal accelerators.
-
-Recommendation:
-- Use `NV12` for validation and host-side inspection with ffmpeg.
-
-List formats:
 ```sh
-v4l2-ctl -d /dev/videoY --list-formats-ext
+dmesg | grep -Ei 'sc3336|csi|cif|isp|rkisp|rkcif|mipi|error|timeout'
 ```
 
-## 4. Important controls (sensor sub-device)
+### Black or Very Dark Image
 
-List controls and current values:
+Make sure AIQ is running and give it a few seconds to settle:
+
 ```sh
-v4l2-ctl -d /dev/v4l-subdevX -l
-v4l2-ctl -d /dev/v4l-subdevX --all
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+sleep 3
+mfg-camera-test -v -d /dev/video7 -n 10
 ```
 
-Common controls and what they do:
+If the image is still dark, inspect the sensor and ISP logs:
 
-- `test_pattern`: generates a synthetic pattern to validate the pipeline.
-- `exposure`: integration time; increase to brighten the image.
-- `analogue_gain`: sensor gain; increase after exposure for fine tuning.
-- `vertical_blanking`: affects frame timing and max exposure.
-- `horizontal_blanking`: often fixed/read-only for a mode.
-- `horizontal_flip` / `vertical_flip`: mirror/flip the image.
-- `link_frequency` / `pixel_rate`: read-only timing values.
-
-## 5. Capture recipes
-
-### 5.1 640x480 NV12 (fast debug)
 ```sh
-v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
-v4l2-ctl -d /dev/v4l-subdevX -c exposure=400 -c analogue_gain=1024
-
-v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=NV12
-v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
-  --stream-to=/tmp/nv12_640x480.raw
+dmesg | grep -Ei 'sc3336|rkisp|rkcif|csi|mipi|error|timeout'
 ```
 
-Host conversion:
-```sh
-ffmpeg -y -f rawvideo -pixel_format nv12 -video_size 640x480 \
-  -i /path/to/nv12_640x480.raw -frames:v 1 /path/to/nv12_640x480.png
-```
+### Gradient or Test Pattern Instead of a Real Image
 
-### 5.2 Test pattern (pipeline validation)
-```sh
-v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=2
-v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=NV12
-v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
-  --stream-to=/tmp/tp.raw
-```
+Disable the sensor test pattern:
 
-### 5.3 UYVY (packed 4:2:2)
-```sh
-v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
-v4l2-ctl -d /dev/videoY --set-fmt-video=width=640,height=480,pixelformat=UYVY
-v4l2-ctl -d /dev/videoY --stream-mmap=3 --stream-skip=8 --stream-count=1 \
-  --stream-to=/tmp/uyvy_640x480.raw
-```
-
-Host conversion:
-```sh
-ffmpeg -y -f rawvideo -pixel_format uyvy422 -video_size 640x480 \
-  -i /path/to/uyvy_640x480.raw -frames:v 1 /path/to/uyvy_640x480.png
-```
-
-## 6. Sanity checks (format/buffer integrity)
-
-Confirm negotiated format/strides:
-```sh
-v4l2-ctl -d /dev/videoY --get-fmt-video
-```
-
-Check file size matches format:
-- NV12 bytes = `width * height * 3 / 2`
-- UYVY bytes = `width * height * 2`
-
-Example:
-```sh
-wc -c /tmp/nv12_640x480.raw
-```
-
-## 7. Troubleshooting
-
-### "Only black-to-white gradient"
-Likely cause: test pattern still enabled.
 ```sh
 v4l2-ctl -d /dev/v4l-subdevX -c test_pattern=0
 ```
 
-### Image too dark / too bright
-- Increase `exposure` first, then `analogue_gain`.
+### Unexpected File Size
 
-### "Green/pink blocks" or UV corruption
-This can indicate buffer layout or DMA issues. Confirm the negotiated format with `--get-fmt-video` and validate file sizes before deeper debugging.
+Confirm the negotiated format:
+
+```sh
+v4l2-ctl -d /dev/video7 --get-fmt-video
+```
+
+For NV12, expected bytes are `width * height * 3 / 2`. For UYVY, expected bytes are `width * height * 2`.

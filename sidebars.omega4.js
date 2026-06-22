@@ -53,6 +53,7 @@ const sidebars = {
         'hardware/hpmcu',
         'hardware/audio-voice-input',
         'hardware/camera-csi',
+        'hardware/video-encoder',
         'hardware/usb-host',
         'hardware/usb-device-gadget',
       ],
