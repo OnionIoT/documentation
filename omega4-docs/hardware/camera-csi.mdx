@@ -8,7 +8,7 @@ description: Capture still frames from the Omega4 camera using V4L2.
 
 Omega4 supports camera capture through the RV1103B MIPI CSI-2, CIF, and ISP pipeline. On the Omega4 EVB camera path, the SC3336 sensor is processed by the Rockchip ISP and exposed as a V4L2 capture device, commonly `/dev/video7`.
 
-Use this page to capture still frames and validate the camera path. For H.264 recording and streaming, see [Video Encoder (VENC)](/omega4/hardware/video-encoder).
+Use this page to capture still frames and validate the camera path. For H.264 recording and streaming, see [Video Encoder (VENC)](/omega4/hardware/video-encoder). For object detection and RKNN inference, see [NPU (Edge AI)](/omega4/hardware/npu-rknn).
 
 ## Camera and Video Stack
 
@@ -22,7 +22,7 @@ SC3336 camera sensor
   -> V4L2 capture node, commonly /dev/video7
 ```
 
-From the V4L2 capture node, there are two common user workflows:
+From the V4L2 capture node, there are three common user workflows:
 
 ```text
 Still frame workflow:
@@ -30,6 +30,9 @@ Still frame workflow:
 
 Video workflow:
 /dev/video7 -> omega4-vencd -> hardware VENC -> H.264 file or stream
+
+Inference workflow:
+/dev/video7 -> omega4-rknn-yolo-live -> NPU -> JSON detection output
 ```
 
 The `rkaiq` service runs alongside the capture path. It applies automatic exposure, white balance, and ISP tuning in the background so captured frames look correct.

@@ -1,0 +1,282 @@
+---
+title: NPU (Edge AI)
+slug: /hardware/npu-rknn
+description: Run RKNN inference and YOLO object detection with the Omega4 NPU.
+---
+
+# NPU (Edge AI)
+
+Omega4 firmware `v0.0.14` and newer includes support for the RV1103B NPU through the Rockchip RKNPU driver and RKNN runtime. Use this page to verify the NPU, run packaged RKNN models, and run live camera object detection.
+
+For camera capture details, see [Camera (CSI)](/omega4/hardware/camera-csi). For H.264 video streaming, see [Video Encoder (VENC)](/omega4/hardware/video-encoder).
+
+## NPU and Camera Stack
+
+The NPU path is a userspace RKNN pipeline backed by the kernel RKNPU driver:
+
+```text
+Camera sensor
+  -> Rockchip ISP / RKAIQ
+  -> V4L2 capture node, commonly /dev/video7
+  -> userspace frame preparation
+  -> RKNN runtime
+  -> /dev/rknpu
+  -> classification or object detection output
+```
+
+The NPU path is separate from the video encoder path:
+
+```text
+Video encode:
+/dev/video7 -> omega4-vencd -> H.264 file, FIFO, or RTP stream
+
+NPU inference:
+/dev/video7 -> omega4-rknn-yolo-live -> JSON detection output
+```
+
+The current command-line tools normally open the camera capture node directly. Run one camera owner at a time unless your application provides a shared capture pipeline.
+
+## Requirements
+
+Useful packages and devices:
+
+- `kmod-rknpu-rockchip`: kernel driver for the Rockchip RKNPU block.
+- `rockchip-rknn`: RKNN runtime, example models, and Omega4 helper commands.
+- `rockchip-aiq`: camera ISP tuning service used by live camera inference.
+- `/dev/rknpu`: NPU device.
+- `/dev/video7`: common EVB camera capture node.
+
+The `rockchip-rknn` package provides tools such as:
+
+```text
+/usr/bin/omega4-rknn-mobilenet
+/usr/bin/omega4-rknn-camera
+/usr/bin/omega4-rknn-yolo-live
+/usr/share/rockchip-rknn/models/RV1106B_RV1103B/mobilenet_v1.rknn
+/usr/share/rockchip-rknn/models/RV1106B_RV1103B/yolov5n.rknn
+/usr/share/rockchip-rknn/models/coco_80_labels_list.txt
+```
+
+Start AIQ before live camera inference so exposure and white balance can settle:
+
+```sh
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+```
+
+## Verify the NPU
+
+Run the packaged Mobilenet smoke test:
+
+```sh
+omega4-rknn-mobilenet
+```
+
+Expected output includes RKNN runtime and driver versions, tensor descriptions, inference timing, and classification results. A healthy run should complete without RKNPU timeout or failed-submit errors.
+
+Check the kernel log after a run:
+
+```sh
+dmesg | tail -50
+```
+
+The runtime version line should look similar to:
+
+```text
+rknn_api/rknnrt version: 2.3.2 ..., driver version: 0.9.8
+```
+
+## Model Compatibility
+
+Use RKNN models built for the RV1103B/RV1106B class target. Models built for plain `rv1103` or `rv1106` may initialize but fail during inference.
+
+If a model loads but `rknn_run` times out or the kernel log shows a first-convolution RKNPU error, rebuild the model for `rv1103b` or `rv1106b` with RKNN Toolkit2.
+
+The packaged examples use these default models:
+
+- Mobilenet: `/usr/share/rockchip-rknn/models/RV1106B_RV1103B/mobilenet_v1.rknn`
+- YOLOv5n: `/usr/share/rockchip-rknn/models/RV1106B_RV1103B/yolov5n.rknn`
+
+More RKNN example models and conversion references are available from the Rockchip RKNN Model Zoo: [https://github.com/airockchip/rknn_model_zoo](https://github.com/airockchip/rknn_model_zoo). When using models from the model zoo, choose or build variants compatible with the RV1103B/RV1106B target.
+
+## Static Camera Inference
+
+Run Mobilenet against a frame captured from the camera:
+
+```sh
+omega4-rknn-camera --device /dev/video7
+```
+
+The wrapper captures warmup frames, uses the last frame, converts the NV12 camera frame to the model input image, and runs `omega4-rknn-mobilenet`.
+
+Keep the intermediate files if you want to inspect the input frame:
+
+```sh
+omega4-rknn-camera \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --warmup-frames 15 \
+  --raw-image /tmp/camera-rknn-input.nv12 \
+  --image /tmp/camera-rknn-input.bmp
+```
+
+Useful options:
+
+```text
+--device PATH       V4L2 capture device, default /dev/video7
+--width PIXELS      capture width, default 640
+--height PIXELS     capture height, default 480
+--fps FPS           capture frame rate hint, default 30
+--warmup-frames N   capture N frames and use the last one
+--model PATH        RKNN model path
+--loop-count N      number of inference loops
+```
+
+## Live YOLO Object Detection
+
+Run YOLOv5n on the live camera stream:
+
+```sh
+omega4-rknn-yolo-live \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 30 \
+  --warmup-frames 5 \
+  --infer-every 3 \
+  --threshold 0.25 \
+  --zero-copy
+```
+
+This command is continuous by default. It exits only if `--max-frames` is set to a nonzero value or if an error occurs.
+
+Run a finite validation pass:
+
+```sh
+omega4-rknn-yolo-live \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 30 \
+  --warmup-frames 5 \
+  --infer-every 3 \
+  --max-frames 30 \
+  --threshold 0.25 \
+  --zero-copy
+```
+
+Output is one JSON object per inference frame:
+
+```json
+{"frame":8,"pts_us":2933597038,"infer_ms":82.38,"width":640,"height":480,"objects":[]}
+```
+
+When objects are detected, the `objects` array contains COCO class labels, confidence scores, and bounding boxes in source-frame coordinates.
+
+Common options:
+
+```text
+--device PATH          V4L2 device, default /dev/video7
+--model PATH           YOLOv5 RKNN model
+--width PIXELS         capture width, default 640
+--height PIXELS        capture height, default 480
+--fps FPS              capture frame rate, default 30
+--warmup-frames N      skip startup frames before inference
+--infer-every N        infer every Nth frame, default 3
+--max-frames N         stop after N captured frames, default 0=infinite
+--threshold FLOAT      confidence threshold, default 0.25
+--nms FLOAT            NMS IoU threshold, default 0.45
+--no-empty             do not print frames with zero detections
+--zero-copy            use RKNN zero-copy IO buffers
+```
+
+At 30 fps, `--infer-every 3` runs inference about 10 times per second. Increase the value to reduce NPU and CPU load.
+
+## Detection and Video Streaming
+
+The current command-line tools do not share a single camera capture process. Running `omega4-vencd` and `omega4-rknn-yolo-live` at the same time may fail if both processes try to open `/dev/video7`.
+
+Run either the encoder stream:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 1280 \
+  --height 720 \
+  --fps 30 \
+  --gop 15 \
+  --rc cbr \
+  --bitrate 2000000 \
+  --rtp-dest 239.255.42.1:5601 \
+  --rtp-payload-type 96 \
+  --rtp-mtu 1200
+```
+
+or the detector:
+
+```sh
+omega4-rknn-yolo-live \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 30 \
+  --infer-every 3 \
+  --zero-copy
+```
+
+Applications that need both encoded video and detections should use one camera capture owner, then branch frames to the NPU and encoder paths.
+
+## Troubleshooting
+
+### YOLO exits after a few seconds
+
+Check whether `--max-frames` was set. `--max-frames 30` stops after 30 captured frames. Remove the option or set it to zero for continuous operation:
+
+```sh
+omega4-rknn-yolo-live --device /dev/video7 --max-frames 0 --zero-copy
+```
+
+### `rknn_run` times out or RKNPU submit errors appear
+
+Check model target compatibility first. On RV1103B, rebuild the RKNN model for `rv1103b` or `rv1106b`.
+
+Check logs for driver errors:
+
+```sh
+dmesg | grep -Ei 'rknpu|rknn|timeout|submit|iommu|dma'
+```
+
+### Camera image is dark
+
+Start or restart AIQ and allow warmup frames:
+
+```sh
+/etc/init.d/rkaiq restart
+omega4-rknn-yolo-live --device /dev/video7 --warmup-frames 15 --zero-copy
+```
+
+Use the static camera path to keep the input frame for inspection:
+
+```sh
+omega4-rknn-camera \
+  --device /dev/video7 \
+  --warmup-frames 30 \
+  --raw-image /tmp/camera.nv12 \
+  --image /tmp/camera.bmp
+```
+
+### Device is busy
+
+Another process may already own `/dev/video7`. Stop the encoder, detector, or capture command that is currently using it:
+
+```sh
+ps | grep -E 'omega4-vencd|omega4-rknn-yolo-live|v4l2-ctl'
+```
+
+### Empty `objects` array
+
+An empty array means inference completed and no object passed the confidence and NMS thresholds. Lower the threshold or put a known COCO object in view:
+
+```sh
+omega4-rknn-yolo-live --threshold 0.15 --zero-copy
+```

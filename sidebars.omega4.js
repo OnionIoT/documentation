@@ -54,6 +54,7 @@ const sidebars = {
         'hardware/audio-voice-input',
         'hardware/camera-csi',
         'hardware/video-encoder',
+        'hardware/npu-rknn',
         'hardware/usb-host',
         'hardware/usb-device-gadget',
       ],
