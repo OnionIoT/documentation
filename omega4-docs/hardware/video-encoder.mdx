@@ -1,0 +1,518 @@
+---
+title: Video Encoder (VENC)
+slug: /hardware/video-encoder
+description: Record and stream H.264 video with the Omega4 hardware encoder.
+---
+
+# Video Encoder (VENC)
+
+Omega4 firmware `v0.0.14` and newer includes hardware H.264 encoding support through the RV1103B RKVENC block. The `omega4-vencd` command captures NV12 frames from the camera, sends them to the Rockchip MPP encoder, and writes an Annex-B H.264 stream to a file, FIFO, or standard output.
+
+For still-frame capture and camera validation, see [Camera (CSI)](/omega4/hardware/camera-csi). For object detection and RKNN inference, see [NPU (Edge AI)](/omega4/hardware/npu-rknn).
+
+## Where VENC Fits
+
+VENC is the hardware block that turns camera frames into compressed H.264 video. A typical live or recording path looks like this:
+
+```text
+SC3336 camera sensor
+  -> MIPI CSI-2 / CIF / ISP camera pipeline
+  -> /dev/video7 V4L2 NV12 frames
+  -> omega4-vencd
+  -> Rockchip MPP / RKVENC hardware encoder
+  -> H.264 output
+```
+
+The H.264 output can be saved directly on the Omega4, written to a FIFO for another process, streamed directly over RTP by `omega4-vencd`, or piped into `ffmpeg-custom` for MPEG-TS and other packetization workflows.
+
+```text
+H.264 output
+  -> /tmp/clip.h264
+  -> /run/omega4-venc/main.h264 FIFO
+  -> omega4-vencd built-in RTP streamer
+  -> ffmpeg-custom -> MPEG-TS or custom network stream
+```
+
+This avoids copying raw camera frames to another computer for video encoding. Host-side tools are still useful for playback, inspection, or converting still frames to PNG/JPEG.
+
+## Requirements
+
+Useful packages and devices:
+
+- `omega4-vencd`: Omega4 H.264 encoder command and init service.
+- `librockchip-mpp`: Rockchip MPP userspace library used by the encoder.
+- `kmod-video-rockchip-mpp`: kernel MPP service and RKVENC support.
+- `ffmpeg-custom`: lightweight FFmpeg build for optional H.264 parsing, RTP, MPEG-TS, file, pipe, TCP, and UDP transport.
+- `/dev/video7`: common EVB camera capture node.
+- `/dev/mpp_service`: Rockchip MPP encoder device.
+
+Check the encoder device after boot:
+
+```sh
+ls -l /dev/mpp_service /dev/dma_heap 2>/dev/null
+cat /proc/mpp_service/version
+cat /proc/mpp_service/supports-device
+```
+
+The support list should include `RKVENC`.
+
+Start AIQ before recording from the camera so exposure and white balance can settle:
+
+```sh
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+```
+
+## Record H.264 to a File
+
+Record a 10-second 640x480 clip:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 30 \
+  --gop 30 \
+  --bitrate 1200000 \
+  --frames 300 \
+  --output /tmp/clip-640x480.h264
+```
+
+At 30 fps, `--frames 300` records about 10 seconds.
+
+Copy the file to a host and play it:
+
+```sh
+scp root@<omega4-ip>:/tmp/clip-640x480.h264 .
+ffplay -f h264 clip-640x480.h264
+```
+
+Or inspect it with FFprobe:
+
+```sh
+ffprobe -hide_banner \
+  -show_entries stream=codec_name,width,height,avg_frame_rate \
+  -of default=noprint_wrappers=1 \
+  clip-640x480.h264
+```
+
+## Stream Video
+
+### Built-In RTP Streaming
+
+`omega4-vencd` can packetize H.264 as RTP directly. This is the recommended RTP path because it does not require a separate FFmpeg process on the Omega4.
+
+The examples below use `239.255.42.1`, which is an administratively scoped multicast address. This is the multicast group the stream is sent to, not the Omega4's own IP address. Use multicast when multiple receivers may watch the same stream and your network allows multicast traffic.
+
+For UDP unicast to one receiver, replace the multicast destination with the receiver host's IP address, for example `--rtp-dest 192.168.1.50:5601`. For unicast SDP files, use the same receiver IP in the `c=IN IP4 ...` line.
+
+Start the RTP sender on Omega4:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 1280 \
+  --height 720 \
+  --fps 30 \
+  --gop 15 \
+  --rc cbr \
+  --bitrate 2000000 \
+  --rtp-dest 239.255.42.1:5601 \
+  --rtp-payload-type 96 \
+  --rtp-mtu 1200
+```
+
+Create `omega4-live.sdp` on the receiving host:
+
+```sdp
+v=0
+o=- 0 0 IN IP4 239.255.42.1
+s=Omega4 VENC
+c=IN IP4 239.255.42.1/16
+t=0 0
+m=video 5601 RTP/AVP 96
+a=rtpmap:96 H264/90000
+a=fmtp:96 packetization-mode=1
+```
+
+Play from the host:
+
+```sh
+ffplay \
+  -protocol_whitelist file,udp,rtp \
+  -analyzeduration 10000000 \
+  -probesize 10000000 \
+  -fflags nobuffer \
+  omega4-live.sdp
+```
+
+`omega4-vencd` emits H.264 SPS/PPS headers at startup and on each IDR frame. For live streams, set `--gop 30` at 30 fps for roughly 1-second late-join recovery, or `--gop 60` for roughly 2 seconds.
+
+### MPEG-TS over UDP with FFmpeg
+
+MPEG-TS over UDP is useful when you want a stream that can be opened without an SDP file. This path uses `omega4-vencd` for hardware encoding and `ffmpeg-custom` only for remuxing the H.264 stream into MPEG-TS packets. The same multicast and unicast address rules apply: `udp://239.255.42.1:5006` sends to a multicast group, while `udp://192.168.1.50:5006` sends to one receiver.
+
+Start the sender on Omega4:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 30 \
+  --gop 30 \
+  --bitrate 1200000 \
+  --output - | \
+ffmpeg -hide_banner -loglevel info \
+  -f h264 \
+  -i pipe:0 \
+  -c:v copy \
+  -f mpegts \
+  udp://239.255.42.1:5006
+```
+
+Play from a host on the same network:
+
+```sh
+ffplay udp://239.255.42.1:5006
+```
+
+## Quality, Data Rate, Buffering, and Latency
+
+Video quality is mainly controlled by resolution, frame rate, bitrate, rate-control mode, GOP length, and the scene itself. A static scene can look good at a lower bitrate; fast motion, fine texture, and low light need more bitrate.
+
+### Quality Knobs
+
+- Resolution: higher resolution preserves detail but increases bitrate and processing load.
+- Frame rate: higher frame rate gives smoother motion but needs more bitrate for the same quality.
+- Bitrate: higher bitrate reduces blockiness and motion smearing.
+- Rate control: `vbr` gives the encoder more flexibility; `cbr` is easier to fit into a fixed network budget.
+- GOP: shorter GOP values improve stream join/recovery time; longer GOP values can be more bitrate efficient.
+- AIQ: keep `/etc/init.d/rkaiq` running so exposure and white balance stay stable.
+
+### Data Rate and Storage
+
+`--bitrate` is in bits per second. Divide by 8 to estimate bytes per second before network/container overhead.
+
+| Encoder bitrate | Approx. data rate | Approx. storage |
+| --- | --- | --- |
+| `800000` bps | 100 kB/s | 6 MB/min |
+| `1200000` bps | 150 kB/s | 9 MB/min |
+| `2000000` bps | 250 kB/s | 15 MB/min |
+| `4000000` bps | 500 kB/s | 30 MB/min |
+| `8000000` bps | 1 MB/s | 60 MB/min |
+
+RTP and UDP add packet overhead, so reserve extra network headroom. If Wi-Fi is weak or congested, a stream can stutter even when the nominal bitrate looks low enough.
+
+### Buffering and Latency
+
+End-to-end latency comes from the camera frame interval, encoder buffering, network transport, receiver buffering, and display. For the lowest practical latency:
+
+- Use the built-in RTP streamer instead of adding another local remux process.
+- Use a GOP around 0.5 to 1 second, such as `--fps 30 --gop 15` or `--fps 30 --gop 30`.
+- Use `cbr` when the network has a fixed capacity.
+- Keep `--rtp-mtu 1200` unless you know your network path supports larger packets.
+- On the receiver, use low-buffer playback options such as `-fflags nobuffer`.
+
+For `ffplay`, a low-latency receiver command is:
+
+```sh
+ffplay \
+  -protocol_whitelist file,udp,rtp \
+  -fflags nobuffer \
+  -flags low_delay \
+  -framedrop \
+  -sync ext \
+  omega4-live.sdp
+```
+
+If the stream is unstable, increase receiver buffering first by removing `-fflags nobuffer`, then reduce bitrate or resolution if needed.
+
+### Compare Low and High Quality Streams
+
+Run these examples one at a time because the camera capture node is normally opened by one process at a time.
+
+Low bandwidth / low latency test:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 640 \
+  --height 480 \
+  --fps 15 \
+  --gop 15 \
+  --rc cbr \
+  --bitrate 700000 \
+  --rtp-dest 239.255.42.1:5601 \
+  --rtp-payload-type 96 \
+  --rtp-mtu 1200
+```
+
+This uses about `700000` bps before RTP/UDP overhead. It should start quickly and tolerate weaker networks, but fine detail and fast motion will be lower quality.
+
+High quality 1080p test:
+
+```sh
+omega4-vencd \
+  --device /dev/video7 \
+  --width 1920 \
+  --height 1080 \
+  --fps 30 \
+  --gop 30 \
+  --rc vbr \
+  --bitrate 8000000 \
+  --rtp-dest 239.255.42.1:5602 \
+  --rtp-payload-type 96 \
+  --rtp-mtu 1200
+```
+
+This uses about `8000000` bps before RTP/UDP overhead. It should preserve substantially more detail and motion, but it needs a strong network and more receiver buffering may be required.
+
+Use the same SDP template as the RTP example above, changing the multicast address and port to match the stream. For the low bandwidth stream use port `5601`; for the high quality stream use port `5602`.
+
+## Configure Encoder Settings
+
+### Resolution
+
+Set the capture and encode size with `--width` and `--height`:
+
+```sh
+omega4-vencd --width 1280 --height 720 ...
+```
+
+Check camera-supported sizes first:
+
+```sh
+v4l2-ctl -d /dev/video7 --list-formats-ext
+```
+
+Useful starting points:
+
+- `640x480`: low-bandwidth streaming and quick tests.
+- `1280x720`: HD streaming when network bandwidth allows.
+- `1920x1080`: high-quality streaming on strong networks.
+- `2304x1296`: full-resolution SC3336 still capture path. Validate performance before using this size for continuous encode.
+
+### Pixel Format
+
+The default format is `--format 0`, which maps to NV12. This is the recommended VENC input format.
+
+### Frame Rate
+
+Set encoder rate-control timing with `--fps`:
+
+```sh
+omega4-vencd --fps 30 ...
+```
+
+`--fps` configures encoder timing. It does not currently program the camera sensor frame interval.
+
+### Bitrate
+
+Use bits per second:
+
+```sh
+omega4-vencd --bitrate 1200000 ...
+```
+
+Suggested starting values:
+
+- `640x480@30`: `800000` to `2000000` bps.
+- `1280x720@30`: `2000000` to `5000000` bps.
+- `1920x1080@30`: `4000000` to `8000000` bps.
+
+Set explicit min and max values when needed:
+
+```sh
+omega4-vencd \
+  --bitrate 2000000 \
+  --bitrate-min 1000000 \
+  --bitrate-max 3000000 \
+  ...
+```
+
+### Rate Control
+
+Supported `--rc` values:
+
+- `vbr`: variable bitrate, recommended for general camera streaming.
+- `cbr`: constant bitrate, useful when network capacity is tightly bounded.
+- `fixqp`, `avbr`, `smtrc`: advanced modes exposed by the encoder.
+
+Examples:
+
+```sh
+omega4-vencd --rc vbr --bitrate 1200000 ...
+omega4-vencd --rc cbr --bitrate 1200000 --bitrate-min 1200000 --bitrate-max 1200000 ...
+```
+
+### GOP / Keyframe Interval
+
+`--gop` controls the keyframe interval:
+
+```sh
+omega4-vencd --fps 30 --gop 30 ...
+```
+
+For live streams, keep the GOP close to 1 or 2 seconds:
+
+- `30 fps`, `--gop 30`: IDR about every 1 second.
+- `30 fps`, `--gop 60`: IDR about every 2 seconds.
+
+Shorter GOP values improve late-join recovery at the cost of slightly higher bitrate.
+
+### Finite and Continuous Capture
+
+Record continuously to standard output:
+
+```sh
+omega4-vencd --frames 0 --output -
+```
+
+Record a fixed number of frames to a file:
+
+```sh
+omega4-vencd --frames 120 --output /tmp/test.h264
+```
+
+The encoder skips initial frames by default so the camera and AIQ loop can settle. For quick tests, reduce the skip count:
+
+```sh
+omega4-vencd --skip 0 --frames 5 --output /tmp/fast.h264
+```
+
+## Use the Init Service
+
+The VENC service is configured with UCI at `/etc/config/omega4-venc`. It is disabled by default.
+
+Enable a continuous built-in RTP stream:
+
+```sh
+uci set omega4-venc.main.enabled='1'
+uci set omega4-venc.main.device='/dev/video7'
+uci set omega4-venc.main.width='1280'
+uci set omega4-venc.main.height='720'
+uci set omega4-venc.main.fps='30'
+uci set omega4-venc.main.gop='15'
+uci set omega4-venc.main.rc='cbr'
+uci set omega4-venc.main.bitrate='2000000'
+uci set omega4-venc.main.frames='0'
+uci set omega4-venc.main.output='-'
+uci set omega4-venc.main.rtp_dest='239.255.42.1:5601'
+uci set omega4-venc.main.rtp_payload_type='96'
+uci set omega4-venc.main.rtp_mtu='1200'
+uci commit omega4-venc
+/etc/init.d/omega4-vencd restart
+```
+
+Enable a continuous FIFO stream for another local process:
+
+```sh
+uci set omega4-venc.main.enabled='1'
+uci set omega4-venc.main.device='/dev/video7'
+uci set omega4-venc.main.width='640'
+uci set omega4-venc.main.height='480'
+uci set omega4-venc.main.fps='30'
+uci set omega4-venc.main.gop='30'
+uci set omega4-venc.main.bitrate='1200000'
+uci set omega4-venc.main.frames='0'
+uci set omega4-venc.main.output='/run/omega4-venc/main.h264'
+uci set omega4-venc.main.output_type='fifo'
+uci set omega4-venc.main.rtp_dest=''
+uci commit omega4-venc
+/etc/init.d/omega4-vencd restart
+```
+
+Consume the FIFO and send MPEG-TS over UDP:
+
+```sh
+ffmpeg -hide_banner -loglevel info \
+  -f h264 \
+  -i /run/omega4-venc/main.h264 \
+  -c:v copy \
+  -f mpegts \
+  udp://239.255.42.1:5006
+```
+
+Create a one-shot service capture:
+
+```sh
+uci set omega4-venc.main.enabled='1'
+uci set omega4-venc.main.frames='120'
+uci set omega4-venc.main.output='/tmp/service-capture.h264'
+uci set omega4-venc.main.output_type='file'
+uci set omega4-venc.main.rtp_dest=''
+uci commit omega4-venc
+/etc/init.d/omega4-vencd restart
+```
+
+Disable the service:
+
+```sh
+/etc/init.d/omega4-vencd stop
+uci set omega4-venc.main.enabled='0'
+uci commit omega4-venc
+```
+
+## Troubleshooting
+
+### Validate the Full Path
+
+```sh
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+mfg-camera-test -v -d /dev/video7 -n 10
+omega4-vencd --dry-run
+omega4-vencd -d /dev/video7 -W 640 -H 480 -n 5 -g 30 -b 1200000 -o /tmp/quick.h264
+ffmpeg -hide_banner -loglevel info -f h264 -i /tmp/quick.h264 -c:v copy -f h264 /tmp/quick-copy.h264
+```
+
+### H.264 File Is Only a Few Dozen Bytes
+
+A valid H.264 stream starts with SPS/PPS headers. A very small file usually means headers were written, but no encoded frame data was produced.
+
+Check the encoder and camera logs:
+
+```sh
+ls -lh /tmp/out.h264
+logread | grep omega4-vencd | tail -100
+dmesg | grep -Ei 'mpp|rkvenc|rkisp|rkcif|watchdog|reset|timeout' | tail -100
+```
+
+For one-shot service captures, use `frames` greater than `0` and `output_type='file'` so the service does not restart and overwrite the output.
+
+### RTP Receiver Shows `unspecified size`
+
+The receiver joined before it saw SPS/PPS headers. Use a shorter GOP:
+
+```sh
+omega4-vencd --fps 30 --gop 30 ...
+```
+
+Then restart the receiver.
+
+### MPP Device Errors
+
+Check MPP status:
+
+```sh
+ls -l /dev/mpp_service
+cat /proc/mpp_service/version
+cat /proc/mpp_service/supports-device
+dmesg | grep -Ei 'mpp|rkvenc|watchdog|reset|irq_status|error status'
+```
+
+The support list should include:
+
+```text
+RKVENC
+```
+
+### Dark or Poor-Quality Video
+
+Make sure AIQ is running and allow a short warm-up before encoding:
+
+```sh
+/etc/init.d/rkaiq status || /etc/init.d/rkaiq start
+sleep 3
+omega4-vencd --device /dev/video7 --width 640 --height 480 --frames 60 --output /tmp/test.h264
+```
