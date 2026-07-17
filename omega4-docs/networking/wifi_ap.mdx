@@ -120,9 +120,7 @@ uci show network.wlan
 ```
 Common causes:
 - Missing AP support: ensure a `wpad`/`hostapd` package is installed (otherwise `wifi reload` cannot start the AP).
-- Single radio: if STA mode is enabled, the AP interface may be disabled; set `wireless.default_radio0.mode='ap'` and reload.
+- Standard UCI config uses one Wi-Fi role at a time. If STA mode is enabled, the AP interface may be disabled; set `wireless.default_radio0.mode='ap'` and reload. For STA on one band plus AP on the other band, see [Cross-Band Wi-Fi STA + AP](./wifi-cross-band-sta-ap).
 - Bad channel/regdomain: set `wireless.radio0.country` to your country code and try a different channel, then `wifi reload`.
 
 Clients can now join SSID `<hostname>` (for example, `Omega-A7FE`) using the configured WPA2 key. Traffic will be on network `wlan`, so ensure `wlan` is configured with DHCP or static addressing as needed.
-
-> Tested on Omega-A7FE: `wifi status` shows `radio0` up with SSID `Omega-A7FE`, `phy0-ap0` is up in AP mode, and hostapd reports `AP-ENABLED`.

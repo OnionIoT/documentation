@@ -32,6 +32,7 @@ const sidebars = {
       items: [
         'networking/wifi_ap',
         'networking/wifi_sta',
+        'networking/wifi-cross-band-sta-ap',
         'networking/bluetooth',
         'networking/bluetooth-gatt-provisioning',
       ],

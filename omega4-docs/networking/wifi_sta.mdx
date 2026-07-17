@@ -103,10 +103,12 @@ uci commit firewall
 /etc/init.d/firewall restart
 ```
 
-## 7. Troubleshooting
+## 7. Cross-band STA + AP
+
+For a setup where the Omega4 joins an upstream Wi-Fi network on one band and hosts an AP on the other band, see [Cross-Band Wi-Fi STA + AP](./wifi-cross-band-sta-ap).
+
+## 8. Troubleshooting
 - Log review: `logread | grep -i wpa_supplicant` and `logread | grep -i cfg80211`.
 - Wrong key/SSID: re-run the `uci set wireless.default_radio0.*` lines, `uci commit wireless`, then `wifi reload`.
 - 11ac config errors: if `logread` reports unknown `ieee80211ac`/`vht_*` options, your `wpad` build lacks 11ac; keep `htmode` at `HT20/HT40` or install a full `wpad` build.
-- One role at a time: enabling STA mode disables the AP interface on this single radio; switch back to AP by restoring `mode='ap'` and your AP network (for example `network='wlan'`).
-
-> Tested on Omega-2D29: `wifi status` reports interface `phy0-sta0` in `mode: sta` targeting SSID `TestNet`; `ubus call network.interface.wwan status` shows the interface available (no AP in range during test).
+- Standard UCI config uses one Wi-Fi role at a time. To switch back to AP mode, restore `mode='ap'` and your AP network, for example `network='wlan'`.
